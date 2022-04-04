@@ -1,0 +1,19 @@
+---
+repositories:
+  buoy_examples:
+    type: git
+    url: https://github.com/osrf/buoy_examples
+    version: main
+  buoy_msgs:
+    type: git
+    url: https://github.com/osrf/buoy_msgs
+    version: main
+  buoy_sim:
+    type: git
+    url: https://github.com/osrf/buoy_sim
+    version: main
+  # Must compile ros_ign from source because Galactic + Fortress is not an official combination
+  ros_ign:
+    type: git
+    url: https://github.com/osrf/ros_ign
+    version: galactic
