@@ -40,12 +40,19 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
     vcs import < buoy_all.yaml
     ```
 
+1. Set the Gazebo version to Fortress. This is needed because we're not using an
+   official ROS + Gazebo combination:
+
+    ```
+    export IGNITION_VERSION=fortress
+    ```
+
 1. Install ROS dependencies
 
     ```
     sudo rosdep init
     rosdep update
-    rosdep install --from-paths src --ignore-src -r -y
+    rosdep install --from-paths src --ignore-src -r -y -i
     ```
 
 1. Build and install
