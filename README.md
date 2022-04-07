@@ -44,7 +44,7 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
    official ROS + Gazebo combination:
 
     ```
-    export IGNITION_VERSION=fortres
+    export IGNITION_VERSION=fortress
     ```
 
 1. Install ROS dependencies
@@ -52,7 +52,7 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
     ```
     sudo rosdep init
     rosdep update
-    rosdep install --from-paths src --ignore-src -r -y
+    rosdep install --from-paths src --ignore-src -r -y -i
     ```
 
 1. Build and install
