@@ -62,6 +62,15 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
     colcon build
     ```
 
+2. Using docker
+    ```
+    git clone https://github.com/osrf/buoy_entrypoint.git
+    cd ~/buoy_entrypoint/docker/
+    ./build.bash buoy -u <username>
+    ./run.bash buoy:latest
+    ```
+
+
 ## Run
 
 1. Source the workspace
