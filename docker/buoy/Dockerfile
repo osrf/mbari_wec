@@ -4,6 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Useful tools
 RUN apt update \
  && apt install -y \
+        apt-utils \
         build-essential \
         curl \
         lsb-release \
@@ -37,9 +38,10 @@ ENV IGNITION_VERSION fortress
 # When running a container start in the user's home folder
 WORKDIR /home/${USERNAME}/
 
+### TODO(quarkytale): creating and building not required for development
 # Create project directory and import packages
-RUN mkdir -p /home/$USERNAME/buoy_ws/src \
-  && cd /home/$USERNAME/buoy_ws/src/ \
+RUN mkdir -p /home/${USERNAME}/buoy_ws/src \
+  && cd /home/${USERNAME}/buoy_ws/src/ \
   && wget https://raw.githubusercontent.com/osrf/buoy_entrypoint/main/buoy_all.yaml \
   && vcs import --skip-existing < buoy_all.yaml
 
@@ -48,15 +50,15 @@ COPY . src/buoy_sim
 
 # Install rosdep dependencies
 RUN apt update \
-  &&  rosdep update \
-  &&  rosdep install --from-paths src --ignore-src -r -y -i \
-  &&  rm -rf /var/lib/apt/lists/* \
-  &&  apt clean
+  && rosdep update \
+  && rosdep install --from-paths src --ignore-src -r -y -i \
+  && rm -rf /var/lib/apt/lists/* \
+  && apt clean
 
-# TODO(quarkytale): Build the project
-# RUN pwd \
-#   &&  colcon info buoy_sim
+# Build the project
+RUN /bin/bash -c 'source /opt/ros/${ROS_DISTRO}/setup.bash \
+  && colcon build --cmake-clean-cache'
 
 # Source workspaces, add it to the bashrc
 RUN /bin/sh -c 'echo ". /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc' \
- && /bin/sh -c 'echo ". ~/buoy_ws/install/setup.sh" >> ~/.bashrc'
+  && /bin/sh -c 'echo "./home/${USERNAME}/buoy_ws/install/setup.sh" >> ~/.bashrc'

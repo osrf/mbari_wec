@@ -43,4 +43,4 @@ docker tag $image_plus_tag $image_name:latest
 
 echo "Built $image_plus_tag and tagged as $image_name:latest"
 echo "To run:"
-echo "./run.bash $image_name:latest"
+echo "./run.bash [-d|s] $image_name:latest"

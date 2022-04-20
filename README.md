@@ -15,7 +15,7 @@ These are the repositories for the project:
       Gazebo plugins, worlds and launch files to simulate the buoy.
 
 ## Install
-
+### On Host System
 At the moment, only source installation is supported. Use Ubuntu Focal.
 
 1. Install [ROS 2 Galactic](https://docs.ros.org/en/galactic/index.html)
@@ -62,14 +62,23 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
     colcon build
     ```
 
-2. Using docker
+### Using docker
+#### Requirements
+1. Install Docker using [installation instructions.](https://docs.docker.com/engine/install/ubuntu/)
+1. Complete the [Linux Postinstall steps](https://docs.docker.com/engine/install/linux-postinstall/) to allow you to manage Docker as a non-root user.
+1. Install `rocker` by `sudo apt-get install python3-rocker`.
+
+#### Usage
+Clone the buoy_entrypoint repository to download the latest Dockerfile.
     ```
     git clone https://github.com/osrf/buoy_entrypoint.git
     cd ~/buoy_entrypoint/docker/
-    ./build.bash buoy -u <username>
-    ./run.bash buoy:latest
+    ./build.bash buoy
+    ./run.bash [-d|s] buoy:latest
     ```
-
+where `./run.bash` option:
+1. -d     Use for development with host system volume mount
+1. -s     Simulation purposes only
 
 ## Run
 

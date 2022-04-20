@@ -26,14 +26,34 @@
 # Recommended:
 #   A joystick mounted to /dev/input/js0 or /dev/input/js1
 
-if [ $# -lt 1 ]
+# Display Help
+Help()
+{
+   echo "Runs a docker container with the image created by build.bash."
+   echo
+   echo "Syntax: script [-s|t] image_name"
+   echo "options:"
+   echo "d     Use for development with host system volume mount."
+   echo "s     Simulation purposes only."
+   echo
+}
+
+if [ $# -lt 2 ]
 then
-    echo "Usage: $0 <docker image> [<dir with workspace> ...]"
+    echo "Usage: $0 <options [-s|t]> <image_name>"
+    Help
     exit 1
 fi
 
-CUDA=""
-ROCKER_ARGS="--devices /dev/dri/ --dev-helpers --nvidia --x11 --user --home --git"
+while getopts ":ds" option; do
+  case $option in
+    d) # Build image for development
+      ROCKER_ARGS="--devices /dev/dri/ --dev-helpers --nvidia --x11 --user --home --git ";;
+    s) # Build image for Simulation
+      echo "Building Simulation image"
+      ROCKER_ARGS="--devices /dev/dri/ --dev-helpers --nvidia --x11 --user --git";;
+  esac
+done
 
 IMG_NAME=${@:$OPTIND:1}
 
@@ -43,4 +63,4 @@ CONTAINER_NAME="$(tr ':' '_' <<< "$IMG_NAME")_runtime"
 ROCKER_ARGS="${ROCKER_ARGS} --name $CONTAINER_NAME"
 echo "Using image <$IMG_NAME> to start container <$CONTAINER_NAME>"
 
-rocker ${CUDA} ${ROCKER_ARGS} $IMG_NAME 
+rocker ${ROCKER_ARGS} $IMG_NAME
