@@ -29,7 +29,7 @@ Help()
 {
    echo "Runs a docker container with the image created by build.bash."
    echo
-   echo "Syntax: script [-s|t] image_name"
+   echo "Syntax: script [-d|s] image_name"
    echo "options:"
    echo "-d     Use for development with host system volume mount."
    echo "-s     Simulation purposes only."
