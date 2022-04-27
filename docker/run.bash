@@ -23,8 +23,6 @@
 #   nvidia-docker
 #   an X server
 #   rocker
-# Recommended:
-#   A joystick mounted to /dev/input/js0 or /dev/input/js1
 
 # Display Help
 Help()
@@ -33,14 +31,13 @@ Help()
    echo
    echo "Syntax: script [-s|t] image_name"
    echo "options:"
-   echo "d     Use for development with host system volume mount."
-   echo "s     Simulation purposes only."
+   echo "-d     Use for development with host system volume mount."
+   echo "-s     Simulation purposes only."
    echo
 }
 
 if [ $# -lt 2 ]
 then
-    echo "Usage: $0 <options [-s|t]> <image_name>"
     Help
     exit 1
 fi
@@ -48,6 +45,7 @@ fi
 while getopts ":ds" option; do
   case $option in
     d) # Build image for development
+      echo "Building Development image"
       ROCKER_ARGS="--devices /dev/dri/ --dev-helpers --nvidia --x11 --user --home --git ";;
     s) # Build image for Simulation
       echo "Building Simulation image"

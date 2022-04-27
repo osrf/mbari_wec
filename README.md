@@ -65,6 +65,7 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
 ### Using docker
 #### Requirements
 1. Install Docker using [installation instructions.](https://docs.docker.com/engine/install/ubuntu/)
+1. Install [nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker).
 1. Complete the [Linux Postinstall steps](https://docs.docker.com/engine/install/linux-postinstall/) to allow you to manage Docker as a non-root user.
 1. Install `rocker` by `sudo apt-get install python3-rocker`.
 
@@ -79,6 +80,12 @@ Clone the buoy_entrypoint repository to download the latest Dockerfile.
 where `./run.bash` option:
 1. -d     Use for development with host system volume mount
 1. -s     Simulation purposes only
+> The `./run.bash` script is a wrapper around rocker, see [documentation](https://github.com/osrf/rocker) for additional options.
+
+To have another window running the same docker container, run this command in a new terminal:
+   ```
+   ./join.bash buoy_latest_runtime
+   ```
 
 ## Run
 

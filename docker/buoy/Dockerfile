@@ -11,22 +11,17 @@ RUN apt update \
         wget \
  && apt clean
 
-# Setup and install ignition fortress
+# Setup and install ignition fortress, colcon and rosdep
 RUN /bin/sh -c 'wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg' \
   && /bin/sh -c 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null' \
   && apt update \
   && apt install -y ignition-fortress \
+     python3-colcon-common-extensions \
+     python3-colcon-core \
+     python3-rosdep \
+     python3-vcstool \
   && rm -rf /var/lib/apt/lists/* \
   && apt clean
-
-# Install colcon and rosdep
-RUN apt update \
- && apt install -y \
-    python3-colcon-common-extensions \
-    python3-colcon-core \
-    python3-rosdep \
-    python3-vcstool \
- && apt clean
 
 # Add the same user as outside the container
 # Requires a docker build argument `USERNAME`
@@ -57,8 +52,8 @@ RUN apt update \
 
 # Build the project
 RUN /bin/bash -c 'source /opt/ros/${ROS_DISTRO}/setup.bash \
-  && colcon build --cmake-clean-cache'
+  && colcon build'
 
 # Source workspaces, add it to the bashrc
 RUN /bin/sh -c 'echo ". /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc' \
-  && /bin/sh -c 'echo "./home/${USERNAME}/buoy_ws/install/setup.sh" >> ~/.bashrc'
+  && /bin/sh -c 'echo ". /home/${USERNAME}/buoy_ws/install/setup.sh" >> ~/.bashrc'
