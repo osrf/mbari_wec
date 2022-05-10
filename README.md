@@ -111,8 +111,8 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
     * -d     Use for development with host system volume mount
     * -s     Simulation purposes only
 
-    The development use case enables to either use host system home directory for user's custom workspace, or a fresh clone in the docker container.
-    Regardless the script option, project source files can be found in `/tmp/buoy_ws/' inside the container. Note that any changes to files in the container will have limited scope.
+    The development use case enables to either use host system home directory for user's custom workspace, or a fresh clone inside the docker container. If using host system workspace, follow the [On Host System](#on-host-system) instructions to build and run the project in the container.
+    Regardless the script option, project source files can be found in `/tmp/buoy_ws/' in the container. Note that any changes to files in the container will have limited scope.
 
 1. To have another window running the same docker container, run this command in a new terminal:
 
