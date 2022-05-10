@@ -49,7 +49,7 @@ while getopts ":ds" option; do
       ROCKER_ARGS="--devices /dev/dri/ --dev-helpers --nvidia --x11 --user --home --git ";;
     s) # Build image for Simulation
       echo "Building Simulation image"
-      ROCKER_ARGS="--devices /dev/dri/ --dev-helpers --nvidia --x11 --user --git";;
+      ROCKER_ARGS="--devices /dev/dri/ --dev-helpers --nvidia --x11 --user";;
   esac
 done
 

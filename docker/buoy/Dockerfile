@@ -23,37 +23,43 @@ RUN /bin/sh -c 'wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share
   && rm -rf /var/lib/apt/lists/* \
   && apt clean
 
-# Add the same user as outside the container
-# Requires a docker build argument `USERNAME`
-ARG USERNAME
-
 # Setup working environment
 ENV IGNITION_VERSION fortress
 
 # When running a container start in the user's home folder
 WORKDIR /home/${USERNAME}/
 
-### TODO(quarkytale): creating and building not required for development
-# Create project directory and import packages
-RUN mkdir -p /home/${USERNAME}/buoy_ws/src \
-  && cd /home/${USERNAME}/buoy_ws/src/ \
-  && wget https://raw.githubusercontent.com/osrf/buoy_entrypoint/main/buoy_all.yaml \
-  && vcs import --skip-existing < buoy_all.yaml
+# Add the same user as outside the container
+# Requires a docker build argument `USERNAME`
+ARG USERNAME
+RUN useradd -d /home/${USERNAME}/ -m -s /bin/bash $USERNAME
 
-WORKDIR /home/${USERNAME}/buoy_ws
-COPY . src/buoy_sim
+# Create project directory, set permissions and import packages
+RUN mkdir -p /tmp/buoy_ws/src \
+  && chown -R $USERNAME:$USERNAME /tmp/buoy_ws \
+  && adduser $USERNAME sudo \
+  && echo "$USERNAME ALL=NOPASSWD: ALL" >> /etc/sudoers.d/$USERNAME \
+  && cd /tmp/buoy_ws/src/ \
+  && wget https://raw.githubusercontent.com/osrf/buoy_entrypoint/main/buoy_all.yaml \
+  && vcs import --skip-existing < buoy_all.yaml \
+  && chown -R $USERNAME:$USERNAME .
+
+# Run the commands below as non-root
+# USER ${USERNAME}
 
 # Install rosdep dependencies
-RUN apt update \
+RUN sudo apt update \
+  && cd /tmp/buoy_ws \
   && rosdep update \
   && rosdep install --from-paths src --ignore-src -r -y -i \
-  && rm -rf /var/lib/apt/lists/* \
-  && apt clean
+  && sudo rm -rf /var/lib/apt/lists/* \
+  && sudo apt clean
 
 # Build the project
 RUN /bin/bash -c 'source /opt/ros/${ROS_DISTRO}/setup.bash \
+  && cd /tmp/buoy_ws \
   && colcon build'
 
 # Source workspaces, add it to the bashrc
-RUN /bin/sh -c 'echo ". /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc' \
-  && /bin/sh -c 'echo ". /home/${USERNAME}/buoy_ws/install/setup.sh" >> ~/.bashrc'
+RUN /bin/sh -c 'echo ". /opt/ros/${ROS_DISTRO}/setup.bash" >> /home/${USERNAME}/.bashrc' \
+  && /bin/sh -c 'echo ". /home/${USERNAME}/buoy_ws/install/setup.sh" >> /home/${USERNAME}/.bashrc'
