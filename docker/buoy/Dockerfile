@@ -4,6 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Necessary tools
 RUN apt update \
  && apt install -y \
+        apt-utils \
         wget
 
 # Using non-official Gazebo + ROS combination, set it explicitly
