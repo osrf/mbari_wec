@@ -48,6 +48,7 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
 
     ```
     export IGNITION_VERSION=fortress
+    export GZ_VERSION=fortress
     ```
 
 1. Install ROS dependencies
