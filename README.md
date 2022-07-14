@@ -74,7 +74,7 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
 
 1. Launch the simulation
 
-    `ros2 launch buoy_gazebo buoy.launch.py`
+    `ros2 launch buoy_gazebo mbari_wec.launch.py`
 
 
 ### Using docker
