@@ -1,4 +1,4 @@
-FROM ros:galactic-ros-base
+FROM ros:humble-ros-base
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Necessary tools
@@ -8,8 +8,15 @@ RUN apt update \
         wget
 
 # Using non-official Gazebo + ROS combination, set it explicitly
-ENV IGNITION_VERSION fortress
-ENV GZ_VERSION fortress
+ENV IGNITION_VERSION garden
+ENV GZ_VERSION garden
+
+# Garden only has nightlies for now
+RUN /bin/sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list' \
+ && /bin/sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-nightly `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-nightly.list' \
+ && /bin/sh -c 'wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -' \
+ && apt-get update \
+ && apt-get install -y gz-garden
 
 # Create project directory and import packages
 RUN mkdir -p /tmp/buoy_ws/src \

@@ -17,11 +17,11 @@ These are the repositories for the project:
 ## Install
 ### On Host System
 ##### Requirements
-At the moment, only source installation is supported. Use Ubuntu Focal.
+At the moment, only source installation is supported. Use Ubuntu Jammy.
 
-1. Install [ROS 2 Galactic](https://docs.ros.org/en/galactic/index.html)
+1. Install [ROS 2 Humble](https://docs.ros.org/en/humble/index.html)
 
-1. Install [Gazebo Fortress](https://ignitionrobotics.org/docs/fortress)
+1. Install [Gazebo Garden](https://gazebosim.org/docs/garden)
 
 1. Install necessary tools
 
@@ -43,12 +43,12 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
     vcs import < buoy_all.yaml
     ```
 
-1. Set the Gazebo version to Fortress. This is needed because we're not using an
+1. Set the Gazebo version to Garden. This is needed because we're not using an
    official ROS + Gazebo combination:
 
     ```
-    export IGNITION_VERSION=fortress
-    export GZ_VERSION=fortress
+    export IGNITION_VERSION=garden
+    export GZ_VERSION=garden
     ```
 
 1. Install ROS dependencies
@@ -98,7 +98,7 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
     ```
 
 1. Build the docker image
-    
+
     ```
     ./build.bash buoy
     ```
