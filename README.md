@@ -47,7 +47,6 @@ At the moment, only source installation is supported. Use Ubuntu Jammy.
    official ROS + Gazebo combination:
 
     ```
-    export IGNITION_VERSION=garden
     export GZ_VERSION=garden
     ```
 
@@ -128,5 +127,5 @@ At the moment, only source installation is supported. Use Ubuntu Jammy.
 Inside the docker container, run:
 
 ```
-ign gazebo mbari_wec.sdf -r
+gz sim mbari_wec.sdf -r
 ```

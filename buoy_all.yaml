@@ -12,10 +12,10 @@ repositories:
     type: git
     url: https://github.com/osrf/buoy_sim
     version: main
-  # Must compile ros_ign from source because Humble + Garden is not an official combination
-  ros_ign:
+  # Must compile ros_gz from source because Humble + Garden is not an official combination
+  ros_gz:
     type: git
-    url: https://github.com/osrf/ros_ign
+    url: https://github.com/osrf/ros_gz
     version: ros2
   sdformat_urdf:
     type: git

@@ -8,7 +8,6 @@ RUN apt update \
         wget
 
 # Using non-official Gazebo + ROS combination, set it explicitly
-ENV IGNITION_VERSION garden
 ENV GZ_VERSION garden
 
 # Garden only has nightlies for now
