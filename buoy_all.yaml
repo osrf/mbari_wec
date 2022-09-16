@@ -1,9 +1,5 @@
 ---
 repositories:
-  buoy_examples:
-    type: git
-    url: https://github.com/osrf/buoy_examples
-    version: main
   buoy_msgs:
     type: git
     url: https://github.com/osrf/buoy_msgs
