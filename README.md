@@ -4,10 +4,14 @@ This is the entrypoint for the wave energy harvesting buoy project.
 
 These are the repositories for the project:
 
-* [buoy_msgs](https://github.com/osrf/buoy_msgs): ROS 2 messages to receive
-  and send data to a physical or simulated buoy.
-* [buoy_examples](https://github.com/osrf/buoy_examples): Controller examples
-  to run against a physical or simulated buoy.
+* [buoy_msgs](https://github.com/osrf/buoy_msgs): ROS 2 messages, interface API, and examples for
+  receiving and sending data to a physical or simulated buoy.
+    * [buoy_interfaces](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp): ROS 2 messages
+      to recieve and send data to a physical or simulated buoy
+    * [buoy_api_cpp](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp): C++ Interface to
+      MBARI Power Buoy including Controller examples to run against a physical or simulated buoy.
+    * [buoy_api_py](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_py): Python Interface to
+      MBARI Power Buoy including Controller examples to run against a physical or simulated buoy.
 * [buoy_sim](https://github.com/osrf/buoy_sim)
     * [buoy_description](https://github.com/osrf/buoy_description/tree/main/buoy_description):
       Buoy model description.
@@ -41,6 +45,7 @@ At the moment, only source installation is supported. Use Ubuntu Jammy.
     ```
     wget https://raw.githubusercontent.com/osrf/buoy_entrypoint/main/buoy_all.yaml
     vcs import < buoy_all.yaml
+    cd ~/buoy_ws
     ```
 
 1. Set the Gazebo version to Garden. This is needed because we're not using an
