@@ -29,7 +29,9 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
 
 1. Install necessary tools
 
-    `sudo apt install python3-vcstool python3-colcon-common-extensions git wget`
+    ```
+    sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
+    ```
 
 ##### Usage
 
@@ -59,6 +61,7 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
 1. Install ROS dependencies
 
     ```
+    sudo pip3 install -U rosdep
     sudo rosdep init
     rosdep update
     rosdep install --from-paths src --ignore-src -r -y -i
@@ -67,6 +70,7 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
 1. Build and install
 
     ```
+    source /opt/ros/galactic/setup.bash
     cd ~/buoy_ws
     colcon build
     ```
