@@ -3,15 +3,15 @@ repositories:
   buoy_msgs:
     type: git
     url: https://github.com/osrf/buoy_msgs
-    version: main
+    version: chapulina/humble_garden
   buoy_sim:
     type: git
     url: https://github.com/osrf/buoy_sim
-    version: main
+    version: chapulina/humble_garden
   # Must compile ros_gz from source because Humble + Garden is not an official combination
   ros_gz:
     type: git
-    url: https://github.com/osrf/ros_gz
+    url: https://github.com/gazebosim/ros_gz
     version: ros2
   sdformat_urdf:
     type: git
