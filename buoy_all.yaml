@@ -3,17 +3,17 @@ repositories:
   buoy_msgs:
     type: git
     url: https://github.com/osrf/buoy_msgs
-    version: main
+    version: chapulina/humble_garden 
   buoy_sim:
     type: git
     url: https://github.com/osrf/buoy_sim
-    version: main
+    version: chapulina/humble_garden
   # Must compile ros_ign from source because Galactic + Fortress is not an official combination
   ros_ign:
     type: git
     url: https://github.com/osrf/ros_ign
-    version: galactic
+    version: ros2
   sdformat_urdf:
     type: git
     url: https://github.com/ros/sdformat_urdf
-    version: galactic
+    version: ros2
