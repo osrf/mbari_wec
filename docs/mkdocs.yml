@@ -1,15 +1,15 @@
-site_name: MBARI-WEC 
+site_name: MBARI-WEC
 site_url: https://example.com/
 nav:
   - Home: index.md
   - Architecture: architecture.md
-  - ROS2 Interface: ros2.md 
-  - Simulation: simulation.md 
+  - ROS2 Interface: ros2.md
+  - Simulation: simulation.md
   - At Sea Operation: atseaoperation.md
-  - Tutorials: tutorials.md 
+  - Tutorials: tutorials.md
   - Resources: resources.md
   - Theory: theory.md
   - License: license.md
   - How to Cite: citation.md
- 
+
 theme: readthedocs

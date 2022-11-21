@@ -4,14 +4,13 @@ on:
   push:
     branches:
       - main
-  pull_request:
-
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
+  pull-requests: write
 
 # Allow one concurrent deployment
 concurrency:
@@ -41,24 +40,12 @@ jobs:
 
       - name: Build with mkdocs
         run: |
-          cd docs 
+          cd docs
           mkdocs build -c
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        if: ${{ github.event_name != 'pull_request' }}
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: ./docs/site
-
-  # Deployment job
-  deploy:
-    if: ${{ github.event_name != 'pull_request' }}
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+          branch: gh-pages
+          folder: ./docs/site
+          clean-exclude: pr-preview/
