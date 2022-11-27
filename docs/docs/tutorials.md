@@ -1,21 +1,18 @@
-## Tutorial 1: Installation
-These tutorials will get the required software set up on your computer.  The software used by this system have dependencies on a number of software packages with specific versions.  
-There are a few ways to install and use the software that provide equivalent capabilities, and are a matter of personal
-preference.  Only one of the following tutorials is required. 
-
-The simplest approach is to use [docker](www.docker.org). Docker images are provided that have pre-configured installations with all required dependencies, so this is the fast way to get started.
-
-* [Install (docker)](Tutorials/Install/Install_docker.md)
-
-It is also straightforward to simply install the required software and dependencies using apt on Linux.  Some configuration is then required and details are provided here:
-
-* [Install (apt)](Tutorials/Install/Install_apt.md)
-
-## Tutorial 2: Run the Simulator
-This tutorial will get the Gazebo Simulation of the WEC running on your computer. With this done you can see the operation of the simulator and perform actions that control it's behavior (e.g. Change the sea-state).
-
-* [Simulate](Tutorials/Simulation/Simulations.md)
-
-## Tutorial 3: Write and Control Code
-
-* [Simulate](Tutorials/ROS2/ROS2.md)
+#### Installation
+- [Install (docker)](Tutorials/Install/Install_docker.md) 
+- [Install (apt)](Tutorials/Install/Install_apt.md)
+- [Install (from source)](Tutorials/Install/Install_source.md)
+-----------------------------------------------------------
+#### Running the Simulator
+- [Run the Simulator](Tutorials/Simulation/RunSimulator.md)
+- [View Messages with Plotjuggler](Tutorials/Simulation/SimulatorOutputPlotjuggler.md)
+- [View ROS2 Messages](Tutorials/Simulation/SimulatorOutputROS.md)
+- [Simulator Output Data Logs](Tutorials/Simulation/SimulatorOutputLogs.md)
+- [Control Simulator with pbcmd](Tutorials/Simulation/SimulatorInteractionPbcmd.md)
+-----------------------------------------------------------
+#### Adding Control Code
+- [ROS2 Messages and Services](Ros2/MessagesAndServices.md)
+- [Project Template](Ros2/Template.md)
+- [Open-Loop Control Example](Ros2/OpenLoopControl.md)
+- [Closed-Loop Control Example](Ros2/ClosedLoopControl.md)
+- [Model-Predictive Control Example](Ros2/MPC.md)
