@@ -3,6 +3,7 @@ site_url: https://example.com/
 nav:
   - Home: index.md
   - Architecture: architecture.md
+  - Buoy Control and Telemetry: ControlAndTelemetry.md
   - ROS2 Interface: ros2.md
   - Simulation: simulation.md
   - At Sea Operation: atseaoperation.md
