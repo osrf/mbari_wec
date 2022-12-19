@@ -10,15 +10,15 @@ To run the simulator, it is necessary to source the workspace in a separate term
 
 1. Source the workspace
 
-    ```
-    $ . ~/buoy_ws/install/setup.sh
-    ```
+```
+$ . ~/buoy_ws/install/setup.sh
+```
 
 1. Launch the simulation
 
-    ```
-    $ ros2 launch buoy_gazebo mbari_wec.launch.py 
-    ```
+```
+$ ros2 launch buoy_gazebo mbari_wec.launch.py 
+```
 
 The Gazebo rendering of the buoy system should become visible and appear as follows:
 
