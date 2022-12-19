@@ -4,7 +4,7 @@
 -----------------------------------------------------------
 #### Running the Simulator
 - [Run the Simulator](Tutorials/Simulation/RunSimulator.md)
-- [View ROS2 Messages](Tutorials/Simulation/SimulatorOutputROS.md)
+- [View ROS2 Messages](Tutorials/Simulation/SimulatorOutputROS.md) 
 - [View Messages with Plotjuggler](Tutorials/Simulation/SimulatorOutputPlotjuggler.md)
 - [Simulator Output Data Logs](Tutorials/Simulation/SimulatorOutputLogs.md)
 - [Adjust Simulator parameters](Tutorials/Simulation/SimulatorParameters.md)
