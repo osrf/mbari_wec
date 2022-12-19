@@ -1,3 +1,6 @@
+Docker images that include the neccessary software and dependencies have been created for convenience. 
+
+
 ##### Requirements
 
 1. Install Docker using [installation instructions.](https://docs.docker.com/engine/install/ubuntu/).
@@ -42,3 +45,6 @@
    ```
 
 > The build and run bash scripts are a wrapper around rocker, checkout its [documentation](https://github.com/osrf/rocker) for additional options.
+
+
+The simulation software should now be available.  To run and test, proceed to the [Run the Simulator](../../../tutorials/#running-the-simulator) tutorial series

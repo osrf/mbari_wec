@@ -1,44 +1,56 @@
 ##### Requirements
+At the moment, only source installation is supported. Use Ubuntu Focal.
 
-1. Install Docker using [installation instructions.](https://docs.docker.com/engine/install/ubuntu/).
+1. Install [ROS 2 Galactic](https://docs.ros.org/en/galactic/index.html)
 
-1. Install [nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker).
+1. Install [Gazebo Fortress](https://ignitionrobotics.org/docs/fortress)
 
-1. Complete the [Linux Postinstall steps](https://docs.docker.com/engine/install/linux-postinstall/) to allow you to manage Docker as a non-root user.
+1. Install necessary tools
 
-1. Install `rocker` by `sudo apt-get install python3-rocker`.
+    ```
+    sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
+    ```
 
 ##### Usage
 
-1. Clone the buoy_entrypoint repository to download the latest Dockerfile.
+1. Create a workspace, for example:
 
     ```
-    git clone https://github.com/osrf/buoy_entrypoint.git
-    cd ~/buoy_entrypoint/docker/
+    $ mkdir -p ~/buoy_ws/src
+    $ cd ~/buoy_ws/src
     ```
 
-1. Build the docker image
-    
-    ```
-    ./build.bash buoy
-    ```
-
-1. Run the container
+1. Clone all source repos with the help of `vcstool`:
 
     ```
-    ./run.bash [-d|s] buoy:latest
+    $ wget https://raw.githubusercontent.com/osrf/buoy_entrypoint/main/buoy_all.yaml
+    $ vcs import < buoy_all.yaml
+    $ cd ~/buoy_ws
     ```
-    where `./run.bash` option:
-    * -d     Use for development with host system volume mount
-    * -s     Simulation purposes only
 
-    The development use case enables to either use host system home directory for user's custom workspace, or a fresh clone inside the docker container. If using host system workspace, follow the [On Host System](#on-host-system) instructions to build and run the project in the container.
-    Regardless the script option, project source files can be found in `/tmp/buoy_ws/' in the container. Note that any changes to files in the container will have limited scope.
+1. Set the Gazebo version to Fortress. This is needed because we're not using an
+   official ROS + Gazebo combination:
 
-1. To have another window running the same docker container, run this command in a new terminal:
+    ```
+    $ export IGNITION_VERSION=fortress
+    $ export GZ_VERSION=fortress
+    ```
 
-   ```
-   ./join.bash buoy_latest_runtime
-   ```
+1. Install ROS dependencies
 
-> The build and run bash scripts are a wrapper around rocker, checkout its [documentation](https://github.com/osrf/rocker) for additional options.
+    ```
+    $ sudo pip3 install -U rosdep
+    $ sudo rosdep init
+    $ rosdep update
+    $ rosdep install --from-paths src --ignore-src -r -y -i
+    ```
+
+1. Build and install simulation
+
+    ```
+    $ source /opt/ros/galactic/setup.bash
+    $ cd ~/buoy_ws
+    $ colcon build
+    ```
+
+The simulation software should build without errors.  To run and test, proceed to the [Run the Simulator](../../../tutorials/#running-the-simulator) tutorial series
