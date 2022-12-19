@@ -1,13 +1,13 @@
 #### Installation
 - [Install (docker)](Tutorials/Install/Install_docker.md) 
-- [Install (apt)](Tutorials/Install/Install_apt.md)
 - [Install (from source)](Tutorials/Install/Install_source.md)
 -----------------------------------------------------------
 #### Running the Simulator
 - [Run the Simulator](Tutorials/Simulation/RunSimulator.md)
-- [View Messages with Plotjuggler](Tutorials/Simulation/SimulatorOutputPlotjuggler.md)
 - [View ROS2 Messages](Tutorials/Simulation/SimulatorOutputROS.md)
+- [View Messages with Plotjuggler](Tutorials/Simulation/SimulatorOutputPlotjuggler.md)
 - [Simulator Output Data Logs](Tutorials/Simulation/SimulatorOutputLogs.md)
+- [Adjust Simulator parameters](Tutorials/Simulation/SimulatorParameters.md)
 - [Control Simulator with pbcmd](Tutorials/Simulation/SimulatorInteractionPbcmd.md)
 -----------------------------------------------------------
 #### Adding Control Code
