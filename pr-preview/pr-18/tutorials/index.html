@@ -49,6 +49,10 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ControlAndTelemetry/">Buoy Control and Telemetry</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../ros2/">ROS2 Interface</a>
                 </li>
               </ul>
@@ -105,26 +109,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="tutorial-1-installation">Tutorial 1: Installation</h2>
-<p>These tutorials will get the required software set up on your computer.  The software used by this system have dependencies on a number of software packages with specific versions.<br />
-There are a few ways to install and use the software that provide equivalent capabilities, and are a matter of personal
-preference.  Only one of the following tutorials is required. </p>
-<p>The simplest approach is to use <a href="www.docker.org">docker</a>. Docker images are provided that have pre-configured installations with all required dependencies, so this is the fast way to get started.</p>
+                <h4 id="installation">Installation</h4>
 <ul>
-<li><a href="../Tutorials/Install/Install_docker/">Install (docker)</a></li>
+<li><a href="../Tutorials/Install/Install_docker/">Install (docker)</a> </li>
+<li><a href="../Tutorials/Install/Install_source/">Install (from source)</a></li>
 </ul>
-<p>It is also straightforward to simply install the required software and dependencies using apt on Linux.  Some configuration is then required and details are provided here:</p>
+<hr />
+<h4 id="running-the-simulator">Running the Simulator</h4>
 <ul>
-<li><a href="../Tutorials/Install/Install_apt/">Install (apt)</a></li>
+<li><a href="../Tutorials/Simulation/RunSimulator/">Run the Simulator</a></li>
+<li><a href="../Tutorials/Simulation/SimulatorOutputROS/">View ROS2 Messages</a> </li>
+<li><a href="../Tutorials/Simulation/SimulatorOutputPlotjuggler/">View Messages with Plotjuggler</a></li>
+<li><a href="../Tutorials/Simulation/SimulatorOutputLogs/">Simulator Output Data Logs</a></li>
+<li><a href="../Tutorials/Simulation/SimulatorParameters/">Adjust Simulator parameters</a></li>
+<li><a href="Tutorials/Simulation/SimulatorInteractionPbcmd.md">Control Simulator with pbcmd</a></li>
 </ul>
-<h2 id="tutorial-2-run-the-simulator">Tutorial 2: Run the Simulator</h2>
-<p>This tutorial will get the Gazebo Simulation of the WEC running on your computer. With this done you can see the operation of the simulator and perform actions that control it's behavior (e.g. Change the sea-state).</p>
+<hr />
+<h4 id="adding-control-code">Adding Control Code</h4>
 <ul>
-<li><a href="Tutorials/Simulation/Simulations.md">Simulate</a></li>
-</ul>
-<h2 id="tutorial-3-write-and-control-code">Tutorial 3: Write and Control Code</h2>
-<ul>
-<li><a href="../Tutorials/ROS2/ROS2/">Simulate</a></li>
+<li><a href="Ros2/MessagesAndServices.md">ROS2 Messages and Services</a></li>
+<li><a href="Ros2/Template.md">Project Template</a></li>
+<li><a href="Ros2/OpenLoopControl.md">Open-Loop Control Example</a></li>
+<li><a href="Ros2/ClosedLoopControl.md">Closed-Loop Control Example</a></li>
+<li><a href="Ros2/MPC.md">Model-Predictive Control Example</a></li>
 </ul>
               
             </div>

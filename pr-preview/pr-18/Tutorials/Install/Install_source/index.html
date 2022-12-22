@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/Tutorials/Install/Install_docker/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/Tutorials/Install/Install_source/" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>Install docker - MBARI-WEC</title>
+    <title>Install source - MBARI-WEC</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Install docker";
-        var mkdocs_page_input_path = "Tutorials/Install/Install_docker.md";
-        var mkdocs_page_url = "/Tutorials/Install/Install_docker/";
+        var mkdocs_page_name = "Install source";
+        var mkdocs_page_input_path = "Tutorials/Install/Install_source.md";
+        var mkdocs_page_url = "/Tutorials/Install/Install_source/";
       </script>
     
     <script src="../../../js/jquery-3.6.0.min.js" defer></script>
@@ -98,7 +98,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Install docker</li>
+      <li>Install source</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -107,51 +107,58 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>Docker images that include the neccessary software and dependencies have been created for convenience. </p>
-<h5 id="requirements">Requirements</h5>
+                <h5 id="requirements">Requirements</h5>
+<p>At the moment, only source installation is supported. Use Ubuntu Focal.</p>
 <ol>
 <li>
-<p>Install Docker using <a href="https://docs.docker.com/engine/install/ubuntu/">installation instructions.</a>.</p>
+<p>Install <a href="https://docs.ros.org/en/galactic/index.html">ROS 2 Galactic</a></p>
 </li>
 <li>
-<p>Install <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker">nvidia-docker</a>.</p>
+<p>Install <a href="https://ignitionrobotics.org/docs/fortress">Gazebo Fortress</a></p>
 </li>
 <li>
-<p>Complete the <a href="https://docs.docker.com/engine/install/linux-postinstall/">Linux Postinstall steps</a> to allow you to manage Docker as a non-root user.</p>
-</li>
-<li>
-<p>Install <code>rocker</code> by <code>sudo apt-get install python3-rocker</code>.</p>
+<p>Install necessary tools</p>
 </li>
 </ol>
+<pre><code>sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
+</code></pre>
 <h5 id="usage">Usage</h5>
 <ol>
-<li>
-<p>Clone the buoy_entrypoint repository to download the latest Dockerfile.</p>
-<p><code>git clone https://github.com/osrf/buoy_entrypoint.git
-cd ~/buoy_entrypoint/docker/</code></p>
-</li>
-<li>
-<p>Build the docker image</p>
-<p><code>./build.bash buoy</code></p>
-</li>
-<li>
-<p>Run the container</p>
-<p><code>./run.bash [-d|s] buoy:latest</code>
-where <code>./run.bash</code> option:
-* -d     Use for development with host system volume mount
-* -s     Simulation purposes only</p>
-<p>The development use case enables to either use host system home directory for user's custom workspace, or a fresh clone inside the docker container. If using host system workspace, follow the <a href="#on-host-system">On Host System</a> instructions to build and run the project in the container.
-Regardless the script option, project source files can be found in `/tmp/buoy_ws/' in the container. Note that any changes to files in the container will have limited scope.</p>
-</li>
-<li>
-<p>To have another window running the same docker container, run this command in a new terminal:</p>
-</li>
+<li>Create a workspace, for example:</li>
 </ol>
-<p><code>./join.bash buoy_latest_runtime</code></p>
-<blockquote>
-<p>The build and run bash scripts are a wrapper around rocker, checkout its <a href="https://github.com/osrf/rocker">documentation</a> for additional options.</p>
-</blockquote>
-<p>The simulation software should now be available.  To run and test, proceed to the <a href="../../../tutorials/#running-the-simulator">Run the Simulator</a> tutorial series</p>
+<pre><code>$ mkdir -p ~/buoy_ws/src
+$ cd ~/buoy_ws/src
+</code></pre>
+<ol>
+<li>Clone all source repos with the help of <code>vcstool</code>:</li>
+</ol>
+<pre><code>$ wget https://raw.githubusercontent.com/osrf/buoy_entrypoint/main/buoy_all.yaml
+$ vcs import &lt; buoy_all.yaml
+$ cd ~/buoy_ws
+</code></pre>
+<ol>
+<li>Set the Gazebo version to Fortress. This is needed because we're not using an
+   official ROS + Gazebo combination:</li>
+</ol>
+<pre><code>$ export IGNITION_VERSION=fortress
+$ export GZ_VERSION=fortress
+</code></pre>
+<ol>
+<li>Install ROS dependencies</li>
+</ol>
+<pre><code>$ sudo pip3 install -U rosdep
+$ sudo rosdep init
+$ rosdep update
+$ rosdep install --from-paths src --ignore-src -r -y -i
+</code></pre>
+<ol>
+<li>Build and install simulation</li>
+</ol>
+<pre><code>$ source /opt/ros/galactic/setup.bash
+$ cd ~/buoy_ws
+$ colcon build
+</code></pre>
+<p>The simulation software should build without errors.  To run and test, proceed to the <a href="../../../tutorials/#running-the-simulator">Run the Simulator</a> tutorial series</p>
               
             </div>
           </div><footer>

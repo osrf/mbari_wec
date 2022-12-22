@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/Tutorials/Install/Install_docker/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/Tutorials/Simulation/RunSimulator/" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>Install docker - MBARI-WEC</title>
+    <title>RunSimulator - MBARI-WEC</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Install docker";
-        var mkdocs_page_input_path = "Tutorials/Install/Install_docker.md";
-        var mkdocs_page_url = "/Tutorials/Install/Install_docker/";
+        var mkdocs_page_name = "RunSimulator";
+        var mkdocs_page_input_path = "Tutorials/Simulation/RunSimulator.md";
+        var mkdocs_page_url = "/Tutorials/Simulation/RunSimulator/";
       </script>
     
     <script src="../../../js/jquery-3.6.0.min.js" defer></script>
@@ -98,7 +98,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Install docker</li>
+      <li>RunSimulator</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -107,51 +107,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>Docker images that include the neccessary software and dependencies have been created for convenience. </p>
-<h5 id="requirements">Requirements</h5>
+                <h5 id="introduction">Introduction</h5>
+<p>This tutorial will illustrate how to start the buoy simulation in Gazebo, when the simulation is running, a rendering of the buoy system motions will be visible, and ROS2 messages will be published that represent the buoy systems state.  The simulation also provides the same ROS2 services the real buoy does, so will respond to ROS2 messages appropriately.</p>
+<p>Subsequent tutorials will illustrate how to view and plot data being published by the simulation, view data logs being generated, and control the simulated buoy with the command-line tool that is available on the buoy.</p>
+<h5 id="run">Run</h5>
+<p>To run the simulator, it is necessary to source the workspace in a separate terminal than was used to build the application.  Therefore, open a new terminal window and do the following:</p>
 <ol>
-<li>
-<p>Install Docker using <a href="https://docs.docker.com/engine/install/ubuntu/">installation instructions.</a>.</p>
-</li>
-<li>
-<p>Install <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker">nvidia-docker</a>.</p>
-</li>
-<li>
-<p>Complete the <a href="https://docs.docker.com/engine/install/linux-postinstall/">Linux Postinstall steps</a> to allow you to manage Docker as a non-root user.</p>
-</li>
-<li>
-<p>Install <code>rocker</code> by <code>sudo apt-get install python3-rocker</code>.</p>
-</li>
+<li>Source the workspace</li>
 </ol>
-<h5 id="usage">Usage</h5>
+<pre><code>$ . ~/buoy_ws/install/setup.sh
+</code></pre>
 <ol>
-<li>
-<p>Clone the buoy_entrypoint repository to download the latest Dockerfile.</p>
-<p><code>git clone https://github.com/osrf/buoy_entrypoint.git
-cd ~/buoy_entrypoint/docker/</code></p>
-</li>
-<li>
-<p>Build the docker image</p>
-<p><code>./build.bash buoy</code></p>
-</li>
-<li>
-<p>Run the container</p>
-<p><code>./run.bash [-d|s] buoy:latest</code>
-where <code>./run.bash</code> option:
-* -d     Use for development with host system volume mount
-* -s     Simulation purposes only</p>
-<p>The development use case enables to either use host system home directory for user's custom workspace, or a fresh clone inside the docker container. If using host system workspace, follow the <a href="#on-host-system">On Host System</a> instructions to build and run the project in the container.
-Regardless the script option, project source files can be found in `/tmp/buoy_ws/' in the container. Note that any changes to files in the container will have limited scope.</p>
-</li>
-<li>
-<p>To have another window running the same docker container, run this command in a new terminal:</p>
-</li>
+<li>Launch the simulation</li>
 </ol>
-<p><code>./join.bash buoy_latest_runtime</code></p>
-<blockquote>
-<p>The build and run bash scripts are a wrapper around rocker, checkout its <a href="https://github.com/osrf/rocker">documentation</a> for additional options.</p>
-</blockquote>
-<p>The simulation software should now be available.  To run and test, proceed to the <a href="../../../tutorials/#running-the-simulator">Run the Simulator</a> tutorial series</p>
+<pre><code>$ ros2 launch buoy_gazebo mbari_wec.launch.py 
+</code></pre>
+<p>The Gazebo rendering of the buoy system should become visible and appear as follows:</p>
+<p><img alt="here" src="../images/BuoyGazebo.png" /></p>
+<p>To start the simulation, press the "play" arrow in the lower left, the buoy should start to move in response to incoming waves.</p>
+<p>It is also possible to adjust various parameters such as the sea-state, visibility of the rendering, and speed the simulation will run relative to real-time.  These topics are covered in a later tutorial.</p>
+<p>To view the ROS2 messages and associated data while the simulation runs, proceed to the next tutorial: <a href="../SimulatorOutputROS/">View ROS2 Messages</a></p>
               
             </div>
           </div><footer>

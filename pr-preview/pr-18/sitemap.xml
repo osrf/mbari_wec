@@ -6,6 +6,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://example.com/ControlAndTelemetry/</loc>
+         <lastmod>2022-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://example.com/architecture/</loc>
          <lastmod>2022-12-22</lastmod>
          <changefreq>daily</changefreq>
@@ -51,22 +56,72 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/Install/Install_apt/</loc>
-         <lastmod>2022-12-22</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://example.com/Tutorials/Install/Install_docker/</loc>
          <lastmod>2022-12-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/ROS2/ROS2/</loc>
+         <loc>https://example.com/Tutorials/Install/Install_source/</loc>
          <lastmod>2022-12-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/Simulation/Simulation/</loc>
+         <loc>https://example.com/Tutorials/ROS2/ClosedLoopControl/</loc>
+         <lastmod>2022-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://example.com/Tutorials/ROS2/MPC/</loc>
+         <lastmod>2022-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://example.com/Tutorials/ROS2/MessagesAndServices/</loc>
+         <lastmod>2022-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://example.com/Tutorials/ROS2/OpenLoopControl/</loc>
+         <lastmod>2022-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://example.com/Tutorials/ROS2/Template/</loc>
+         <lastmod>2022-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://example.com/Tutorials/Simulation/RunSimulator/</loc>
+         <lastmod>2022-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://example.com/Tutorials/Simulation/SimulatorInteraction/</loc>
+         <lastmod>2022-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://example.com/Tutorials/Simulation/SimulatorOutputLogs/</loc>
+         <lastmod>2022-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://example.com/Tutorials/Simulation/SimulatorOutputPbcmd/</loc>
+         <lastmod>2022-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://example.com/Tutorials/Simulation/SimulatorOutputPlotjuggler/</loc>
+         <lastmod>2022-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://example.com/Tutorials/Simulation/SimulatorOutputROS/</loc>
+         <lastmod>2022-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://example.com/Tutorials/Simulation/SimulatorParameters/</loc>
          <lastmod>2022-12-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
