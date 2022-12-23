@@ -93,4 +93,4 @@ in block matrix notation where \({\bf V}\) and \({\bf P}\) are the arrays of vol
 pressure data, respectively.
 
 The other parameters in the system are taken from CAD or empirically determined by comparing logged
-data from prescribed motion between simulation and physical test bench.
+data from prescribed motion between simulation and the physical test bench.
