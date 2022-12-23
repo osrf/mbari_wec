@@ -23,7 +23,7 @@ summary of spring
 | \(c_p\)          | Specific Heat Capacity N\(_2\) (constant pressure)            | J/kg/K    |
 | \(A_{piston}\)   | Surface area of piston head                                   | m\(^{2}\) |
 | \(n\)            | Polytropic index (Adiabatic if \(n=\lambda=1.4\) for N\(_2\)) | N/A       |
-| \(r\)            | Heat transfer coefficient                                     | N/A       |
+| \(r\)            | Coefficient of heat transfer (Newton's Law of Cooling)        | 1/s       |
 
 
 #### Model
