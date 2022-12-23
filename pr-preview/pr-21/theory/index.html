@@ -249,7 +249,7 @@ P_k = P_{k-1} \left({V_{k-1} \over V_k}\right)^n ,\,\,\, n = \begin{cases}
 </p>
 <p>where <script type="math/tex">k</script> is the current time step.</p>
 <p>Whenever the piston velocity is slow enough, the process is dominated by heat loss and
-modeled with Newton's Law of Cooling:</p>
+modeled with Newton's Law of Cooling (using forward difference):</p>
 <p>
 <script type="math/tex; mode=display"> T_k = r\, \Delta t\, (T_{env} - T_{k-1}) + T_{k-1} </script>
 </p>
