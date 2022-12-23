@@ -37,7 +37,7 @@ and a polytropic process:
 
 $$ P = P_0 \left({V_{0} \over V}\right)^{n} $$
 
-with hysteresis, there are two values for the polytropic index, \(n\), to capture behavior when
+with hysteresis, there are two values for the polytropic index, \(n_1\) and \(n_2\), to capture behavior when
 the gas is compressing or expanding. Using this quasi-static solution and
 discrete time steps, and also incorporating hysteresis, the process becomes:
 
