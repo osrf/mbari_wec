@@ -89,5 +89,5 @@ $$
 in block matrix notation where \({\bf V}\) and \({\bf P}\) are the arrays of volume and
 pressure data, respectively.
 
-The other parameters are taken from CAD or empirically determined by comparing logged data from
-prescribed motion between simulation and physical test bench.
+The other parameters in the system are taken from CAD or empirically determined by comparing logged
+data from prescribed motion between simulation and physical test bench.
