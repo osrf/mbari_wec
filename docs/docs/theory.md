@@ -44,8 +44,8 @@ discrete time steps, and also incorporating hysteresis, the process becomes:
 $$ V_k = x_k A_{piston} + V_{dead} $$
 $$
 P_k = P_{k-1} \left({V_{k-1} \over V_k}\right)^n ,\,\,\, n = \begin{cases}
-    n1 & \text{if } v \ge 0 \\
-    n2 & \text{otherwise.}
+    n_1 & \text{if } v \ge 0 \\
+    n_2 & \text{otherwise.}
 \end{cases}
 $$
 $$ T_k = {P_k V_k \over m R_{specific}} $$
