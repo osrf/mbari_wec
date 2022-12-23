@@ -53,7 +53,7 @@ $$ T_k = {P_k V_k \over m R_{specific}} $$
 where \(k\) is the current time step.
 
 Whenever the piston velocity is slow enough, the process is dominated by heat loss and
-modeled with Newton's Law of Cooling:
+modeled with Newton's Law of Cooling (using forward difference):
 
 $$ T_k = r\, \Delta t\, (T_{env} - T_{k-1}) + T_{k-1} $$
 
