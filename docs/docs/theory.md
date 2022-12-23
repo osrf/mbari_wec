@@ -67,8 +67,8 @@ and is used for mass flow between chambers in simulating the pump/valve.
 #### Determining Parameter Values
 
 Linear regression was used to determine the polytropic indices for each chamber using empirical
-data from the physical system. Using pressure vs volume curves, \(n1\) is determined from
-increasing volume, and \(n2\) is determined from decreasing volume. The data is then preconditioned
+data from the physical system. Using pressure vs volume curves, \(n_1\) is determined from
+increasing volume, and \(n_2\) is determined from decreasing volume. The data is then preconditioned
 by taking the logarithm to linearize and perform regression to find the parameters. For a
 polytropic process:
 
