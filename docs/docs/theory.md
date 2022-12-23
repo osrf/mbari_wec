@@ -53,9 +53,12 @@ $$ T_k = {P_k V_k \over m R_{specific}} $$
 where \(k\) is the current time step.
 
 Whenever the piston velocity is slow enough, the process is dominated by heat loss and
-modeled with Newton's Law of Cooling (using forward difference):
+modeled with Newton's Law of Cooling (using forward difference) followed by an update of pressure using
+Ideal Gas Law:
 
 $$ T_k = r\, \Delta t\, (T_{env} - T_{k-1}) + T_{k-1} $$
+$$ V_k = x_k A_{piston} + V_{dead} $$
+$$ P_k = {m R_{specific} T_k \over V_k} $$
 
 The mass of the Nitrogen in each chamber is determined from inputs in the SDF:
 
