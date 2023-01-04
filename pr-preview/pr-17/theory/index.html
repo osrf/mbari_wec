@@ -75,6 +75,16 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Theory</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#pneumatic-spring">Pneumatic Spring</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#definitions">Definitions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#model">Model</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#determining-parameter-values">Determining Parameter Values</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -110,10 +120,172 @@
             <div class="section" itemprop="articleBody">
               
                 <p>Under Construction</p>
-<h1 id="mathjax-test-page">MathJax Test Page</h1>
-<p>When <script type="math/tex">a \ne 0</script>, there are two solutions to <script type="math/tex">ax^2 + bx + c = 0</script> and they are
-<script type="math/tex; mode=display">x = {-b \pm \sqrt{b^2-4ac} \over 2a}.</script>
+<h2 id="modeling">Modeling</h2>
+<p>summary about modeling</p>
+<h3 id="pneumatic-spring">Pneumatic Spring</h3>
+<p>summary of spring</p>
+<h4 id="definitions">Definitions</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<script type="math/tex">x</script>
+</td>
+<td>Piston position</td>
+<td>m</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">v</script>
+</td>
+<td>Piston velocity</td>
+<td>m/s</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">m</script>
+</td>
+<td>Mass of gas in chamber</td>
+<td>kg</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">T</script>
+</td>
+<td>Temperature of gas</td>
+<td>K</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">P</script>
+</td>
+<td>Gas pressure</td>
+<td>Pa</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">V</script>
+</td>
+<td>Chamber volume (dependent on piston position)</td>
+<td>m<script type="math/tex">^{3}</script>
+</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">R_{specific}</script>
+</td>
+<td>Specific Gas Constant N<script type="math/tex">_2</script>
+</td>
+<td>J/kg/K</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">V_{dead}</script>
+</td>
+<td>Chamber dead volume (fully compressed)</td>
+<td>m<script type="math/tex">^{3}</script>
+</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">c_p</script>
+</td>
+<td>Specific Heat Capacity N<script type="math/tex">_2</script> (constant pressure)</td>
+<td>J/kg/K</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">A_{piston}</script>
+</td>
+<td>Surface area of piston head</td>
+<td>m<script type="math/tex">^{2}</script>
+</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">n</script>
+</td>
+<td>Polytropic index (Adiabatic if <script type="math/tex">n=\lambda=1.4</script> for N<script type="math/tex">_2</script>)</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">r</script>
+</td>
+<td>Coefficient of heat transfer (Newton's Law of Cooling)</td>
+<td>1/s</td>
+</tr>
+</tbody>
+</table>
+<h4 id="model">Model</h4>
+<p>Under compression and expansion, the pressure, volume and temperature of the Nitrogen in each
+chamber evolves according to Ideal Gas Law:</p>
+<p>
+<script type="math/tex; mode=display"> P V = m R_{specific} T </script>
 </p>
+<p>and a polytropic process:</p>
+<p>
+<script type="math/tex; mode=display"> P = P_0 \left({V_{0} \over V}\right)^{n} </script>
+</p>
+<p>with hysteresis, there are two values for the polytropic index, <script type="math/tex">n_1</script> and <script type="math/tex">n_2</script>, to capture behavior when
+the gas is compressing or expanding. Using this quasi-static solution and
+discrete time steps, and also incorporating hysteresis, the process becomes:</p>
+<p>
+<script type="math/tex; mode=display"> V_k = x_k A_{piston} + V_{dead} </script>
+<script type="math/tex; mode=display">
+P_k = P_{k-1} \left({V_{k-1} \over V_k}\right)^n ,\,\,\, n = \begin{cases}
+    n_1 & \text{if } v \ge 0 \\
+    n_2 & \text{otherwise.}
+\end{cases}
+</script>
+<script type="math/tex; mode=display"> T_k = {P_k V_k \over m R_{specific}} </script>
+</p>
+<p>where <script type="math/tex">k</script> is the current time step.</p>
+<p>Whenever the piston velocity is slow enough, the process is dominated by heat loss and
+modeled with Newton's Law of Cooling (using forward difference) followed by an update of pressure using
+Ideal Gas Law:</p>
+<p>
+<script type="math/tex; mode=display"> T_k = r\, \Delta t\, (T_{env} - T_{k-1}) + T_{k-1} </script>
+<script type="math/tex; mode=display"> V_k = x_k A_{piston} + V_{dead} </script>
+<script type="math/tex; mode=display"> P_k = {m R_{specific} T_k \over V_k} </script>
+</p>
+<p>The mass of the Nitrogen in each chamber is determined from inputs in the SDF:</p>
+<p>
+<script type="math/tex; mode=display"> m = {P_0 (x_0 A_{piston} + V_{dead}) \over R_{specific} T_0} </script>
+</p>
+<p>and is used for mass flow between chambers in simulating the pump/valve.</p>
+<h4 id="determining-parameter-values">Determining Parameter Values</h4>
+<p>Linear regression was used to determine the polytropic indices for each chamber using empirical
+data from the physical system. Using pressure vs volume curves, <script type="math/tex">n_1</script> is determined from
+increasing volume, and <script type="math/tex">n_2</script> is determined from decreasing volume. The data is then preconditioned
+by taking the logarithm to linearize and perform regression to find the parameters. For a
+polytropic process:</p>
+<p>
+<script type="math/tex; mode=display"> P V^{n} = C </script>
+</p>
+<p>so,</p>
+<p>
+<script type="math/tex; mode=display"> \log{P} + n \log{V} = \log{C} </script>
+<script type="math/tex; mode=display">
+\left[ { \begin{array}{cc}
+    \log{\bf V} & 1 \\
+\end{array} } \right] \left[ { \begin{array}{c}
+    -n \\
+    \log{C} \\
+\end{array} } \right] = \log{\bf P}
+</script>
+</p>
+<p>in block matrix notation where <script type="math/tex">{\bf V}</script> and <script type="math/tex">{\bf P}</script> are the arrays of volume and
+pressure data, respectively.</p>
+<p>The other parameters in the system are taken from CAD or empirically determined by comparing logged
+data from prescribed motion between simulation and the physical test bench.</p>
               
             </div>
           </div><footer>
