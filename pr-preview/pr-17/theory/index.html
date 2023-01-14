@@ -75,16 +75,6 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Theory</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#pneumatic-spring">Pneumatic Spring</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#definitions">Definitions</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#model">Model</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#determining-parameter-values">Determining Parameter Values</a>
-    </li>
-        </ul>
-    </li>
     </ul>
                 </li>
               </ul>
@@ -122,8 +112,201 @@
                 <p>Under Construction</p>
 <h2 id="modeling">Modeling</h2>
 <p>summary about modeling</p>
-<h3 id="pneumatic-spring">Pneumatic Spring</h3>
-<p>summary of spring</p>
+<hr />
+<h2 id="physical-characteristics">Physical Characteristics</h2>
+<h3 id="surface-buoy">Surface Buoy</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th></th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<script type="math/tex">COG</script>
+</td>
+<td>Center of Gravity in Link Frame (x,y,z)</td>
+<td>(0.0, 0.0, 1.2)</td>
+<td>m</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">COB</script>
+</td>
+<td>Center of Buoyancy in Link Frame (x,y,z)</td>
+<td>(0.0, 0.0, 1.2)</td>
+<td>m</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">COW</script>
+</td>
+<td>Center of Waterplane in Link Frame (x,y,z)</td>
+<td>(0.0, 0.0, 1.2)</td>
+<td>m</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">m</script>
+</td>
+<td>Buoy Mass</td>
+<td>1000.0</td>
+<td>kg</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">V</script>
+</td>
+<td>Displacement (undisturbed buoy)</td>
+<td>1.0</td>
+<td>m^3</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">A_{wp}</script>
+</td>
+<td>Waterplane Area (undisturbed buoy)</td>
+<td>5.0</td>
+<td>m^2</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">\mu^{inf}_{xx}</script>
+</td>
+<td>Surge Infinite Frequency Added Mass</td>
+<td>5.0</td>
+<td>kg</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">\mu^{inf}_{yy}</script>
+</td>
+<td>Sway Infinite Frequency Added Mass</td>
+<td>5.0</td>
+<td>kg</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">\mu^{inf}_{zz}</script>
+</td>
+<td>Heave Infinite Frequency Added Mass</td>
+<td>10.0</td>
+<td>kg</td>
+</tr>
+</tbody>
+</table>
+<p>Notes:<br />
+- Buoy Link Frame is located at base of the buoy bridle.
+- Unspecified Added mass and drag values are zero. 
+- Infinite Frequency added mass values are specified about (COW).</p>
+<h3 id="power-take-off">Power Take-Off</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th></th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<script type="math/tex">COG</script>
+</td>
+<td>Center of Gravity in Link Frame (x,y,z)</td>
+<td>(0.0, 0.0, 1.2)</td>
+<td>m</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">COB</script>
+</td>
+<td>Center of Buoyancy in Link Frame (x,y,z)</td>
+<td>(0.0, 0.0, 1.2)</td>
+<td>m</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">m</script>
+</td>
+<td>PTO Mass</td>
+<td>1000.0</td>
+<td>kg</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">V</script>
+</td>
+<td>PTO Displacement</td>
+<td>1.0</td>
+<td>m^3</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>PTO Link Frame is located at top attachment of the PTO (where connects to the buoy).</li>
+<li>Unspecified Added mass and drag values are zero. </li>
+<li>Added mass values are specified about the link frame origin.</li>
+<li>Drag values are specified about the link frame origin.</li>
+</ul>
+<h3 id="heave-cone">Heave Cone</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th></th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<script type="math/tex">COG</script>
+</td>
+<td>Center of Gravity in Link Frame (x,y,z)</td>
+<td>(0.0, 0.0, 1.2)</td>
+<td>m</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">COB</script>
+</td>
+<td>Center of Buoyancy in Link Frame (x,y,z)</td>
+<td>(0.0, 0.0, 1.2)</td>
+<td>m</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">m</script>
+</td>
+<td>Heave Cone Mass</td>
+<td>1000.0</td>
+<td>kg</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">V</script>
+</td>
+<td>Heave Cone Displacement</td>
+<td>1.0</td>
+<td>m^3</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Heave-Cone Link Frame is located at top attachment of the Heave Cone (where it connects to the tether).</li>
+<li>Unspecified Added mass and drag values are zero. </li>
+<li>Added mass values are specified about the link frame origin.</li>
+<li>Drag values are specified about the link frame origin.</li>
+</ul>
+<hr />
+<h2 id="spring-modelling">Spring Modelling</h2>
 <h4 id="definitions">Definitions</h4>
 <table>
 <thead>
