@@ -4,9 +4,55 @@ Under Construction
 
 summary about modeling
 
-### Pneumatic Spring
+--------------------------------------------------------------------------------------------------------
+## Physical Characteristics
 
-summary of spring
+### Surface Buoy
+|                   | Description                                |                         | Units     |
+|-------------------|--------------------------------------------|-------------------------|-----------|
+| \(COG\)           | Center of Gravity in Link Frame (x,y,z)    | (0.0, 0.0, 1.2)         | m         |
+| \(COB\)           | Center of Buoyancy in Link Frame (x,y,z)   | (0.0, 0.0, 1.2)         | m         |
+| \(COW\)           | Center of Waterplane in Link Frame (x,y,z) | (0.0, 0.0, 1.2)         | m         |
+| \(m\)             | Buoy Mass                                  |  1000.0                 | kg        |
+| \(V\)             | Displacement (undisturbed buoy)            |  1.0                    | m^3       |
+| \(A_{wp}\)        | Waterplane Area (undisturbed buoy)         |  5.0                    | m^2       |
+| \(\mu^{inf}_{xx}\)| Surge Infinite Frequency Added Mass        |  5.0                    | kg        |
+| \(\mu^{inf}_{yy}\)| Sway Infinite Frequency Added Mass         |  5.0                    | kg        |
+| \(\mu^{inf}_{zz}\)| Heave Infinite Frequency Added Mass        |  10.0                   | kg        |
+
+Notes:  
+- Buoy Link Frame is located at base of the buoy bridle.
+- Unspecified Added mass and drag values are zero. 
+- Infinite Frequency added mass values are specified about \(COW)\.
+
+### Power Take-Off 
+|                   | Description                                |                         | Units     |
+|-------------------|--------------------------------------------|-------------------------|-----------|
+| \(COG\)           | Center of Gravity in Link Frame (x,y,z)    | (0.0, 0.0, 1.2)         | m         |
+| \(COB\)           | Center of Buoyancy in Link Frame (x,y,z)   | (0.0, 0.0, 1.2)         | m         |
+| \(m\)             | PTO Mass                                   |  1000.0                 | kg        |
+| \(V\)             | PTO Displacement                           |  1.0                    | m^3       |
+
+- PTO Link Frame is located at top attachment of the PTO (where connects to the buoy).
+- Unspecified Added mass and drag values are zero. 
+- Added mass values are specified about the link frame origin.
+- Drag values are specified about the link frame origin.
+
+### Heave Cone 
+|                   | Description                                |                         | Units     |
+|-------------------|--------------------------------------------|-------------------------|-----------|
+| \(COG\)           | Center of Gravity in Link Frame (x,y,z)    | (0.0, 0.0, 1.2)         | m         |
+| \(COB\)           | Center of Buoyancy in Link Frame (x,y,z)   | (0.0, 0.0, 1.2)         | m         |
+| \(m\)             | Heave Cone Mass                            |  1000.0                 | kg        |
+| \(V\)             | Heave Cone Displacement                    |  1.0                    | m^3       |
+
+- Heave-Cone Link Frame is located at top attachment of the Heave Cone (where it connects to the tether).
+- Unspecified Added mass and drag values are zero. 
+- Added mass values are specified about the link frame origin.
+- Drag values are specified about the link frame origin.
+
+--------------------------------------------------------------------------------------------------------
+## Spring Modelling
 
 #### Definitions
 
