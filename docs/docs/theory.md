@@ -1,4 +1,4 @@
-j## Modeling Technique Overview
+## Modeling Technique Overview
 The numerical modeling used in this simulator relies upon the Gazebo simulators ability to solve for the 
 motion of a collection of rigid bodies connected by various types of joints.  Gazebo can use several 
 different physics solvers to perform this solution, and the wave-energy buoy simulator in this project
