@@ -37,19 +37,19 @@ In the following sections, all quantities are defined in the bodies link frame u
 | \(I_{zz}\)       | Yaw Mass Moment of Inertia                             |  670.0           | kg m^2    |
 | \(A_{wp}\)       | Waterplane Area (undisturbed buoy)                     |  5.0             | m^2       |
 | \(\mu_{xx}\)     | Surge Infinite Frequency Added Mass                    |  330.0           | kg        |
-| \(\mu_{yy}\\)    | Sway Infinite Frequency Added Mass                     |  330.0           | kg        |
-| \(\mu_{zz}\\)    | Heave Infinite Frequency Added Mass                    |  2800.0          | kg        |
-| \(\mu_{pp}\\)    | Roll Infinite Frequency Added Mass                     |  430.0           | kg        |
-| \(\mu_{qq}\\)    | Pitch Infinite Frequency Added Mass                    |  430.0           | kg        |
-| \(\mu_{xq}\\)     | Surge-Pitch Infinite Frequency Added Mass             |  180.0           | kg        |
-| \(\mu_{yp}\\)    | Sway-Roll Infinite Frequency Added Mass                | -180.0           | kg        |
+| \(\mu_{yy}\)     | Sway Infinite Frequency Added Mass                     |  330.0           | kg        |
+| \(\mu_{zz}\)     | Heave Infinite Frequency Added Mass                    |  2800.0          | kg        |
+| \(\mu_{pp}\)     | Roll Infinite Frequency Added Mass                     |  430.0           | kg        |
+| \(\mu_{qq}\)     | Pitch Infinite Frequency Added Mass                    |  430.0           | kg        |
+| \(\mu_{xq}\)     | Surge-Pitch Infinite Frequency Added Mass             |  180.0           | kg        |
+| \(\mu_{yp}\)     | Sway-Roll Infinite Frequency Added Mass                | -180.0           | kg        |
 | \(X_{UU}\)       | Surge Quadratic Drag                                   | -430.0           | kg/m      |
 | \(Y_{VV}\)       | Sway Quadratic Drag                                    | -430.0           | kg/m      |
 | \(Z_{WW}\)       | Heave Quadratic Drag                                   | -3280.0          | kg/m      |
 
 
 - Buoy Link Frame is located at base of the buoy bridle.
-- Unspecified stability derivative values (\(X_{\dot V}\), \(Y_{\dot X}\), \(X_{UV}\), \(Y_{VU}\), etc) are zero. 
+- Unspecified stability derivative values (\(\mu_rr\), \(X_{UV}\), \(Y_{VU}\), etc) are zero. 
 - Added mass values are specified about \(COW)\.
 - Drag stability derivatives are specified about the link frame origin.
 - Free-Surface Hydrodynamic Coefficients and Impulse Response Functions can be found <a href="https://www.google.com/") target="_blank">here</a>:
@@ -64,15 +64,15 @@ In the following sections, all quantities are defined in the bodies link frame u
 | \(I_{xx}\)        | Roll Mass Moment of Inertia                |  3220.0          | kg m^2    |
 | \(I_{yy}\)        | Pitch Mass Moment of Inertia               |  3220.0          | kg m^2    |
 | \(I_{zz}\)        | Yaw Mass Moment of Inertia                 |  10.0            | kg m^2    |
-| \(X_{\dot U}\)    | Surge Added Mass                           |  160.0           | kg        |
-| \(X_{\dot V}\)    | Sway Added Mass                            |  160.0           | kg        |
+| \(\mu_{xx}\)      | Surge Added Mass                           |  160.0           | kg        |
+| \(\mu_{yy}\)      | Sway Added Mass                            |  160.0           | kg        |
 | \(X_{UU}\)        | Surge Quadratic Drag                       |  -815.0          | kg/m      |
 | \(Y_{VV}\)        | Sway Quadratic Drag                        |  -815.0          | kg/m      |
 | \(K_{PP}\)        | Roll Qudratic Drag                         |  -140200.0       | kg m^2    |
 | \(M_{QQ}\)        | Pitch Qudratic Drag                        |  -140200.0       | kg m^2    |
 
 - PTO Link Frame is located at top attachment of the PTO (where connects to the buoy).
-- Unspecified stability derivative values (\(X_{\dot V}\), \(Y_{\dot X}\), \(X_{UV}\), \(Y_{VU}\), etc) are zero. 
+- Unspecified stability derivative values (\(\mu_rr\), \(X_{UV}\), \(Y_{VU}\), etc) are zero. 
 - Stability derivatives are specified about the link frame origin.
 
 ### Piston 
@@ -97,8 +97,8 @@ no buoyancy, added mass, or quadratic fluid drag.
 | \(I_{xx}\)        | Roll Mass Moment of Inertia                |  340.0           | kg m^2    |
 | \(I_{yy}\)        | Pitch Mass Moment of Inertia               |  340.0           | kg m^2    |
 | \(I_{zz}\)        | Yaw Mass Moment of Inertia                 |  600.0           | kg m^2    |
-| \(X_{\dot U}\)    | Surge Added Mass                           |  780.0           | kg        |
-| \(Y_{\dot V}\)    | Sway Added Mass                            |  780.0           | kg        |
+| \(\mu_{xx}\\)     | Surge Added Mass                           |  780.0           | kg        |
+| \(\mu_{yy}\\)     | Sway Added Mass                            |  780.0           | kg        |
 | \(Z_{\dot W}\)    | Heave Added Mass: Doors Open               |  3000.0          | kg        |
 | \(Z_{\dot W}\)    | Heave Added Mass: Doors Closed             |  10000.0         | kg        |
 | \(X_{UU}\)        | Surge Quadratic Drag                       |  -1580.0         | kg/m      |
@@ -109,7 +109,7 @@ no buoyancy, added mass, or quadratic fluid drag.
 | \(M_{QQ}\)        | Pitch Qudratic Drag:                       |  -4620.0         | kg m^2    |
 
 - Heave-Cone Link Frame is located at top attachment of the Heave Cone (where it connects to the tether).
-- Unspecified stability derivative values (\(X_{\dot V}\), \(Y_{\dot X}\), \(X_{UV}\), \(Y_{VU}\), etc) are zero. 
+- Unspecified stability derivative values (\(\mu_rr\), \(X_{UV}\), \(Y_{VU}\), etc) are zero. 
 - Stability derivatives are specified about the link frame origin.
 
 
