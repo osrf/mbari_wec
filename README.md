@@ -25,9 +25,25 @@ At the moment, only source installation is supported. Use Ubuntu Jammy.
 
 1. Install [ROS 2 Humble](https://docs.ros.org/en/humble/index.html)
 
-1. Install [Gazebo Garden](https://gazebosim.org/docs/garden)
+Buoy Sim is tested against cyclonedds rmw implementation (default changed from Galactic to Humble)
+```
+sudo apt install -y ros-humble-rmw-cyclonedds-cpp
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+```
 
-1. Install necessary tools
+2. Install [Gazebo Garden](https://gazebosim.org/docs/garden)
+
+Currently, in order to use added mass, it is necessary to build gz-sim Garden from source.
+
+When building from source, it is necessary to export the `PYTHONPATH` for gz-math python bindings when building buoy_sim
+```
+export PYTHONPATH=$PYTHONPATH:<path to your gz-sim workspace>/install/lib/python`
+```
+
+See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/blob/gz-math7/tutorials/pythongetstarted.md). This step is needed until `PYTHONPATH` is automatically exported upstream, tracked in [this issue](https://github.com/osrf/buoy_sim/issues/81)
+
+
+3. Install necessary tools
 
     ```
     sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
@@ -65,11 +81,6 @@ At the moment, only source installation is supported. Use Ubuntu Jammy.
     rosdep update
     rosdep install --from-paths src --ignore-src -r -y -i
     ```
-
-1. Export `PYTHONPATH` for code using gz-math Python to compile:
-   export PYTHONPATH=$PYTHONPATH:<path to your workspace>/install/lib/python
-
-   See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/blob/gz-math7/tutorials/pythongetstarted.md). This step is needed until `PYTHONPATH` is automatically exported upstream, tracked in [this issue](https://github.com/osrf/buoy_sim/issues/81)
 
 1. Build and install
 
