@@ -74,7 +74,7 @@ At the moment, only source installation is supported. Use Ubuntu Jammy.
 1. Build and install
 
     ```
-    source /opt/ros/galactic/setup.bash
+    source /opt/ros/humble/setup.bash
     cd ~/buoy_ws
     colcon build
     ```
