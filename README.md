@@ -66,6 +66,11 @@ At the moment, only source installation is supported. Use Ubuntu Jammy.
     rosdep install --from-paths src --ignore-src -r -y -i
     ```
 
+1. Export `PYTHONPATH` for code using gz-math Python to compile:
+   export PYTHONPATH=$PYTHONPATH:<path to your workspace>/install/lib/python
+
+   See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/blob/gz-math7/tutorials/pythongetstarted.md). This step is needed until `PYTHONPATH` is automatically exported upstream, tracked in [this issue](https://github.com/osrf/buoy_sim/issues/81)
+
 1. Build and install
 
     ```
