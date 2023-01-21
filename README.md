@@ -21,13 +21,29 @@ These are the repositories for the project:
 ## Install
 ### On Host System
 ##### Requirements
-At the moment, only source installation is supported. Use Ubuntu Focal.
+At the moment, only source installation is supported. Use Ubuntu Jammy.
 
-1. Install [ROS 2 Galactic](https://docs.ros.org/en/galactic/index.html)
+1. Install [ROS 2 Humble](https://docs.ros.org/en/humble/index.html)
 
-1. Install [Gazebo Fortress](https://ignitionrobotics.org/docs/fortress)
+Buoy Sim is tested against cyclonedds rmw implementation (default changed from Galactic to Humble)
+```
+sudo apt install -y ros-humble-rmw-cyclonedds-cpp
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+```
 
-1. Install necessary tools
+2. Install [Gazebo Garden](https://gazebosim.org/docs/garden)
+
+Currently, in order to use added mass, it is necessary to build gz-sim Garden from source.
+
+When building from source, it is necessary to export the `PYTHONPATH` for gz-math python bindings when building buoy_sim
+```
+export PYTHONPATH=$PYTHONPATH:<path to your gz-sim workspace>/install/lib/python`
+```
+
+See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/blob/gz-math7/tutorials/pythongetstarted.md). This step is needed until `PYTHONPATH` is automatically exported upstream, tracked in [this issue](https://github.com/osrf/buoy_sim/issues/81)
+
+
+3. Install necessary tools
 
     ```
     sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
@@ -50,12 +66,11 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
     cd ~/buoy_ws
     ```
 
-1. Set the Gazebo version to Fortress. This is needed because we're not using an
+1. Set the Gazebo version to Garden. This is needed because we're not using an
    official ROS + Gazebo combination:
 
     ```
-    export IGNITION_VERSION=fortress
-    export GZ_VERSION=fortress
+    export GZ_VERSION=garden
     ```
 
 1. Install ROS dependencies
@@ -70,7 +85,7 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
 1. Build and install
 
     ```
-    source /opt/ros/galactic/setup.bash
+    source /opt/ros/humble/setup.bash
     cd ~/buoy_ws
     colcon build
     ```
@@ -107,7 +122,7 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
     ```
 
 1. Build the docker image
-    
+
     ```
     ./build.bash buoy
     ```
@@ -137,5 +152,5 @@ At the moment, only source installation is supported. Use Ubuntu Focal.
 Inside the docker container, run:
 
 ```
-ign gazebo mbari_wec.sdf -r
+gz sim mbari_wec.sdf -r
 ```

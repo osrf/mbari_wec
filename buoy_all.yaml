@@ -8,12 +8,12 @@ repositories:
     type: git
     url: https://github.com/osrf/buoy_sim
     version: main
-  # Must compile ros_ign from source because Galactic + Fortress is not an official combination
-  ros_ign:
+  # Must compile ros_gz from source because Humble + Garden is not an official combination
+  ros_gz:
     type: git
-    url: https://github.com/osrf/ros_ign
-    version: galactic
+    url: https://github.com/gazebosim/ros_gz
+    version: ros2
   sdformat_urdf:
     type: git
     url: https://github.com/ros/sdformat_urdf
-    version: galactic
+    version: ros2
