@@ -1,6 +1,12 @@
 FROM ros:humble-ros-base
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Need to use cyclonedds rather than default rmw provider
+RUN apt update \
+ && apt install -y \
+        ros-humble-rmw-cyclonedds-cpp
+ENV RMW_IMPLEMENTATION rmw_cyclonedds_cpp
+
 # Necessary tools
 RUN apt update \
  && apt install -y \
@@ -36,4 +42,4 @@ RUN /bin/bash -c 'source /opt/ros/${ROS_DISTRO}/setup.bash \
   && cd /tmp/buoy_ws \
   && colcon build'
 
-ENTRYPOINT ["/bin/bash" , "-c" , "source /tmp/buoy_ws/install/setup.bash && /bin/bash"]
+ENTRYPOINT ["/bin/bash" , "-c" , "source /tmp/buoy_ws/install/setup.bash &&  && /bin/bash"]
