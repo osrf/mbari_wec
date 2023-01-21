@@ -3,11 +3,11 @@ repositories:
   buoy_msgs:
     type: git
     url: https://github.com/osrf/buoy_msgs
-    version: chapulina/humble_garden
+    version: main
   buoy_sim:
     type: git
     url: https://github.com/osrf/buoy_sim
-    version: chapulina/humble_garden
+    version: main
   # Must compile ros_gz from source because Humble + Garden is not an official combination
   ros_gz:
     type: git
