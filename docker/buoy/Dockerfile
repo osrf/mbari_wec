@@ -42,4 +42,4 @@ RUN /bin/bash -c 'source /opt/ros/${ROS_DISTRO}/setup.bash \
   && cd /tmp/buoy_ws \
   && colcon build'
 
-ENTRYPOINT ["/bin/bash" , "-c" , "source /tmp/buoy_ws/install/setup.bash &&  && /bin/bash"]
+ENTRYPOINT ["/bin/bash" , "-c" , "source /tmp/buoy_ws/install/setup.bash && /bin/bash"]
