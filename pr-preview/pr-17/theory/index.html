@@ -155,7 +155,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 </td>
 <td align="left">Displacement (undisturbed buoy)</td>
 <td align="center">1.0</td>
-<td align="center">m^3</td>
+<td align="center">m<script type="math/tex">^3</script>
+</td>
 </tr>
 <tr>
 <td align="center">
@@ -185,9 +186,10 @@ In the following sections, all quantities are defined in the bodies link frame u
 <td align="center">
 <script type="math/tex">I_{xx}</script>
 </td>
-<td align="left">Roll Mass Moment of Inertia</td>
+<td align="left">Roll Mass Moment of Inertia  (MOI)</td>
 <td align="center">1450.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
@@ -195,7 +197,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 </td>
 <td align="left">Pitch Mass Moment of Inertia</td>
 <td align="center">1450.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
@@ -203,7 +206,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 </td>
 <td align="left">Yaw Mass Moment of Inertia</td>
 <td align="center">670.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
@@ -211,67 +215,70 @@ In the following sections, all quantities are defined in the bodies link frame u
 </td>
 <td align="left">Waterplane Area (undisturbed buoy)</td>
 <td align="center">5.0</td>
-<td align="center">m^2</td>
+<td align="center">m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">\mu_{xx}</script>
+<script type="math/tex">X_{\dot{u}}</script>
 </td>
-<td align="left">Surge Infinite Frequency Added Mass</td>
+<td align="left">Surge Infinite Frequency Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
 <td align="center">330.0</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">\mu_{yy}</script>
+<script type="math/tex">Y_{\dot{v}}</script>
 </td>
-<td align="left">Sway Infinite Frequency Added Mass</td>
+<td align="left">Sway Infinite Frequency Added Mass ( <script type="math/tex">\mu_{yy}</script>)</td>
 <td align="center">330.0</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">\mu_{zz}</script>
+<script type="math/tex">Z_{\dot{w}}</script>
 </td>
-<td align="left">Heave Infinite Frequency Added Mass</td>
+<td align="left">Heave Infinite Frequency Added Mass (<script type="math/tex">\mu_{zz}</script>)</td>
 <td align="center">2800.0</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">\mu_{pp}</script>
+<script type="math/tex">K_{\dot{p}}</script>
 </td>
-<td align="left">Roll Infinite Frequency Added Mass</td>
+<td align="left">Roll Infinite Frequency Added Mass MOI (<script type="math/tex">\mu_{pp}</script>)</td>
 <td align="center">430.0</td>
-<td align="center">kg</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">\mu_{qq}</script>
+<script type="math/tex">M_{\dot{q}}</script>
 </td>
-<td align="left">Pitch Infinite Frequency Added Mass</td>
+<td align="left">Pitch Infinite Frequency Added Mass MOI (<script type="math/tex">\mu_{qq}</script>)</td>
 <td align="center">430.0</td>
-<td align="center">kg</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">\mu_{xq}</script>
+<script type="math/tex">X_{\dot{q}}</script>
 </td>
-<td align="left">Surge-Pitch Infinite Frequency Added Mass</td>
+<td align="left">Surge-Pitch Infinite Frequency Added Mass (<script type="math/tex">\mu_{xq}</script>)</td>
 <td align="center">180.0</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">\mu_{yp}</script>
+<script type="math/tex">Y_{\dot{p}}</script>
 </td>
-<td align="left">Sway-Roll Infinite Frequency Added Mass</td>
+<td align="left">Sway-Roll Infinite Frequency Added Mass (<script type="math/tex">\mu_{yp}</script>)</td>
 <td align="center">-180.0</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">X_{UU}</script>
+<script type="math/tex">X_{uu}</script>
 </td>
 <td align="left">Surge Quadratic Drag</td>
 <td align="center">-430.0</td>
@@ -279,7 +286,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">Y_{VV}</script>
+<script type="math/tex">Y_{vv}</script>
 </td>
 <td align="left">Sway Quadratic Drag</td>
 <td align="center">-430.0</td>
@@ -287,7 +294,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">Z_{WW}</script>
+<script type="math/tex">Z_{ww}</script>
 </td>
 <td align="left">Heave Quadratic Drag</td>
 <td align="center">-3280.0</td>
@@ -297,7 +304,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 </table>
 <ul>
 <li>Buoy Link Frame is located at base of the buoy bridle.</li>
-<li>Unspecified stability derivative values (<script type="math/tex">\mu_rr</script>, <script type="math/tex">X_{UV}</script>, <script type="math/tex">Y_{VU}</script>, etc) are zero. </li>
+<li>Unspecified stability derivative values (<script type="math/tex">M_{\dot{r}}</script>, <script type="math/tex">X_{uv}</script>, <script type="math/tex">Y_{vu}</script>, etc) are zero. </li>
 <li>Added mass values are specified about (COW).</li>
 <li>Drag stability derivatives are specified about the link frame origin.</li>
 <li>Free-Surface Hydrodynamic Coefficients and Impulse Response Functions can be found <a href="https://www.google.com/") target="_blank">here</a>:</li>
@@ -327,7 +334,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 </td>
 <td align="left">PTO Displacement</td>
 <td align="center">1.0</td>
-<td align="center">m^3</td>
+<td align="center">m<script type="math/tex">^3</script>
+</td>
 </tr>
 <tr>
 <td align="center">
@@ -351,7 +359,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 </td>
 <td align="left">Roll Mass Moment of Inertia</td>
 <td align="center">3220.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
@@ -359,7 +368,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 </td>
 <td align="left">Pitch Mass Moment of Inertia</td>
 <td align="center">3220.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
@@ -367,27 +377,28 @@ In the following sections, all quantities are defined in the bodies link frame u
 </td>
 <td align="left">Yaw Mass Moment of Inertia</td>
 <td align="center">10.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">\mu_{xx}</script>
+<script type="math/tex">X_{\dot{u}}</script>
 </td>
-<td align="left">Surge Added Mass</td>
+<td align="left">Surge Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
 <td align="center">160.0</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">\mu_{yy}</script>
+<script type="math/tex">Y_{\dot{v}}</script>
 </td>
-<td align="left">Sway Added Mass</td>
+<td align="left">Sway Added Mass ( <script type="math/tex">\mu_{yy}</script>)</td>
 <td align="center">160.0</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">X_{UU}</script>
+<script type="math/tex">X_{uu}</script>
 </td>
 <td align="left">Surge Quadratic Drag</td>
 <td align="center">-815.0</td>
@@ -395,7 +406,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">Y_{VV}</script>
+<script type="math/tex">Y_{vv}</script>
 </td>
 <td align="left">Sway Quadratic Drag</td>
 <td align="center">-815.0</td>
@@ -403,25 +414,27 @@ In the following sections, all quantities are defined in the bodies link frame u
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">K_{PP}</script>
+<script type="math/tex">K_{pp}</script>
 </td>
 <td align="left">Roll Qudratic Drag</td>
 <td align="center">-140200.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">M_{QQ}</script>
+<script type="math/tex">M_{pp}</script>
 </td>
 <td align="left">Pitch Qudratic Drag</td>
 <td align="center">-140200.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 </tbody>
 </table>
 <ul>
 <li>PTO Link Frame is located at top attachment of the PTO (where connects to the buoy).</li>
-<li>Unspecified stability derivative values (<script type="math/tex">\mu_rr</script>, <script type="math/tex">X_{UV}</script>, <script type="math/tex">Y_{VU}</script>, etc) are zero. </li>
+<li>Unspecified stability derivative values (<script type="math/tex">M_{\dot{r}}</script>, <script type="math/tex">X_{uv}</script>, <script type="math/tex">Y_{vu}</script>, etc) are zero. </li>
 <li>Stability derivatives are specified about the link frame origin.</li>
 </ul>
 <h3 id="piston">Piston</h3>
@@ -457,7 +470,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 </td>
 <td align="left">Roll Mass Moment of Inertia</td>
 <td align="center">100.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
@@ -465,7 +479,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 </td>
 <td align="left">Pitch Mass Moment of Inertia</td>
 <td align="center">100.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
@@ -473,7 +488,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 </td>
 <td align="left">Yaw Mass Moment of Inertia</td>
 <td align="center">5.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 </tbody>
 </table>
@@ -506,7 +522,8 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 </td>
 <td align="left">Heave Cone Displacement</td>
 <td align="center">1.0</td>
-<td align="center">m^3</td>
+<td align="center">m<script type="math/tex">^3</script>
+</td>
 </tr>
 <tr>
 <td align="center">
@@ -530,7 +547,8 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 </td>
 <td align="left">Roll Mass Moment of Inertia</td>
 <td align="center">340.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
@@ -538,7 +556,8 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 </td>
 <td align="left">Pitch Mass Moment of Inertia</td>
 <td align="center">340.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
@@ -546,27 +565,28 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 </td>
 <td align="left">Yaw Mass Moment of Inertia</td>
 <td align="center">600.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">\mu_{xx}\</script>
+<script type="math/tex">X_{\dot{u}}</script>
 </td>
-<td align="left">Surge Added Mass</td>
+<td align="left">Surge Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
 <td align="center">780.0</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">\mu_{yy}\</script>
+<script type="math/tex">Y_{\dot{v}}</script>
 </td>
-<td align="left">Sway Added Mass</td>
+<td align="left">Sway Added Mass (<script type="math/tex">\mu_{yy}</script>)</td>
 <td align="center">780.0</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">Z_{\dot W}</script>
+<script type="math/tex">Z_{\dot w}</script>
 </td>
 <td align="left">Heave Added Mass: Doors Open</td>
 <td align="center">3000.0</td>
@@ -574,7 +594,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">Z_{\dot W}</script>
+<script type="math/tex">Z_{\dot w}</script>
 </td>
 <td align="left">Heave Added Mass: Doors Closed</td>
 <td align="center">10000.0</td>
@@ -582,7 +602,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">X_{UU}</script>
+<script type="math/tex">X_{uu}</script>
 </td>
 <td align="left">Surge Quadratic Drag</td>
 <td align="center">-1580.0</td>
@@ -590,7 +610,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">Y_{VV}</script>
+<script type="math/tex">Y_{vv}</script>
 </td>
 <td align="left">Sway Quadratic Drag</td>
 <td align="center">-1580.0</td>
@@ -598,7 +618,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">Z_{WW}</script>
+<script type="math/tex">Z_{ww}</script>
 </td>
 <td align="left">Vertical Quadratic Drag: Doors Open</td>
 <td align="center">-3200.0</td>
@@ -606,7 +626,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">Z_{WW}</script>
+<script type="math/tex">Z_{ww}</script>
 </td>
 <td align="left">Vertical Quadratic Drag: Doors Closed</td>
 <td align="center">-3900.0</td>
@@ -614,25 +634,27 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">K_{PP}</script>
+<script type="math/tex">K_{pp}</script>
 </td>
 <td align="left">Roll Quadratic Drag:</td>
 <td align="center">-4620.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">M_{QQ}</script>
+<script type="math/tex">M_{qq}</script>
 </td>
 <td align="left">Pitch Qudratic Drag:</td>
 <td align="center">-4620.0</td>
-<td align="center">kg m^2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 </tbody>
 </table>
 <ul>
 <li>Heave-Cone Link Frame is located at top attachment of the Heave Cone (where it connects to the tether).</li>
-<li>Unspecified stability derivative values (<script type="math/tex">\mu_rr</script>, <script type="math/tex">X_{UV}</script>, <script type="math/tex">Y_{VU}</script>, etc) are zero. </li>
+<li>Unspecified stability derivative values (<script type="math/tex">M_{\dot{r}}</script>, <script type="math/tex">X_{uv}</script>, <script type="math/tex">Y_{vu}</script>, etc) are zero. </li>
 <li>Stability derivatives are specified about the link frame origin.</li>
 </ul>
 <hr />
