@@ -23,18 +23,21 @@
 %
 % ***   Buoy   ***
 %
-  dia_b = 2.64;                %m
-  h_b   = 1.12-.81;            %m height of the beveled section [3]
+  dia_b   = 2.64;              %m
+  h_b     = 1.12-.81;          %m height of the beveled section [3]
+  h_cg    = 2.03;              %m height of the cg above the bridle pivot.
   m_b     = 1400;              %kg Mass of the buoy (in air, no water).
-  m_w_pto = 395;               %kg This is in-water weight / g
-  m_w_hc  = 703;               %kg This is in-water weight / g
+  m_w_pto = 395;               %kg This is in-water "weight" 
+  m_w_hc  = 703;               %kg This is in-water "weight"
   Cdp     = 1.17;              %none.  For a flat plate, 3 dim perp flow.
-  Ixx_b   = 1492;
-  Ixy_b   = -14.15;
+  Ixx_b   = 1492;              %kg-m^2 Moment of inertia at water plane [3]
+  Ixy_b   = -14.15;            %kg-m^2 Product of inertia at water plane [3]
   Ixz_b   = 12.96;
   Iyy_b   = 1539;
   Iyz_b   = -14.59;
   Izz_b   = 650.5;
+  h_wl    = 2.27;              %m height of the waterline above the bridle pivot
+                               %when loaded with the pto and heave cone in water.
 %  
 % Approximate the below-water part of the buoy as a hemisphere.  Find the radius
 % through the density of the displaced water.
@@ -74,10 +77,17 @@
   Xuabsu_b = -1/2*rho*Cdp*At;   %kg/m. 
   Yvabsv_b = Xuabsu_b;
 %
+% The location of the c.g. appears to be in the center of the side-view,
+% excluding the bridle framework.  Thus I'll assume this is also the 
+% center-of-area as well as the center-of-drag.
+  Kpabsp_b = Xuabsu_b*h_cg;
+  Mqabsq_b = Kpabsp_b;
+  Nrabsr_b = -50;                       %kg-m^2 arbitrary
+%
 % Flat plate again, with area of a circle:
 %
   a        = dia_b/2;
-  Zww_b    = -1/2*rho*Cdp*pi*a^2;           %kg/m, down only.
+  Zww_b    = 1/2*rho*Cdp*pi*a^2;           %kg/m, down only.
 %
 % Now build the generalized mass matrix, about the COW:
 %
@@ -90,7 +100,7 @@
 %
 % Transform it to the bridle point using Joan's generalized parallel axis theorem:
 %
-  MT_b = parallelAxis( M_b, [ 0  0  -2.27]' );
+  MT_b = parallelAxis( M_b, [0  0  -h_wl]' );
 % MT_b = parallelAxis( M_b, [ 0  0  -3.20]' );
         
 %
@@ -142,7 +152,7 @@
 % So then:
   Kpabsp_pto = -rho/8 *d_pto*l_pto^4*Cd_pto; %kg m^2.  Assuming origin at the top.
   Mqabsq_pto = Kpabsp_pto;               %kg m^2.  
-  Zrabsr_pto = 0;
+  Zrabsr_pto = -10;          %kg-m^2  Arbitrary.
 %  
 % ***  Heave Cone  ***
 %
@@ -170,7 +180,7 @@
   Zww_o_u   = -1/2*rho*1.2*A_c;          %kg/m  Francois [1].
 % Doors open, moving down (*_o_d).  
   Zwdot_o_d =  Zwdot_o_u;                %kg For now. Probably less
-  Zww_o_d   = 1/2*rho*.85*A_c;          %kg/m Francois [1].
+  Zww_o_d   = 1/2*rho*.85*A_c;           %kg/m Francois [1].
 %
 % For accel in the x direction (parallel to bottom plate), we will approximate
 % the heave cone as a rectangular solid with the same dimensions as the heave
@@ -236,29 +246,39 @@
 %
 % Approximate this one as a flywheel?
 %
-% Nrabsr_hc =                           %kg m^2
+  Nrabsr_hc = -50;                       %kg m^2, arbitrary
 
 
 fprintf('\n** Buoy **\n\n');  
 
 fprintf('Xudot           [kg]: %12.2f  \n',Xudot_b);
-fprintf('Xu|u|         [kg/m]: %12.2f  \n',Xuabsu_b);
-
 fprintf('Yvdot           [kg]: %12.2f  \n',Yvdot_b);
-fprintf('Yv|v|         [kg/m]: %12.2f  \n',Yvabsv_b);
-
-fprintf('These values are for downward motion.\n');
 fprintf('Zwdot           [kg]: %12.2f  \n',Zwdot_b);
+
+fprintf('Xu|u|         [kg/m]: %12.2f  \n',Xuabsu_b);
+fprintf('Yv|v|         [kg/m]: %12.2f  \n',Yvabsv_b);
+fprintf('This value is for downward motion.\n');
 fprintf('Zww           [kg/m]: %12.2f  \n',Zww_b);
+fprintf('Kp|p|       [kg m^2]: %12.2f  \n',Kpabsp_b);
+fprintf('Mq|q|       [kg m^2]: %12.2f  \n',Mqabsq_b);
+fprintf('Nr|r|       [kg m^2]: %12.2f  \n',Nrabsr_b);
+
+fprintf('Generalized Mass Matrix about Bridle Point:\n\n');
+fprintf('%12.2f %12.2f %12.2f\n',MT_b');
+
+
+
+
+
 
 fprintf('\n** Power Take Off **\n\n');  
 
 fprintf('Xudot           [kg]: %12.2f  \n',Xudot_pto);
-fprintf('Xu|u|         [kg/m]: %12.2f  \n',Xuabsu_pto);
-fprintf('Kp|p|       [kg m^2]: %12.2f  \n',Kpabsp_pto);
-
 fprintf('Yvdot           [kg]: %12.2f  \n',Yvdot_pto);
+
+fprintf('Xu|u|         [kg/m]: %12.2f  \n',Xuabsu_pto);
 fprintf('Yv|v|         [kg/m]: %12.2f  \n',Yvabsv_pto);
+fprintf('Kp|p|       [kg m^2]: %12.2f  \n',Kpabsp_pto);
 fprintf('Mq|q|       [kg m^2]: %12.2f  \n',Mqabsq_pto);
 
 fprintf('\n** Heave Cone **\n\n');  
@@ -276,8 +296,8 @@ fprintf('Zwdot           [kg]: %12.2f  \n',Zwdot_c_d);
 fprintf('Zww           [kg/m]: %12.2f  \n',Zww_c_d);
 fprintf('\n');
 fprintf('Xudot           [kg]: %12.2f  \n',Xudot_hc);
-fprintf('Xu|u|         [kg/m]: %12.2f  \n',Xuabsu_hc);
 fprintf('Yvdot           [kg]: %12.2f  \n',Yvdot_hc);
+fprintf('Xu|u|         [kg/m]: %12.2f  \n',Xuabsu_hc);
 fprintf('Yv|v|         [kg/m]: %12.2f  \n',Yvabsv_hc);
 fprintf('Kp|p|       [kg m^2]: %12.2f  \n',Kpabsp_hc);
 fprintf('Mq|q|       [kg m^2]: %12.2f  \n',Mqabsq_hc);
