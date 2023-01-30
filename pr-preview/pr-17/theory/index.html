@@ -223,7 +223,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">X_{\dot{u}}</script>
 </td>
 <td align="left">Surge Infinite Frequency Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
-<td align="center">330.0</td>
+<td align="center">330</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -231,7 +231,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">Y_{\dot{v}}</script>
 </td>
 <td align="left">Sway Infinite Frequency Added Mass ( <script type="math/tex">\mu_{yy}</script>)</td>
-<td align="center">330.0</td>
+<td align="center">330</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -239,7 +239,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">Z_{\dot{w}}</script>
 </td>
 <td align="left">Heave Infinite Frequency Added Mass (<script type="math/tex">\mu_{zz}</script>)</td>
-<td align="center">2800.0</td>
+<td align="center">2800</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -247,7 +247,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">K_{\dot{p}}</script>
 </td>
 <td align="left">Roll Infinite Frequency Added Mass MOI (<script type="math/tex">\mu_{pp}</script>)</td>
-<td align="center">430.0</td>
+<td align="center">430</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -256,7 +256,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">M_{\dot{q}}</script>
 </td>
 <td align="left">Pitch Infinite Frequency Added Mass MOI (<script type="math/tex">\mu_{qq}</script>)</td>
-<td align="center">430.0</td>
+<td align="center">430</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -265,7 +265,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">X_{\dot{q}}</script>
 </td>
 <td align="left">Surge-Pitch Infinite Frequency Added Mass (<script type="math/tex">\mu_{xq}</script>)</td>
-<td align="center">180.0</td>
+<td align="center">180</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -273,32 +273,59 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">Y_{\dot{p}}</script>
 </td>
 <td align="left">Sway-Roll Infinite Frequency Added Mass (<script type="math/tex">\mu_{yp}</script>)</td>
-<td align="center">-180.0</td>
+<td align="center">-180</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">X_{uu}</script>
+<script type="math/tex">X_{u\|u\|}</script>
 </td>
 <td align="left">Surge Quadratic Drag</td>
-<td align="center">-430.0</td>
+<td align="center">-430</td>
 <td align="center">kg/m</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">Y_{vv}</script>
+<script type="math/tex">Y_{v\|v\|}</script>
 </td>
 <td align="left">Sway Quadratic Drag</td>
-<td align="center">-430.0</td>
+<td align="center">-430</td>
 <td align="center">kg/m</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">Z_{ww}</script>
+<script type="math/tex">Z_{w\|w\|}</script>
 </td>
 <td align="left">Heave Quadratic Drag</td>
-<td align="center">-3280.0</td>
+<td align="center">-3280</td>
 <td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">K_{p\|p\|}</script>
+</td>
+<td align="left">Roll Quadratic Drag:</td>
+<td align="center">-880</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">M_{q\|q\|}</script>
+</td>
+<td align="left">Pitch Quadratic Drag:</td>
+<td align="center">-880</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">N_{r\|r\|}</script>
+</td>
+<td align="left">Yaw Quadratic Drag:</td>
+<td align="center">-50</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
 </tr>
 </tbody>
 </table>
@@ -385,7 +412,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">X_{\dot{u}}</script>
 </td>
 <td align="left">Surge Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
-<td align="center">160.0</td>
+<td align="center">160</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -393,40 +420,57 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">Y_{\dot{v}}</script>
 </td>
 <td align="left">Sway Added Mass ( <script type="math/tex">\mu_{yy}</script>)</td>
-<td align="center">160.0</td>
+<td align="center">160</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">X_{uu}</script>
+<script type="math/tex">X_{u\|u\|}</script>
 </td>
 <td align="left">Surge Quadratic Drag</td>
-<td align="center">-815.0</td>
+<td align="center">-1140</td>
 <td align="center">kg/m</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">Y_{vv}</script>
+<script type="math/tex">Y_{v\|v\|}</script>
 </td>
 <td align="left">Sway Quadratic Drag</td>
-<td align="center">-815.0</td>
+<td align="center">-1140</td>
 <td align="center">kg/m</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">K_{pp}</script>
+<script type="math/tex">Z_{w\|w\|}</script>
 </td>
-<td align="left">Roll Qudratic Drag</td>
-<td align="center">-140200.0</td>
+<td align="left">Heave Quadratic Drag</td>
+<td align="center">-50</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">K_{p\|p\|}</script>
+</td>
+<td align="left">Roll Quadratic Drag</td>
+<td align="center">-195400</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">M_{pp}</script>
+<script type="math/tex">M_{p\|p\|}</script>
 </td>
-<td align="left">Pitch Qudratic Drag</td>
-<td align="center">-140200.0</td>
+<td align="left">Pitch Quadratic Drag</td>
+<td align="center">-195400</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">N_{r\|r\|}</script>
+</td>
+<td align="left">Yaw Quadratic Drag</td>
+<td align="center">-50</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -573,7 +617,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <script type="math/tex">X_{\dot{u}}</script>
 </td>
 <td align="left">Surge Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
-<td align="center">780.0</td>
+<td align="center">780</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -581,7 +625,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <script type="math/tex">Y_{\dot{v}}</script>
 </td>
 <td align="left">Sway Added Mass (<script type="math/tex">\mu_{yy}</script>)</td>
-<td align="center">780.0</td>
+<td align="center">780</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -589,7 +633,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <script type="math/tex">Z_{\dot w}</script>
 </td>
 <td align="left">Heave Added Mass: Doors Open</td>
-<td align="center">3000.0</td>
+<td align="center">3000</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -597,56 +641,65 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <script type="math/tex">Z_{\dot w}</script>
 </td>
 <td align="left">Heave Added Mass: Doors Closed</td>
-<td align="center">10000.0</td>
+<td align="center">10000</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">X_{uu}</script>
+<script type="math/tex">X_{u\|u\|}</script>
 </td>
 <td align="left">Surge Quadratic Drag</td>
-<td align="center">-1580.0</td>
+<td align="center">-1580</td>
 <td align="center">kg/m</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">Y_{vv}</script>
+<script type="math/tex">Y_{v\|v\|}</script>
 </td>
 <td align="left">Sway Quadratic Drag</td>
-<td align="center">-1580.0</td>
+<td align="center">-1580</td>
 <td align="center">kg/m</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">Z_{ww}</script>
+<script type="math/tex">Z_{w\|w\|}</script>
 </td>
 <td align="left">Vertical Quadratic Drag: Doors Open</td>
-<td align="center">-3200.0</td>
+<td align="center">-3200</td>
 <td align="center">kg/m</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">Z_{ww}</script>
+<script type="math/tex">Z_{w\|w\|}</script>
 </td>
 <td align="left">Vertical Quadratic Drag: Doors Closed</td>
-<td align="center">-3900.0</td>
+<td align="center">-3900</td>
 <td align="center">kg/m</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">K_{pp}</script>
+<script type="math/tex">K_{p\|p\|}</script>
 </td>
 <td align="left">Roll Quadratic Drag:</td>
-<td align="center">-4620.0</td>
+<td align="center">-4620</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">M_{qq}</script>
+<script type="math/tex">M_{q\|q\|}</script>
 </td>
-<td align="left">Pitch Qudratic Drag:</td>
-<td align="center">-4620.0</td>
+<td align="left">Pitch Quadratic Drag:</td>
+<td align="center">-4620</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">N_{r\|r\|}</script>
+</td>
+<td align="left">Yaw Quadratic Drag:</td>
+<td align="center">-50</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
