@@ -92,7 +92,7 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
 
 ##### Run
 
-1. Source the workspace
+1. In a new terminal, source the workspace
 
     `. ~/buoy_ws/install/setup.sh`
 
