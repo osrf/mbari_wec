@@ -107,22 +107,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h5 id="requirements">Requirements</h5>
-<p>At the moment, only source installation is supported. Use Ubuntu Focal.</p>
+                <h5 id="install-requirements">Install Requirements</h5>
+<p>Use Ubuntu 22.04.</p>
+<ol>
+<li>Install <a href="https://docs.ros.org/en/humble/index.html">ROS 2 Humble</a></li>
+</ol>
+<p>Buoy Sim is tested against the cyclonedds rmw implementation, so set that up as follows:</p>
+<pre><code>sudo apt install -y ros-humble-rmw-cyclonedds-cpp
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+</code></pre>
 <ol>
 <li>
-<p>Install <a href="https://docs.ros.org/en/galactic/index.html">ROS 2 Galactic</a></p>
-</li>
-<li>
-<p>Install <a href="https://ignitionrobotics.org/docs/fortress">Gazebo Fortress</a></p>
+<p>Install <a href="https://gazebosim.org/docs/garden">Gazebo Garden</a></p>
 </li>
 <li>
 <p>Install necessary tools</p>
 </li>
 </ol>
-<pre><code>sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
+<pre><code>$ sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
 </code></pre>
-<h5 id="usage">Usage</h5>
+<h5 id="buoy-simulation-software-build">Buoy Simulation Software Build</h5>
 <ol>
 <li>Create a workspace, for example:</li>
 </ol>
@@ -137,11 +141,10 @@ $ vcs import &lt; buoy_all.yaml
 $ cd ~/buoy_ws
 </code></pre>
 <ol>
-<li>Set the Gazebo version to Fortress. This is needed because we're not using an
+<li>Set the Gazebo version to Garden. This is needed because we're not using an
    official ROS + Gazebo combination:</li>
 </ol>
-<pre><code>$ export IGNITION_VERSION=fortress
-$ export GZ_VERSION=fortress
+<pre><code>$ export GZ_VERSION=garden
 </code></pre>
 <ol>
 <li>Install ROS dependencies</li>
@@ -152,13 +155,24 @@ $ rosdep update
 $ rosdep install --from-paths src --ignore-src -r -y -i
 </code></pre>
 <ol>
-<li>Build and install simulation</li>
+<li>Build and install</li>
 </ol>
-<pre><code>$ source /opt/ros/galactic/setup.bash
+<pre><code>$ source /opt/ros/humble/setup.bash
 $ cd ~/buoy_ws
 $ colcon build
 </code></pre>
-<p>The simulation software should build without errors.  To run and test, proceed to the <a href="../../../tutorials/#running-the-simulator">Run the Simulator</a> tutorial series</p>
+<p>The simulation software should build without errors.  To run and test, proceed to the <a href="../../../tutorials/#running-the-simulator">Run the Simulator</a> tutorial series.  Or run a quick test as described below to confirm all has worked as expected.</p>
+<h5 id="run-an-example-to-test">Run an example to test</h5>
+<ol>
+<li>In a new terminal, source the workspace</li>
+</ol>
+<pre><code>$ . ~/buoy_ws/install/setup.sh`
+</code></pre>
+<ol>
+<li>Launch the simulation</li>
+</ol>
+<pre><code>$ ros2 launch buoy_gazebo mbari_wec.launch.py`
+</code></pre>
               
             </div>
           </div><footer>
