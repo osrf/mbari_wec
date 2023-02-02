@@ -67,8 +67,13 @@ In the following sections, all quantities are defined in the bodies link frame u
 | \(I_{xx}\)        | Roll Mass Moment of Inertia                |  3220.0          | kg m\(^2\)|
 | \(I_{yy}\)        | Pitch Mass Moment of Inertia               |  3220.0          | kg m\(^2\)|
 | \(I_{zz}\)        | Yaw Mass Moment of Inertia                 |  10.0            | kg m\(^2\)|
-| \(X_{\dot{u}}\)   | Surge Added Mass (\(\mu_{xx}\))            |  160             | kg        |
-| \(Y_{\dot{v}}\)   | Sway Added Mass ( \(\mu_{yy}\))            |  160             | kg        |
+| \(X_{\dot{u}}\)   | Surge Added Mass (\(\mu_{xx}\))            |       310.00  | kg        |
+| \(X_{\dot{q}}\)   | Surge-Pitch Added Mass MOI(\(\mu_{xq}\))   |      1250.00  | kg m      |
+| \(Y_{\dot{v}}\)   | Sway Added Mass (\(\mu_{yy}\))             |       310.00  | kg        |
+| \(Y_{\dot{p}}\)   | Sway-Roll Added Mass MOI (\(\mu_{yp}\))    |     -1250.00  | kg m      |
+| \(Z_{\dot{w}}\)   | Heave Added Mass (\(\mu_{yy}\))            |        10.00  | kg        |
+| \(K_{\dot{p}}\)   | Roll Added Mass MOI (\(\mu_{pp}\))         |      7040.00  | kg m\(^2\)|
+| \(M_{\dot{q}}\)   | Pitch Added Mass MOI(\(\mu_{qq}\))         |      7040.00  | kg m\(^2\)|
 | \(X_{u\|u\|}\)    | Surge Quadratic Drag                       |  -1140           | kg/m      |
 | \(Y_{v\|v\|}\)    | Sway Quadratic Drag                        |  -1140           | kg/m      |
 | \(Z_{w\|w\|}\)    | Heave Quadratic Drag                       |  -50             | kg/m      |
@@ -102,10 +107,15 @@ no buoyancy, added mass, or quadratic fluid drag.
 | \(I_{xx}\)        | Roll Mass Moment of Inertia                |  340.0           | kg m\(^2\)|
 | \(I_{yy}\)        | Pitch Mass Moment of Inertia               |  340.0           | kg m\(^2\)|
 | \(I_{zz}\)        | Yaw Mass Moment of Inertia                 |  600.0           | kg m\(^2\)|
-| \(X_{\dot{u}}\)   | Surge Added Mass (\(\mu_{xx}\))            |  780             | kg        |
-| \(Y_{\dot{v}}\)   | Sway Added Mass (\(\mu_{yy}\))             |  780             | kg        |
-| \(Z_{\dot w}\)    | Heave Added Mass: Doors Open               |  3000            | kg        |
-| \(Z_{\dot w}\)    | Heave Added Mass: Doors Closed             |  10000           | kg        |
+| \(X_{\dot{u}}\)   | Surge Added Mass (\(\mu_{xx}\))            |       720.00  | kg        |
+| \(X_{\dot{q}}\)   | Surge-Pitch Added Mass MOI(\(\mu_{xq}\))   |       900.00  | kg m      |
+| \(Y_{\dot{v}}\)   | Sway Added Mass (\(\mu_{yy}\))             |       720.00  | kg        |
+| \(Y_{\dot{p}}\)   | Sway-Roll Added Mass MOI (\(\mu_{yp}\))    |      -900.00  | kg m      |
+| \(Z_{\dot{w}}\)   | Heave Added Mass: Doors Closed (\(\mu_{yy}\))|    9330.00  | kg        |
+| \(Z_{\dot w}\)    | Heave Added Mass: Doors Open               |  3000         | kg        |
+| \(K_{\dot{p}}\)   | Roll Added Mass MOI (\(\mu_{pp}\))         |      3990.00  | kg m\(^2\)|
+| \(M_{\dot{q}}\)   | Pitch Added Mass MOI(\(\mu_{qq}\))         |      3990.00  | kg m\(^2\)|
+| \(N_{\dot{r}}\)   | Yaw Added Mass MOI (\(\mu_{rr}\))          |        80.00  | kg m\(^2\)|
 | \(X_{u\|u\|}\)    | Surge Quadratic Drag                       |  -1580           | kg/m      |
 | \(Y_{v\|v\|}\)    | Sway Quadratic Drag                        |  -1580           | kg/m      |
 | \(Z_{w\|w\|}\)    | Vertical Quadratic Drag: Doors Open        |  -3200           | kg/m      |
