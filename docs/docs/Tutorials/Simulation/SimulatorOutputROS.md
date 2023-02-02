@@ -1,6 +1,6 @@
-##### ROS2 Messages
+##### ROS2 Message
 
-While running, the simulator generates exactly the same ROS2 messages that the buoy hardware does during operation.  These are grouped into ROS2 topics that corresponds to data being produced by each micro-controller or instrument on the buoy.  To see all ROS2 topics being published to on the system, issue the following command (after sourcing the workspace if needed in a new terminal ``` $ . ~/buoy_ws/install/local_setup.bash```
+While running, the simulator generates exactly the same ROS2 messages that the buoy hardware does during operation.  These are grouped into ROS2 topics that corresponds to data being produced by each micro-controller or instrument on the buoy.  To see all ROS2 topics being published to on the system, issue the following command (after sourcing the workspace if needed in a new terminal ``` $ . ~/buoy_ws/install/setup.sh```
 
 ``` 
 $ ros2 topic list 

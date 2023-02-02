@@ -2,7 +2,7 @@
 
 - To install, see instructions [here](https://index.ros.org/p/plotjuggler/).  If using the supplied docker images, this step is not necessary as the software is already installed.
 
-- To start, issue the following command in a window where the environment has already been sourced using ```$ . ~/buoy_ws/install/local_install.bash```:
+- To start, issue the following command in a window where the environment has already been sourced using ```$ . ~/buoy_ws/install/setup.sh```:
 
 ```
 $ ros2 run plotjuggler plotjuggler 
