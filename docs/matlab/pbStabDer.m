@@ -26,6 +26,7 @@
   dia_b   = 2.64;              %m
   h_b     = 1.12-.81;          %m height of the beveled section [3]
   h_cg    = 2.03;              %m height of the cg above the bridle pivot.
+  zG      = .24;               %m height of the cg above the water plane.
   m_b     = 1400;              %kg Mass of the buoy (in air, no water).
   m_w_pto = 395;               %kg This is in-water "weight" 
   m_w_hc  = 703;               %kg This is in-water "weight"
@@ -66,6 +67,47 @@
   Yvdot_b = Xudot_b;
   Zwdot_b = 8/3*rho*(dia_b/2)^3;            %kg.  Blevins p.325, #1.
 %
+% And, here are the WAMIT results.  The origin is 10 cm above the water plane:
+%
+  Xudot_bw = .25*rho;
+  Yvdot_bw = .25*rho;
+  Zwdot_bw = 3.0*rho;
+  Kpdot_bw = .45*rho;
+  Mqdot_bw = .45*rho;
+  Nrdot_bw = 50;             %Arbitrary
+%
+% I'll build the generalized added mass matrix directly from the numbers in the
+% table.  These numbers are from Andy's part of theory.md, and apparently he
+% took them from an earlier WAMIT run.  So, we have three sets of numbers;
+% 1. My Blevins estimates; 2. Andy's original estimates; and 3. Dom's most
+% recent WAMIT run from 1 Feb 2022.  Below are from item 2 above:
+
+  MA_b = [ 330    0      0     0    180    0;
+            0    330     0   -180    0     0;
+            0     0    2800    0     0     0;
+            0   -180     0    430    0     0;
+            180   0      0     0    430    0;
+            0     0      0     0     0    50];
+%
+% Transform it to the bridle point using Joan's generalized parallel axis theorem:
+%
+  MAT_b = parallelAxis( MA_b, [0  0  -h_wl]' );
+%
+% Now build the generalized mass matrix, about the COW:
+%
+  M_b = [ m_b     0      0     0   zG*m_b  0;
+          0      m_b     0  -zG*m_b  0     0;
+          0       0     m_b    0     0     0;
+          0    -zG*m_b   0    Ixx_b Ixy_b Ixz_b;
+        zG*m_b    0      0    Ixy_b Iyy_b Iyz_b;
+          0       0      0    Ixz_b Iyz_b Izz_b ];
+%
+% Transform it to the bridle point using Joan's generalized parallel axis theorem:
+%
+  MT_b = parallelAxis( M_b, [0  0  -h_wl]' );
+%
+% Drag:  
+%  
 % Find the drag by assuming a flat plate with area equal to the side view of 
 % the in-water part.  This is a trapezoid with base b1  = dia_b.  Assume the
 % sides form 45 degree angles, then:
@@ -89,25 +131,15 @@
   a        = dia_b/2;
   Zww_b    = 1/2*rho*Cdp*pi*a^2;           %kg/m, down only.
 %
-% Now build the generalized mass matrix, about the COW:
-%
-  M_b = [ m_b     0      0     0     0     0;
-          0      m_b     0     0     0     0;
-          0       0     m_b    0     0     0;
-          0       0      0    Ixx_b Ixy_b Ixz_b;
-          0       0      0    Ixy_b Iyy_b Iyz_b;
-          0       0      0    Ixz_b Iyz_b Izz_b ];
-%
-% Transform it to the bridle point using Joan's generalized parallel axis theorem:
-%
-  MT_b = parallelAxis( M_b, [0  0  -h_wl]' );
-% MT_b = parallelAxis( M_b, [ 0  0  -3.20]' );
-        
+
+%        
 %
 % ***   PTO  ***
 %
   l_pto = 8.82;                          %m, total length not including tether, L.
   d_pto = .21;                           %m, diameter, D, scaled from .34 m, [2].
+  r_pto = d_pto/2;                       %m, radius
+  cg_pto= 4;                             %m, distance of the link origin above the c.g.
   m_pto = 605;                           %kg, mass (in air).
   Cd_pto= 1.2;                           %none. Section drag of a cylinder for
                                          % 1e4 < Re < 1.3e5
@@ -118,13 +150,34 @@
 %
   Xudot_pto = rho*pi*d_pto^2/4*l_pto;    %kg
   Yvdot_pto = rho*pi*d_pto^2/4*l_pto;    %kg
-  Zwdot_pto = 0;
+  Zwdot_pto = 10;                        %kg, arbitrary
+%
+% Now rotation about the geometric center:
+%
+% Blevins, #13 p.33 and #1 p322.  Add mass MOI is the same as solid MOI.  
+%
+  Kpdot_pto = rho*pi*r_pto^2*l_pto/12*(3*r_pto^2 + l_pto^2);
+  Mqdot_pto = Kpdot_pto;
+  Nrdot_pto = 0;
+%
+% Build the generalized added mass matrix about the center of mass:
+%
+  MA_pto = [ Xudot_pto     0       0      0       0       0;
+                0      Yvdot_pto   0      0       0       0;
+                0          0   Zwdot_pto  0       0       0;
+                0          0       0   Kpdot_pto  0       0;
+                0          0       0      0   Mqdot_pto   0;
+                0          0       0      0       0  Nrdot_pto];
+%
+% Translate to bridle frame:
+  MAT_pto = parallelAxis( MA_pto, [0 0 cg_pto]');
+  
 %  
 % Drag of cylindrical section Re ~ 10^4
 %
   Xuabsu_pto = -1/2*rho*l_pto*d_pto*Cd_pto; %kg/m, Cd ~= 1.0 at Re ~= 10,000.
   Yvabsv_pto = Xuabsu_pto;
-  Zwabsw = 0;
+  Zwabsw = 10;
 %
 % Rotation:
 %
@@ -152,7 +205,7 @@
 % So then:
   Kpabsp_pto = -rho/8 *d_pto*l_pto^4*Cd_pto; %kg m^2.  Assuming origin at the top.
   Mqabsq_pto = Kpabsp_pto;               %kg m^2.  
-  Zrabsr_pto = -10;          %kg-m^2  Arbitrary.
+  Nrabsr_pto = -10;          %kg-m^2  Arbitrary.
 %  
 % ***  Heave Cone  ***
 %
@@ -160,6 +213,7 @@
   A_o       = 5.14;          %m^2 Projected area, doors open, along z.
   w_hc      = 2.8;           %m,  Width of the heave cone, [1]
   hs_hc     = 1.3;           %m,  height of the stem.  See drawing.
+  hcg_hc     = 1.25;         %m,  height of the pivot above the c.g.  See drawing.
   h_hc      = .4;            %m,  height of the heave cone.
   A_x       = w_hc-h_hc^2;   %m^2 Frontal area (trapezoid), perpendicular to x.
   Cd_hc     = 1.2;           %none. Drag of cylindrical section.  
@@ -169,17 +223,15 @@
 % Doors closed, moving up (*_c_u).  Drag specified in [1].  Checks with the 3D
 % drag of a cup, from Hoerner p. 3-17 Fig. 32 b.
 %
-  Zwdot_c_u = 10000;                     %kg,  Francois [1].
+  Zwdot_c   = 10000;                     %kg,  Francois [1].
   Zww_c_u   = -1/2*rho*1.45*A_c;         %kg/m  
 %  
 % Doors closed, moving down (*_c_d).  
-  Zwdot_c_d = Zwdot_c_u;                 %kg For now. Probably less
   Zww_c_d   = 1/2*rho*.8*A_c;            %kg/m Francois [1]
 % Doors open, moving up (*_o_u).  
-  Zwdot_o_u = 3000;                      %kg  Francois [1].
+  Zwdot_o   = 3000;                      %kg  Francois [1].
   Zww_o_u   = -1/2*rho*1.2*A_c;          %kg/m  Francois [1].
 % Doors open, moving down (*_o_d).  
-  Zwdot_o_d =  Zwdot_o_u;                %kg For now. Probably less
   Zww_o_d   = 1/2*rho*.85*A_c;           %kg/m Francois [1].
 %
 % For accel in the x direction (parallel to bottom plate), we will approximate
@@ -195,7 +247,47 @@
   Yvdot_hc  = Xudot_hc;                  %kg
   Yvabsv_hc = Xuabsu_hc;                 %kg/m
 %
-% Rotation:
+% Added Mass Inertia:
+%
+% Approximate the HC as a thin circular disk with radius R.
+% The area of the hc is:
+%
+  A_hc = 2*sqrt(3)*(w_hc/2)^2;
+%
+% Find the radius of a circle with equal area:
+%
+  R = sqrt(A_hc/pi);
+%
+% Then for a thin circular disk (Blevins #1, p.325)
+
+  Kpdot_hc = .37*rho*R^5;
+  Mqdot_hc = Kpdot_hc;
+  Nrdot_hc = 80;
+%
+% And, here are the WAMIT results.  I believe this is with the doors closed.
+% These are about the center of symmetry. I'll assume this is also the center of
+% mass of the HC alone:
+  Xudot_hcw = .70*rho;
+  Yvdot_hcw = .70*rho;
+  Zwdot_hcw = 9.1*rho;
+  Kpdot_hcw = 2.8*rho;
+  Mqdot_hcw = 2.8*rho;
+  Nrdot_hcw = .08*rho;
+%
+% Build the generalized added mass matrix about the center of mass:
+%
+  MA_hcw= [ Xudot_hcw     0       0      0       0       0;
+               0      Yvdot_hcw   0      0       0       0;
+               0          0   Zwdot_hcw  0       0       0;
+               0          0       0   Kpdot_hcw  0       0;
+               0          0       0      0   Mqdot_hcw   0;
+               0          0       0      0       0  Nrdot_hcw];
+%
+% Translate to the pivot point:
+%
+  MAT_hcw = parallelAxis( MA_hcw, [0 0 hcg_hc]');
+
+% Drag Rotation:
 %
 % Compute the torque necessary to rotate the heave cone about its pivot
 % perpendicular to the stem.  This is like swinging an umbrella by its
@@ -264,45 +356,56 @@ fprintf('Mq|q|       [kg m^2]: %12.2f  \n',Mqabsq_b);
 fprintf('Nr|r|       [kg m^2]: %12.2f  \n',Nrabsr_b);
 
 fprintf('Generalized Mass Matrix about Bridle Point:\n\n');
-fprintf('%12.2f %12.2f %12.2f\n',MT_b');
+fprintf('%12.2f %12.2f %12.2f %12.2f %12.2f %12.2f\n',MT_b');
 
-
-
-
+fprintf('Generalized Added Mass Matrix about Bridle Point:\n\n');
+%fprintf('%12.2f %12.2f %12.2f %12.2f %12.2f %12.2f\n',MAT_b');
+buoyAM = amText(MAT_b);
+for(i = 1:length(buoyAM))
+  disp(buoyAM(i))
+end
 
 
 fprintf('\n** Power Take Off **\n\n');  
-
 fprintf('Xudot           [kg]: %12.2f  \n',Xudot_pto);
 fprintf('Yvdot           [kg]: %12.2f  \n',Yvdot_pto);
-
 fprintf('Xu|u|         [kg/m]: %12.2f  \n',Xuabsu_pto);
 fprintf('Yv|v|         [kg/m]: %12.2f  \n',Yvabsv_pto);
 fprintf('Kp|p|       [kg m^2]: %12.2f  \n',Kpabsp_pto);
 fprintf('Mq|q|       [kg m^2]: %12.2f  \n',Mqabsq_pto);
+fprintf('Nr|r|       [kg m^2]: %12.2f  \n',Nrabsr_pto);
+fprintf('Generalized Added Mass Matrix about pivot:\n\n');
+%fprintf('%12.2f %12.2f %12.2f %12.2f %12.2f %12.2f\n',MAT_b');
+ptoAM = amText(MAT_pto);
+for(i = 1:length(ptoAM))
+  disp(ptoAM(i))
+end
+
 
 fprintf('\n** Heave Cone **\n\n');  
-fprintf('Doors Open, Moving Up:\n');
-fprintf('Zwdot           [kg]: %12.2f  \n',Zwdot_o_u);
-fprintf('Zww           [kg/m]: %12.2f  \n',Zww_o_u);
-fprintf('Doors Open, Moving Down:\n');
-fprintf('Zwdot           [kg]: %12.2f  \n',Zwdot_o_d);
-fprintf('Zww           [kg/m]: %12.2f  \n',Zww_o_d);
-fprintf('Doors Closed, Moving Up:\n');
-fprintf('Zwdot           [kg]: %12.2f  \n',Zwdot_c_u);
-fprintf('Zww           [kg/m]: %12.2f  \n',Zww_c_u);
-fprintf('Doors Closed, Moving Down:\n');
-fprintf('Zwdot           [kg]: %12.2f  \n',Zwdot_c_d);
-fprintf('Zww           [kg/m]: %12.2f  \n',Zww_c_d);
+fprintf('Doors Open::\n');
+fprintf('Zww, Moving Up:   [kg/m]: %12.2f  \n',Zww_o_u);
+fprintf('Zww, Moving Down: [kg/m]: %12.2f  \n',Zww_o_d);
+fprintf('Zwdot             [kg]: %12.2f    \n',Zwdot_o_d);
 fprintf('\n');
-fprintf('Xudot           [kg]: %12.2f  \n',Xudot_hc);
-fprintf('Yvdot           [kg]: %12.2f  \n',Yvdot_hc);
-fprintf('Xu|u|         [kg/m]: %12.2f  \n',Xuabsu_hc);
-fprintf('Yv|v|         [kg/m]: %12.2f  \n',Yvabsv_hc);
-fprintf('Kp|p|       [kg m^2]: %12.2f  \n',Kpabsp_hc);
-fprintf('Mq|q|       [kg m^2]: %12.2f  \n',Mqabsq_hc);
-fprintf('Nr|r|       [kg m^2]: %12.2f  \n',NaN);
-
+fprintf('Doors Closed:\n');
+fprintf('Zww, Moving Up:   [kg/m]: %12.2f  \n',Zww_c_u);
+fprintf('Zww, Moving Down: [kg/m]: %12.2f  \n',Zww_c_d);
+fprintf('Zwdot           [kg]: %12.2f      \n',Zwdot_c_d);
+fprintf('\n');
+fprintf('Xudot  (R,W)    [kg]: %12.2f, %12.2f  \n',Xudot_hc, Xudot_hcw);
+fprintf('Yvdot  (R,W)    [kg]: %12.2f, %12.2f  \n',Yvdot_hc, Yvdot_hcw);
+fprintf('Xu|u|         [kg/m]: %12.2f      \n',Xuabsu_hc);
+fprintf('Yv|v|         [kg/m]: %12.2f      \n',Yvabsv_hc);
+fprintf('These are about the pivot:\n');
+fprintf('Kp|p|       [kg m^2]: %12.2f      \n',Kpabsp_hc);
+fprintf('Mq|q|       [kg m^2]: %12.2f      \n',Mqabsq_hc);
+fprintf('Nr|r|       [kg m^2]: %12.2f      \n',Nrabsr_hc);
+fprintf('Generalized Added Mass Matrix about pivot:\n\n');
+hc_AM = amText(MAT_hcw);
+for(i = 1:length(hc_AM))
+  disp(hc_AM(i))
+end
 %
 % Skew-symmetric operator defined below.  See Fossen 2.6 on p 8.
 %
