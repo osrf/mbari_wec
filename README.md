@@ -18,6 +18,19 @@ These are the repositories for the project:
     * [buoy_gazebo](https://github.com/osrf/buoy_description/tree/main/buoy_gazebo):
       Gazebo plugins, worlds and launch files to simulate the buoy.
 
+There are two github
+[template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
+repositories set up (cpp/python) for a quick start on writing a
+custom controller utilizing
+[buoy_api_cpp](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp) and
+[buoy_api_py](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_py). Please see
+[cpp examples](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp/examples) and
+[python examples](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_py/examples) for example
+controller implementations.
+
+* [mbari_wec_template_cpp](https://github.com/mbari-org/mbari_wec_template_cpp)
+* [mbari_wec_template_py](https://github.com/mbari-org/mbari_wec_template_py)
+
 ## Install
 ### On Host System
 ##### Requirements
