@@ -126,10 +126,11 @@ The sections below outline some details about how each of these forcings are mod
 the specific physical characteristics of the MBARI WEC are tabulated for reference.</p>
 <hr />
 <h2 id="physical-characteristics">Physical Characteristics</h2>
-<p>Each rigid body in the simulation has a "Link Frame" coordinate system in which all other characteristics 
-of the body are defined in for computational purposes.  This link-frame coordinate system is often selected
-to be at the location of a joint that connects the various bodies (which are also called links in the vernacular of Gazebo).
-In the following sections, all quantities are defined in the bodies link frame unles otherwise noted.</p>
+<p>Each rigid body in the simulation has a "Link Frame" coordinate system in which all other characteristics of the
+body are defined in for computational purposes.  This link-frame coordinate system is often selected to be at the
+location of a joint that connects the various bodies (which are also called links in the vernacular of Gazebo).
+In the following sections, all quantities are defined in the body's link frame unless otherwise noted.  Also, the
+description below includes alternative notation for added mass, e.g.  <script type="math/tex">\\ \mu_{xx}</script>, in the style of Newman.</p>
 <h3 id="surface-buoy">Surface Buoy</h3>
 <table>
 <thead>
@@ -146,7 +147,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">m</script>
 </td>
 <td align="left">Buoy Mass</td>
-<td align="center">1400.0</td>
+<td align="center">1400</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -163,7 +164,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">\bf{x}_{COB}</script>
 </td>
 <td align="left">Center of Gravity in Link Frame (x,y,z)</td>
-<td align="center">(0.0, 0.0, 2.13)</td>
+<td align="center">(0.0, 0.0, 2.03)</td>
 <td align="center">m</td>
 </tr>
 <tr>
@@ -171,23 +172,23 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">\bf{x}_{COG}</script>
 </td>
 <td align="left">Center of Buoyancy in Link Frame (x,y,z)</td>
-<td align="center">(0.0, 0.0, 1.7)</td>
+<td align="center">(0.0, 0.0, 2.05)</td>
 <td align="center">m</td>
 </tr>
 <tr>
 <td align="center">
 <script type="math/tex">\bf{x}_{COW}</script>
 </td>
-<td align="left">Center of Waterplane in Link Frame (x,y,z)</td>
-<td align="center">(0.0, 0.0, 3.2)</td>
+<td align="left">Center of Waterplane in Link Frame, including PTO and cone</td>
+<td align="center">(0.0, 0.0, 2.27)</td>
 <td align="center">m</td>
 </tr>
 <tr>
 <td align="center">
 <script type="math/tex">I_{xx}</script>
 </td>
-<td align="left">Roll Mass Moment of Inertia  (MOI)</td>
-<td align="center">1450.0</td>
+<td align="left">Roll Moment of Inertia (MOI), origin at pivot</td>
+<td align="center">6993</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -195,8 +196,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 <td align="center">
 <script type="math/tex">I_{yy}</script>
 </td>
-<td align="left">Pitch Mass Moment of Inertia</td>
-<td align="center">1450.0</td>
+<td align="left">Pitch Moment of Inertia origin at pivot</td>
+<td align="center">7039</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -204,8 +205,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 <td align="center">
 <script type="math/tex">I_{zz}</script>
 </td>
-<td align="left">Yaw Mass Moment of Inertia</td>
-<td align="center">670.0</td>
+<td align="left">Yaw Moment of Inertia, origin at pivot</td>
+<td align="center">671</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -222,32 +223,32 @@ In the following sections, all quantities are defined in the bodies link frame u
 <td align="center">
 <script type="math/tex">X_{\dot{u}}</script>
 </td>
-<td align="left">Surge Infinite Frequency Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
-<td align="center">330</td>
+<td align="left">Surge Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
+<td align="center">260</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
 <script type="math/tex">Y_{\dot{v}}</script>
 </td>
-<td align="left">Sway Infinite Frequency Added Mass ( <script type="math/tex">\mu_{yy}</script>)</td>
-<td align="center">330</td>
+<td align="left">Sway Added Mass ( <script type="math/tex">\mu_{yy}</script>)</td>
+<td align="center">260</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
 <script type="math/tex">Z_{\dot{w}}</script>
 </td>
-<td align="left">Heave Infinite Frequency Added Mass (<script type="math/tex">\mu_{zz}</script>)</td>
-<td align="center">2800</td>
+<td align="left">Heave Added Mass (<script type="math/tex">\mu_{zz}</script>)</td>
+<td align="center">3080</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
 <script type="math/tex">K_{\dot{p}}</script>
 </td>
-<td align="left">Roll Infinite Frequency Added Mass MOI (<script type="math/tex">\mu_{pp}</script>)</td>
-<td align="center">430</td>
+<td align="left">Roll Added Mass MOI, origin at pivot (<script type="math/tex">\mu_{pp}</script>)</td>
+<td align="center">780</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -255,8 +256,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 <td align="center">
 <script type="math/tex">M_{\dot{q}}</script>
 </td>
-<td align="left">Pitch Infinite Frequency Added Mass MOI (<script type="math/tex">\mu_{qq}</script>)</td>
-<td align="center">430</td>
+<td align="left">Pitch Added Mass MOI, origin at pivot (<script type="math/tex">\mu_{qq}</script>)</td>
+<td align="center">780</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -264,16 +265,16 @@ In the following sections, all quantities are defined in the bodies link frame u
 <td align="center">
 <script type="math/tex">X_{\dot{q}}</script>
 </td>
-<td align="left">Surge-Pitch Infinite Frequency Added Mass (<script type="math/tex">\mu_{xq}</script>)</td>
-<td align="center">180</td>
+<td align="left">Surge-Pitch Added Mass, origin at pivot (<script type="math/tex">\mu_{xq}</script>)</td>
+<td align="center">370</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
 <script type="math/tex">Y_{\dot{p}}</script>
 </td>
-<td align="left">Sway-Roll Infinite Frequency Added Mass (<script type="math/tex">\mu_{yp}</script>)</td>
-<td align="center">-180</td>
+<td align="left">Sway-Roll Added Mass, origin at pivot (<script type="math/tex">\mu_{yp}</script>)</td>
+<td align="center">-370</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -330,10 +331,10 @@ In the following sections, all quantities are defined in the bodies link frame u
 </tbody>
 </table>
 <ul>
-<li>Buoy Link Frame is located at base of the buoy bridle.</li>
+<li>Buoy Link Frame is located at base of the buoy bridle at the pivot.</li>
 <li>Unspecified stability derivative values (<script type="math/tex">M_{\dot{r}}</script>, <script type="math/tex">X_{uv}</script>, <script type="math/tex">Y_{vu}</script>, etc) are zero. </li>
-<li>Added mass values are specified about (COW).</li>
-<li>Drag stability derivatives are specified about the link frame origin.</li>
+<li>Inertias, Added mass inertias, and stability derivatives are all specified about the link frame origin, i.e. the pivot.</li>
+<li>Added mass values are infinite frequency.</li>
 <li>Free-Surface Hydrodynamic Coefficients and Impulse Response Functions can be found <a href="https://www.google.com/") target="_blank">here</a>:</li>
 </ul>
 <h3 id="power-take-off-device">Power Take-Off Device</h3>
@@ -352,7 +353,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">m</script>
 </td>
 <td align="left">PTO Mass</td>
-<td align="center">600.0</td>
+<td align="center">605.0</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -369,7 +370,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">\bf{x}_{COG}</script>
 </td>
 <td align="left">Center of Gravity in Link Frame (x,y,z)</td>
-<td align="center">(0.0, 0.0, -3.7)</td>
+<td align="center">(0.0, 0.0, -4.0)</td>
 <td align="center">m</td>
 </tr>
 <tr>
@@ -384,8 +385,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 <td align="center">
 <script type="math/tex">I_{xx}</script>
 </td>
-<td align="left">Roll Mass Moment of Inertia</td>
-<td align="center">3220.0</td>
+<td align="left">Roll Moment of Inertia</td>
+<td align="center">32566</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -393,8 +394,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 <td align="center">
 <script type="math/tex">I_{yy}</script>
 </td>
-<td align="left">Pitch Mass Moment of Inertia</td>
-<td align="center">3220.0</td>
+<td align="left">Pitch Moment of Inertia</td>
+<td align="center">32566</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -402,8 +403,35 @@ In the following sections, all quantities are defined in the bodies link frame u
 <td align="center">
 <script type="math/tex">I_{zz}</script>
 </td>
-<td align="left">Yaw Mass Moment of Inertia</td>
-<td align="center">10.0</td>
+<td align="left">Yaw Moment of Inertia</td>
+<td align="center">7</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{xy}</script>
+</td>
+<td align="left">Roll-Pitch Product of Inertia</td>
+<td align="center">0</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{xz}</script>
+</td>
+<td align="left">Roll-Yaw Product of Inertia</td>
+<td align="center">-2</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{yz}</script>
+</td>
+<td align="left">Pitch-Yaw Product of Inertia</td>
+<td align="center">-3</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -412,15 +440,15 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">X_{\dot{u}}</script>
 </td>
 <td align="left">Surge Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
-<td align="center">310.00</td>
+<td align="center">310</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
 <script type="math/tex">X_{\dot{q}}</script>
 </td>
-<td align="left">Surge-Pitch Added Mass MOI(<script type="math/tex">\mu_{xq}</script>)</td>
-<td align="center">1250.00</td>
+<td align="left">Surge-Pitch Added Mass MOI (<script type="math/tex">\mu_{xq}</script>)</td>
+<td align="center">1250</td>
 <td align="center">kg m</td>
 </tr>
 <tr>
@@ -428,7 +456,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">Y_{\dot{v}}</script>
 </td>
 <td align="left">Sway Added Mass (<script type="math/tex">\mu_{yy}</script>)</td>
-<td align="center">310.00</td>
+<td align="center">310</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -436,7 +464,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">Y_{\dot{p}}</script>
 </td>
 <td align="left">Sway-Roll Added Mass MOI (<script type="math/tex">\mu_{yp}</script>)</td>
-<td align="center">-1250.00</td>
+<td align="center">-1250</td>
 <td align="center">kg m</td>
 </tr>
 <tr>
@@ -444,15 +472,15 @@ In the following sections, all quantities are defined in the bodies link frame u
 <script type="math/tex">Z_{\dot{w}}</script>
 </td>
 <td align="left">Heave Added Mass (<script type="math/tex">\mu_{yy}</script>)</td>
-<td align="center">10.00</td>
+<td align="center">10</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
 <script type="math/tex">K_{\dot{p}}</script>
 </td>
-<td align="left">Roll Added Mass MOI (<script type="math/tex">\mu_{pp}</script>)</td>
-<td align="center">7040.00</td>
+<td align="left">Roll Added Mass MOI  (<script type="math/tex">\mu_{pp}</script>)</td>
+<td align="center">7040</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -460,8 +488,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 <td align="center">
 <script type="math/tex">M_{\dot{q}}</script>
 </td>
-<td align="left">Pitch Added Mass MOI(<script type="math/tex">\mu_{qq}</script>)</td>
-<td align="center">7040.00</td>
+<td align="left">Pitch Added Mass MOI (<script type="math/tex">\mu_{qq}</script>)</td>
+<td align="center">7040</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -521,7 +549,8 @@ In the following sections, all quantities are defined in the bodies link frame u
 <ul>
 <li>PTO Link Frame is located at top attachment of the PTO (where connects to the buoy).</li>
 <li>Unspecified stability derivative values (<script type="math/tex">M_{\dot{r}}</script>, <script type="math/tex">X_{uv}</script>, <script type="math/tex">Y_{vu}</script>, etc) are zero. </li>
-<li>Stability derivatives are specified about the link frame origin.</li>
+<li>Inertias, Added mass inertias, and stability derivatives are all specified about the link frame origin.</li>
+<li>Added mass values are infinite frequency.</li>
 </ul>
 <h3 id="piston">Piston</h3>
 <table>
@@ -554,7 +583,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <td align="center">
 <script type="math/tex">I_{xx}</script>
 </td>
-<td align="left">Roll Mass Moment of Inertia</td>
+<td align="left">Roll Moment of Inertia</td>
 <td align="center">100.0</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
@@ -563,7 +592,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <td align="center">
 <script type="math/tex">I_{yy}</script>
 </td>
-<td align="left">Pitch Mass Moment of Inertia</td>
+<td align="left">Pitch Moment of Inertia</td>
 <td align="center">100.0</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
@@ -572,7 +601,7 @@ In the following sections, all quantities are defined in the bodies link frame u
 <td align="center">
 <script type="math/tex">I_{zz}</script>
 </td>
-<td align="left">Yaw Mass Moment of Inertia</td>
+<td align="left">Yaw Moment of Inertia</td>
 <td align="center">5.0</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
@@ -616,7 +645,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <script type="math/tex">\bf{x}_{COG}</script>
 </td>
 <td align="left">Center of Gravity in Link Frame (x,y,z)</td>
-<td align="center">(0.0, 0.0, -1.2)</td>
+<td align="center">(0.0, 0.0, -1.25)</td>
 <td align="center">m</td>
 </tr>
 <tr>
@@ -624,15 +653,15 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <script type="math/tex">\bf{x}_{COB}</script>
 </td>
 <td align="left">Center of Buoyancy in Link Frame (x,y,z)</td>
-<td align="center">(0.0, 0.0, -1.2)</td>
+<td align="center">(0.0, 0.0, -1.21)</td>
 <td align="center">m</td>
 </tr>
 <tr>
 <td align="center">
 <script type="math/tex">I_{xx}</script>
 </td>
-<td align="left">Roll Mass Moment of Inertia</td>
-<td align="center">340.0</td>
+<td align="left">Roll Moment of Inertia</td>
+<td align="center">4169</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -640,8 +669,8 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <td align="center">
 <script type="math/tex">I_{yy}</script>
 </td>
-<td align="left">Pitch Mass Moment of Inertia</td>
-<td align="center">340.0</td>
+<td align="left">Pitch Moment of Inertia</td>
+<td align="center">4173</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -649,8 +678,35 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <td align="center">
 <script type="math/tex">I_{zz}</script>
 </td>
-<td align="left">Yaw Mass Moment of Inertia</td>
-<td align="center">600.0</td>
+<td align="left">Yaw Moment of Inertia</td>
+<td align="center">614</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{xy}</script>
+</td>
+<td align="left">Roll-Pitch Product of Inertia</td>
+<td align="center">0</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{xz}</script>
+</td>
+<td align="left">Roll-Yaw Product of Inertia</td>
+<td align="center">-1</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{yz}</script>
+</td>
+<td align="left">Pitch-Yaw Product of Inertia</td>
+<td align="center">0</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -659,15 +715,15 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <script type="math/tex">X_{\dot{u}}</script>
 </td>
 <td align="left">Surge Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
-<td align="center">720.00</td>
+<td align="center">720</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
 <script type="math/tex">X_{\dot{q}}</script>
 </td>
-<td align="left">Surge-Pitch Added Mass MOI(<script type="math/tex">\mu_{xq}</script>)</td>
-<td align="center">900.00</td>
+<td align="left">Surge-Pitch Added Mass MOI (<script type="math/tex">\mu_{xq}</script>)</td>
+<td align="center">900</td>
 <td align="center">kg m</td>
 </tr>
 <tr>
@@ -675,7 +731,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <script type="math/tex">Y_{\dot{v}}</script>
 </td>
 <td align="left">Sway Added Mass (<script type="math/tex">\mu_{yy}</script>)</td>
-<td align="center">720.00</td>
+<td align="center">720</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -683,7 +739,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <script type="math/tex">Y_{\dot{p}}</script>
 </td>
 <td align="left">Sway-Roll Added Mass MOI (<script type="math/tex">\mu_{yp}</script>)</td>
-<td align="center">-900.00</td>
+<td align="center">-900</td>
 <td align="center">kg m</td>
 </tr>
 <tr>
@@ -691,12 +747,12 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <script type="math/tex">Z_{\dot{w}}</script>
 </td>
 <td align="left">Heave Added Mass: Doors Closed (<script type="math/tex">\mu_{yy}</script>)</td>
-<td align="center">9330.00</td>
+<td align="center">9330</td>
 <td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">Z_{\dot w}</script>
+<script type="math/tex">Z_{\dot{w}}</script>
 </td>
 <td align="left">Heave Added Mass: Doors Open</td>
 <td align="center">3000</td>
@@ -707,7 +763,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <script type="math/tex">K_{\dot{p}}</script>
 </td>
 <td align="left">Roll Added Mass MOI (<script type="math/tex">\mu_{pp}</script>)</td>
-<td align="center">3990.00</td>
+<td align="center">3990</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -716,7 +772,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <script type="math/tex">M_{\dot{q}}</script>
 </td>
 <td align="left">Pitch Added Mass MOI(<script type="math/tex">\mu_{qq}</script>)</td>
-<td align="center">3990.00</td>
+<td align="center">3990</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -725,7 +781,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <script type="math/tex">N_{\dot{r}}</script>
 </td>
 <td align="left">Yaw Added Mass MOI (<script type="math/tex">\mu_{rr}</script>)</td>
-<td align="center">80.00</td>
+<td align="center">10</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -793,7 +849,8 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <ul>
 <li>Heave-Cone Link Frame is located at top attachment of the Heave Cone (where it connects to the tether).</li>
 <li>Unspecified stability derivative values (<script type="math/tex">M_{\dot{r}}</script>, <script type="math/tex">X_{uv}</script>, <script type="math/tex">Y_{vu}</script>, etc) are zero. </li>
-<li>Stability derivatives are specified about the link frame origin.</li>
+<li>Inertias, Added mass inertias, and stability derivatives are all specified about the link frame origin.</li>
+<li>Added mass values are infinite frequency.</li>
 </ul>
 <hr />
 <h2 id="electro-hydraulic-pto-forces">Electro-Hydraulic PTO Forces</h2>
