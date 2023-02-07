@@ -12,7 +12,7 @@
 -----------------------------------------------------------
 #### Adding Control Code
 - [Tutorials/ROS2 Messages and Services](Tutorials/ROS2/MessagesAndServices.md)
-- [Project Template](Tutorials/ROS2/Template.md)
+- [Project Python Template](Tutorials/ROS2/PythonTemplate.md)
 - [Open-Loop Control Example](Tutorials/ROS2/OpenLoopControl.md)
 - [Closed-Loop Control Example](Tutorials/ROS2/ClosedLoopControl.md)
 - [Model-Predictive Control Example](Tutorials/ROS2/MPC.md)
