@@ -69,28 +69,112 @@ Replace `mbari_wec_template_py` with your package name in
 
 <pre>
 <code>
-<?xml version="1.0"?>
-<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
-<package format="3">
-  <name><b>repo_name</b></name>
-  <version><b>3.14</b></version>
-  <description><b>Your Controller Description</b></description>
-  <maintainer email="<b>your@email</b>"><b>Your Name</b></maintainer>
-  <license><b>Your License</b></license>
+&lt;?xml version="1.0"?&gt;
+&lt;?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?&gt;
+&lt;package format="3"&gt;
+  &lt;name&gt;<b>repo_name</b>&lt;/name&gt;
+  &lt;version&gt;<b>3.14</b>&lt;/version&gt;
+  &lt;description&gt;<b>Your Controller Description</b>&lt;/description&gt;
+  &lt;maintainer email="<b>your@email</b>"&gt;<b>Your Name</b>&lt;/maintainer&gt;
+  &lt;license&gt;<b>Your License</b>&lt;/license&gt;
 </code>
 </pre>
 
 
 - setup.py
+
+<pre>
+<code>
+package_name = <b>'your_package_name'</b>
+
+setup(
+    name=package_name,
+    version=<b>'3.14'</b>,
+    packages=[f'{package_name}'],
+    data_files=[
+        ('share/ament_index/resource_index/packages',
+            ['resource/' + package_name]),
+        ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
+        (os.path.join('share', package_name, 'config'), glob('config/*.yaml'))
+    ],
+    install_requires=['setuptools'],
+    zip_safe=True,
+    maintainer=<b>'Your Name'</b>,
+    maintainer_email=<b>'your@email'</b>,
+    description=<b>'Your package description'</b>,
+    license=<b>'Your License'</b>,
+    tests_require=['pytest'],
+    entry_points={
+        'console_scripts': [
+            f'<b>your_controller_name</b> = {package_name}.controller:main',
+</code>
+</pre>
+
 - setup.cfg
+<pre>
+<code>
+[develop]
+script_dir=$base/lib/<b>your_package_name</b>
+[install]
+install_scripts=$base/lib/<b>your_package_name</b>
+</code>
+</pre>
+
 - launch/controller.launch.py
+
+<pre>
+<code>
+package_name = <b>'your_package_name'</b>
+
+def generate_launch_description():
+    ld = LaunchDescription()
+    config = os.path.join(
+        get_package_share_directory(package_name),
+        'config',
+        'controller.yaml'
+        )
+
+    node = Node(
+        package=package_name,
+        name=<b>'your_controller_name'</b>,
+        executable=<b>'your_controller_name'</b>,
+</code>
+</pre>
 
 and rename two files/folders
 
 - the empty file resource/mbari_wec_template_py
 - the python package `mbari_wec_template_py` containing `controller.py`
 
-Modify `setup.py` as desired and add any dependencies in `package.xml`.
+resulting in the following folder structure:
+
+<pre>
+<code>
+<b>repo_name</b>
+    ├── config
+    │   └── controller.yaml
+    ├── launch
+    │   └── controller.launch.py
+    ├── LICENSE
+    ├── <b>your_package_name</b>
+    │   ├── controller.py
+    │   └── __init__.py
+    ├── package.xml
+    ├── README.md
+    ├── resource
+    │   └── <b>your_package_name</b>
+    ├── setup.cfg
+    ├── setup.py
+    └── test
+        ├── test_copyright.py
+        ├── test_flake8.py
+        └── test_pep257.py
+</code>
+</pre>
+
+Modify `setup.py` as desired and add any dependencies in `package.xml` following standard ROS2
+documentation.
 
 #### Implement Controller
 Assuming you have followed the above and renamed the python package `mbari_wec_template_py` to your package name,
