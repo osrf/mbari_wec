@@ -12,7 +12,9 @@
 -----------------------------------------------------------
 #### Adding Control Code
 - [Tutorials/ROS2 Messages and Services](Tutorials/ROS2/MessagesAndServices.md)
-- [Project Python Template](Tutorials/ROS2/PythonTemplate.md)
+- [Controller Github Template (Python)](Tutorials/ROS2/PythonTemplate.md)
+- [Controller Github Template (C++)](Tutorials/ROS2/CPPTemplate.md)
+- [Linear Damper Example (Python)](Tutorials/ROS2/PythonLinearDamperExample.md)
 - [Open-Loop Control Example](Tutorials/ROS2/OpenLoopControl.md)
 - [Closed-Loop Control Example](Tutorials/ROS2/ClosedLoopControl.md)
 - [Model-Predictive Control Example](Tutorials/ROS2/MPC.md)
