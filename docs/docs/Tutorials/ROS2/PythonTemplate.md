@@ -282,13 +282,21 @@ def main():
     controller = Controller()
     rate = controller.create_rate(50.0)  # Hz
     while rclpy.ok():
+
+        # Open-loop control logic
+
         rclpy.spin_once(controller)
         rate.sleep()
     rclpy.shutdown()
 ```
 
-You may get feedback data from any of the buoy topics by simply creating a specific callback.
+You may get feedback data from any of the buoy topics by simply creating a specific callback
+listed below. For feedback data you'd like to use in another area of the class, feel free to
+assign them to class variables.
+
 (Delete any callbacks you don't need in the `Controller` class)
+
+Available callback functions:
 
 `/ahrs_data` &rarr; `def ahrs_callback(self, data):`  
 `/battery_data` &rarr; `def battery_callback(self, data):`  
