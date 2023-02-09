@@ -287,7 +287,7 @@ def main():
     rclpy.shutdown()
 ```
 
-You may get feedback data from any of the buoy topics simply creating a specific callback.
+You may get feedback data from any of the buoy topics by simply creating a specific callback.
 (Delete any callbacks you don't need in the `Controller` class)
 
 `/ahrs_data` &rarr; `def ahrs_callback(self, data):`  
