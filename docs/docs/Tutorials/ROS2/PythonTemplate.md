@@ -27,7 +27,7 @@ To start using the python Github template
 [mbari_wec_template_py](https://github.com/mbari-org/mbari_wec_template_py) and click the green
 button with the text `Use this template` and select `Create a new repository`
 
-    ![use_this_template](/Tutorials/ROS2/resources/use_this_template_py.png)
+    ![use_this_template](resources/use_this_template_py.png)
 
 2. Next, set up the repository like you would any new Github repository choosing the owner,
 repository name, public/private, etc.
