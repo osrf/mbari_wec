@@ -1,5 +1,7 @@
 This is the entrypoint for the wave energy harvesting buoy project.
 
+See [documentation here](https://osrf.github.io/buoy_entrypoint).
+
 ## Repositories
 
 These are the repositories for the project:
