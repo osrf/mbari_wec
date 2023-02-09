@@ -126,12 +126,14 @@ controller implementations.</p>
 <h3 id="creating-your-own-repo-from-the-template">Creating your own repo from the template</h3>
 <p>You may also refer to Github's
 <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template">template documentation</a></p>
-<p>To start using the python Github template
-1. navigate to
-<a href="https://github.com/mbari-org/mbari_wec_template_py">mbari_wec_template_py</a> and click the green
-button with the text <code>Use this template</code> and select <code>Create a new repository</code>
-<img alt="use_this_template" src="Tutorials/ROS2/resources/use_this_template.png" /></p>
+<p>To start using the python Github template</p>
 <ol>
+<li>
+<p>Navigate to
+<a href="https://github.com/mbari-org/mbari_wec_template_py">mbari_wec_template_py</a> and click the green
+button with the text <code>Use this template</code> and select <code>Create a new repository</code></p>
+<p><img alt="use_this_template" src="/Tutorials/ROS2/resources/use_this_template_py.png" /></p>
+</li>
 <li>
 <p>Next, set up the repository like you would any new Github repository choosing the owner,
 repository name, public/private, etc.</p>
@@ -142,7 +144,7 @@ repository name, public/private, etc.</p>
 </ol>
 <p><code>$ git clone https://github.com/&lt;owner&gt;/&lt;repo_name&gt;.git</code></p>
 <p>You should now have a python ROS2 package with the following structure:</p>
-<pre><code>&lt;repo_name&gt;
+<div class="highlight"><pre><span></span><code>&lt;repo_name&gt;
     ├── config
     │   └── controller.yaml
     ├── launch
@@ -161,143 +163,159 @@ repository name, public/private, etc.</p>
         ├── test_copyright.py
         ├── test_flake8.py
         └── test_pep257.py
-</code></pre>
+</code></pre></div>
 <h3 id="customizing-the-controller">Customizing the controller</h3>
 <p>You may also refer to the <code>README.md</code> in your newly cloned repository.</p>
 <h4 id="modify-template-for-your-package">Modify template for your package</h4>
-<p>Replace <code>mbari_wec_template_py</code> with your package name in</p>
+<p>Replace <code>mbari_wec_template_py</code> with your package name and modify other fields as necessary in:</p>
 <ul>
-<li>package.xml</li>
+<li>package.xml (lines 4-8)</li>
 </ul>
-<pre>
-<code>
-&lt;?xml version="1.0"?&gt;
-&lt;?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?&gt;
-&lt;package format="3"&gt;
-  &lt;name&gt;<b>repo_name</b>&lt;/name&gt;
-  &lt;version&gt;<b>3.14</b>&lt;/version&gt;
-  &lt;description&gt;<b>Your Controller Description</b>&lt;/description&gt;
-  &lt;maintainer email="<b>your@email</b>"&gt;<b>Your Name</b>&lt;/maintainer&gt;
-  &lt;license&gt;<b>Your License</b>&lt;/license&gt;
-</code>
-</pre>
-
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">package.xml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="cp">&lt;?xml-model href=&quot;http://download.ros.org/schema/package_format3.xsd&quot; schematypens=&quot;http://www.w3.org/2001/XMLSchema&quot;?&gt;</span>
+<span class="nt">&lt;package</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>repo_name<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;version&gt;</span>3.14<span class="nt">&lt;/version&gt;</span>
+<span class="w">  </span><span class="nt">&lt;description&gt;</span>Your<span class="w"> </span>Controller<span class="w"> </span>Description<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;maintainer</span><span class="w"> </span><span class="na">email=</span><span class="s">&quot;your@email&quot;</span><span class="nt">&gt;</span>Your<span class="w"> </span>Name<span class="nt">&lt;/maintainer&gt;</span>
+<span class="w">  </span><span class="nt">&lt;license&gt;</span>Your<span class="w"> </span>License<span class="nt">&lt;/license&gt;</span>
+</code></pre></div></td></tr></table></div>
 <ul>
-<li>setup.py</li>
+<li>setup.py (lines 7, 11, 22-25, 29)</li>
 </ul>
-<pre>
-<code>
-package_name = <b>'your_package_name'</b>
-
-setup(
-    name=package_name,
-    version=<b>'3.14'</b>,
-    packages=[f'{package_name}'],
-    data_files=[
-        ('share/ament_index/resource_index/packages',
-            ['resource/' + package_name]),
-        ('share/' + package_name, ['package.xml']),
-        (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
-        (os.path.join('share', package_name, 'config'), glob('config/*.yaml'))
-    ],
-    install_requires=['setuptools'],
-    zip_safe=True,
-    maintainer=<b>'Your Name'</b>,
-    maintainer_email=<b>'your@email'</b>,
-    description=<b>'Your package description'</b>,
-    license=<b>'Your License'</b>,
-    tests_require=['pytest'],
-    entry_points={
-        'console_scripts': [
-            f'<b>your_controller_name</b> = {package_name}.controller:main',
-</code>
-</pre>
-
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">package_name</span> <span class="o">=</span> <span class="s1">&#39;your_package_name&#39;</span>
+</span>
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span>
+<span class="hll">    <span class="n">version</span><span class="o">=</span><span class="s1">&#39;3.14&#39;</span><span class="p">,</span>
+</span>    <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">package_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">],</span>
+    <span class="n">data_files</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;share/ament_index/resource_index/packages&#39;</span><span class="p">,</span>
+            <span class="p">[</span><span class="s1">&#39;resource/&#39;</span> <span class="o">+</span> <span class="n">package_name</span><span class="p">]),</span>
+        <span class="p">(</span><span class="s1">&#39;share/&#39;</span> <span class="o">+</span> <span class="n">package_name</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;package.xml&#39;</span><span class="p">]),</span>
+        <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;share&#39;</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="s1">&#39;launch&#39;</span><span class="p">),</span> <span class="n">glob</span><span class="p">(</span><span class="s1">&#39;launch/*.launch.py&#39;</span><span class="p">)),</span>
+        <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;share&#39;</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="s1">&#39;config&#39;</span><span class="p">),</span> <span class="n">glob</span><span class="p">(</span><span class="s1">&#39;config/*.yaml&#39;</span><span class="p">))</span>
+    <span class="p">],</span>
+    <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;setuptools&#39;</span><span class="p">],</span>
+    <span class="n">zip_safe</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="hll">    <span class="n">maintainer</span><span class="o">=</span><span class="s1">&#39;Your Name&#39;</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">maintainer_email</span><span class="o">=</span><span class="s1">&#39;your@email&#39;</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Your package description&#39;</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">license</span><span class="o">=</span><span class="s1">&#39;Your License&#39;</span><span class="p">,</span>
+</span>    <span class="n">tests_require</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pytest&#39;</span><span class="p">],</span>
+    <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+<span class="hll">            <span class="sa">f</span><span class="s1">&#39;your_controller_name = </span><span class="si">{</span><span class="n">package_name</span><span class="si">}</span><span class="s1">.controller:main&#39;</span><span class="p">,</span>
+</span></code></pre></div></td></tr></table></div>
 <ul>
-<li>setup.cfg</li>
+<li>setup.cfg (lines 2, 4)</li>
 </ul>
-<pre>
-<code>
-[develop]
-script_dir=$base/lib/<b>your_package_name</b>
+<div class="highlight"><pre><span></span><code>[develop]
+script_dir=$base/lib/your_package_name
 [install]
-install_scripts=$base/lib/<b>your_package_name</b>
-</code>
-</pre>
-
+install_scripts=$base/lib/your_package_name
+</code></pre></div>
 <ul>
-<li>launch/controller.launch.py</li>
+<li>launch/controller.launch.py (lines 22, 34-35)</li>
 </ul>
-<pre>
-<code>
-package_name = <b>'your_package_name'</b>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">package_name</span> <span class="o">=</span> <span class="s1">&#39;your_package_name&#39;</span>
+</span>
+<span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
+    <span class="n">ld</span> <span class="o">=</span> <span class="n">LaunchDescription</span><span class="p">()</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="n">get_package_share_directory</span><span class="p">(</span><span class="n">package_name</span><span class="p">),</span>
+        <span class="s1">&#39;config&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;controller.yaml&#39;</span>
+        <span class="p">)</span>
 
-def generate_launch_description():
-    ld = LaunchDescription()
-    config = os.path.join(
-        get_package_share_directory(package_name),
-        'config',
-        'controller.yaml'
-        )
-
-    node = Node(
-        package=package_name,
-        name=<b>'your_controller_name'</b>,
-        executable=<b>'your_controller_name'</b>,
-</code>
-</pre>
-
+    <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
+        <span class="n">package</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span>
+<span class="hll">        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;your_controller_name&#39;</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">executable</span><span class="o">=</span><span class="s1">&#39;your_controller_name&#39;</span><span class="p">,</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>config/controller.yaml (line 1)</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="nt">/your_controller_name</span><span class="p">:</span>
+</span><span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">foo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</code></pre></div></td></tr></table></div>
 <p>and rename two files/folders</p>
 <ul>
-<li>the empty file resource/mbari_wec_template_py</li>
+<li>the empty file <code>resource/mbari_wec_template_py</code></li>
 <li>the python package <code>mbari_wec_template_py</code> containing <code>controller.py</code></li>
 </ul>
 <p>resulting in the following folder structure:</p>
-<pre>
-<code>
-<b>repo_name</b>
+<div class="highlight"><pre><span></span><code>repo_name
     ├── config
     │   └── controller.yaml
     ├── launch
     │   └── controller.launch.py
     ├── LICENSE
-    ├── <b>your_package_name</b>
+    ├── your_package_name
     │   ├── controller.py
     │   └── __init__.py
     ├── package.xml
     ├── README.md
     ├── resource
-    │   └── <b>your_package_name</b>
+    │   └── your_package_name
     ├── setup.cfg
     ├── setup.py
     └── test
         ├── test_copyright.py
         ├── test_flake8.py
         └── test_pep257.py
-</code>
-</pre>
-
+</code></pre></div>
 <p>Modify <code>setup.py</code> as desired and add any dependencies in <code>package.xml</code> following standard ROS2
 documentation.</p>
 <h4 id="implement-controller">Implement Controller</h4>
 <p>Assuming you have followed the above and renamed the python package <code>mbari_wec_template_py</code> to your package name,
 <code>&lt;your_package_name&gt;/controller.py</code> is stubbed out to implement your custom external controller.</p>
-<p>You may also use <code>config/controller.yaml</code> for any policy parameters.
-If you modify the controller node name, i.e. <code>super().__init__('controller')</code> and the <code>name</code> field of <code>Node</code> in the launch file,
-please be sure to update the first line of the <code>config/controller.yaml</code> file and to use the same node name.</p>
-<p>Also, if you choose a more specific name for your controller,
-consider renaming:</p>
-<ul>
-<li><code>launch/controller.launch.py</code></li>
-<li><code>config/controller.yaml</code></li>
-<li><code>&lt;your_package_name&gt;/controller.py</code></li>
-</ul>
-<p>and update:</p>
-<ul>
-<li><code>console_scripts</code> in <code>setup.py</code></li>
-<li><code>executable</code> field of <code>Node</code> in <code>launch/controller.launch.py</code></li>
-</ul>
-<p>accordingly.</p>
+<p>You may also use <code>config/controller.yaml</code> for any policy parameters.</p>
               
             </div>
           </div><footer>

@@ -127,38 +127,38 @@
 <ol>
 <li>Clone the buoy_entrypoint repository to download the latest Dockerfile.</li>
 </ol>
-<pre><code>$ git clone https://github.com/osrf/buoy_entrypoint.git
+<div class="highlight"><pre><span></span><code>$ git clone https://github.com/osrf/buoy_entrypoint.git
 $ cd ~/buoy_entrypoint/docker/
-</code></pre>
+</code></pre></div>
 <ol>
 <li>Build the docker image</li>
 </ol>
-<pre><code>$ ./build.bash buoy
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ ./build.bash buoy
+</code></pre></div>
 <ol>
 <li>Run the container</li>
 </ol>
-<pre><code>$ ./run.bash [-d|s] buoy:latest
-</code></pre>
-<pre><code>where `./run.bash` option:
+<div class="highlight"><pre><span></span><code>$ ./run.bash [-d|s] buoy:latest
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>where `./run.bash` option:
 * -d     Use for development with host system volume mount
 * -s     Simulation purposes only
 
-The development use case enables to either use host system home directory for user's custom workspace, or a fresh clone inside the docker container. If using host system workspace, follow the [On Host System](#on-host-system) instructions to build and run the project in the container.
-Regardless the script option, project source files can be found in `/tmp/buoy_ws/' in the container. Note that any changes to files in the container will have limited scope.
-</code></pre>
+The development use case enables to either use host system home directory for user&#39;s custom workspace, or a fresh clone inside the docker container. If using host system workspace, follow the [On Host System](#on-host-system) instructions to build and run the project in the container.
+Regardless the script option, project source files can be found in `/tmp/buoy_ws/&#39; in the container. Note that any changes to files in the container will have limited scope.
+</code></pre></div>
 <ol>
 <li>To have another window running the same docker container, run this command in a new terminal:</li>
 </ol>
-<pre><code>$ ./join.bash buoy_latest_runtime
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ ./join.bash buoy_latest_runtime
+</code></pre></div>
 <blockquote>
 <p>The build and run bash scripts are a wrapper around rocker, checkout its <a href="https://github.com/osrf/rocker">documentation</a> for additional options.</p>
 </blockquote>
 <h5 id="run-an-example-to-test">Run an example to test</h5>
 <p>Inside the docker container, run:</p>
-<pre><code>$ gz sim mbari_wec.sdf -r
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ gz sim mbari_wec.sdf -r
+</code></pre></div>
 <p>The simulation software should now be available.  To run and test, proceed to the <a href="../../../tutorials/#running-the-simulator">Run the Simulator</a> tutorial series. </p>
               
             </div>

@@ -109,7 +109,7 @@
               
                 <h5 id="ros2-message">ROS2 Message</h5>
 <p>While running, the simulator generates exactly the same ROS2 messages that the buoy hardware does during operation.  These are grouped into ROS2 topics that corresponds to data being produced by each micro-controller or instrument on the buoy.  To see all ROS2 topics being published to on the system, issue the following command (after sourcing the workspace if needed in a new terminal <code>$ . ~/buoy_ws/install/setup.sh</code></p>
-<pre><code>$ ros2 topic list 
+<div class="highlight"><pre><span></span><code>$ ros2 topic list 
 /ahrs_data
 /clock
 /joint_states
@@ -120,15 +120,15 @@
 /tf
 /tf_static
 /xb_imu
-</code></pre>
+</code></pre></div>
 <p>The topics /ahrs_data, /battery_data, /spring_data, /power_data, and /heavecone_data coorespond to the buoy-based instrumentation (AHRS), battery controller, spring controller, power-converter controller, and heave-cone controller.  To see the data being published in these topics, issue the following command and the data will scroll by:</p>
-<pre><code>$ ros2 topic echo power_data
+<div class="highlight"><pre><span></span><code>$ ros2 topic echo power_data
 ---
 header:
   stamp:
     sec: 712
     nanosec: 710000000
-  frame_id: ''
+  frame_id: &#39;&#39;
 seq_num: 6703
 rpm: 369.927978515625
 sd_rpm: 0.0
@@ -147,7 +147,7 @@ target_a: -0.2554447054862976
 charge_curr_limit: 0.0
 status: 0
 ---
-</code></pre>
+</code></pre></div>
 <p>The data in each topic corresponds to the message descriptions which can be seen here along wit a description of each field.</p>
 <p>Several of these topics are only available in simulation, and only /ahrs_data, /battery_data, /spring_data, /power_data, and /heavecone_data will be present on the real buoy.</p>
 <p>The next tutorial "<a href="../SimulatorOutputPlotjuggler/">View Messages with Plotjuggler</a>" shows how to conveniently plot these data items while the simulator is running.</p>
