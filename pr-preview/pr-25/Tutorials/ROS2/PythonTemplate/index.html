@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/Tutorials/ROS2/PythonTemplate/" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>Quick Start -- Writing External Controller With Github Template Repository - MBARI-WEC</title>
+    <title>Quick Start &mdash; Writing External Controller With Github Template Repository - MBARI-WEC</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Quick Start -- Writing External Controller With Github Template Repository";
+        var mkdocs_page_name = "Quick Start \u0026mdash; Writing External Controller With Github Template Repository";
         var mkdocs_page_input_path = "Tutorials/ROS2/PythonTemplate.md";
         var mkdocs_page_url = "/Tutorials/ROS2/PythonTemplate/";
       </script>
@@ -98,7 +98,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Quick Start -- Writing External Controller With Github Template Repository</li>
+      <li>Quick Start &mdash; Writing External Controller With Github Template Repository</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -107,7 +107,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="quick-start-writing-external-controller-with-github-template-repository">Quick Start -- Writing External Controller With Github Template Repository</h1>
+                <h1 id="quick-start-writing-external-controller-with-github-template-repository">Quick Start &mdash; Writing External Controller With Github Template Repository</h1>
 <hr />
 <p>There are two github
 <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template">template repositories</a>
@@ -240,11 +240,14 @@ repository name, public/private, etc.</p>
 <ul>
 <li>setup.cfg (lines 2, 4)</li>
 </ul>
-<div class="highlight"><span class="filename">setup.cfg</span><pre><span></span><code>[develop]
-script_dir=$base/lib/your_package_name
-[install]
-install_scripts=$base/lib/your_package_name
-</code></pre></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">setup.cfg</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">[develop]</span>
+<span class="na">script_dir</span><span class="o">=</span><span class="s">$base/lib/your_package_name</span>
+<span class="k">[install]</span>
+<span class="na">install_scripts</span><span class="o">=</span><span class="s">$base/lib/your_package_name</span>
+</code></pre></div></td></tr></table></div>
 <ul>
 <li>launch/controller.launch.py (lines 22, 34-35)</li>
 </ul>
