@@ -1,4 +1,4 @@
-# Quick Start -- Writing External Controller With Github Template Repository
+# Quick Start &mdash; Writing External Controller With Github Template Repository
 ---
 
 There are two github
@@ -113,7 +113,7 @@ setup(
 
 - setup.cfg (lines 2, 4)
 
-```  title="setup.cfg"
+``` ini linenums="1" title="setup.cfg"
 [develop]
 script_dir=$base/lib/your_package_name
 [install]
