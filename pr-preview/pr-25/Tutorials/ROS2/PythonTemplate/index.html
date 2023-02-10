@@ -182,16 +182,16 @@ repository name, public/private, etc.</p>
 <span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
 <span class="cp">&lt;?xml-model href=&quot;http://download.ros.org/schema/package_format3.xsd&quot; schematypens=&quot;http://www.w3.org/2001/XMLSchema&quot;?&gt;</span>
 <span class="nt">&lt;package</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
-<span class="w">  </span><span class="nt">&lt;name&gt;</span>repo_name<span class="nt">&lt;/name&gt;</span>
-<span class="w">  </span><span class="nt">&lt;version&gt;</span>3.14<span class="nt">&lt;/version&gt;</span>
-<span class="w">  </span><span class="nt">&lt;description&gt;</span>Your<span class="w"> </span>Controller<span class="w"> </span>Description<span class="nt">&lt;/description&gt;</span>
-<span class="w">  </span><span class="nt">&lt;maintainer</span><span class="w"> </span><span class="na">email=</span><span class="s">&quot;your@email&quot;</span><span class="nt">&gt;</span>Your<span class="w"> </span>Name<span class="nt">&lt;/maintainer&gt;</span>
-<span class="w">  </span><span class="nt">&lt;license&gt;</span>Your<span class="w"> </span>License<span class="nt">&lt;/license&gt;</span>
-</code></pre></div></td></tr></table></div>
+<span class="hll"><span class="w">  </span><span class="nt">&lt;name&gt;</span>repo_name<span class="nt">&lt;/name&gt;</span>
+</span><span class="hll"><span class="w">  </span><span class="nt">&lt;version&gt;</span>3.14<span class="nt">&lt;/version&gt;</span>
+</span><span class="hll"><span class="w">  </span><span class="nt">&lt;description&gt;</span>Your<span class="w"> </span>Controller<span class="w"> </span>Description<span class="nt">&lt;/description&gt;</span>
+</span><span class="hll"><span class="w">  </span><span class="nt">&lt;maintainer</span><span class="w"> </span><span class="na">email=</span><span class="s">&quot;your@email&quot;</span><span class="nt">&gt;</span>Your<span class="w"> </span>Name<span class="nt">&lt;/maintainer&gt;</span>
+</span><span class="hll"><span class="w">  </span><span class="nt">&lt;license&gt;</span>Your<span class="w"> </span>License<span class="nt">&lt;/license&gt;</span>
+</span></code></pre></div></td></tr></table></div>
 <ul>
 <li>setup.py (lines 7, 11, 22-25, 29)</li>
 </ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">setup.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
@@ -240,7 +240,7 @@ repository name, public/private, etc.</p>
 <ul>
 <li>setup.cfg (lines 2, 4)</li>
 </ul>
-<div class="highlight"><pre><span></span><code>[develop]
+<div class="highlight"><span class="filename">setup.cfg</span><pre><span></span><code>[develop]
 script_dir=$base/lib/your_package_name
 [install]
 install_scripts=$base/lib/your_package_name
@@ -248,7 +248,7 @@ install_scripts=$base/lib/your_package_name
 <ul>
 <li>launch/controller.launch.py (lines 22, 34-35)</li>
 </ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">launch/controller.launch.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
@@ -279,7 +279,7 @@ install_scripts=$base/lib/your_package_name
 <ul>
 <li>config/controller.yaml (line 1)</li>
 </ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">config/controller.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="nt">/your_controller_name</span><span class="p">:</span>
 </span><span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
