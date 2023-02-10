@@ -71,7 +71,7 @@ Replace `mbari_wec_template_py` with your package name and modify other fields a
 
 - package.xml (lines 4-8)
 
-``` xml linenums="1" title="package.xml"
+``` xml linenums="1" hl_lines="4-8" title="package.xml"
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
@@ -85,7 +85,7 @@ Replace `mbari_wec_template_py` with your package name and modify other fields a
 
 - setup.py (lines 7, 11, 22-25, 29)
 
-``` py linenums="7" hl_lines="1 5 16 17 18 19 23"
+``` py linenums="7" hl_lines="1 5 16 17 18 19 23" title="setup.py"
 package_name = 'your_package_name'
 
 setup(
@@ -113,7 +113,7 @@ setup(
 
 - setup.cfg (lines 2, 4)
 
-```
+```  title="setup.cfg"
 [develop]
 script_dir=$base/lib/your_package_name
 [install]
@@ -122,7 +122,7 @@ install_scripts=$base/lib/your_package_name
 
 - launch/controller.launch.py (lines 22, 34-35)
 
-``` py linenums="22" hl_lines="1 13 14"
+``` py linenums="22" hl_lines="1 13 14" title="launch/controller.launch.py"
 package_name = 'your_package_name'
 
 def generate_launch_description():
@@ -141,7 +141,7 @@ def generate_launch_description():
 
 - config/controller.yaml (line 1)
 
-``` yaml linenums="1" hl_lines="1"
+``` yaml linenums="1" hl_lines="1" title="config/controller.yaml"
 /your_controller_name:
   ros__parameters:
     foo: 1.0
