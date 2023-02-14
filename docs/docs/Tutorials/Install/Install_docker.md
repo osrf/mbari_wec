@@ -1,3 +1,5 @@
+Docker images that include the neccessary software and dependencies have been created for convenience. 
+
 ##### Requirements
 
 1. Install Docker using [installation instructions.](https://docs.docker.com/engine/install/ubuntu/).
@@ -12,22 +14,23 @@
 
 1. Clone the buoy_entrypoint repository to download the latest Dockerfile.
 
-    ```
-    git clone https://github.com/osrf/buoy_entrypoint.git
-    cd ~/buoy_entrypoint/docker/
-    ```
+```
+$ git clone https://github.com/osrf/buoy_entrypoint.git
+$ cd ~/buoy_entrypoint/docker/
+```
 
 1. Build the docker image
-    
-    ```
-    ./build.bash buoy
-    ```
+
+```
+$ ./build.bash buoy
+```
 
 1. Run the container
 
-    ```
-    ./run.bash [-d|s] buoy:latest
-    ```
+```
+$ ./run.bash [-d|s] buoy:latest
+```
+
     where `./run.bash` option:
     * -d     Use for development with host system volume mount
     * -s     Simulation purposes only
@@ -37,8 +40,18 @@
 
 1. To have another window running the same docker container, run this command in a new terminal:
 
-   ```
-   ./join.bash buoy_latest_runtime
-   ```
+```
+$ ./join.bash buoy_latest_runtime
+```
 
 > The build and run bash scripts are a wrapper around rocker, checkout its [documentation](https://github.com/osrf/rocker) for additional options.
+
+##### Run an example to test
+
+Inside the docker container, run:
+
+```
+$ gz sim mbari_wec.sdf -r
+```
+
+The simulation software should now be available.  To run and test, proceed to the [Run the Simulator](../../../tutorials/#running-the-simulator) tutorial series. 

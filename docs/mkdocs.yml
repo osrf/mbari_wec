@@ -3,6 +3,7 @@ site_url: https://example.com/
 nav:
   - Home: index.md
   - Architecture: architecture.md
+  - Buoy Control and Telemetry: ControlAndTelemetry.md
   - ROS2 Interface: ros2.md
   - Simulation: simulation.md
   - At Sea Operation: atseaoperation.md
@@ -11,5 +12,11 @@ nav:
   - Theory: theory.md
   - License: license.md
   - How to Cite: citation.md
+
+extra_javascript: 
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+
+markdown_extensions:
+    - mdx_math
 
 theme: readthedocs
