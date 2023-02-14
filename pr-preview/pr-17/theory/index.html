@@ -161,7 +161,7 @@ description below includes alternative notation for added mass, e.g.  <script ty
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">\bf{x}_{COB}</script>
+<script type="math/tex">\bf{x}_{COG}</script>
 </td>
 <td align="left">Center of Gravity in Link Frame (x,y,z)</td>
 <td align="center">(0.0, 0.0, 2.03)</td>
@@ -169,7 +169,7 @@ description below includes alternative notation for added mass, e.g.  <script ty
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">\bf{x}_{COG}</script>
+<script type="math/tex">\bf{x}_{COB}</script>
 </td>
 <td align="left">Center of Buoyancy in Link Frame (x,y,z)</td>
 <td align="center">(0.0, 0.0, 2.05)</td>
@@ -229,10 +229,26 @@ description below includes alternative notation for added mass, e.g.  <script ty
 </tr>
 <tr>
 <td align="center">
+<script type="math/tex">X_{\dot{q}}</script>
+</td>
+<td align="left">Surge-Pitch Added Mass, origin at pivot (<script type="math/tex">\mu_{xq}</script>)</td>
+<td align="center">370</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
 <script type="math/tex">Y_{\dot{v}}</script>
 </td>
 <td align="left">Sway Added Mass ( <script type="math/tex">\mu_{yy}</script>)</td>
 <td align="center">260</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{\dot{p}}</script>
+</td>
+<td align="left">Sway-Roll Added Mass, origin at pivot (<script type="math/tex">\mu_{yp}</script>)</td>
+<td align="center">-370</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -260,22 +276,6 @@ description below includes alternative notation for added mass, e.g.  <script ty
 <td align="center">780</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
-</tr>
-<tr>
-<td align="center">
-<script type="math/tex">X_{\dot{q}}</script>
-</td>
-<td align="left">Surge-Pitch Added Mass, origin at pivot (<script type="math/tex">\mu_{xq}</script>)</td>
-<td align="center">370</td>
-<td align="center">kg</td>
-</tr>
-<tr>
-<td align="center">
-<script type="math/tex">Y_{\dot{p}}</script>
-</td>
-<td align="left">Sway-Roll Added Mass, origin at pivot (<script type="math/tex">\mu_{yp}</script>)</td>
-<td align="center">-370</td>
-<td align="center">kg</td>
 </tr>
 <tr>
 <td align="center">
@@ -471,7 +471,7 @@ description below includes alternative notation for added mass, e.g.  <script ty
 <td align="center">
 <script type="math/tex">Z_{\dot{w}}</script>
 </td>
-<td align="left">Heave Added Mass (<script type="math/tex">\mu_{yy}</script>)</td>
+<td align="left">Heave Added Mass (<script type="math/tex">\mu_{zz}</script>)</td>
 <td align="center">10</td>
 <td align="center">kg</td>
 </tr>
@@ -746,7 +746,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <td align="center">
 <script type="math/tex">Z_{\dot{w}}</script>
 </td>
-<td align="left">Heave Added Mass: Doors Closed (<script type="math/tex">\mu_{yy}</script>)</td>
+<td align="left">Heave Added Mass: Doors Closed (<script type="math/tex">\mu_{zz}</script>)</td>
 <td align="center">9330</td>
 <td align="center">kg</td>
 </tr>
