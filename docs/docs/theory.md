@@ -30,20 +30,20 @@ description below includes alternative notation for added mass, e.g.  \(\\ \mu_{
 |:----------------:|:----------------------------------------------------------|:----------------:|:---------:|
 | \(m\)            | Buoy Mass                                                 |  1400            | kg        |
 | \(V\)            | Displacement (undisturbed buoy)                           |  1.0             | m\(^3\)   |
-| \(\bf{x}_{COB}\) | Center of Gravity in Link Frame (x,y,z)                   | (0.0, 0.0, 2.03) | m         |
-| \(\bf{x}_{COG}\) | Center of Buoyancy in Link Frame (x,y,z)                  | (0.0, 0.0, 2.05) | m         |
+| \(\bf{x}_{COG}\) | Center of Gravity in Link Frame (x,y,z)                   | (0.0, 0.0, 2.03) | m         |
+| \(\bf{x}_{COB}\) | Center of Buoyancy in Link Frame (x,y,z)                  | (0.0, 0.0, 2.05) | m         |
 | \(\bf{x}_{COW}\) | Center of Waterplane in Link Frame, including PTO and cone| (0.0, 0.0, 2.27) | m         |
 | \(I_{xx}\)       | Roll Moment of Inertia (MOI), origin at pivot             |  7000            | kg m\(^2\)|
 | \(I_{yy}\)       | Pitch Moment of Inertia origin at pivot                   |  7040            | kg m\(^2\)|
 | \(I_{zz}\)       | Yaw Moment of Inertia, origin at pivot                    |  670             | kg m\(^2\)|
 | \(A_{wp}\)       | Waterplane Area (undisturbed buoy)                        |  5.0             | m\(^2\)   |
 | \(X_{\dot{u}}\)  | Surge Added Mass (\(\mu_{xx}\))                           |  260             | kg        |
+| \(X_{\dot{q}}\)  | Surge-Pitch Added Mass, origin at pivot (\(\mu_{xq}\))    |  370             | kg        |
 | \(Y_{\dot{v}}\)  | Sway Added Mass ( \(\mu_{yy}\))                           |  260             | kg        |
+| \(Y_{\dot{p}}\)  | Sway-Roll Added Mass, origin at pivot (\(\mu_{yp}\))      | -370             | kg        |
 | \(Z_{\dot{w}}\)  | Heave Added Mass (\(\mu_{zz}\))                           |  3080            | kg        |
 | \(K_{\dot{p}}\)  | Roll Added Mass MOI, origin at pivot (\(\mu_{pp}\))       |  780             | kg m\(^2\)|
 | \(M_{\dot{q}}\)  | Pitch Added Mass MOI, origin at pivot (\(\mu_{qq}\))      |  780             | kg m\(^2\)|
-| \(X_{\dot{q}}\)  | Surge-Pitch Added Mass, origin at pivot (\(\mu_{xq}\))    |  370             | kg        |
-| \(Y_{\dot{p}}\)  | Sway-Roll Added Mass, origin at pivot (\(\mu_{yp}\))      | -370             | kg        |
 | \(X_{u\mid u \mid}\)   | Surge Quadratic Drag                                | -430             | kg/m      |
 | \(Y_{v\mid v \mid}\)   | Sway Quadratic Drag                                 | -430             | kg/m      |
 | \(Z_{w\mid w \mid}\)   | Heave Quadratic Drag                                | -3280            | kg/m      |
@@ -75,7 +75,7 @@ description below includes alternative notation for added mass, e.g.  \(\\ \mu_{
 | \(X_{\dot{q}}\)   | Surge-Pitch Added Mass MOI (\(\mu_{xq}\))  |         1250     | kg m      |
 | \(Y_{\dot{v}}\)   | Sway Added Mass (\(\mu_{yy}\))             |          310     | kg        |
 | \(Y_{\dot{p}}\)   | Sway-Roll Added Mass MOI (\(\mu_{yp}\))    |        -1250     | kg m      |
-| \(Z_{\dot{w}}\)   | Heave Added Mass (\(\mu_{yy}\))            |           10     | kg        |
+| \(Z_{\dot{w}}\)   | Heave Added Mass (\(\mu_{zz}\))            |           10     | kg        |
 | \(K_{\dot{p}}\)   | Roll Added Mass MOI  (\(\mu_{pp}\))        |         7040     | kg m\(^2\)|
 | \(M_{\dot{q}}\)   | Pitch Added Mass MOI (\(\mu_{qq}\))        |         7040     | kg m\(^2\)|
 | \(X_{u\mid u \mid}\)    | Surge Quadratic Drag                 |  -1140           | kg/m      |
@@ -119,7 +119,7 @@ no buoyancy, added mass, or quadratic fluid drag.
 | \(X_{\dot{q}}\)   | Surge-Pitch Added Mass MOI (\(\mu_{xq}\))  |       900        | kg m      |
 | \(Y_{\dot{v}}\)   | Sway Added Mass (\(\mu_{yy}\))             |       720        | kg        |
 | \(Y_{\dot{p}}\)   | Sway-Roll Added Mass MOI (\(\mu_{yp}\))    |      -900        | kg m      |
-| \(Z_{\dot{w}}\)   | Heave Added Mass: Doors Closed (\(\mu_{yy}\))|    9330        | kg        |
+| \(Z_{\dot{w}}\)   | Heave Added Mass: Doors Closed (\(\mu_{zz}\))|    9330        | kg        |
 | \(Z_{\dot{w}}\)   | Heave Added Mass: Doors Open               |  3000            | kg        |
 | \(K_{\dot{p}}\)   | Roll Added Mass MOI (\(\mu_{pp}\))         |      3990        | kg m\(^2\)|
 | \(M_{\dot{q}}\)   | Pitch Added Mass MOI(\(\mu_{qq}\))         |      3990        | kg m\(^2\)|
