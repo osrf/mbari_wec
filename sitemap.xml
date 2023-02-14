@@ -2,72 +2,72 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://example.com/</loc>
-         <lastmod>2023-01-31</lastmod>
+         <lastmod>2023-02-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://example.com/architecture/</loc>
-         <lastmod>2023-01-31</lastmod>
+         <lastmod>2023-02-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://example.com/atseaoperation/</loc>
-         <lastmod>2023-01-31</lastmod>
+         <lastmod>2023-02-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://example.com/citation/</loc>
-         <lastmod>2023-01-31</lastmod>
+         <lastmod>2023-02-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://example.com/license/</loc>
-         <lastmod>2023-01-31</lastmod>
+         <lastmod>2023-02-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://example.com/resources/</loc>
-         <lastmod>2023-01-31</lastmod>
+         <lastmod>2023-02-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://example.com/ros2/</loc>
-         <lastmod>2023-01-31</lastmod>
+         <lastmod>2023-02-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://example.com/simulation/</loc>
-         <lastmod>2023-01-31</lastmod>
+         <lastmod>2023-02-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://example.com/theory/</loc>
-         <lastmod>2023-01-31</lastmod>
+         <lastmod>2023-02-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://example.com/tutorials/</loc>
-         <lastmod>2023-01-31</lastmod>
+         <lastmod>2023-02-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://example.com/Tutorials/Install/Install_apt/</loc>
-         <lastmod>2023-01-31</lastmod>
+         <lastmod>2023-02-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://example.com/Tutorials/Install/Install_docker/</loc>
-         <lastmod>2023-01-31</lastmod>
+         <lastmod>2023-02-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://example.com/Tutorials/ROS2/ROS2/</loc>
-         <lastmod>2023-01-31</lastmod>
+         <lastmod>2023-02-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://example.com/Tutorials/Simulation/Simulation/</loc>
-         <lastmod>2023-01-31</lastmod>
+         <lastmod>2023-02-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
