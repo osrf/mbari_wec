@@ -21,7 +21,7 @@ These are the repositories for the project:
       Gazebo plugins, worlds and launch files to simulate the buoy.
 
 ## Interfaces and Examples
-There are two github
+There are two GitHub
 [template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
 repositories set up (cpp/python) for a quick start on writing a
 custom controller utilizing
