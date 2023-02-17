@@ -186,11 +186,11 @@ repository name, public/private, etc.</p>
 <span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
 <span class="cp">&lt;?xml-model href=&quot;http://download.ros.org/schema/package_format3.xsd&quot; schematypens=&quot;http://www.w3.org/2001/XMLSchema&quot;?&gt;</span>
 <span class="nt">&lt;package</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
-<span class="hll"><span class="w">  </span><span class="nt">&lt;name&gt;</span>repo_name<span class="nt">&lt;/name&gt;</span>
-</span><span class="hll"><span class="w">  </span><span class="nt">&lt;version&gt;</span>3.14<span class="nt">&lt;/version&gt;</span>
-</span><span class="hll"><span class="w">  </span><span class="nt">&lt;description&gt;</span>Your<span class="w"> </span>Controller<span class="w"> </span>Description<span class="nt">&lt;/description&gt;</span>
-</span><span class="hll"><span class="w">  </span><span class="nt">&lt;maintainer</span><span class="w"> </span><span class="na">email=</span><span class="s">&quot;your@email&quot;</span><span class="nt">&gt;</span>Your<span class="w"> </span>Name<span class="nt">&lt;/maintainer&gt;</span>
-</span><span class="hll"><span class="w">  </span><span class="nt">&lt;license&gt;</span>Your<span class="w"> </span>License<span class="nt">&lt;/license&gt;</span>
+<span class="hll"><span class="w">  </span><span class="nt">&lt;name&gt;</span>repo_name<span class="nt">&lt;/name&gt;</span><span class="w">  </span><span class="cm">&lt;!-- Update package name --&gt;</span>
+</span><span class="hll"><span class="w">  </span><span class="nt">&lt;version&gt;</span>3.14<span class="nt">&lt;/version&gt;</span><span class="w">  </span><span class="cm">&lt;!-- Update version --&gt;</span>
+</span><span class="hll"><span class="w">  </span><span class="nt">&lt;description&gt;</span>Your<span class="w"> </span>Controller<span class="w"> </span>Description<span class="nt">&lt;/description&gt;</span><span class="w">  </span><span class="cm">&lt;!-- Update description --&gt;</span>
+</span><span class="hll"><span class="w">  </span><span class="nt">&lt;maintainer</span><span class="w"> </span><span class="na">email=</span><span class="s">&quot;your@email&quot;</span><span class="nt">&gt;</span>Your<span class="w"> </span>Name<span class="nt">&lt;/maintainer&gt;</span><span class="w">  </span><span class="cm">&lt;!-- Update email and name --&gt;</span>
+</span><span class="hll"><span class="w">  </span><span class="nt">&lt;license&gt;</span>Your<span class="w"> </span>License<span class="nt">&lt;/license&gt;</span><span class="w">  </span><span class="cm">&lt;!-- Update license --&gt;</span>
 </span></code></pre></div></td></tr></table></div>
 <ul>
 <li>setup.py (lines 7, 11, 22-25, 29)</li>
@@ -217,11 +217,11 @@ repository name, public/private, etc.</p>
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
-<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">package_name</span> <span class="o">=</span> <span class="s1">&#39;your_package_name&#39;</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">package_name</span> <span class="o">=</span> <span class="s1">&#39;your_package_name&#39;</span>  <span class="c1"># Update package name</span>
 </span>
 <span class="n">setup</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span>
-<span class="hll">    <span class="n">version</span><span class="o">=</span><span class="s1">&#39;3.14&#39;</span><span class="p">,</span>
+<span class="hll">    <span class="n">version</span><span class="o">=</span><span class="s1">&#39;3.14&#39;</span><span class="p">,</span>  <span class="c1"># Update version</span>
 </span>    <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">package_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">],</span>
     <span class="n">data_files</span><span class="o">=</span><span class="p">[</span>
         <span class="p">(</span><span class="s1">&#39;share/ament_index/resource_index/packages&#39;</span><span class="p">,</span>
@@ -232,17 +232,18 @@ repository name, public/private, etc.</p>
     <span class="p">],</span>
     <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;setuptools&#39;</span><span class="p">],</span>
     <span class="n">zip_safe</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="hll">    <span class="n">maintainer</span><span class="o">=</span><span class="s1">&#39;Your Name&#39;</span><span class="p">,</span>
-</span><span class="hll">    <span class="n">maintainer_email</span><span class="o">=</span><span class="s1">&#39;your@email&#39;</span><span class="p">,</span>
-</span><span class="hll">    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Your package description&#39;</span><span class="p">,</span>
-</span><span class="hll">    <span class="n">license</span><span class="o">=</span><span class="s1">&#39;Your License&#39;</span><span class="p">,</span>
+<span class="hll">    <span class="n">maintainer</span><span class="o">=</span><span class="s1">&#39;Your Name&#39;</span><span class="p">,</span>  <span class="c1"># Update name</span>
+</span><span class="hll">    <span class="n">maintainer_email</span><span class="o">=</span><span class="s1">&#39;your@email&#39;</span><span class="p">,</span>  <span class="c1"># Update email</span>
+</span><span class="hll">    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Your package description&#39;</span><span class="p">,</span>  <span class="c1"># Update package description</span>
+</span><span class="hll">    <span class="n">license</span><span class="o">=</span><span class="s1">&#39;Your License&#39;</span><span class="p">,</span>  <span class="c1"># Update license</span>
 </span>    <span class="n">tests_require</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pytest&#39;</span><span class="p">],</span>
     <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
         <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
-<span class="hll">            <span class="sa">f</span><span class="s1">&#39;your_controller_name = </span><span class="si">{</span><span class="n">package_name</span><span class="si">}</span><span class="s1">.controller:main&#39;</span><span class="p">,</span>
+<span class="hll">            <span class="sa">f</span><span class="s1">&#39;your_controller_name = </span><span class="si">{</span><span class="n">package_name</span><span class="si">}</span><span class="s1">.controller:main&#39;</span><span class="p">,</span>  <span class="c1"># Update controller executable name</span>
 </span></code></pre></div></td></tr></table></div>
 <ul>
-<li>setup.cfg (lines 2, 4)</li>
+<li>setup.cfg (lines 2, 4)
+    Update script_dir and install_scripts locations with your package name</li>
 </ul>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">setup.cfg</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -268,7 +269,7 @@ repository name, public/private, etc.</p>
 <span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
-<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">package_name</span> <span class="o">=</span> <span class="s1">&#39;your_package_name&#39;</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">package_name</span> <span class="o">=</span> <span class="s1">&#39;your_package_name&#39;</span>   <span class="c1"># Update package name</span>
 </span>
 <span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
     <span class="n">ld</span> <span class="o">=</span> <span class="n">LaunchDescription</span><span class="p">()</span>
@@ -280,11 +281,12 @@ repository name, public/private, etc.</p>
 
     <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
         <span class="n">package</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span>
-<span class="hll">        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;your_controller_name&#39;</span><span class="p">,</span>
-</span><span class="hll">        <span class="n">executable</span><span class="o">=</span><span class="s1">&#39;your_controller_name&#39;</span><span class="p">,</span>
+<span class="hll">        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;your_controller_name&#39;</span><span class="p">,</span>  <span class="c1"># Update controller name (same as name in config.yaml)</span>
+</span><span class="hll">        <span class="n">executable</span><span class="o">=</span><span class="s1">&#39;your_controller_name&#39;</span><span class="p">,</span>  <span class="c1"># Update controller executable name from setup.py</span>
 </span></code></pre></div></td></tr></table></div>
 <ul>
-<li>config/controller.yaml (line 1)</li>
+<li>config/controller.yaml (line 1)
+    Update first line with your controller name (same as node name in launch file)</li>
 </ul>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">config/controller.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
