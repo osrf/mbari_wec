@@ -2,7 +2,7 @@ This is the entrypoint for the wave energy harvesting buoy project.
 
 See [documentation here](https://osrf.github.io/buoy_entrypoint).
 
-## Repositories
+## Simulation Repositories
 
 These are the repositories for the project:
 
@@ -20,6 +20,7 @@ These are the repositories for the project:
     * [buoy_gazebo](https://github.com/osrf/buoy_description/tree/main/buoy_gazebo):
       Gazebo plugins, worlds and launch files to simulate the buoy.
 
+## Interfaces and Examples
 There are two github
 [template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
 repositories set up (cpp/python) for a quick start on writing a
