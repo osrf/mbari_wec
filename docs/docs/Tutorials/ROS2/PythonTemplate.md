@@ -1,6 +1,12 @@
 # Quick Start &mdash; Writing External Controller With GitHub Template Repository
 ---
 
+In this tutorial, you will make and customize a GitHub repository from a GitHub Template with
+a ROS 2 Python package and code ready to implement your own external controller utilizing the
+`buoy_api_py` interface. This interface may be used with the both the simulated and physical buoy.
+
+## Interfaces and Templates
+
 There are two GitHub
 [template repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
 set up (C++/Python) for a quick start on writing a
