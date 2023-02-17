@@ -3,7 +3,7 @@
 
 There are two github
 [template repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
-set up (cpp/python) for a quick start on writing a
+set up (C++/Python) for a quick start on writing a
 custom controller utilizing
 [buoy_api_cpp](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp) and
 [buoy_api_py](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_py). Please see
