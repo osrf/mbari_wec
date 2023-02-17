@@ -81,22 +81,22 @@ Replace `mbari_wec_template_py` with your package name and modify other fields a
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>repo_name</name>
-  <version>3.14</version>
-  <description>Your Controller Description</description>
-  <maintainer email="your@email">Your Name</maintainer>
-  <license>Your License</license>
+  <name>repo_name</name>  <!-- Update package name -->
+  <version>3.14</version>  <!-- Update version -->
+  <description>Your Controller Description</description>  <!-- Update description -->
+  <maintainer email="your@email">Your Name</maintainer>  <!-- Update email and name -->
+  <license>Your License</license>  <!-- Update license -->
 ```
 
 
 - setup.py (lines 7, 11, 22-25, 29)
 
 ``` py linenums="7" hl_lines="1 5 16 17 18 19 23" title="setup.py"
-package_name = 'your_package_name'
+package_name = 'your_package_name'  # Update package name
 
 setup(
     name=package_name,
-    version='3.14',
+    version='3.14',  # Update version
     packages=[f'{package_name}'],
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -107,17 +107,18 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='Your Name',
-    maintainer_email='your@email',
-    description='Your package description',
-    license='Your License',
+    maintainer='Your Name',  # Update name
+    maintainer_email='your@email',  # Update email
+    description='Your package description',  # Update package description
+    license='Your License',  # Update license
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            f'your_controller_name = {package_name}.controller:main',
+            f'your_controller_name = {package_name}.controller:main',  # Update controller executable name
 ```
 
 - setup.cfg (lines 2, 4)
+    Update script_dir and install_scripts locations with your package name
 
 ``` ini linenums="1" title="setup.cfg"
 [develop]
@@ -129,7 +130,7 @@ install_scripts=$base/lib/your_package_name
 - launch/controller.launch.py (lines 22, 34-35)
 
 ``` py linenums="22" hl_lines="1 13 14" title="launch/controller.launch.py"
-package_name = 'your_package_name'
+package_name = 'your_package_name'   # Update package name
 
 def generate_launch_description():
     ld = LaunchDescription()
@@ -141,11 +142,12 @@ def generate_launch_description():
 
     node = Node(
         package=package_name,
-        name='your_controller_name',
-        executable='your_controller_name',
+        name='your_controller_name',  # Update controller name (same as name in config.yaml)
+        executable='your_controller_name',  # Update controller executable name from setup.py
 ```
 
 - config/controller.yaml (line 1)
+    Update first line with your controller name (same as node name in launch file)
 
 ``` yaml linenums="1" hl_lines="1" title="config/controller.yaml"
 /your_controller_name:
