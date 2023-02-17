@@ -1,14 +1,14 @@
-# Quick Start &mdash; Writing External Controller With Github Template Repository
+# Quick Start &mdash; Writing External Controller With GitHub Template Repository
 ---
 
-There are two github
+There are two GitHub
 [template repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
 set up (C++/Python) for a quick start on writing a
 custom controller utilizing
 [buoy_api_cpp](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp) and
 [buoy_api_py](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_py). Please see
-[cpp examples](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp/examples) and
-[python examples](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_py/examples) for example
+[C++ examples](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp/examples) and
+[Python examples](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_py/examples) for example
 controller implementations.
 
 * [mbari_wec_template_cpp](https://github.com/mbari-org/mbari_wec_template_cpp)
@@ -20,10 +20,10 @@ controller implementations.
 
 ### Creating your own repo from the template
 
-You may also refer to Github's
+You may also refer to GitHub's
 [template documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
 
-To start using the python Github template
+To start using the Python GitHub template
 
 1. Navigate to
 [mbari_wec_template_py](https://github.com/mbari-org/mbari_wec_template_py) and click the green
@@ -31,14 +31,14 @@ button with the text `Use this template` and select `Create a new repository`
 
     ![use_this_template](resources/use_this_template_py.png)
 
-2. Next, set up the repository like you would any new Github repository choosing the owner,
+2. Next, set up the repository like you would any new GitHub repository choosing the owner,
 repository name, public/private, etc.
 
 3. Now that your new repository is set up, clone it to your local machine, make a branch, etc.
 
    `$ git clone https://github.com/<owner>/<repo_name>.git`
 
-You should now have a python ROS2 package with the following structure:
+You should now have a Python ROS 2 package with the following structure:
 
 ```
 <repo_name>
@@ -150,7 +150,7 @@ def generate_launch_description():
 and rename two files/folders
 
 - the empty file `resource/mbari_wec_template_py`
-- the python package `mbari_wec_template_py` containing `controller.py`
+- the Python package `mbari_wec_template_py` containing `controller.py`
 
 resulting in the following folder structure:
 
@@ -176,13 +176,13 @@ repo_name
         └── test_pep257.py
 ```
 
-Modify `setup.py` as desired and add any dependencies in `package.xml` following standard ROS2
+Modify `setup.py` as desired and add any dependencies in `package.xml` following standard ROS 2
 documentation.
 
 ---
 
 ## Implement Controller
-Assuming you have followed the above and renamed the python package `mbari_wec_template_py` to your package name,
+Assuming you have followed the above and renamed the Python package `mbari_wec_template_py` to your package name,
 `<your_package_name>/controller.py` is stubbed out to implement your custom external controller.
 You may also use `config/controller.yaml` for any policy parameters.
 
@@ -238,7 +238,7 @@ class ControlPolicy(object):
 
 ``` py linenums="111"
     def set_params(self):
-        '''Use ROS2 declare_parameter and get_parameter to set policy params'''
+        '''Use ROS 2 declare_parameter and get_parameter to set policy params'''
         self.declare_parameter('foo', self.policy.foo)
         self.policy.foo = \
             self.get_parameter('foo').get_parameter_value().double_value
