@@ -117,7 +117,7 @@ setup(
             f'your_controller_name = {package_name}.controller:main',  # Update controller executable name
 ```
 
-- setup.cfg (lines 2, 4)
+- setup.cfg (lines 2, 4)  
     Update script_dir and install_scripts locations with your package name
 
 ``` ini linenums="1" title="setup.cfg"
@@ -146,7 +146,7 @@ def generate_launch_description():
         executable='your_controller_name',  # Update controller executable name from setup.py
 ```
 
-- config/controller.yaml (line 1)
+- config/controller.yaml (line 1)  
     Update first line with your controller name (same as node name in launch file)
 
 ``` yaml linenums="1" hl_lines="1" title="config/controller.yaml"
