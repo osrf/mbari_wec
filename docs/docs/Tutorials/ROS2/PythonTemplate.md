@@ -36,7 +36,7 @@ repository name, public/private, etc.
 
 3. Now that your new repository is set up, clone it to your local machine, make a branch, etc.
 
-`$ git clone https://github.com/<owner>/<repo_name>.git`
+   `$ git clone https://github.com/<owner>/<repo_name>.git`
 
 You should now have a python ROS2 package with the following structure:
 
