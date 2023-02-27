@@ -325,7 +325,7 @@ You may also send commands from within the `Controller` class:
 `self.send_pc_scale_command(scale_factor, blocking=False)`  
 `self.send_pc_retract_command(retract_factor, blocking=False)`  
 
-In the `Controller` constructor, you may also uncomment lines 31 or 32 to set the publish rates for
+In the `Controller` constructor, you may also uncomment lines 55 or 56 to set the publish rates for
 the Spring or Power Controllers on the buoy. These controllers default to publishing at 10Hz. You
 can call commands to set the rates anywhere from 10Hz to 50Hz (default argument is 50Hz).
 
