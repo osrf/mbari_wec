@@ -489,6 +489,31 @@ assign them to class variables.</p>
 <code>self.send_pc_bias_curr_command(bias_curr_amps, blocking=False)</code><br />
 <code>self.send_pc_scale_command(scale_factor, blocking=False)</code><br />
 <code>self.send_pc_retract_command(retract_factor, blocking=False)</code>  </p>
+<p>In the <code>Controller</code> constructor, you may also uncomment lines 31 or 32 to set the publish rates for
+the Spring or Power Controllers on the buoy. These controllers default to publishing at 10Hz. You
+can call commands to set the rates anywhere from 10Hz to 50Hz (default argument is 50Hz).</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;controller&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">policy</span> <span class="o">=</span> <span class="n">ControlPolicy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_params</span><span class="p">()</span>
+
+        <span class="c1"># set packet rates from controllers here</span>
+        <span class="c1"># controller defaults to publishing @ 10Hz</span>
+        <span class="c1"># call these to set rate to 50Hz or provide argument for specific rate</span>
+        <span class="c1"># self.set_pc_pack_rate_param()  # set SC publish rate to 50Hz</span>
+        <span class="c1"># self.set_sc_pack_rate_param()  # set PC publish rate to 50Hz</span>
+</code></pre></div></td></tr></table></div>
 <hr />
 <h2 id="example">Example</h2>
 <p>An example using this interface will follow in the next tutorial: <a href="../PythonLinearDamperExample/">Linear Damper Example (Python)</a></p>
