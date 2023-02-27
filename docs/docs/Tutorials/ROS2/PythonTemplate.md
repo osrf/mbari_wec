@@ -325,6 +325,24 @@ You may also send commands from within the `Controller` class:
 `self.send_pc_scale_command(scale_factor, blocking=False)`  
 `self.send_pc_retract_command(retract_factor, blocking=False)`  
 
+In the `Controller` constructor, you may also uncomment lines 31 or 32 to set the publish rates for
+the Spring or Power Controllers on the buoy. These controllers default to publishing at 10Hz. You
+can call commands to set the rates anywhere from 10Hz to 50Hz (default argument is 50Hz).
+
+``` py linenums="46"
+    def __init__(self):
+        super().__init__('controller')
+
+        self.policy = ControlPolicy()
+        self.set_params()
+
+        # set packet rates from controllers here
+        # controller defaults to publishing @ 10Hz
+        # call these to set rate to 50Hz or provide argument for specific rate
+        # self.set_pc_pack_rate_param()  # set SC publish rate to 50Hz
+        # self.set_sc_pack_rate_param()  # set PC publish rate to 50Hz
+```
+
 ---
 
 ## Example
