@@ -106,11 +106,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/ROS2/Template/</loc>
-         <lastmod>2023-02-27</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://example.com/Tutorials/Simulation/RunSimulator/</loc>
          <lastmod>2023-02-27</lastmod>
          <changefreq>daily</changefreq>
