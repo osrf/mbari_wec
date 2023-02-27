@@ -112,10 +112,10 @@
 <ol>
 <li>Install <a href="https://docs.ros.org/en/humble/index.html">ROS 2 Humble</a></li>
 </ol>
-<p>Buoy Sim is tested against the cyclonedds rmw implementation, so set that up as follows:</p>
-<pre><code>sudo apt install -y ros-humble-rmw-cyclonedds-cpp
+<p>Buoy Sim is tested against the cyclonedds rmw implementation, so set that up as follows:
+<div class="highlight"><pre><span></span><code>sudo apt install -y ros-humble-rmw-cyclonedds-cpp
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-</code></pre>
+</code></pre></div></p>
 <ol>
 <li>
 <p>Install <a href="https://gazebosim.org/docs/garden">Gazebo Garden</a></p>
@@ -124,55 +124,55 @@ export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 <p>Install necessary tools</p>
 </li>
 </ol>
-<pre><code>$ sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
+</code></pre></div>
 <h5 id="buoy-simulation-software-build">Buoy Simulation Software Build</h5>
 <ol>
 <li>Create a workspace, for example:</li>
 </ol>
-<pre><code>$ mkdir -p ~/buoy_ws/src
+<div class="highlight"><pre><span></span><code>$ mkdir -p ~/buoy_ws/src
 $ cd ~/buoy_ws/src
-</code></pre>
+</code></pre></div>
 <ol>
 <li>Clone all source repos with the help of <code>vcstool</code>:</li>
 </ol>
-<pre><code>$ wget https://raw.githubusercontent.com/osrf/buoy_entrypoint/main/buoy_all.yaml
+<div class="highlight"><pre><span></span><code>$ wget https://raw.githubusercontent.com/osrf/buoy_entrypoint/main/buoy_all.yaml
 $ vcs import &lt; buoy_all.yaml
 $ cd ~/buoy_ws
-</code></pre>
+</code></pre></div>
 <ol>
 <li>Set the Gazebo version to Garden. This is needed because we're not using an
    official ROS + Gazebo combination:</li>
 </ol>
-<pre><code>$ export GZ_VERSION=garden
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ export GZ_VERSION=garden
+</code></pre></div>
 <ol>
 <li>Install ROS dependencies</li>
 </ol>
-<pre><code>$ sudo pip3 install -U rosdep
+<div class="highlight"><pre><span></span><code>$ sudo pip3 install -U rosdep
 $ sudo rosdep init
 $ rosdep update
 $ rosdep install --from-paths src --ignore-src -r -y -i
-</code></pre>
+</code></pre></div>
 <ol>
 <li>Build and install</li>
 </ol>
-<pre><code>$ source /opt/ros/humble/setup.bash
+<div class="highlight"><pre><span></span><code>$ source /opt/ros/humble/setup.bash
 $ cd ~/buoy_ws
 $ colcon build
-</code></pre>
+</code></pre></div>
 <p>The simulation software should build without errors.  To run and test, proceed to the <a href="../../../tutorials/#running-the-simulator">Run the Simulator</a> tutorial series.  Or run a quick test as described below to confirm all has worked as expected.</p>
 <h5 id="run-an-example-to-test">Run an example to test</h5>
 <ol>
 <li>In a new terminal, source the workspace</li>
 </ol>
-<pre><code>$ . ~/buoy_ws/install/setup.sh`
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ . ~/buoy_ws/install/setup.sh`
+</code></pre></div>
 <ol>
 <li>Launch the simulation</li>
 </ol>
-<pre><code>$ ros2 launch buoy_gazebo mbari_wec.launch.py`
-</code></pre>
+<div class="highlight"><pre><span></span><code>$ ros2 launch buoy_gazebo mbari_wec.launch.py`
+</code></pre></div>
               
             </div>
           </div><footer>
