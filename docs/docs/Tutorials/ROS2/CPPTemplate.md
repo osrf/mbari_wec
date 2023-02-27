@@ -371,4 +371,5 @@ You may also send commands from within the `Controller` class:
 
 ## Example
 
-An example using this interface will follow in the next tutorial: [Linear Damper Example (C++)](CppLinearDamperExample.md)
+An example using this interface will follow in the next tutorial:
+[Linear Damper Example (C++)](CppLinearDamperExample.md)
