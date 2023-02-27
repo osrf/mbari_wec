@@ -315,7 +315,7 @@ control (for example):
   // To subscribe to any topic, simply declare & define the specific callback, e.g. power_callback
 
   // Callback for '/power_data' topic from Power Controller
-  void power_callback(const buoy_interfaces::msg::PCRecord &)
+  void power_callback(const buoy_interfaces::msg::PCRecord & data)
   {
     // get target value from control policy
     double wind_curr = policy_->target(data.rpm, data.scale, data.retract);
