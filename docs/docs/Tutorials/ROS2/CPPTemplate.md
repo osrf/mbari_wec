@@ -351,21 +351,21 @@ assign them to class variables.
 
 Available callback functions:
 
-`/ahrs_data` &rarr; `void ahrs_callback(const buoy_interfaces::msg::XBRecord & data):`  
-`/battery_data` &rarr; `def battery_callback(const buoy_interfaces::msg::BCRecord & data):`  
-`/spring_data` &rarr; `def spring_callback(const buoy_interfaces::msg::SCRecord & data):`  
-`/power_data` &rarr; `def power_callback(const buoy_interfaces::msg::PCRecord & data):`  
-`/trefoil_data` &rarr; `def trefoil_callback(const buoy_interfaces::msg::TFRecord & data):`  
-`/powerbuoy_data` &rarr; `def powerbuoy_callback(const buoy_interfaces::msg::PBRecord & data):`  
+`/ahrs_data` &rarr; `void ahrs_callback(const buoy_interfaces::msg::XBRecord & data){}`  
+`/battery_data` &rarr; `void battery_callback(const buoy_interfaces::msg::BCRecord & data){}`  
+`/spring_data` &rarr; `void spring_callback(const buoy_interfaces::msg::SCRecord & data){}`  
+`/power_data` &rarr; `void power_callback(const buoy_interfaces::msg::PCRecord & data){}`  
+`/trefoil_data` &rarr; `void trefoil_callback(const buoy_interfaces::msg::TFRecord & data){}`  
+`/powerbuoy_data` &rarr; `void powerbuoy_callback(const buoy_interfaces::msg::PBRecord & data){}`  
 
 You may also send commands from within the `Controller` class:
 
-`this->send_pump_command(duration_mins)`  
-`this->send_valve_command(duration_sec)`  
-`this->send_pc_wind_curr_command(wind_curr_amps)`  
-`this->send_pc_bias_curr_command(bias_curr_amps)`  
-`this->send_pc_scale_command(scale_factor)`  
-`this->send_pc_retract_command(retract_factor)`  
+`this->send_pump_command(duration_mins);`  
+`this->send_valve_command(duration_sec);`  
+`this->send_pc_wind_curr_command(wind_curr_amps);`  
+`this->send_pc_bias_curr_command(bias_curr_amps);`  
+`this->send_pc_scale_command(scale_factor);`  
+`this->send_pc_retract_command(retract_factor);`  
 
 ---
 
