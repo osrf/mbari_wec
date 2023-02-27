@@ -144,8 +144,8 @@ button with the text <code>Use this template</code> and select <code>Create a ne
 repository name, public/private, etc.</p>
 </li>
 <li>
-<p>Now that your new repository is set up, clone it to your local machine, make a branch, etc.
-   <code>$ git clone https://github.com/&lt;owner&gt;/&lt;repo_name&gt;.git</code></p>
+<p>Now that your new repository is set up, clone it to your local machine, make a branch, etc.<br />
+<code>$ git clone https://github.com/&lt;owner&gt;/&lt;repo_name&gt;.git</code></p>
 </li>
 </ol>
 <p>You should now have a Python ROS 2 package with the following structure:</p>
@@ -435,8 +435,10 @@ You may also use <code>config/controller.yaml</code> for any policy parameters.<
         <span class="k">return</span> <span class="mf">0.0</span>  <span class="c1"># obviously, modify to return proper target value</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="controller">Controller</h3>
-<p>The <code>policy.target</code> function may be called from within the <code>Controller</code> class. You may call it inside any of
-the data callbacks to enable feedback control (for example):</p>
+<p>The <code>Controller</code> class contains an instance of <code>ControlPolicy</code> as the member variable,
+<code>self.policy</code>. The <code>self.policy.target</code> function may be called anywhere within the
+<code>Controller</code> class. You may call it inside any of the data callbacks to enable feedback
+control (for example):</p>
 <div class="highlight"><pre><span></span><code>    <span class="c1"># To subscribe to any topic, simply define the specific callback, e.g. power_callback</span>
     <span class="k">def</span> <span class="nf">power_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Callback for &#39;/power_data&#39; topic from Power Controller&#39;&#39;&#39;</span>
