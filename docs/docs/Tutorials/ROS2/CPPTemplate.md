@@ -332,9 +332,9 @@ int main(int argc, char ** argv)
   rclcpp::init(argc, argv);
 
   auto controller = std::make_shared<Controller>("controller");
-  auto rate = controller->create_rate(50.0);
+  rclcpp::Rate rate(50.0);
   while (rclcpp::ok()) {
-    rclcpp::spin_some(controller);
+    rclcpp::spin_once(controller);
     rate.sleep();
   }
   rclcpp::shutdown();
