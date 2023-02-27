@@ -28,7 +28,7 @@ custom controller utilizing
 [buoy_api_cpp](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp) and
 [buoy_api_py](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_py). Please see
 [cpp examples](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp/examples) and
-[python examples](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_py/examples) for example
+[python examples](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_py/buoy_api/examples) for example
 controller implementations.
 
 * [mbari_wec_template_cpp](https://github.com/mbari-org/mbari_wec_template_cpp)
