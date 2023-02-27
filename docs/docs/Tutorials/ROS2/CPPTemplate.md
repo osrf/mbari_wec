@@ -367,6 +367,25 @@ You may also send commands from within the `Controller` class:
 `this->send_pc_scale_command(scale_factor);`  
 `this->send_pc_retract_command(retract_factor);`  
 
+In the `Controller` constructor, you may also uncomment lines 31 or 32 to set the publish rates for
+the Spring or Power Controllers on the buoy. These controllers default to publishing at 10Hz. You
+can call commands to set the rates anywhere from 10Hz to 50Hz (default argument is 50Hz).
+
+``` cpp linenums="22"
+Controller::Controller(const std::string & node_name)
+: buoy_api::Interface<Controller>(node_name),
+  policy_(std::make_unique<ControlPolicy>())
+{
+  this->set_params();
+
+  // set packet rates from controllers here
+  // controller defaults to publishing @ 10Hz
+  // call these to set rate to 50Hz or provide argument for specific rate
+  // this->set_sc_pack_rate_param();  // set SC publish rate to 50Hz
+  // this->set_pc_pack_rate_param();  // set PC publish rate to 50Hz
+}
+```
+
 ---
 
 ## Example
