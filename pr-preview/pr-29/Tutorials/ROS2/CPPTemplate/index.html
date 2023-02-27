@@ -137,7 +137,7 @@ example controller implementations.</p>
 <p>Navigate to
 <a href="https://github.com/mbari-org/mbari_wec_template_cpp">mbari_wec_template_cpp</a> and click the green
 button with the text <code>Use this template</code> and select <code>Create a new repository</code></p>
-<p><img alt="use_this_template" src="resources/use_this_template_cpp.png" /></p>
+<p><img alt="use_this_template" src="../resources/use_this_template_cpp.png" /></p>
 </li>
 <li>
 <p>Next, set up the repository like you would any new GitHub repository choosing the owner,
@@ -490,62 +490,57 @@ ROS 2 documentation.</p>
 </code></pre></div></td></tr></table></div>
 <h3 id="controller">Controller</h3>
 <p>The <code>Controller</code> class contains an instance of <code>ControlPolicy</code> as the member variable,
-<code>self.policy</code>. The <code>self.policy.target</code> function may be called anywhere within the
+<code>this-&gt;policy</code>. The <code>this-&gt;policy-&gt;target</code> function may be called anywhere within the
 <code>Controller</code> class. You may call it inside any of the data callbacks to enable feedback
 control (for example):</p>
-<div class="highlight"><pre><span></span><code>    <span class="c1"># To subscribe to any topic, simply define the specific callback, e.g. power_callback</span>
-    <span class="k">def</span> <span class="nf">power_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;Callback for &#39;/power_data&#39; topic from Power Controller&#39;&#39;&#39;</span>
-        <span class="c1"># get target value from control policy</span>
-        <span class="n">target_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">target</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">rpm</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">retract</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="c1">// To subscribe to any topic, simply declare &amp; define the specific callback, e.g. power_callback</span>
 
-        <span class="c1"># send a command, e.g. winding current</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">send_pc_wind_curr_command</span><span class="p">(</span><span class="n">target_value</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="w">  </span><span class="c1">// Callback for &#39;/power_data&#39; topic from Power Controller</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">power_callback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">buoy_interfaces</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PCRecord</span><span class="w"> </span><span class="o">&amp;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// get target value from control policy</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">wind_curr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">policy_</span><span class="o">-&gt;</span><span class="n">target</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">rpm</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">scale</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">retract</span><span class="p">);</span>
+
+<span class="w">      </span><span class="k">auto</span><span class="w"> </span><span class="n">future</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">send_pc_wind_curr_command</span><span class="p">(</span><span class="n">wind_curr</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 </code></pre></div>
-<p>Or, set up a loop in <code>main()</code> and run open-loop:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-    <span class="n">controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="p">()</span>
-    <span class="n">rate</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">create_rate</span><span class="p">(</span><span class="mf">50.0</span><span class="p">)</span>  <span class="c1"># Hz</span>
-    <span class="k">while</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">ok</span><span class="p">():</span>
+<p>Or, set up a loop in <code>main</code> and run open-loop:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
 
-        <span class="c1"># Open-loop control logic</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Controller</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;controller&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">controller</span><span class="o">-&gt;</span><span class="n">create_rate</span><span class="p">(</span><span class="mf">50.0</span><span class="p">);</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rclcpp</span><span class="o">::</span><span class="n">ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">spin_some</span><span class="p">(</span><span class="n">controller</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rate</span><span class="p">.</span><span class="n">sleep</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">shutdown</span><span class="p">();</span>
 
-        <span class="n">rclpy</span><span class="o">.</span><span class="n">spin_once</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span>
-        <span class="n">rate</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
-    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
-</code></pre></div></td></tr></table></div>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>You may get feedback data from any of the buoy topics by simply creating a specific callback
 listed below. For feedback data you'd like to use in another area of the class, feel free to
 assign them to class variables.</p>
 <p>(Delete any callbacks you don't need in the <code>Controller</code> class)</p>
 <p>Available callback functions:</p>
-<p><code>/ahrs_data</code> &rarr; <code>def ahrs_callback(self, data):</code><br />
-<code>/battery_data</code> &rarr; <code>def battery_callback(self, data):</code><br />
-<code>/spring_data</code> &rarr; <code>def spring_callback(self, data):</code><br />
-<code>/power_data</code> &rarr; <code>def power_callback(self, data):</code><br />
-<code>/trefoil_data</code> &rarr; <code>def trefoil_callback(self, data):</code><br />
-<code>/powerbuoy_data</code> &rarr; <code>def powerbuoy_callback(self, data):</code>  </p>
+<p><code>/ahrs_data</code> &rarr; <code>void ahrs_callback(const buoy_interfaces::msg::XBRecord &amp; data):</code><br />
+<code>/battery_data</code> &rarr; <code>def battery_callback(const buoy_interfaces::msg::BCRecord &amp; data):</code><br />
+<code>/spring_data</code> &rarr; <code>def spring_callback(const buoy_interfaces::msg::SCRecord &amp; data):</code><br />
+<code>/power_data</code> &rarr; <code>def power_callback(const buoy_interfaces::msg::PCRecord &amp; data):</code><br />
+<code>/trefoil_data</code> &rarr; <code>def trefoil_callback(const buoy_interfaces::msg::TFRecord &amp; data):</code><br />
+<code>/powerbuoy_data</code> &rarr; <code>def powerbuoy_callback(const buoy_interfaces::msg::PBRecord &amp; data):</code>  </p>
 <p>You may also send commands from within the <code>Controller</code> class:</p>
-<p><code>self.send_pump_command(duration_mins, blocking=False)</code><br />
-<code>self.send_valve_command(duration_sec, blocking=False)</code><br />
-<code>self.send_pc_wind_curr_command(wind_curr_amps, blocking=False)</code><br />
-<code>self.send_pc_bias_curr_command(bias_curr_amps, blocking=False)</code><br />
-<code>self.send_pc_scale_command(scale_factor, blocking=False)</code><br />
-<code>self.send_pc_retract_command(retract_factor, blocking=False)</code>  </p>
+<p><code>this-&gt;send_pump_command(duration_mins)</code><br />
+<code>this-&gt;send_valve_command(duration_sec)</code><br />
+<code>this-&gt;send_pc_wind_curr_command(wind_curr_amps)</code><br />
+<code>this-&gt;send_pc_bias_curr_command(bias_curr_amps)</code><br />
+<code>this-&gt;send_pc_scale_command(scale_factor)</code><br />
+<code>this-&gt;send_pc_retract_command(retract_factor)</code>  </p>
 <hr />
 <h2 id="example">Example</h2>
-<p>An example using this interface will follow in the next tutorial: <a href="../PythonLinearDamperExample/">Linear Damper Example (Python)</a></p>
+<p>An example using this interface will follow in the next tutorial: <a href="../CppLinearDamperExample/">Linear Damper Example (C++)</a></p>
               
             </div>
           </div><footer>

@@ -76,6 +76,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://example.com/Tutorials/ROS2/CppLinearDamperExample/</loc>
+         <lastmod>2023-02-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://example.com/Tutorials/ROS2/MPC/</loc>
          <lastmod>2023-02-27</lastmod>
          <changefreq>daily</changefreq>
