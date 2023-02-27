@@ -40,7 +40,7 @@ button with the text `Use this template` and select `Create a new repository`
 2. Next, set up the repository like you would any new GitHub repository choosing the owner,
 repository name, public/private, etc.
 
-3. Now that your new repository is set up, clone it to your local machine, make a branch, etc.
+3. Now that your new repository is set up, clone it to your local machine, make a branch, etc.  
    `$ git clone https://github.com/<owner>/<repo_name>.git`
 
 You should now have a Python ROS 2 package with the following structure:
@@ -269,8 +269,10 @@ class ControlPolicy(object):
 
 ### Controller
 
-The `policy.target` function may be called from within the `Controller` class. You may call it inside any of
-the data callbacks to enable feedback control (for example):
+The `Controller` class contains an instance of `ControlPolicy` as the member variable,
+`self.policy`. The `self.policy.target` function may be called anywhere within the
+`Controller` class. You may call it inside any of the data callbacks to enable feedback
+control (for example):
 
 ``` py
     # To subscribe to any topic, simply define the specific callback, e.g. power_callback
