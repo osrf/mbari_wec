@@ -307,35 +307,40 @@ void Controller::set_params()
 ### Controller
 
 The `Controller` class contains an instance of `ControlPolicy` as the member variable,
-`self.policy`. The `self.policy.target` function may be called anywhere within the
+`this->policy`. The `this->policy->target` function may be called anywhere within the
 `Controller` class. You may call it inside any of the data callbacks to enable feedback
 control (for example):
 
-``` py
-    # To subscribe to any topic, simply define the specific callback, e.g. power_callback
-    def power_callback(self, data):
-        '''Callback for '/power_data' topic from Power Controller'''
-        # get target value from control policy
-        target_value = self.policy.target(data.rpm, data.scale, data.retract)
+``` cpp
+  // To subscribe to any topic, simply declare & define the specific callback, e.g. power_callback
 
-        # send a command, e.g. winding current
-        self.send_pc_wind_curr_command(target_value, blocking=False)
+  // Callback for '/power_data' topic from Power Controller
+  void power_callback(const buoy_interfaces::msg::PCRecord &)
+  {
+    // get target value from control policy
+    double wind_curr = policy_->target(data.rpm, data.scale, data.retract);
+
+      auto future = this->send_pc_wind_curr_command(wind_curr);
+  }
 ```
 
-Or, set up a loop in `main()` and run open-loop:
+Or, set up a loop in `main` and run open-loop:
 
-``` py linenums="121"
-def main():
-    rclpy.init()
-    controller = Controller()
-    rate = controller.create_rate(50.0)  # Hz
-    while rclpy.ok():
+``` cpp
+int main(int argc, char ** argv)
+{
+  rclcpp::init(argc, argv);
 
-        # Open-loop control logic
+  auto controller = std::make_shared<Controller>("controller");
+  auto rate = controller->create_rate(50.0);
+  while (rclcpp::ok()) {
+    rclcpp::spin_some(controller);
+    rate.sleep();
+  }
+  rclcpp::shutdown();
 
-        rclpy.spin_once(controller)
-        rate.sleep()
-    rclpy.shutdown()
+  return 0;
+}
 ```
 
 You may get feedback data from any of the buoy topics by simply creating a specific callback
@@ -346,24 +351,24 @@ assign them to class variables.
 
 Available callback functions:
 
-`/ahrs_data` &rarr; `def ahrs_callback(self, data):`  
-`/battery_data` &rarr; `def battery_callback(self, data):`  
-`/spring_data` &rarr; `def spring_callback(self, data):`  
-`/power_data` &rarr; `def power_callback(self, data):`  
-`/trefoil_data` &rarr; `def trefoil_callback(self, data):`  
-`/powerbuoy_data` &rarr; `def powerbuoy_callback(self, data):`  
+`/ahrs_data` &rarr; `void ahrs_callback(const buoy_interfaces::msg::XBRecord & data):`  
+`/battery_data` &rarr; `def battery_callback(const buoy_interfaces::msg::BCRecord & data):`  
+`/spring_data` &rarr; `def spring_callback(const buoy_interfaces::msg::SCRecord & data):`  
+`/power_data` &rarr; `def power_callback(const buoy_interfaces::msg::PCRecord & data):`  
+`/trefoil_data` &rarr; `def trefoil_callback(const buoy_interfaces::msg::TFRecord & data):`  
+`/powerbuoy_data` &rarr; `def powerbuoy_callback(const buoy_interfaces::msg::PBRecord & data):`  
 
 You may also send commands from within the `Controller` class:
 
-`self.send_pump_command(duration_mins, blocking=False)`  
-`self.send_valve_command(duration_sec, blocking=False)`  
-`self.send_pc_wind_curr_command(wind_curr_amps, blocking=False)`  
-`self.send_pc_bias_curr_command(bias_curr_amps, blocking=False)`  
-`self.send_pc_scale_command(scale_factor, blocking=False)`  
-`self.send_pc_retract_command(retract_factor, blocking=False)`  
+`this->send_pump_command(duration_mins)`  
+`this->send_valve_command(duration_sec)`  
+`this->send_pc_wind_curr_command(wind_curr_amps)`  
+`this->send_pc_bias_curr_command(bias_curr_amps)`  
+`this->send_pc_scale_command(scale_factor)`  
+`this->send_pc_retract_command(retract_factor)`  
 
 ---
 
 ## Example
 
-An example using this interface will follow in the next tutorial: [Linear Damper Example (Python)](PythonLinearDamperExample.md)
+An example using this interface will follow in the next tutorial: [Linear Damper Example (C++)](CppLinearDamperExample.md)
