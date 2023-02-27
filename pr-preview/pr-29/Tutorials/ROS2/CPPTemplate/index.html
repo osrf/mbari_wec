@@ -525,19 +525,19 @@ listed below. For feedback data you'd like to use in another area of the class, 
 assign them to class variables.</p>
 <p>(Delete any callbacks you don't need in the <code>Controller</code> class)</p>
 <p>Available callback functions:</p>
-<p><code>/ahrs_data</code> &rarr; <code>void ahrs_callback(const buoy_interfaces::msg::XBRecord &amp; data):</code><br />
-<code>/battery_data</code> &rarr; <code>def battery_callback(const buoy_interfaces::msg::BCRecord &amp; data):</code><br />
-<code>/spring_data</code> &rarr; <code>def spring_callback(const buoy_interfaces::msg::SCRecord &amp; data):</code><br />
-<code>/power_data</code> &rarr; <code>def power_callback(const buoy_interfaces::msg::PCRecord &amp; data):</code><br />
-<code>/trefoil_data</code> &rarr; <code>def trefoil_callback(const buoy_interfaces::msg::TFRecord &amp; data):</code><br />
-<code>/powerbuoy_data</code> &rarr; <code>def powerbuoy_callback(const buoy_interfaces::msg::PBRecord &amp; data):</code>  </p>
+<p><code>/ahrs_data</code> &rarr; <code>void ahrs_callback(const buoy_interfaces::msg::XBRecord &amp; data){}</code><br />
+<code>/battery_data</code> &rarr; <code>void battery_callback(const buoy_interfaces::msg::BCRecord &amp; data){}</code><br />
+<code>/spring_data</code> &rarr; <code>void spring_callback(const buoy_interfaces::msg::SCRecord &amp; data){}</code><br />
+<code>/power_data</code> &rarr; <code>void power_callback(const buoy_interfaces::msg::PCRecord &amp; data){}</code><br />
+<code>/trefoil_data</code> &rarr; <code>void trefoil_callback(const buoy_interfaces::msg::TFRecord &amp; data){}</code><br />
+<code>/powerbuoy_data</code> &rarr; <code>void powerbuoy_callback(const buoy_interfaces::msg::PBRecord &amp; data){}</code>  </p>
 <p>You may also send commands from within the <code>Controller</code> class:</p>
-<p><code>this-&gt;send_pump_command(duration_mins)</code><br />
-<code>this-&gt;send_valve_command(duration_sec)</code><br />
-<code>this-&gt;send_pc_wind_curr_command(wind_curr_amps)</code><br />
-<code>this-&gt;send_pc_bias_curr_command(bias_curr_amps)</code><br />
-<code>this-&gt;send_pc_scale_command(scale_factor)</code><br />
-<code>this-&gt;send_pc_retract_command(retract_factor)</code>  </p>
+<p><code>this-&gt;send_pump_command(duration_mins);</code><br />
+<code>this-&gt;send_valve_command(duration_sec);</code><br />
+<code>this-&gt;send_pc_wind_curr_command(wind_curr_amps);</code><br />
+<code>this-&gt;send_pc_bias_curr_command(bias_curr_amps);</code><br />
+<code>this-&gt;send_pc_scale_command(scale_factor);</code><br />
+<code>this-&gt;send_pc_retract_command(retract_factor);</code>  </p>
 <hr />
 <h2 id="example">Example</h2>
 <p>An example using this interface will follow in the next tutorial: <a href="../CppLinearDamperExample/">Linear Damper Example (C++)</a></p>
