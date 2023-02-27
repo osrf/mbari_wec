@@ -41,7 +41,6 @@ button with the text `Use this template` and select `Create a new repository`
 repository name, public/private, etc.
 
 3. Now that your new repository is set up, clone it to your local machine, make a branch, etc.
-
    `$ git clone https://github.com/<owner>/<repo_name>.git`
 
 You should now have a Python ROS 2 package with the following structure:
