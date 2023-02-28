@@ -21,22 +21,23 @@ the specific physical characteristics of the MBARI WEC are tabulated for referen
 Each rigid body in the simulation has a "Link Frame" coordinate system in which all other characteristics of the
 body are defined in for computational purposes.  This link-frame coordinate system is often selected to be at the
 location of a joint that connects the various bodies (which are also called links in the vernacular of Gazebo).
-In the following sections, all quantities are defined in the body's link frame unless otherwise noted.  Also, the
-description below includes alternative notation for added mass, e.g.  \(\\ \mu_{xx}\), in the style of Newman.
+Also, the description below includes alternative notation for added mass, e.g.  \(\\ \mu_{xx}\), in the style of Newman. 
 
 
 ### Surface Buoy
 |                  | Description                                               |                  |   Units   |
 |:----------------:|:----------------------------------------------------------|:----------------:|:---------:|
 | \(m\)            | Buoy Mass                                                 |  1400            | kg        |
-| \(V\)            | Displacement (undisturbed buoy)                           |  1.0             | m\(^3\)   |
+| \(V\)            | Displacement (undisturbed buoy)                           |  2.39            | m\(^3\)   |
 | \(\bf{x}_{COG}\) | Center of Gravity in Link Frame (x,y,z)                   | (0.0, 0.0, 2.03) | m         |
 | \(\bf{x}_{COB}\) | Center of Buoyancy in Link Frame (x,y,z)                  | (0.0, 0.0, 2.05) | m         |
 | \(\bf{x}_{COW}\) | Center of Waterplane in Link Frame, including PTO and cone| (0.0, 0.0, 2.27) | m         |
-| \(I_{xx}\)       | Roll Moment of Inertia (MOI), origin at pivot             |  7000            | kg m\(^2\)|
-| \(I_{yy}\)       | Pitch Moment of Inertia origin at pivot                   |  7040            | kg m\(^2\)|
-| \(I_{zz}\)       | Yaw Moment of Inertia, origin at pivot                    |  670             | kg m\(^2\)|
-| \(A_{wp}\)       | Waterplane Area (undisturbed buoy)                        |  5.0             | m\(^2\)   |
+| \(\bf{S}_{x}\)   | Second moment of area of water plane, about roll axis     | 1.37             | m\(^4\)   |
+| \(\bf{S}_{y}\)   | Second moment of area of water plane, about pitch axis    | 1.37             | m\(^4\)   |
+| \(I_{xx}\)       | Roll Moment of Inertia (MOI) about center of mass         |  1450            | kg m\(^2\)|
+| \(I_{yy}\)       | Pitch Moment of Inertia about center of mass              |  1450            | kg m\(^2\)|
+| \(I_{zz}\)       | Yaw Moment of Inertia about center of mass                |  670             | kg m\(^2\)|
+| \(A_{wp}\)       | Waterplane Area (undisturbed buoy)                        |  5.47            | m\(^2\)   |
 | \(X_{\dot{u}}\)  | Surge Added Mass (\(\mu_{xx}\))                           |  260             | kg        |
 | \(X_{\dot{q}}\)  | Surge-Pitch Added Mass, origin at pivot (\(\mu_{xq}\))    |  370             | kg        |
 | \(Y_{\dot{v}}\)  | Sway Added Mass ( \(\mu_{yy}\))                           |  260             | kg        |
@@ -54,88 +55,83 @@ description below includes alternative notation for added mass, e.g.  \(\\ \mu_{
 
 - Buoy Link Frame is located at base of the buoy bridle at the pivot.
 - Unspecified stability derivative values (\(M_{\dot{r}}\), \(X_{uv}\), \(Y_{vu}\), etc) are zero. 
-- Inertias, Added mass inertias, and stability derivatives are all specified about the link frame origin, i.e. the pivot.
+- Added mass moments of inertia  and stability derivatives are all specified about the link frame origin, i.e. the pivot.
+- Mass moments of inertia are specified about the center of mass.
 - Added mass values are infinite frequency.
 - Free-Surface Hydrodynamic Coefficients and Impulse Response Functions can be found <a href="https://www.google.com/") target="_blank">here</a>:
 
 ### Power Take-Off Device
-|                   | Description                                |                  | Units     |
-|:-----------------:|:-------------------------------------------|:----------------:|:---------:|
-| \(m\)             | PTO Mass                                   |  605             | kg        |
-| \(V\)             | PTO Displacement                           |  1.0             | m\(^3\)   |
-| \(\bf{x}_{COG}\)  | Center of Gravity in Link Frame (x,y,z)    | (0.0, 0.0, -4.0) | m         |
-| \(\bf{x}_{COB}\)  | Center of Buoyancy in Link Frame (x,y,z)   | (0.0, 0.0, -3.0) | m         |
-| \(I_{xx}\)        | Roll Moment of Inertia                     |  32600           | kg m\(^2\)|
-| \(I_{yy}\)        | Pitch Moment of Inertia                    |  32600           | kg m\(^2\)|
-| \(I_{zz}\)        | Yaw Moment of Inertia                      |  7               | kg m\(^2\)|
-| \(I_{xy}\)        | Roll-Pitch Product of Inertia              |  0               | kg m\(^2\)|
-| \(I_{xz}\)        | Roll-Yaw Product of Inertia                |  -2              | kg m\(^2\)|
-| \(I_{yz}\)        | Pitch-Yaw Product of Inertia               |  -3              | kg m\(^2\)|
-| \(X_{\dot{u}}\)   | Surge Added Mass (\(\mu_{xx}\))            |          310     | kg        |
-| \(X_{\dot{q}}\)   | Surge-Pitch Added Mass MOI (\(\mu_{xq}\))  |         1250     | kg m      |
-| \(Y_{\dot{v}}\)   | Sway Added Mass (\(\mu_{yy}\))             |          310     | kg        |
-| \(Y_{\dot{p}}\)   | Sway-Roll Added Mass MOI (\(\mu_{yp}\))    |        -1250     | kg m      |
-| \(Z_{\dot{w}}\)   | Heave Added Mass (\(\mu_{zz}\))            |           10     | kg        |
-| \(K_{\dot{p}}\)   | Roll Added Mass MOI  (\(\mu_{pp}\))        |         7040     | kg m\(^2\)|
-| \(M_{\dot{q}}\)   | Pitch Added Mass MOI (\(\mu_{qq}\))        |         7040     | kg m\(^2\)|
-| \(X_{u\mid u \mid}\)    | Surge Quadratic Drag                 |  -1140           | kg/m      |
-| \(Y_{v\mid v \mid}\)    | Sway Quadratic Drag                  |  -1140           | kg/m      |
-| \(Z_{w\mid w \mid}\)    | Heave Quadratic Drag                 |  -50             | kg/m      |
-| \(K_{p\mid p \mid}\)    | Roll Quadratic Drag                  |  -195400         | kg m\(^2\)|
-| \(M_{p\mid p \mid}\)    | Pitch Quadratic Drag                 |  -195400         | kg m\(^2\)|
-| \(N_{r\mid r \mid}\)    | Yaw Quadratic Drag                   |  -50             | kg m\(^2\)|
+|                   | Description                                             |                  | Units     |
+|:-----------------:|:--------------------------------------------------------|:----------------:|:---------:|
+| \(m\)             | PTO Mass                                                |  605             | kg        |
+| \(V\)             | PTO Displacement                                        |  .205            | m\(^3\)   |
+| \(\bf{x}_{COG}\)  | Center of Gravity in Link Frame (x,y,z)                 | (0.0, 0.0, -4.0) | m         |
+| \(\bf{x}_{COB}\)  | Center of Buoyancy in Link Frame (x,y,z)                | (0.0, 0.0, -3.0) | m         |
+| \(I_{xx}\)        | Roll Moment of Inertia about center of mass             |  3525            | kg m\(^2\)|
+| \(I_{yy}\)        | Pitch Moment of Inertia about center of mass            |  3525            | kg m\(^2\)|
+| \(I_{zz}\)        | Yaw Moment of Inertia about center of mass              |  10              | kg m\(^2\)|
+| \(X_{\dot{u}}\)   | Surge Added Mass (\(\mu_{xx}\))                         |          310     | kg        |
+| \(X_{\dot{q}}\)   | Surge-Pitch Added Mass MOI (\(\mu_{xq}\))               |         1250     | kg m      |
+| \(Y_{\dot{v}}\)   | Sway Added Mass (\(\mu_{yy}\))                          |          310     | kg        |
+| \(Y_{\dot{p}}\)   | Sway-Roll Added Mass MOI (\(\mu_{yp}\))                 |        -1250     | kg m      |
+| \(Z_{\dot{w}}\)   | Heave Added Mass (\(\mu_{zz}\))                         |           10     | kg        |
+| \(K_{\dot{p}}\)   | Roll Added Mass MOI  (\(\mu_{pp}\))                     |         7040     | kg m\(^2\)|
+| \(M_{\dot{q}}\)   | Pitch Added Mass MOI (\(\mu_{qq}\))                     |         7040     | kg m\(^2\)|
+| \(X_{u\mid u \mid}\)    | Surge Quadratic Drag                              |  -1140           | kg/m      |
+| \(Y_{v\mid v \mid}\)    | Sway Quadratic Drag                               |  -1140           | kg/m      |
+| \(Z_{w\mid w \mid}\)    | Heave Quadratic Drag                              |  -50             | kg/m      |
+| \(K_{p\mid p \mid}\)    | Roll Quadratic Drag                               |  -195400         | kg m\(^2\)|
+| \(M_{p\mid p \mid}\)    | Pitch Quadratic Drag                              |  -195400         | kg m\(^2\)|
+| \(N_{r\mid r \mid}\)    | Yaw Quadratic Drag                                |  -50             | kg m\(^2\)|
 
 - PTO Link Frame is located at top attachment of the PTO (where connects to the buoy).
 - Unspecified stability derivative values (\(M_{\dot{r}}\), \(X_{uv}\), \(Y_{vu}\), etc) are zero. 
-- Inertias, Added mass inertias, and stability derivatives are all specified about the link frame origin.
-- Added mass values are infinite frequency.
+- Added mass moments of inertia and stability derivatives are all specified about the link frame origin.
+- Mass moments of inertia are specified about the center of mass.
 
 ### Piston 
-|                   | Description                                |                   | Units     |
-|:-----------------:|:-------------------------------------------|:-----------------:|:---------:|
-| \(m\)             | Piston Mass                                |  48.0             | kg        |
-| \(\bf{x}_{COG}\)  | Center of Gravity in Link Frame (x,y,z)    | (0.0, 0.0, -2.58) | m         |
-| \(I_{xx}\)        | Roll Moment of Inertia                     |  100.0            | kg m\(^2\)|
-| \(I_{yy}\)        | Pitch Moment of Inertia                    |  100.0            | kg m\(^2\)|
-| \(I_{zz}\)        | Yaw Moment of Inertia                      |  5.0              | kg m\(^2\)|
+|                   | Description                                             |                   | Units     |
+|:-----------------:|:--------------------------------------------------------|:-----------------:|:---------:|
+| \(m\)             | Piston Mass                                             |  48.0             | kg        |
+| \(\bf{x}_{COG}\)  | Center of Gravity in Link Frame (x,y,z)                 | (0.0, 0.0, -2.58) | m         |
+| \(I_{xx}\)        | Roll Moment of Inertia                                  |  100.0            | kg m\(^2\)|
+| \(I_{yy}\)        | Pitch Moment of Inertia                                 |  100.0            | kg m\(^2\)|
+| \(I_{zz}\)        | Yaw Moment of Inertia                                   |  5.0              | kg m\(^2\)|
 
 - The piston is contained with the PTO housing, so it has mass and moments of inertial, but contributes 
 no buoyancy, added mass, or quadratic fluid drag.
 
 ### Heave Cone  
-|                   | Description                                |                  | Units     |
-|:-----------------:|:-------------------------------------------|:----------------:|:---------:|
-| \(m\)             | Heave Cone Mass                            |  820             | kg        |
-| \(V\)             | Heave Cone Displacement                    |  1.0             | m\(^3\)   |
-| \(\bf{x}_{COG}\)  | Center of Gravity in Link Frame (x,y,z)    | (0.0, 0.0, -1.25)| m         |
-| \(\bf{x}_{COB}\)  | Center of Buoyancy in Link Frame (x,y,z)   | (0.0, 0.0, -1.21)| m         |
-| \(I_{xx}\)        | Roll Moment of Inertia                     |  4200            | kg m\(^2\)|
-| \(I_{yy}\)        | Pitch Moment of Inertia                    |  4200            | kg m\(^2\)|
-| \(I_{zz}\)        | Yaw Moment of Inertia                      |  610             | kg m\(^2\)|
-| \(I_{xy}\)        | Roll-Pitch Product of Inertia              |  0               | kg m\(^2\)|
-| \(I_{xz}\)        | Roll-Yaw Product of Inertia                |  -1              | kg m\(^2\)|
-| \(I_{yz}\)        | Pitch-Yaw Product of Inertia               |  0               | kg m\(^2\)|
-| \(X_{\dot{u}}\)   | Surge Added Mass (\(\mu_{xx}\))            |       720        | kg        |
-| \(X_{\dot{q}}\)   | Surge-Pitch Added Mass MOI (\(\mu_{xq}\))  |       900        | kg m      |
-| \(Y_{\dot{v}}\)   | Sway Added Mass (\(\mu_{yy}\))             |       720        | kg        |
-| \(Y_{\dot{p}}\)   | Sway-Roll Added Mass MOI (\(\mu_{yp}\))    |      -900        | kg m      |
-| \(Z_{\dot{w}}\)   | Heave Added Mass: Doors Closed (\(\mu_{zz}\))|    9330        | kg        |
-| \(Z_{\dot{w}}\)   | Heave Added Mass: Doors Open               |  3000            | kg        |
-| \(K_{\dot{p}}\)   | Roll Added Mass MOI (\(\mu_{pp}\))         |      3990        | kg m\(^2\)|
-| \(M_{\dot{q}}\)   | Pitch Added Mass MOI(\(\mu_{qq}\))         |      3990        | kg m\(^2\)|
-| \(N_{\dot{r}}\)   | Yaw Added Mass MOI (\(\mu_{rr}\))          |        10        | kg m\(^2\)|
-| \(X_{u\mid u \mid}\)    | Surge Quadratic Drag                 |  -1580           | kg/m      |
-| \(Y_{v\mid v \mid}\)    | Sway Quadratic Drag                  |  -1580           | kg/m      |
-| \(Z_{w\mid w \mid}\)    | Vertical Quadratic Drag: Doors Open  |  -3200           | kg/m      |
-| \(Z_{w\mid w \mid}\)    | Vertical Quadratic Drag: Doors Closed|  -3900           | kg/m      |
-| \(K_{p\mid p \mid}\)    | Roll Quadratic Drag:                 |  -4620           | kg m\(^2\)|
-| \(M_{q\mid q \mid}\)    | Pitch Quadratic Drag:                |  -4620           | kg m\(^2\)|
-| \(N_{r\mid r \mid}\)    | Yaw Quadratic Drag:                  |  -50             | kg m\(^2\)|
+|                   | Description                                             |                  | Units     |
+|:-----------------:|:--------------------------------------------------------|:----------------:|:---------:|
+| \(m\)             | Heave Cone Mass                                         |  820             | kg        |
+| \(V\)             | Heave Cone Displacement                                 |  .12             | m\(^3\)   |
+| \(\bf{x}_{COG}\)  | Center of Gravity in Link Frame (x,y,z)                 | (0.0, 0.0, -1.25)| m         |
+| \(\bf{x}_{COB}\)  | Center of Buoyancy in Link Frame (x,y,z)                | (0.0, 0.0, -1.21)| m         |
+| \(I_{xx}\)        | Roll Moment of Inertia about the center of mass         |  340             | kg m\(^2\)|
+| \(I_{yy}\)        | Pitch Moment of Inertia about the center of mass        |  340             | kg m\(^2\)|
+| \(I_{zz}\)        | Yaw Moment of Inertia about the center of mass          |  610             | kg m\(^2\)|
+| \(X_{\dot{u}}\)   | Surge Added Mass (\(\mu_{xx}\))                         |       720        | kg        |
+| \(X_{\dot{q}}\)   | Surge-Pitch Added Mass MOI (\(\mu_{xq}\))               |       900        | kg m      |
+| \(Y_{\dot{v}}\)   | Sway Added Mass (\(\mu_{yy}\))                          |       720        | kg        |
+| \(Y_{\dot{p}}\)   | Sway-Roll Added Mass MOI (\(\mu_{yp}\))                 |      -900        | kg m      |
+| \(Z_{\dot{w}}\)   | Heave Added Mass: Doors Closed (\(\mu_{zz}\))           |    9330          | kg        |
+| \(Z_{\dot{w}}\)   | Heave Added Mass: Doors Open                            |  3000            | kg        |
+| \(K_{\dot{p}}\)   | Roll Added Mass MOI (\(\mu_{pp}\))                      |      3990        | kg m\(^2\)|
+| \(M_{\dot{q}}\)   | Pitch Added Mass MOI(\(\mu_{qq}\))                      |      3990        | kg m\(^2\)|
+| \(N_{\dot{r}}\)   | Yaw Added Mass MOI (\(\mu_{rr}\))                       |        10        | kg m\(^2\)|
+| \(X_{u\mid u \mid}\)    | Surge Quadratic Drag                              |  -1580           | kg/m      |
+| \(Y_{v\mid v \mid}\)    | Sway Quadratic Drag                               |  -1580           | kg/m      |
+| \(Z_{w\mid w \mid}\)    | Vertical Quadratic Drag: Doors Open               |  -3200           | kg/m      |
+| \(Z_{w\mid w \mid}\)    | Vertical Quadratic Drag: Doors Closed             |  -3900           | kg/m      |
+| \(K_{p\mid p \mid}\)    | Roll Quadratic Drag:                              |  -4620           | kg m\(^2\)|
+| \(M_{q\mid q \mid}\)    | Pitch Quadratic Drag:                             |  -4620           | kg m\(^2\)|
+| \(N_{r\mid r \mid}\)    | Yaw Quadratic Drag:                               |  -50             | kg m\(^2\)|
 
 - Heave-Cone Link Frame is located at top attachment of the Heave Cone (where it connects to the tether).
 - Unspecified stability derivative values (\(M_{\dot{r}}\), \(X_{uv}\), \(Y_{vu}\), etc) are zero. 
-- Inertias, Added mass inertias, and stability derivatives are all specified about the link frame origin.
-- Added mass values are infinite frequency.
+- Added mass moments of inertia and stability derivatives are all specified about the link frame origin.
+- Mass moments of inertia are specified about the center of mass.
 
 
 --------------------------------------------------------------------------------------------------------
