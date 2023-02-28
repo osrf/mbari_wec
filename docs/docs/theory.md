@@ -29,9 +29,9 @@ Also, the description below includes alternative notation for added mass, e.g.  
 |:----------------:|:----------------------------------------------------------|:----------------:|:---------:|
 | \(m\)            | Buoy Mass                                                 |  1400            | kg        |
 | \(V\)            | Displacement (undisturbed buoy)                           |  2.39            | m\(^3\)   |
-| \(\bf{x}\)_{COG} | Center of Gravity in Link Frame (x,y,z)                   | (0.0, 0.0, 2.03) | m         |
-| \(\bf{x}\)_{COB} | Center of Buoyancy in Link Frame (x,y,z)                  | (0.0, 0.0, 2.05) | m         |
-| \(\bf{x}\)_{COW} | Center of Waterplane in Link Frame, including PTO and cone| (0.0, 0.0, 2.27) | m         |
+| \(\bf{x}_{COG}\) | Center of Gravity in Link Frame (x,y,z)                   | (0.0, 0.0, 2.03) | m         |
+| \(\bf{x}_{COB}\) | Center of Buoyancy in Link Frame (x,y,z)                  | (0.0, 0.0, 2.05) | m         |
+| \(\bf{x}_{COW}\) | Center of Waterplane in Link Frame, including PTO and cone| (0.0, 0.0, 2.27) | m         |
 | \(S_{x}\)        | Second moment of area of water plane, about roll axis     | 1.37             | m\(^4\)   |
 | \(S_{y}\)        | Second moment of area of water plane, about pitch axis    | 1.37             | m\(^4\)   |
 | \(I_{xx}\)       | Roll Moment of Inertia (MOI) about center of mass         |  1450            | kg m\(^2\)|
