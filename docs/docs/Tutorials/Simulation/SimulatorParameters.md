@@ -1,7 +1,7 @@
 ## Parameters and Batch Runs
 
 #### Introduction
-When running a simple instance of the simulator as decribed in the [Run the Simulator](RunSimulator.md) Tutorial. i.e. using:
+When running a simple instance of the simulator as described in the [Run the Simulator](RunSimulator.md) Tutorial. i.e. using:
 
 ```
 $ ros2 launch buoy_gazebo mbari_wec.launch.py
@@ -9,7 +9,7 @@ $ ros2 launch buoy_gazebo mbari_wec.launch.py
 
 the simulation uses a number of defaults for a range of parameters. In most cases, one may want to run the simulator with different values for these parameters, and/or run a number of simulations that iterate across a range of values for particular parameters. For instance, one may want to run the simulator in a batch mode that runs the same buoy and controller set-up in a range of sea-states.
 
-To facilitate this, a batch tool is provided that allows one to specify ranges for a number of parameters, and then run a number of simulations for all combinations of parameters, saving the results seperately.
+To facilitate this, a batch tool is provided that allows one to specify ranges for a number of parameters, and then run a number of simulations for all combinations of parameters, saving the results separately.
 
 This tutorial describes these capabilities, demonstrates with some examples, and discusses how this tool can be used.
 
@@ -18,19 +18,18 @@ This tutorial describes these capabilities, demonstrates with some examples, and
 There are a number of parameters that impact the behavior of the simulator, and must be specified at start-up:
 
 - **Simulation duration**:  How long the simulation will run for (simulation time) in seconds.
-- **Time-step size**:  The simulation proceeds at a fixed time-step size, and this can be specfied for each run.
-- **Heave cone door-state**:  Simulations can be done with the heave-cone doors either opened or closed, the door position can not be chanced during a simulation, so this is a parameter that must be specified at start-up.
-- **Sea-State**:  Incomping waves can be specified as a monochromatic wave with a specified amplitude and period, a Bretschieder spectrum of waves described by significant wave-height and the peak period, or by a custom wave-spectrum defined by a curve of wave-energy versus frequency.  
+- **Time-step size**:  The simulation proceeds at a fixed time-step size, and this can be specified for each run.
+- **Heave cone door-state**:  Simulations can be done with the heave-cone doors either opened or closed, the door position can not be changed during a simulation, so this is a parameter that must be specified at start-up.
+- **Sea-State**:  Incoming waves can be specified as a monochromatic wave with a specified amplitude and period, a Bretschnieder spectrum of waves described by significant wave-height and the peak period, or by a custom wave-spectrum defined by a curve of wave-energy versus frequency.  
 - **Wave phase random seed**:  The phases of each wave-component are randomly assigned, if a seed is specified, the phases will be the same for each run of a simulation.  This is useful for comparing simulations for which one wants the same wave-excitation.  If the seed value is set to zero, or ommitted, a different random phase assignment will be made for each simulation run.
 - **Physics Real-Time Factor (RTF)**:  This parameter sets the maximum speed the simulation will be allowed to run, in terms of a multiple of real-time.  i.e. a Real-Time factor of 2.0 will limit the simulation to only running twice as fast as real-time.  As described below, for single runs for which one may want to monitor the motion as it occurs, a Real-Time Factor of 1.0 is appropriate.  For batches of runs one wants to complete as fast as possible, a large RTF (i.e. 100) will let the simulation run as fast as the processing resources allow.
-- **Heave-cone door position**:  The simulation can be run with the heave-cone doors either open, or closed. This can not be changed while the simulation is running.
 - **Battery State-of-Charge**:  The starting battery state of charge can be specified between 0 (empty) and 1 (full).  A full battery can't absorb energy so more of the generated power will be diverted to the load-dump in the simulation.  An empty battery will allow most or all of the generated energy to flow to the battery. This does not effect the physical behavior of the simulated buoy, but does effect the battery voltages and currents as the simulation progresses.
-- **Battery EMF**:  As an alternative to specifying the battery state of charge as a percentage, the zero-load battery voltage can be specfied, between 270V (empty battery), and 320V (full battery).
-- **Scale Factor**:  The buoy (and simulator) implements a default control algoritm in which the current in the motor windings is set as a function of motor RPM, with the resulting torque opposing the rotors motion.  The approximately implements a linear damping behavior and the specified Scale Factor is multiplied by the default Winding-Current/RPM relationship before being applied.  Allowable values are from 0.5 to 1.4, and the result is a simple way to change the damping the power-takeoff device is applying to the system.  As discussed in a later tutorial, this relationship can be over-ridden with external code, so this Scale Factor only applies to the default behavior of the system.
+- **Battery EMF**:  As an alternative to specifying the battery state of charge as a percentage, the zero-load battery voltage can be specified, between 270V (empty battery), and 320V (full battery).
+- **Scale Factor**:  The buoy (and simulator) implements a default control algorithm in which the current in the motor windings is set as a function of motor RPM, with the resulting torque opposing the motors motion.  This approximately implements a linear damping behavior and the specified Scale Factor is multiplied by the default Winding-Current/RPM relationship before being applied.  Allowable values are from 0.5 to 1.4, and the result is a simple way to change the damping the power-takeoff device is applying to the system.  As discussed in a later tutorial, this relationship can be over-ridden with external code, so this Scale Factor only applies to the default behavior of the system.
 
 
 #### Example Batch File
-The above parameters are spectified in a .yaml file that the batch-run tool reads in before execution begins.  A commented example is below and illustrates the use of the above parameters.  Lines that begin with # are comments and have no impact.
+The above parameters are specified in a .yaml file that the batch-run tool reads in before execution begins.  A commented example is below and illustrates the use of the above parameters.  Lines that begin with # are comments and have no impact.
 
 ```
 #
@@ -67,7 +66,7 @@ As seen in this example, some parameters are enforced to be scalar values and ap
 
 The remaining run-specific parameters can be specified as arrays, and the batch-run tool then executes simulations for all possible combinations of these values.  Note that some values are specified in pairs.  For instance, three mono-chromatic waves are specified by this file with a specification of (A=1.0m, T=12s), (A=2.0m, T=14s), and (A=3.0m, T=15s), not nine runs that include all possible combinations of the specified amplitude and periods.
 
-Obviously it would be very easy to write a batch file specification that incluces thousands of runs, more practical usage will most likely iterate over a small number of parameters at at a time. 
+Obviously it would be very easy to write a batch file specification that includes thousands of runs, more practical usage will most likely iterate over a small number of parameters at at a time. 
 
 #### Running an example
 For a simpler example, a batch file that iterates across a range of sea-states is used.  As a concise example, the following file illustrates this, comments have been removed for brevity.
@@ -96,9 +95,9 @@ $ . ~/buoy_ws/install/setup.bash
 $ ros2 launch buoy_gazebo mbari_wec_batch.launch.py sim_params_yaml:=IrregularWaves.yaml
 ```
 
-Running these commands will run the simulation, all output is stored in a directory named similar to `batch_results_20230228210735', the trailing numbers indicate a timestamp.  Inside this diretory the yaml file is repeated, along with a log file 'batch_results.log' that lists all of the simulation runs that were performed.  Alongside that are specific directories that hold output from each run.  For convenience, a symbolic link is formed that points at the most recent batch output directory.
+Running these commands will run the simulation, all output is stored in a directory named similar to `batch_results_20230228210735', the trailing numbers indicate a timestamp.  Inside this directory the yaml file is repeated, along with a log file 'batch_results.log' that lists all of the simulation runs that were performed.  Alongside that are specific directories that hold output from each run.  For convenience, a symbolic link is formed that points at the most recent batch output directory.
 
-Within the output directory, there is a file named 'batch_runs.log' that shows each individual run that was performed, and the associated parametesr.  In this case it has the following contents:
+Within the output directory, there is a file named 'batch_runs.log' that shows each individual run that was performed, and the associated parameter.  In this case it has the following contents:
 
 ```
 # Generated 4 simulation runs
@@ -113,7 +112,7 @@ cWaveSpectrumParams
 For simulations that take longer to run, it can be convenient to tail this log file from the terminal to keep track of progress. i.e.  From the directory the batch was started from:
 
 ```
-$ tail -f tail -f latest_batch_results/batch_runs.log
+$ tail -f latest_batch_results/batch_runs.log
 ```
 
 #### Finding the output
