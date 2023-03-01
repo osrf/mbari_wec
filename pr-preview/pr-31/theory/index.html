@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/theory/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Theory - MBARI-WEC</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Theory";
+        var mkdocs_page_input_path = "theory.md";
+        var mkdocs_page_url = "/theory/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> MBARI-WEC
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ControlAndTelemetry/">Buoy Control and Telemetry</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ros2/">ROS2 Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../simulation/">Simulation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../atseaoperation/">At Sea Operation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tutorials/">Tutorials</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../resources/">Resources</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Theory</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../license/">License</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../citation/">How to Cite</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">MBARI-WEC</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Theory</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="modeling-technique-overview">Modeling Technique Overview</h2>
+<p>The numerical modeling used in this simulator relies upon the Gazebo simulators ability to solve for the 
+motion of a collection of rigid bodies connected by various types of joints.  Gazebo can use several 
+different physics solvers to perform this solution, and the wave-energy buoy simulator in this project
+uses the <a href="https://dartsim.github.io/") target="_blank">DART</a> physics engine.  The physics engine
+solves the multi-body six degree-of-freedom problem for the motion of the connected buoy, power-take-off device, and heave cone,
+subject to initial conditions and forces that act on the various components as the simulation progresses.  In the Gazebo simulator,
+these forces are provided by plugin code that applies forces to each body based on the state (position and velocity) of each
+component in the system at each timestep.  </p>
+<p>The Gazebo simulator already includes several plugins that provide relevant forces such as buoyancy and hydrodynamic drag. 
+Additionally, several additional plugins have been created for this simulator that provide the forcings on the system
+due to the electro-hydraulic power-take-off system, the pneumatic spring system, the tether connecting the PTO to the
+heave-cone, the mooring system that anchors the system, and the forcing on the buoy from the ocean surface waves. 
+The sections below outline some details about how each of these forcings are modelled and computed.  First however, 
+the specific physical characteristics of the MBARI WEC are tabulated for reference.</p>
+<hr />
+<h2 id="physical-characteristics">Physical Characteristics</h2>
+<p>Each rigid body in the simulation has a "Link Frame" coordinate system in which all other characteristics of the
+body are defined in for computational purposes.  This link-frame coordinate system is often selected to be at the
+location of a joint that connects the various bodies (which are also called links in the vernacular of Gazebo).
+Also, the description below includes alternative notation for added mass, e.g.  <script type="math/tex">\\ \mu_{xx}</script>, in the style of Newman. </p>
+<h3 id="surface-buoy">Surface Buoy</h3>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="left">Description</th>
+<th align="center"></th>
+<th align="center">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">
+<script type="math/tex">m</script>
+</td>
+<td align="left">Buoy Mass</td>
+<td align="center">1400</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">V</script>
+</td>
+<td align="left">Displacement (undisturbed buoy)</td>
+<td align="center">2.39</td>
+<td align="center">m<script type="math/tex">^3</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">\bf{x}_{COG}</script>
+</td>
+<td align="left">Center of Gravity in Link Frame (x,y,z)</td>
+<td align="center">(0.0, 0.0, 2.03)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">\bf{x}_{COB}</script>
+</td>
+<td align="left">Center of Buoyancy in Link Frame (x,y,z)</td>
+<td align="center">(0.0, 0.0, 2.05)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">\bf{x}_{COW}</script>
+</td>
+<td align="left">Center of Waterplane in Link Frame, including PTO and cone</td>
+<td align="center">(0.0, 0.0, 2.27)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">S_{x}</script>
+</td>
+<td align="left">Second moment of area of water plane, about roll axis</td>
+<td align="center">1.37</td>
+<td align="center">m<script type="math/tex">^4</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">S_{y}</script>
+</td>
+<td align="left">Second moment of area of water plane, about pitch axis</td>
+<td align="center">1.37</td>
+<td align="center">m<script type="math/tex">^4</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{xx}</script>
+</td>
+<td align="left">Roll Moment of Inertia (MOI) about center of mass</td>
+<td align="center">1450</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{yy}</script>
+</td>
+<td align="left">Pitch Moment of Inertia about center of mass</td>
+<td align="center">1450</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{zz}</script>
+</td>
+<td align="left">Yaw Moment of Inertia about center of mass</td>
+<td align="center">670</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">A_{wp}</script>
+</td>
+<td align="left">Waterplane Area (undisturbed buoy)</td>
+<td align="center">5.47</td>
+<td align="center">m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{\dot{u}}</script>
+</td>
+<td align="left">Surge Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
+<td align="center">260</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{\dot{q}}</script>
+</td>
+<td align="left">Surge-Pitch Added Mass, origin at pivot (<script type="math/tex">\mu_{xq}</script>)</td>
+<td align="center">370</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{\dot{v}}</script>
+</td>
+<td align="left">Sway Added Mass ( <script type="math/tex">\mu_{yy}</script>)</td>
+<td align="center">260</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{\dot{p}}</script>
+</td>
+<td align="left">Sway-Roll Added Mass, origin at pivot (<script type="math/tex">\mu_{yp}</script>)</td>
+<td align="center">-370</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{\dot{w}}</script>
+</td>
+<td align="left">Heave Added Mass (<script type="math/tex">\mu_{zz}</script>)</td>
+<td align="center">3080</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">K_{\dot{p}}</script>
+</td>
+<td align="left">Roll Added Mass MOI, origin at pivot (<script type="math/tex">\mu_{pp}</script>)</td>
+<td align="center">780</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">M_{\dot{q}}</script>
+</td>
+<td align="left">Pitch Added Mass MOI, origin at pivot (<script type="math/tex">\mu_{qq}</script>)</td>
+<td align="center">780</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{u\mid u \mid}</script>
+</td>
+<td align="left">Surge Quadratic Drag</td>
+<td align="center">-430</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{v\mid v \mid}</script>
+</td>
+<td align="left">Sway Quadratic Drag</td>
+<td align="center">-430</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{w\mid w \mid}</script>
+</td>
+<td align="left">Heave Quadratic Drag</td>
+<td align="center">-3280</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">K_{p\mid p \mid}</script>
+</td>
+<td align="left">Roll Quadratic Drag:</td>
+<td align="center">-880</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">M_{q\mid q \mid}</script>
+</td>
+<td align="left">Pitch Quadratic Drag:</td>
+<td align="center">-880</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">N_{r\mid r \mid}</script>
+</td>
+<td align="left">Yaw Quadratic Drag:</td>
+<td align="center">-50</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Buoy Link Frame is located at base of the buoy bridle at the pivot.</li>
+<li>Unspecified stability derivative values (<script type="math/tex">M_{\dot{r}}</script>, <script type="math/tex">X_{uv}</script>, <script type="math/tex">Y_{vu}</script>, etc) are zero. </li>
+<li>Added mass moments of inertia  and stability derivatives are all specified about the link frame origin, i.e. the pivot.</li>
+<li>Mass moments of inertia are specified about the center of mass.</li>
+<li>Added mass values are infinite frequency.</li>
+<li>Free-Surface Hydrodynamic Coefficients and Impulse Response Functions can be found <a href="https://www.google.com/") target="_blank">here</a>:</li>
+</ul>
+<h3 id="power-take-off-device">Power Take-Off Device</h3>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="left">Description</th>
+<th align="center"></th>
+<th align="center">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">
+<script type="math/tex">m</script>
+</td>
+<td align="left">PTO Mass</td>
+<td align="center">605</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">V</script>
+</td>
+<td align="left">PTO Displacement</td>
+<td align="center">.205</td>
+<td align="center">m<script type="math/tex">^3</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">\bf{x}_{COG}</script>
+</td>
+<td align="left">Center of Gravity in Link Frame (x,y,z)</td>
+<td align="center">(0.0, 0.0, -4.0)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">\bf{x}_{COB}</script>
+</td>
+<td align="left">Center of Buoyancy in Link Frame (x,y,z)</td>
+<td align="center">(0.0, 0.0, -3.0)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{xx}</script>
+</td>
+<td align="left">Roll Moment of Inertia about center of mass</td>
+<td align="center">3525</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{yy}</script>
+</td>
+<td align="left">Pitch Moment of Inertia about center of mass</td>
+<td align="center">3525</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{zz}</script>
+</td>
+<td align="left">Yaw Moment of Inertia about center of mass</td>
+<td align="center">10</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{\dot{u}}</script>
+</td>
+<td align="left">Surge Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
+<td align="center">310</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{\dot{q}}</script>
+</td>
+<td align="left">Surge-Pitch Added Mass MOI (<script type="math/tex">\mu_{xq}</script>)</td>
+<td align="center">1250</td>
+<td align="center">kg m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{\dot{v}}</script>
+</td>
+<td align="left">Sway Added Mass (<script type="math/tex">\mu_{yy}</script>)</td>
+<td align="center">310</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{\dot{p}}</script>
+</td>
+<td align="left">Sway-Roll Added Mass MOI (<script type="math/tex">\mu_{yp}</script>)</td>
+<td align="center">-1250</td>
+<td align="center">kg m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{\dot{w}}</script>
+</td>
+<td align="left">Heave Added Mass (<script type="math/tex">\mu_{zz}</script>)</td>
+<td align="center">10</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">K_{\dot{p}}</script>
+</td>
+<td align="left">Roll Added Mass MOI  (<script type="math/tex">\mu_{pp}</script>)</td>
+<td align="center">7040</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">M_{\dot{q}}</script>
+</td>
+<td align="left">Pitch Added Mass MOI (<script type="math/tex">\mu_{qq}</script>)</td>
+<td align="center">7040</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{u\mid u \mid}</script>
+</td>
+<td align="left">Surge Quadratic Drag</td>
+<td align="center">-1140</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{v\mid v \mid}</script>
+</td>
+<td align="left">Sway Quadratic Drag</td>
+<td align="center">-1140</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{w\mid w \mid}</script>
+</td>
+<td align="left">Heave Quadratic Drag</td>
+<td align="center">-50</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">K_{p\mid p \mid}</script>
+</td>
+<td align="left">Roll Quadratic Drag</td>
+<td align="center">-195400</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">M_{p\mid p \mid}</script>
+</td>
+<td align="left">Pitch Quadratic Drag</td>
+<td align="center">-195400</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">N_{r\mid r \mid}</script>
+</td>
+<td align="left">Yaw Quadratic Drag</td>
+<td align="center">-50</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>PTO Link Frame is located at top attachment of the PTO (where connects to the buoy).</li>
+<li>Unspecified stability derivative values (<script type="math/tex">M_{\dot{r}}</script>, <script type="math/tex">X_{uv}</script>, <script type="math/tex">Y_{vu}</script>, etc) are zero. </li>
+<li>Added mass moments of inertia and stability derivatives are all specified about the link frame origin.</li>
+<li>Mass moments of inertia are specified about the center of mass.</li>
+</ul>
+<h3 id="piston">Piston</h3>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="left">Description</th>
+<th align="center"></th>
+<th align="center">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">
+<script type="math/tex">m</script>
+</td>
+<td align="left">Piston Mass</td>
+<td align="center">48.0</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">\bf{x}_{COG}</script>
+</td>
+<td align="left">Center of Gravity in Link Frame (x,y,z)</td>
+<td align="center">(0.0, 0.0, -2.58)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{xx}</script>
+</td>
+<td align="left">Roll Moment of Inertia</td>
+<td align="center">100.0</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{yy}</script>
+</td>
+<td align="left">Pitch Moment of Inertia</td>
+<td align="center">100.0</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{zz}</script>
+</td>
+<td align="left">Yaw Moment of Inertia</td>
+<td align="center">5.0</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The piston is contained with the PTO housing, so it has mass and moments of inertial, but contributes 
+no buoyancy, added mass, or quadratic fluid drag.</li>
+</ul>
+<h3 id="heave-cone">Heave Cone</h3>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="left">Description</th>
+<th align="center"></th>
+<th align="center">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">
+<script type="math/tex">m</script>
+</td>
+<td align="left">Heave Cone Mass</td>
+<td align="center">820</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">V</script>
+</td>
+<td align="left">Heave Cone Displacement</td>
+<td align="center">.12</td>
+<td align="center">m<script type="math/tex">^3</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">\bf{x}_{COG}</script>
+</td>
+<td align="left">Center of Gravity in Link Frame (x,y,z)</td>
+<td align="center">(0.0, 0.0, -1.25)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">\bf{x}_{COB}</script>
+</td>
+<td align="left">Center of Buoyancy in Link Frame (x,y,z)</td>
+<td align="center">(0.0, 0.0, -1.21)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{xx}</script>
+</td>
+<td align="left">Roll Moment of Inertia about the center of mass</td>
+<td align="center">340</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{yy}</script>
+</td>
+<td align="left">Pitch Moment of Inertia about the center of mass</td>
+<td align="center">340</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{zz}</script>
+</td>
+<td align="left">Yaw Moment of Inertia about the center of mass</td>
+<td align="center">610</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{\dot{u}}</script>
+</td>
+<td align="left">Surge Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
+<td align="center">720</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{\dot{q}}</script>
+</td>
+<td align="left">Surge-Pitch Added Mass MOI (<script type="math/tex">\mu_{xq}</script>)</td>
+<td align="center">900</td>
+<td align="center">kg m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{\dot{v}}</script>
+</td>
+<td align="left">Sway Added Mass (<script type="math/tex">\mu_{yy}</script>)</td>
+<td align="center">720</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{\dot{p}}</script>
+</td>
+<td align="left">Sway-Roll Added Mass MOI (<script type="math/tex">\mu_{yp}</script>)</td>
+<td align="center">-900</td>
+<td align="center">kg m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{\dot{w}}</script>
+</td>
+<td align="left">Heave Added Mass: Doors Closed (<script type="math/tex">\mu_{zz}</script>)</td>
+<td align="center">9330</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{\dot{w}}</script>
+</td>
+<td align="left">Heave Added Mass: Doors Open</td>
+<td align="center">3000</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">K_{\dot{p}}</script>
+</td>
+<td align="left">Roll Added Mass MOI (<script type="math/tex">\mu_{pp}</script>)</td>
+<td align="center">3990</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">M_{\dot{q}}</script>
+</td>
+<td align="left">Pitch Added Mass MOI(<script type="math/tex">\mu_{qq}</script>)</td>
+<td align="center">3990</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">N_{\dot{r}}</script>
+</td>
+<td align="left">Yaw Added Mass MOI (<script type="math/tex">\mu_{rr}</script>)</td>
+<td align="center">10</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{u\mid u \mid}</script>
+</td>
+<td align="left">Surge Quadratic Drag</td>
+<td align="center">-1580</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{v\mid v \mid}</script>
+</td>
+<td align="left">Sway Quadratic Drag</td>
+<td align="center">-1580</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{w\mid w \mid}</script>
+</td>
+<td align="left">Vertical Quadratic Drag: Doors Open</td>
+<td align="center">-3200</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{w\mid w \mid}</script>
+</td>
+<td align="left">Vertical Quadratic Drag: Doors Closed</td>
+<td align="center">-3900</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">K_{p\mid p \mid}</script>
+</td>
+<td align="left">Roll Quadratic Drag:</td>
+<td align="center">-4620</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">M_{q\mid q \mid}</script>
+</td>
+<td align="left">Pitch Quadratic Drag:</td>
+<td align="center">-4620</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">N_{r\mid r \mid}</script>
+</td>
+<td align="left">Yaw Quadratic Drag:</td>
+<td align="center">-50</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Heave-Cone Link Frame is located at top attachment of the Heave Cone (where it connects to the tether).</li>
+<li>Unspecified stability derivative values (<script type="math/tex">M_{\dot{r}}</script>, <script type="math/tex">X_{uv}</script>, <script type="math/tex">Y_{vu}</script>, etc) are zero. </li>
+<li>Added mass moments of inertia and stability derivatives are all specified about the link frame origin.</li>
+<li>Mass moments of inertia are specified about the center of mass.</li>
+</ul>
+<hr />
+<h2 id="electro-hydraulic-pto-forces">Electro-Hydraulic PTO Forces</h2>
+<hr />
+<h2 id="pneumatic-spring-forces">Pneumatic Spring Forces</h2>
+<h4 id="definitions">Definitions</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<script type="math/tex">x</script>
+</td>
+<td>Piston position</td>
+<td>m</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">v</script>
+</td>
+<td>Piston velocity</td>
+<td>m/s</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">m</script>
+</td>
+<td>Mass of gas in chamber</td>
+<td>kg</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">T</script>
+</td>
+<td>Temperature of gas</td>
+<td>K</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">P</script>
+</td>
+<td>Gas pressure</td>
+<td>Pa</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">V</script>
+</td>
+<td>Chamber volume (dependent on piston position)</td>
+<td>m<script type="math/tex">^{3}</script>
+</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">R_{specific}</script>
+</td>
+<td>Specific Gas Constant N<script type="math/tex">_2</script>
+</td>
+<td>J/kg/K</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">V_{dead}</script>
+</td>
+<td>Chamber dead volume (fully compressed)</td>
+<td>m<script type="math/tex">^{3}</script>
+</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">c_p</script>
+</td>
+<td>Specific Heat Capacity N<script type="math/tex">_2</script> (constant pressure)</td>
+<td>J/kg/K</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">A_{piston}</script>
+</td>
+<td>Surface area of piston head</td>
+<td>m<script type="math/tex">^{2}</script>
+</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">n</script>
+</td>
+<td>Polytropic index (Adiabatic if <script type="math/tex">n=\lambda=1.4</script> for N<script type="math/tex">_2</script>)</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">r</script>
+</td>
+<td>Coefficient of heat transfer (Newton's Law of Cooling)</td>
+<td>1/s</td>
+</tr>
+</tbody>
+</table>
+<h4 id="model">Model</h4>
+<p>Under compression and expansion, the pressure, volume and temperature of the Nitrogen in each
+chamber evolves according to Ideal Gas Law:</p>
+<p>
+<script type="math/tex; mode=display"> P V = m R_{specific} T </script>
+</p>
+<p>and a polytropic process:</p>
+<p>
+<script type="math/tex; mode=display"> P = P_0 \left({V_{0} \over V}\right)^{n} </script>
+</p>
+<p>with hysteresis, there are two values for the polytropic index, <script type="math/tex">n_1</script> and <script type="math/tex">n_2</script>, to capture behavior when
+the gas is compressing or expanding. Using this quasi-static solution and
+discrete time steps, and also incorporating hysteresis, the process becomes:</p>
+<p>
+<script type="math/tex; mode=display"> V_k = x_k A_{piston} + V_{dead} </script>
+<script type="math/tex; mode=display">
+P_k = P_{k-1} \left({V_{k-1} \over V_k}\right)^n ,\,\,\, n = \begin{cases}
+    n_1 & \text{if } v \ge 0 \\
+    n_2 & \text{otherwise.}
+\end{cases}
+</script>
+<script type="math/tex; mode=display"> T_k = {P_k V_k \over m R_{specific}} </script>
+</p>
+<p>where <script type="math/tex">k</script> is the current time step.</p>
+<p>Whenever the piston velocity is slow enough, the process is dominated by heat loss and
+modeled with Newton's Law of Cooling (using forward difference) followed by an update of pressure using
+Ideal Gas Law:</p>
+<p>
+<script type="math/tex; mode=display"> T_k = r\, \Delta t\, (T_{env} - T_{k-1}) + T_{k-1} </script>
+<script type="math/tex; mode=display"> V_k = x_k A_{piston} + V_{dead} </script>
+<script type="math/tex; mode=display"> P_k = {m R_{specific} T_k \over V_k} </script>
+</p>
+<p>The mass of the Nitrogen in each chamber is determined from inputs in the SDF:</p>
+<p>
+<script type="math/tex; mode=display"> m = {P_0 (x_0 A_{piston} + V_{dead}) \over R_{specific} T_0} </script>
+</p>
+<p>and is used for mass flow between chambers in simulating the pump/valve.</p>
+<h4 id="determining-parameter-values">Determining Parameter Values</h4>
+<p>Linear regression was used to determine the polytropic indices for each chamber using empirical
+data from the physical system. Using pressure vs volume curves, <script type="math/tex">n_1</script> is determined from
+increasing volume, and <script type="math/tex">n_2</script> is determined from decreasing volume. The data is then preconditioned
+by taking the logarithm to linearize and perform regression to find the parameters. For a
+polytropic process:</p>
+<p>
+<script type="math/tex; mode=display"> P V^{n} = C </script>
+</p>
+<p>so,</p>
+<p>
+<script type="math/tex; mode=display"> \log{P} + n \log{V} = \log{C} </script>
+<script type="math/tex; mode=display">
+\left[ { \begin{array}{cc}
+    \log{\bf V} & 1 \\
+\end{array} } \right] \left[ { \begin{array}{c}
+    -n \\
+    \log{C} \\
+\end{array} } \right] = \log{\bf P}
+</script>
+</p>
+<p>in block matrix notation where <script type="math/tex">{\bf V}</script> and <script type="math/tex">{\bf P}</script> are the arrays of volume and pressure data, respectively.
+The other parameters in the system are taken from CAD or empirically determined by comparing logged
+data from prescribed motion between simulation and the physical test bench.</p>
+<hr />
+<h2 id="tether-forces">Tether Forces</h2>
+<hr />
+<h2 id="mooring-forces">Mooring Forces</h2>
+<hr />
+<h2 id="ocean-wave-forces">Ocean Wave Forces</h2>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../resources/" class="btn btn-neutral float-left" title="Resources"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../license/" class="btn btn-neutral float-right" title="License">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../resources/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../license/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
