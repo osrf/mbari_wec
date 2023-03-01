@@ -33,34 +33,34 @@ There are a number of parameters that impact the behavior of the simulator, and 
 The above parameters are spectified in a .yaml file that the batch-run tool reads in before execution begins.  A commented example is below and illustrates the use of the above parameters.  Lines that begin with # are comments and have no impact.
 
 ```
- #
- # Batch-Specific Scalar Parameters
- #
- duration: 300
- seed: 42
- physics_rtf: 11
- #
- # Run-Specific Parameters (Test Matrix)
- #
- physics_step: [0.001, 0.01, 0.1]
- door_state: ['closed', 'open']
- scale_factor: [0.5, 0.75, 1.0, 1.3, 1.4]
- # May specify vector/scalar battery_soc (0.0 to 1.0) or battery_emf (270V to 320V)
- battery_soc: [0.25, 0.5, 0.75, 1.0]
- # battery_emf: [282.5, 295.0, 307.5, 320.0]
- IncidentWaveSpectrumType:
-  - MonoChromatic:
-      # A & T may be vector/scalar in pairs (A & T same length)
-      A: [1.0, 2.0, 3.0]
-      T: [12.0, 14.0, 15.0]
-  - Bretschneider:
-      # Hs & Tp may be vector/scalar in pairs (Hs & Tp same length)
-      Hs: 3.0
-      Tp: 14.0
-  # Multiple Custom Spectra must be listed individually (w & Szz are already vectors of same size)
-  - Custom:
-      w: [0.0, 0.2, 0.4, 0.6, 2.0]
-      Szz: [0.0, 0.4, 1.0, 1.0, 0.0]
+#
+# Batch-Specific Scalar Parameters
+#
+duration: 300
+seed: 42
+physics_rtf: 11
+#
+# Run-Specific Parameters (Test Matrix)
+#
+physics_step: [0.001, 0.01, 0.1]
+door_state: ['closed', 'open']
+scale_factor: [0.5, 0.75, 1.0, 1.3, 1.4]
+# May specify vector/scalar battery_soc (0.0 to 1.0) or battery_emf (270V to 320V)
+battery_soc: [0.25, 0.5, 0.75, 1.0]
+# battery_emf: [282.5, 295.0, 307.5, 320.0]
+IncidentWaveSpectrumType:
+ - MonoChromatic:
+     # A & T may be vector/scalar in pairs (A & T same length)
+     A: [1.0, 2.0, 3.0]
+     T: [12.0, 14.0, 15.0]
+ - Bretschneider:
+     # Hs & Tp may be vector/scalar in pairs (Hs & Tp same length)
+     Hs: 3.0
+     Tp: 14.0
+ # Multiple Custom Spectra must be listed individually (w & Szz are already vectors of same size)
+ - Custom:
+     w: [0.0, 0.2, 0.4, 0.6, 2.0]
+     Szz: [0.0, 0.4, 1.0, 1.0, 0.0]
 ```
 
 As seen in this example, some parameters are enforced to be scalar values and apply to the entire batch of specified runs.  These are the specification of simulation duration (300), random seed (42), and the physics real-time factor (11). 
@@ -73,20 +73,20 @@ Obviously it would be very easy to write a batch file specification that incluce
 For a simpler example, a batch file that iterates across a range of sea-states is used.  As a concise example, the following file illustrates this, comments have been removed for brevity.
 
 ```
- duration: 300
- seed: 42
- physics_rtf: 11
- physics_step: 0.01
- door_state: ['closed']
- scale_factor: 1.0
- battery_soc:  0.5
- IncidentWaveSpectrumType:
-  - Bretschneider:
-      Hs: [2.0 4.0]
-      Tp: [14.0 16.0]
+duration: 3
+seed: 42
+physics_rtf: 11
+physics_step: 0.01
+door_state: ['closed']
+scale_factor: [0.6, 1.0]
+battery_soc:  0.5
+IncidentWaveSpectrumType:
+ - Bretschneider:
+     Hs: [2.0, 4.0]
+     Tp: [14.0, 16.0]
 ```
-
-To run this single-run example, create the above file in a new directory and name it "IrregularWaves.yaml", source the simulator installation directory, and start the simulation using the batch tool.  
+ 
+To run this example, create the above file in a new directory and name it "IrregularWaves.yaml", source the simulator installation directory, and start the simulation using the batch tool. (Note that the run duration is very short for this example to allow it to complete quickly)
 
 ```
 $ mkdir FOO
@@ -96,4 +96,24 @@ $ . ~/buoy_ws/install/setup.bash
 $ ros2 launch buoy_gazebo mbari_wec_batch.launch.py sim_params_yaml:=IrregularWaves.yaml
 ```
 
-Running these commands will run the simulation, all output is stored in a directory named similar to `batch_results_20230228210735', the trailing numbers indicate a timestamp.  Inside this diretory the yaml file is repeated, along with a log file 'batch_results.log' that lists all of the simulation runs that were performed.  Alongside that are specific directories that hold output from each run.  For convenience, a symbolic link is formed that points at the most recent batch output.
+Running these commands will run the simulation, all output is stored in a directory named similar to `batch_results_20230228210735', the trailing numbers indicate a timestamp.  Inside this diretory the yaml file is repeated, along with a log file 'batch_results.log' that lists all of the simulation runs that were performed.  Alongside that are specific directories that hold output from each run.  For convenience, a symbolic link is formed that points at the most recent batch output directory.
+
+Within the output directory, there is a file named 'batch_runs.log' that shows each individual run that was performed, and the associated parametesr.  In this case it has the following contents:
+
+```
+# Generated 4 simulation runs
+RunIndex, SimReturnCode, StartTime, rosbag2FileName, PhysicsStep, PhysicsRTF, Seed, Duration, DoorState, ScaleFactor, BatteryState, IncWaveSpectrumType;In
+cWaveSpectrumParams
+0, 0, 20230228212457, rosbag2_batch_sim_0_20230228212457, 0.01, 11.0, 42, 3.0, closed, 0.6, 0.5, Bretschneider;Hs:2.0;Tp:14.0
+1, 0, 20230228212502, rosbag2_batch_sim_1_20230228212502, 0.01, 11.0, 42, 3.0, closed, 0.6, 0.5, Bretschneider;Hs:4.0;Tp:16.0
+2, 0, 20230228212506, rosbag2_batch_sim_2_20230228212506, 0.01, 11.0, 42, 3.0, closed, 1.0, 0.5, Bretschneider;Hs:2.0;Tp:14.0
+3, 0, 20230228212510, rosbag2_batch_sim_3_20230228212510, 0.01, 11.0, 42, 3.0, closed, 1.0, 0.5, Bretschneider;Hs:4.0;Tp:16.0
+```
+
+For simulations that take longer to run, it can be convenient to tail this log file from the terminal to keep track of progress. i.e.  From the directory the batch was started from:
+
+```
+$ tail -f tail -f latest_batch_results/batch_runs.log
+```
+
+#### Finding the output
