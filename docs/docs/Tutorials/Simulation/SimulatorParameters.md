@@ -26,7 +26,7 @@ There are a number of parameters that impact the behavior of the simulator, and 
 - **Battery State-of-Charge**:  The starting battery state of charge can be specified between 0 (empty) and 1 (full).  A full battery can't absorb energy so more of the generated power will be diverted to the load-dump in the simulation.  An empty battery will allow most or all of the generated energy to flow to the battery. This does not effect the physical behavior of the simulated buoy, but does effect the battery voltages and currents as the simulation progresses.
 - **Battery EMF**:  As an alternative to specifying the battery state of charge as a percentage, the zero-load battery voltage can be specified, between 270V (empty battery), and 320V (full battery).
 - **Scale Factor**:  The buoy (and simulator) implements a default control algorithm in which the current in the motor windings is set as a function of motor RPM, with the resulting torque opposing the motors motion.  This approximately implements a linear damping behavior and the specified Scale Factor is multiplied by the default Winding-Current/RPM relationship before being applied.  Allowable values are from 0.5 to 1.4, and the result is a simple way to change the damping the power-takeoff device is applying to the system.  As discussed in a later tutorial, this relationship can be over-ridden with external code, so this Scale Factor only applies to the default behavior of the system.
-
+- ** GUI Ouput**:  The graphical output of the simulator can be turned on or off as needed, for large batches of runs that are meant to run un-atteneded this is probably not appropriate, but for single runs or debugging the graphical output can be useful.
 
 #### Example Batch File
 The above parameters are specified in a .yaml file that the batch-run tool reads in before execution begins.  A commented example is below and illustrates the use of the above parameters.  Lines that begin with # are comments and have no impact.
@@ -44,6 +44,7 @@ physics_rtf: 11
 physics_step: [0.001, 0.01, 0.1]
 door_state: ['closed', 'open']
 scale_factor: [0.5, 0.75, 1.0, 1.3, 1.4]
+enable_gui: False
 # May specify vector/scalar battery_soc (0.0 to 1.0) or battery_emf (270V to 320V)
 battery_soc: [0.25, 0.5, 0.75, 1.0]
 # battery_emf: [282.5, 295.0, 307.5, 320.0]
@@ -75,6 +76,7 @@ For a simpler example, a batch file that iterates across a range of sea-states i
 duration: 3
 seed: 42
 physics_rtf: 11
+enable_gui: False
 physics_step: 0.01
 door_state: ['closed']
 scale_factor: [0.6, 1.0]
