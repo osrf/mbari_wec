@@ -117,17 +117,6 @@ For simulations that take longer to run, it can be convenient to tail this log f
 $ tail -f latest_batch_results/batch_runs.log
 ```
 
-Typical output is as follows:
-
-```
-# Generated 4 simulation runs
-RunIndex, SimReturnCode, StartTime, rosbag2FileName, PhysicsStep, PhysicsRTF, Seed, Duration, DoorState, ScaleFactor, BatteryState, IncWaveSpectrumType;IncWaveSpectrumParams
-0, 0, 20230301200627, results_run_0_20230301200627/rosbag2, 0.01, 11.0, 42, 3.0, closed, 0.6, 0.5, Bretschneider;Hs:2.0;Tp:14.0
-1, 0, 20230301200632, results_run_1_20230301200632/rosbag2, 0.01, 11.0, 42, 3.0, closed, 0.6, 0.5, Bretschneider;Hs:4.0;Tp:16.0
-2, 0, 20230301200636, results_run_2_20230301200636/rosbag2, 0.01, 11.0, 42, 3.0, closed, 1.0, 0.5, Bretschneider;Hs:2.0;Tp:14.0
-3, 0, 20230301200640, results_run_3_20230301200640/rosbag2, 0.01, 11.0, 42, 3.0, closed, 1.0, 0.5, Bretschneider;Hs:4.0;Tp:16.0
-```
-
 #### Finding the output
 Within the batch process output directory, (e.g. `batch_results_20230228210735'), the output of each simulation run is stored within a single sub-directory.  The resulting directory tree from the above example is as follows:
 
