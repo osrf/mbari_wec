@@ -111,17 +111,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/Simulation/SimulatorInteraction/</loc>
+         <loc>https://example.com/Tutorials/Simulation/SimulatorInteractionPbcmd/</loc>
          <lastmod>2023-03-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://example.com/Tutorials/Simulation/SimulatorOutputLogs/</loc>
-         <lastmod>2023-03-02</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://example.com/Tutorials/Simulation/SimulatorOutputPbcmd/</loc>
          <lastmod>2023-03-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
