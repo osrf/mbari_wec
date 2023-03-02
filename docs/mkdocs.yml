@@ -19,8 +19,8 @@ extra_javascript:
 
 markdown_extensions:
   - mdx_math
-#  - pymdownx.highlight:
-#      anchor_linenums: false
+  - pymdownx.highlight:
+      anchor_linenums: false
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
