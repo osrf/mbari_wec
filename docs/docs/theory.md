@@ -29,9 +29,9 @@ Also, the description below includes alternative notation for added mass, e.g.  
 |:----------------:|:----------------------------------------------------------|:----------------:|:---------:|
 | \(m\)            | Buoy Mass                                                 |  1400            | kg        |
 | \(V\)            | Displacement (undisturbed buoy)                           |  2.39            | m\(^3\)   |
-| \(\bf{x}_{COG}\) | Center of Gravity in Link Frame (x,y,z)                   | (0.0, 0.0, 2.03) | m         |
-| \(\bf{x}_{COB}\) | Center of Buoyancy in Link Frame (x,y,z)                  | (0.0, 0.0, 2.05) | m         |
-| \(\bf{x}_{COW}\) | Center of Waterplane in Link Frame, including PTO and cone| (0.0, 0.0, 2.27) | m         |
+| \({\bf x}_{COG}\) | Center of Gravity in Link Frame (x,y,z)                   | (0.0, 0.0, 2.03) | m         |
+| \({\bf x}_{COB}\) | Center of Buoyancy in Link Frame (x,y,z)                  | (0.0, 0.0, 2.05) | m         |
+| \({\bf x}_{COW}\) | Center of Waterplane in Link Frame, including PTO and cone| (0.0, 0.0, 2.27) | m         |
 | \(S_{x}\)        | Second moment of area of water plane, about roll axis     | 1.37             | m\(^4\)   |
 | \(S_{y}\)        | Second moment of area of water plane, about pitch axis    | 1.37             | m\(^4\)   |
 | \(I_{xx}\)       | Roll Moment of Inertia (MOI) about center of mass         |  1450            | kg m\(^2\)|
@@ -65,8 +65,8 @@ Also, the description below includes alternative notation for added mass, e.g.  
 |:-----------------:|:--------------------------------------------------------|:----------------:|:---------:|
 | \(m\)             | PTO Mass                                                |  605             | kg        |
 | \(V\)             | PTO Displacement                                        |  .205            | m\(^3\)   |
-| \(\bf{x}_{COG}\)  | Center of Gravity in Link Frame (x,y,z)                 | (0.0, 0.0, -4.0) | m         |
-| \(\bf{x}_{COB}\)  | Center of Buoyancy in Link Frame (x,y,z)                | (0.0, 0.0, -3.0) | m         |
+| \({\bf x}_{COG}\)  | Center of Gravity in Link Frame (x,y,z)                 | (0.0, 0.0, -4.0) | m         |
+| \({\bf x}_{COB}\)  | Center of Buoyancy in Link Frame (x,y,z)                | (0.0, 0.0, -3.0) | m         |
 | \(I_{xx}\)        | Roll Moment of Inertia about center of mass             |  3525            | kg m\(^2\)|
 | \(I_{yy}\)        | Pitch Moment of Inertia about center of mass            |  3525            | kg m\(^2\)|
 | \(I_{zz}\)        | Yaw Moment of Inertia about center of mass              |  10              | kg m\(^2\)|
@@ -93,7 +93,7 @@ Also, the description below includes alternative notation for added mass, e.g.  
 |                   | Description                                             |                   | Units     |
 |:-----------------:|:--------------------------------------------------------|:-----------------:|:---------:|
 | \(m\)             | Piston Mass                                             |  48.0             | kg        |
-| \(\bf{x}_{COG}\)  | Center of Gravity in Link Frame (x,y,z)                 | (0.0, 0.0, -2.58) | m         |
+| \({\bf x}_{COG}\)  | Center of Gravity in Link Frame (x,y,z)                 | (0.0, 0.0, -2.58) | m         |
 | \(I_{xx}\)        | Roll Moment of Inertia                                  |  100.0            | kg m\(^2\)|
 | \(I_{yy}\)        | Pitch Moment of Inertia                                 |  100.0            | kg m\(^2\)|
 | \(I_{zz}\)        | Yaw Moment of Inertia                                   |  5.0              | kg m\(^2\)|
@@ -106,8 +106,8 @@ no buoyancy, added mass, or quadratic fluid drag.
 |:-----------------:|:--------------------------------------------------------|:----------------:|:---------:|
 | \(m\)             | Heave Cone Mass                                         |  820             | kg        |
 | \(V\)             | Heave Cone Displacement                                 |  .12             | m\(^3\)   |
-| \(\bf{x}_{COG}\)  | Center of Gravity in Link Frame (x,y,z)                 | (0.0, 0.0, -1.25)| m         |
-| \(\bf{x}_{COB}\)  | Center of Buoyancy in Link Frame (x,y,z)                | (0.0, 0.0, -1.21)| m         |
+| \({\bf x}_{COG}\)  | Center of Gravity in Link Frame (x,y,z)                 | (0.0, 0.0, -1.25)| m         |
+| \({\bf x}_{COB}\)  | Center of Buoyancy in Link Frame (x,y,z)                | (0.0, 0.0, -1.21)| m         |
 | \(I_{xx}\)        | Roll Moment of Inertia about the center of mass         |  340             | kg m\(^2\)|
 | \(I_{yy}\)        | Pitch Moment of Inertia about the center of mass        |  340             | kg m\(^2\)|
 | \(I_{zz}\)        | Yaw Moment of Inertia about the center of mass          |  610             | kg m\(^2\)|
