@@ -36,6 +36,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://example.com/roadmap/</loc>
+         <lastmod>2023-03-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://example.com/ros2/</loc>
          <lastmod>2023-03-02</lastmod>
          <changefreq>daily</changefreq>

@@ -69,11 +69,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../resources/">Resources</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../../theory/">Theory</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../theory/">Theory</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../../resources/">Resources</a>
                 </li>
               </ul>
               <ul>
@@ -82,6 +82,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../citation/">How to Cite</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../roadmap/">Project Roadmap</a>
                 </li>
               </ul>
       </div>
@@ -140,13 +144,13 @@ $ cd ~/buoy_entrypoint/docker/
 </ol>
 <div class="highlight"><pre><span></span><code>$ ./run.bash [-d|s] buoy:latest
 </code></pre></div>
-<pre><code>where `./run.bash` option:
+<div class="highlight"><pre><span></span><code>where `./run.bash` option:
 * -d     Use for development with host system volume mount
 * -s     Simulation purposes only
 
-The development use case enables to either use host system home directory for user's custom workspace, or a fresh clone inside the docker container. If using host system workspace, follow the [On Host System](#on-host-system) instructions to build and run the project in the container.
-Regardless the script option, project source files can be found in `/tmp/buoy_ws/' in the container. Note that any changes to files in the container will have limited scope.
-</code></pre>
+The development use case enables to either use host system home directory for user&#39;s custom workspace, or a fresh clone inside the docker container. If using host system workspace, follow the [On Host System](#on-host-system) instructions to build and run the project in the container.
+Regardless the script option, project source files can be found in `/tmp/buoy_ws/&#39; in the container. Note that any changes to files in the container will have limited scope.
+</code></pre></div>
 <ol>
 <li>To have another window running the same docker container, run this command in a new terminal:</li>
 </ol>
