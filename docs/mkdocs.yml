@@ -8,10 +8,11 @@ nav:
   - Simulation: simulation.md
   - At Sea Operation: atseaoperation.md
   - Tutorials: tutorials.md
-  - Resources: resources.md
   - Theory: theory.md
+  - Resources: resources.md
   - License: license.md
   - How to Cite: citation.md
+  - Project Roadmap: roadmap.md
 
 extra_javascript:
     - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
