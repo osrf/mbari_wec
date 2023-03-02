@@ -26,7 +26,7 @@ There are a number of parameters that impact the behavior of the simulator, and 
 - **Battery State-of-Charge**:  The starting battery state of charge can be specified between 0 (empty) and 1 (full).  A full battery can't absorb energy so more of the generated power will be diverted to the load-dump in the simulation.  An empty battery will allow most or all of the generated energy to flow to the battery. This does not effect the physical behavior of the simulated buoy, but does effect the battery voltages and currents as the simulation progresses.
 - **Battery EMF**:  As an alternative to specifying the battery state of charge as a percentage, the zero-load battery voltage can be specified, between 270V (empty battery), and 320V (full battery).
 - **Scale Factor**:  The buoy (and simulator) implements a default control algorithm in which the current in the motor windings is set as a function of motor RPM, with the resulting torque opposing the motors motion.  This approximately implements a linear damping behavior and the specified Scale Factor is multiplied by the default Winding-Current/RPM relationship before being applied.  Allowable values are from 0.5 to 1.4, and the result is a simple way to change the damping the power-takeoff device is applying to the system.  As discussed in a later tutorial, this relationship can be over-ridden with external code, so this Scale Factor only applies to the default behavior of the system.
-- ** GUI Ouput**:  The graphical output of the simulator can be turned on or off as needed, for large batches of runs that are meant to run un-atteneded this is probably not appropriate, but for single runs or debugging the graphical output can be useful.
+- ** GUI Output**:  The graphical output of the simulator can be turned on or off as needed, for large batches of runs that are meant to run un-attended this is probably not appropriate, but for single runs or debugging the graphical output can be useful.
 
 #### Example Batch File
 The above parameters are specified in a .yaml file that the batch-run tool reads in before execution begins.  A commented example is below and illustrates the use of the above parameters.  Lines that begin with # are comments and have no impact.
@@ -117,4 +117,41 @@ For simulations that take longer to run, it can be convenient to tail this log f
 $ tail -f latest_batch_results/batch_runs.log
 ```
 
+Typical output is as follows:
+
+```
+# Generated 4 simulation runs
+RunIndex, SimReturnCode, StartTime, rosbag2FileName, PhysicsStep, PhysicsRTF, Seed, Duration, DoorState, ScaleFactor, BatteryState, IncWaveSpectrumType;IncWaveSpectrumParams
+0, 0, 20230301200627, results_run_0_20230301200627/rosbag2, 0.01, 11.0, 42, 3.0, closed, 0.6, 0.5, Bretschneider;Hs:2.0;Tp:14.0
+1, 0, 20230301200632, results_run_1_20230301200632/rosbag2, 0.01, 11.0, 42, 3.0, closed, 0.6, 0.5, Bretschneider;Hs:4.0;Tp:16.0
+2, 0, 20230301200636, results_run_2_20230301200636/rosbag2, 0.01, 11.0, 42, 3.0, closed, 1.0, 0.5, Bretschneider;Hs:2.0;Tp:14.0
+3, 0, 20230301200640, results_run_3_20230301200640/rosbag2, 0.01, 11.0, 42, 3.0, closed, 1.0, 0.5, Bretschneider;Hs:4.0;Tp:16.0
+```
+
 #### Finding the output
+Within the batch process output directory, (e.g. `batch_results_20230228210735'), the output of each simulation run is stored within a single sub-directory.  The resulting directory tree from the above example is as follows:
+
+```
+$ tree batch_results_20230301200627/
+batch_results_20230301200627/
+├── batch_runs.log
+├── IrregularWaves_20230301200627.yaml
+├── results_run_0_20230301200627
+│   └── rosbag2
+│       ├── metadata.yaml
+│       └── rosbag2_0.db3
+├── results_run_1_20230301200632
+│   └── rosbag2
+│       ├── metadata.yaml
+│       └── rosbag2_0.db3
+├── results_run_2_20230301200636
+│   └── rosbag2
+│       ├── metadata.yaml
+│       └── rosbag2_0.db3
+└── results_run_3_20230301200640
+    └── rosbag2
+        ├── metadata.yaml
+        └── rosbag2_0.db3
+```
+
+ This output includes rosbag files and .csv files that are in the same format as the files generated on the physical buoy.  In general the information in these two files are the same, the .csv files are in clear text and are easy to inspect, and can be processed by the same tools used for the actual buoy data.  The rosbag files are binary files that encode all of the ROS2 messages on the computer during the simulation.  These files can be processed by a number of tools for post-processing and inspection of results.  It is also possible to load the rosbag files into plotjuggler for plotting and inspection, as described in the [View Messages with Plotjuggler](SimulatorOutputPlotjuggler.md) Tutorial.
