@@ -146,22 +146,22 @@ Configurable gains (scale/retract factor) are applied before output.</p>
 <h3 id="parameters">Parameters</h3>
 <p>Parameters for the controller are:</p>
 <ul>
-<li><code>torque_constant</code>: Motor Torque Constant (N-m/Amp)</li>
-</ul>
-<p>Find motor winding current to apply for desired torque</p>
-<ul>
-<li><code>n_spec</code>: Motor RPM Breakpoints</li>
-</ul>
-<p><code>N</code> (RPM) is the input to the controller and <code>n_spec</code> are the x-components of the breakpoints
+<li><code>torque_constant</code>: Motor Torque Constant (N-m/Amp)<br />
+  Constant to convert desired torque to applied motor winding current
+<br/>
+<br/></li>
+<li><code>n_spec</code>: Motor RPM Breakpoints<br />
+<code>N</code> (RPM) is the input to the controller and <code>n_spec</code> are the x-components of the breakpoints
   (<code>n_spec</code>, <code>torque_spec</code> / <code>torque_constant</code>) for the interpolant,
-  <code>f(n_spec) = torque_spec / torque_constant</code></p>
-<ul>
-<li><code>torque_spec</code>: Desired Motor Torque (N-m) Breakpoints</li>
-</ul>
-<p>Torque (N-m) is the eventual desired output of the controller given an input <code>N</code> (motor RPM) and
+  <code>f(n_spec) = torque_spec / torque_constant</code>
+<br/>
+<br/></li>
+<li><code>torque_spec</code>: Desired Motor Torque (N-m) Breakpoints<br />
+  Torque (N-m) is the eventual desired output of the controller given an input <code>N</code> (motor RPM) and
   <code>torque_spec</code> / <code>torque_constant</code> (Amps) are the y-components of the breakpoints for the
   interpolant. The controller actually outputs motor winding current (Amps) to generate a torque
-  in the opposite direction of piston velocity to generate a damping force.</p>
+  in the opposite direction of piston velocity to generate a damping force.</li>
+</ul>
               
             </div>
           </div><footer>
