@@ -50,12 +50,17 @@ Configurable gains (scale/retract factor) are applied before output.
 Parameters for the controller are:
 
 - `torque_constant`: Motor Torque Constant (N-m/Amp)
+
   Find motor winding current to apply for desired torque
+
 - `n_spec`: Motor RPM Breakpoints
+
   `N` (RPM) is the input to the controller and `n_spec` are the x-components of the breakpoints
   (`n_spec`, `torque_spec` / `torque_constant`) for the interpolant,
   `f(n_spec) = torque_spec / torque_constant`
+
 - `torque_spec`: Desired Motor Torque (N-m) Breakpoints
+
   Torque (N-m) is the eventual desired output of the controller given an input `N` (motor RPM) and
   `torque_spec` / `torque_constant` (Amps) are the y-components of the breakpoints for the
   interpolant. The controller actually outputs motor winding current (Amps) to generate a torque
