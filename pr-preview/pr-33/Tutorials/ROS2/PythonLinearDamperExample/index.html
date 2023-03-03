@@ -353,14 +353,50 @@ current command. Various commands are available, and this time we will be using<
 </code></pre></div></td></tr></table></div>
 <h2 id="try-it-out">Try It Out</h2>
 <p>We will be using <code>ros2 launch</code> and <code>launch/controller.launch.py</code> to run our new controller.</p>
-<p>To run the controller along with the simulation, first source your workspace. Then, launch the
-sim:<br />
+<p>To run the controller along with the simulation, first source your workspace. Then, launch your controller:<br />
+<code>$ ros2 launch mbari_wec_linear_damper_py controller.launch.py</code></p>
+<p>Then, launch the sim:<br />
 <code>$ ros2 launch buoy_gazebo mbari_wec.launch.py</code><br />
 and click the play button.</p>
-<p>Then, launch your controller:<br />
-<code>$ ros2 launch mbari_wec_linear_damper_py controller.launch.py</code></p>
-<p>You should see output similar to </p>
-<div class="highlight"><pre><span></span><code>...
+<p>You should see output similar to:</p>
+<div class="highlight"><pre><span></span><code>[linear_damper-1] [INFO] [1677864397.617058507] [linear_damper]: Found all required services.
+[linear_damper-1] [INFO] [1677864397.618426488] [linear_damper]: ControlPolicy:
+[linear_damper-1]       Torque_constant: 0.438
+[linear_damper-1]       N_Spec: [   0.  300.  600. 1000. 1700. 4400. 6790.]
+[linear_damper-1]       Torque_Spec: [ 0.   0.   0.8  2.9  5.6  9.8 16.6]
+[linear_damper-1]       I_Spec: [ 0.          0.          1.82648402  6.62100457 12.78538813 22.37442922
+[linear_damper-1]  37.89954338]
+[linear_damper-1] [INFO] [1677864197.432679525] [linear_damper]: WindingCurrent: f(4962.91, 1.00, 0.60) = -15.62
+[linear_damper-1] [INFO] [1677864197.532727531] [linear_damper]: WindingCurrent: f(7764.73, 1.00, 0.60) = -22.74
+[linear_damper-1] [INFO] [1677864197.632748699] [linear_damper]: WindingCurrent: f(10504.88, 1.00, 0.60) = -22.74
+[linear_damper-1] [INFO] [1677864197.732851121] [linear_damper]: WindingCurrent: f(11491.33, 1.00, 0.60) = -22.74
+[linear_damper-1] [INFO] [1677864197.833078440] [linear_damper]: WindingCurrent: f(11075.84, 1.00, 0.60) = -22.74
+[linear_damper-1] [INFO] [1677864197.933050356] [linear_damper]: WindingCurrent: f(9546.51, 1.00, 0.60) = -22.74
+[linear_damper-1] [INFO] [1677864198.033185882] [linear_damper]: WindingCurrent: f(7499.68, 1.00, 0.60) = -22.74
+[linear_damper-1] [INFO] [1677864198.133197926] [linear_damper]: WindingCurrent: f(5190.35, 1.00, 0.60) = -16.51
+[linear_damper-1] [INFO] [1677864198.233322713] [linear_damper]: WindingCurrent: f(2353.02, 1.00, 0.60) = -9.06
+[linear_damper-1] [INFO] [1677864198.333507127] [linear_damper]: WindingCurrent: f(-257.59, 1.00, 0.60) = 0.00
+[linear_damper-1] [INFO] [1677864198.433489830] [linear_damper]: WindingCurrent: f(-2185.58, 1.00, 0.60) = 14.51
+[linear_damper-1] [INFO] [1677864198.533538450] [linear_damper]: WindingCurrent: f(-2987.98, 1.00, 0.60) = 17.36
+[linear_damper-1] [INFO] [1677864198.633671249] [linear_damper]: WindingCurrent: f(-3513.15, 1.00, 0.60) = 19.22
+[linear_damper-1] [INFO] [1677864198.733703803] [linear_damper]: WindingCurrent: f(-3738.12, 1.00, 0.60) = 20.02
+[linear_damper-1] [INFO] [1677864198.833889518] [linear_damper]: WindingCurrent: f(-3751.64, 1.00, 0.60) = 20.07
+[linear_damper-1] [INFO] [1677864198.933993414] [linear_damper]: WindingCurrent: f(-3595.71, 1.00, 0.60) = 19.52
+[linear_damper-1] [INFO] [1677864199.034078009] [linear_damper]: WindingCurrent: f(-3306.87, 1.00, 0.60) = 18.49
+[linear_damper-1] [INFO] [1677864199.134273438] [linear_damper]: WindingCurrent: f(-3012.52, 1.00, 0.60) = 17.45
+[linear_damper-1] [INFO] [1677864199.234371669] [linear_damper]: WindingCurrent: f(-2617.97, 1.00, 0.60) = 16.05
+[linear_damper-1] [INFO] [1677864199.334275962] [linear_damper]: WindingCurrent: f(-2269.58, 1.00, 0.60) = 14.81
+[linear_damper-1] [INFO] [1677864199.434369620] [linear_damper]: WindingCurrent: f(-1893.56, 1.00, 0.60) = 13.47
+[linear_damper-1] [INFO] [1677864199.534461914] [linear_damper]: WindingCurrent: f(-1513.34, 1.00, 0.60) = 11.14
+[linear_damper-1] [INFO] [1677864199.634556815] [linear_damper]: WindingCurrent: f(-1128.46, 1.00, 0.60) = 7.75
+[linear_damper-1] [INFO] [1677864199.734798736] [linear_damper]: WindingCurrent: f(-825.91, 1.00, 0.60) = 4.53
+[linear_damper-1] [INFO] [1677864199.834753871] [linear_damper]: WindingCurrent: f(-586.78, 1.00, 0.60) = 1.75
+[linear_damper-1] [INFO] [1677864199.934809041] [linear_damper]: WindingCurrent: f(-393.25, 1.00, 0.60) = 0.57
+[linear_damper-1] [INFO] [1677864200.035109715] [linear_damper]: WindingCurrent: f(-132.04, 1.00, 0.60) = 0.00
+[linear_damper-1] [INFO] [1677864200.134981992] [linear_damper]: WindingCurrent: f(92.19, 1.00, 0.60) = -0.00
+[linear_damper-1] [INFO] [1677864200.235094219] [linear_damper]: WindingCurrent: f(338.10, 1.00, 0.60) = -0.14
+[linear_damper-1] [INFO] [1677864200.335164181] [linear_damper]: WindingCurrent: f(636.96, 1.00, 0.60) = -1.36
+[linear_damper-1] [INFO] [1677864200.435227880] [linear_damper]: WindingCurrent: f(863.33, 1.00, 0.60) = -2.99
 </code></pre></div>
               
             </div>
