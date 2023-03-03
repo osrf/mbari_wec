@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/Tutorials/ROS2/PythonLinearDamperExample/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Quick Start -- Simple Linear Damper Controller (Python) - MBARI-WEC</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Quick Start -- Simple Linear Damper Controller (Python)";
+        var mkdocs_page_input_path = "Tutorials/ROS2/PythonLinearDamperExample.md";
+        var mkdocs_page_url = "/Tutorials/ROS2/PythonLinearDamperExample/";
+      </script>
+    
+    <script src="../../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> MBARI-WEC
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../ControlAndTelemetry/">Buoy Control and Telemetry</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../ros2/">ROS2 Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../simulation/">Simulation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../atseaoperation/">At Sea Operation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/">Tutorials</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../resources/">Resources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../theory/">Theory</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../license/">License</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../citation/">How to Cite</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">MBARI-WEC</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Quick Start -- Simple Linear Damper Controller (Python)</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="quick-start-simple-linear-damper-controller-python">Quick Start -- Simple Linear Damper Controller (Python)</h1>
+<hr />
+<h2 id="prerequisite">Prerequisite</h2>
+<p>This tutorial assumes you have followed the steps from the previous
+<a href="../PythonTemplate/">tutorial</a> on creating and customizing your own Python ROS 2 controller package
+from the <a href="https://github.com/mbari-org/mbari_wec_template_py">mbari_wec_template_py</a> template
+repository.</p>
+<p>To begin, you should have a Python ROS 2 controller package that looks similar to:</p>
+<div class="highlight"><pre><span></span><code>mbari_wec_linear_damper_py
+├── config
+│   └── controller.yaml
+├── CONTRIBUTING.md
+├── launch
+│   └── controller.launch.py
+├── LICENSE
+├── mbari_wec_linear_damper_py
+│   ├── controller.py
+│   ├── __init__.py
+├── package.xml
+├── README.md
+├── resource
+│   └── mbari_wec_linear_damper_py
+├── setup.cfg
+├── setup.py
+└── test
+    ├── test_copyright.py
+    ├── test_flake8.py
+    └── test_pep257.py
+</code></pre></div>
+<p>with the files modified according to the previous tutorial</p>
+<hr />
+<h2 id="linear-damper-controlpolicy">Linear Damper ControlPolicy</h2>
+<p>In this tutorial you will implement a simple linear damper controller for the piston in the WEC
+Power-Take-Off (PTO). Given motor RPM, it outputs desired motor winding current (interpolated from
+RPM-&gt;Torque lookup table) to generate a torque to resist piston velocity with a damping force.
+Configurable gains (scale/retract factor) are applied before output.</p>
+<h3 id="parameters">Parameters</h3>
+<p>Parameters for the controller are:</p>
+<ul>
+<li><code>torque_constant</code>: Motor Torque Constant (N-m/Amp)
+  Find motor winding current to apply for desired torque</li>
+<li><code>n_spec</code>: Motor RPM Breakpoints
+  <code>N</code> (RPM) is the input to the controller and <code>n_spec</code> are the x-components of the breakpoints
+  (<code>n_spec</code>, <code>torque_spec</code> / <code>torque_constant</code>) for the interpolant,
+  <code>f(n_spec) = torque_spec / torque_constant</code></li>
+<li><code>torque_spec</code>: Desired Motor Torque (N-m) Breakpoints
+  Torque (N-m) is the eventual desired output of the controller given an input <code>N</code> (motor RPM) and
+  <code>torque_spec</code> / <code>torque_constant</code> (Amps) are the y-components of the breakpoints for the
+  interpolant. The controller actually outputs motor winding current (Amps) to generate a torque
+  in the opposite direction of piston velocity to generate a damping force.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme_extra.js" defer></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
