@@ -49,7 +49,8 @@ working linear damper controller that is very close to the controller running on
 and simulated buoy.
 
 A full example starting from the template may be found
-[here](https://github.com/mbari-org/mbari_wec_template_py/tree/linear_damper_example).
+[here](https://github.com/mbari-org/mbari_wec_template_py/tree/linear_damper_example). Line numbers
+in this tutorial refer to files in the full example.
 
 ### Parameters
 
@@ -209,6 +210,22 @@ current command. Various commands are available, and this time we will be using
                                f' = {wind_curr:.02f}')
 
         self.send_pc_wind_curr_command(wind_curr, blocking=False)
+```
+
+Finally, let's set the Power Controller's publish rate to the maximum of 50Hz. Uncomment the line
+to set the PC Pack Rate in `Controller.__init__`:
+
+``` py linenums="79" title="mbari_wec_linear_damper_py/controller.py"
+    def __init__(self):
+        super().__init__('linear_damper')
+
+        self.policy = ControlPolicy()
+        self.set_params()
+
+        # set packet rates from controllers here
+        # controller defaults to publishing feedback @ 10Hz
+        # call these to set rate to 50Hz or provide argument for specific rate
+        self.set_pc_pack_rate_param()  # set PC feedback publish rate to 50Hz
 ```
 
 ## Try It Out
