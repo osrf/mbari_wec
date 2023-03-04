@@ -433,11 +433,11 @@ ROS 2 documentation.</p>
 <span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code>  <span class="o">//</span> <span class="n">Update</span> <span class="n">dependent</span> <span class="n">variables</span> <span class="n">after</span> <span class="n">reading</span> <span class="ow">in</span> <span class="n">params</span>
-  <span class="n">void</span> <span class="n">update_params</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="n">bar</span> <span class="o">=</span> <span class="mf">10.0</span><span class="o">*</span><span class="n">foo</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="c1">// Update dependent variables after reading in params</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">update_params</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.0</span><span class="o">*</span><span class="n">foo</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
 <li>Declare/get/update params in the <code>set_params</code> function of the <code>Controller</code> class on line 58</li>
