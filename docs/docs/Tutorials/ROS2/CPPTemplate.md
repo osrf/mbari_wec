@@ -164,8 +164,8 @@ resulting in the following folder structure:
 
 Update the include paths in
 
-- `controller.cpp` (lines 15-16)
-``` cpp linenums="15" hl_lines="1 2" title="src/controller.cpp"
+- `controller.cpp` (lines 18-19)
+``` cpp linenums="18" hl_lines="1 2" title="src/controller.cpp"
 #include <mbari_wec_template_cpp/control_policy.hpp>  // update include path
 #include <mbari_wec_template_cpp/controller.hpp>  // update include path
 ```
