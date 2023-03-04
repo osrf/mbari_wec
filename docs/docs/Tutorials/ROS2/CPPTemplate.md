@@ -264,7 +264,7 @@ struct ControlPolicy
 
 - Set any dependent variables in `update_params` on line 39
 
-``` py linenums="38"
+``` cpp linenums="38"
   // Update dependent variables after reading in params
   void update_params()
   {
