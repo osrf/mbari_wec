@@ -170,8 +170,8 @@ Update the include paths in
 #include <mbari_wec_template_cpp/controller.hpp>  // update include path
 ```
 
-- `control_policy.hpp` (line 15)
-``` cpp linenums="15" hl_lines="1" title="include/your_package_name/control_policy.hpp"
+- `control_policy.hpp` (line 22)
+``` cpp linenums="22" hl_lines="1" title="include/your_package_name/control_policy.hpp"
 #include <mbari_wec_template_cpp/controller.hpp>  // update include path
 ```
 
