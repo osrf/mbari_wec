@@ -250,7 +250,7 @@ struct ControlPolicy
 };
 ```
 
-- declare/define any configurable parameters in the struct and init list
+- Declare/define any configurable parameters in the struct and init list
 
 ``` cpp linenums="27"
   // declare/init any parameter variables here
