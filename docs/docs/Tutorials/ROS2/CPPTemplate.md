@@ -371,7 +371,7 @@ In the `Controller` constructor, you may also uncomment lines 31 or 32 to set th
 the Spring or Power Controllers on the buoy. These controllers default to publishing at 10Hz. You
 can call commands to set the rates anywhere from 10Hz to 50Hz (default argument is 50Hz).
 
-``` cpp linenums="22"
+``` cpp linenums="22" title="src/controller.cpp"
 Controller::Controller(const std::string & node_name)
 : buoy_api::Interface<Controller>(node_name),
   policy_(std::make_unique<ControlPolicy>())
