@@ -343,6 +343,72 @@ can call commands to set the rates anywhere from 10Hz to 50Hz (default argument 
         # self.set_sc_pack_rate_param()  # set PC publish rate to 50Hz
 ```
 
+## Compile, Test, Run
+
+At this point, your new package should build, pass tests, and run against the sim (will connect
+but do nothing).
+
+From your workspace:
+```
+$ colcon build
+Starting >>> mbari_wec_template_py
+--- stderr: mbari_wec_template_py                   
+/usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+---
+Finished <<< mbari_wec_template_py [0.74s]
+
+Summary: 1 package finished [0.89s]
+  1 package had stderr output: mbari_wec_template_py
+```
+
+```
+$ colcon test
+Starting >>> mbari_wec_template_py
+--- stderr: mbari_wec_template_py                   
+
+=============================== warnings summary ===============================
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+  Warning: SelectableGroups dict interface is deprecated. Use select.
+
+-- Docs: https://docs.pytest.org/en/stable/warnings.html
+---
+Finished <<< mbari_wec_template_py [0.74s]
+
+Summary: 1 package finished [0.87s]
+  1 package had stderr output: mbari_wec_template_py
+```
+
+Next, run the sim in another terminal:
+`$ ros2 launch buoy_gazebo mbari_wec.launch.py`
+
+Then, in another terminal, source your workspace, and launch the empty controller:
+```
+$ source ~/buoy_ws/install/local_setup.bash
+$ ros2 launch <your_package_name> controller.launch.py
+```
+
+And you should see something similar to:
+```
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [controller-1]: process started with pid [1409887]
+[controller-1] [INFO] [1678130539.867493131] [controller]: Subscribing to <class 'buoy_interfaces.msg._xb_record.XBRecord'> on '/ahrs_data'
+[controller-1] [INFO] [1678130540.031500810] [controller]: Subscribing to <class 'buoy_interfaces.msg._bc_record.BCRecord'> on '/battery_data'
+[controller-1] [INFO] [1678130540.031972332] [controller]: Subscribing to <class 'buoy_interfaces.msg._sc_record.SCRecord'> on '/spring_data'
+[controller-1] [INFO] [1678130540.032390456] [controller]: Subscribing to <class 'buoy_interfaces.msg._pc_record.PCRecord'> on '/power_data'
+[controller-1] [INFO] [1678130540.032810815] [controller]: Subscribing to <class 'buoy_interfaces.msg._tf_record.TFRecord'> on '/trefoil_data'
+[controller-1] [INFO] [1678130540.033268687] [controller]: Subscribing to <class 'buoy_interfaces.msg._xb_record.XBRecord'> on '/xb_record'
+[controller-1] [INFO] [1678130540.033703510] [controller]: Subscribing to <class 'buoy_interfaces.msg._bc_record.BCRecord'> on '/bc_record'
+[controller-1] [INFO] [1678130540.034091374] [controller]: Subscribing to <class 'buoy_interfaces.msg._sc_record.SCRecord'> on '/sc_record'
+[controller-1] [INFO] [1678130540.034467140] [controller]: Subscribing to <class 'buoy_interfaces.msg._pc_record.PCRecord'> on '/pc_record'
+[controller-1] [INFO] [1678130540.034868686] [controller]: Subscribing to <class 'buoy_interfaces.msg._tf_record.TFRecord'> on '/tf_record'
+[controller-1] [INFO] [1678130540.035298496] [controller]: Subscribing to <class 'buoy_interfaces.msg._pb_record.PBRecord'> on '/powerbuoy_data'
+[controller-1] [INFO] [1678130540.286577653] [controller]: /pc_pack_rate_command not available
+[controller-1] [INFO] [1678130540.537643441] [controller]: /sc_pack_rate_command not available
+[controller-1] [INFO] [1678130540.538230613] [controller]: Found all required services.
+```
+
 ---
 
 ## Example
