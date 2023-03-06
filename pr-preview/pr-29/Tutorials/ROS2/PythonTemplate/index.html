@@ -514,6 +514,61 @@ can call commands to set the rates anywhere from 10Hz to 50Hz (default argument 
         <span class="c1"># self.set_pc_pack_rate_param()  # set SC publish rate to 50Hz</span>
         <span class="c1"># self.set_sc_pack_rate_param()  # set PC publish rate to 50Hz</span>
 </code></pre></div></td></tr></table></div>
+<h2 id="compile-test-run">Compile, Test, Run</h2>
+<p>At this point, your new package should build, pass tests, and run against the sim (will connect
+but do nothing).</p>
+<p>From your workspace:
+<div class="highlight"><pre><span></span><code>$ colcon build
+Starting &gt;&gt;&gt; mbari_wec_template_py
+--- stderr: mbari_wec_template_py                   
+/usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+---
+Finished &lt;&lt;&lt; mbari_wec_template_py [0.74s]
+
+Summary: 1 package finished [0.89s]
+  1 package had stderr output: mbari_wec_template_py
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>$ colcon test
+Starting &gt;&gt;&gt; mbari_wec_template_py
+--- stderr: mbari_wec_template_py                   
+
+=============================== warnings summary ===============================
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+  Warning: SelectableGroups dict interface is deprecated. Use select.
+
+-- Docs: https://docs.pytest.org/en/stable/warnings.html
+---
+Finished &lt;&lt;&lt; mbari_wec_template_py [0.74s]
+
+Summary: 1 package finished [0.87s]
+  1 package had stderr output: mbari_wec_template_py
+</code></pre></div>
+<p>Next, run the sim in another terminal:
+<code>$ ros2 launch buoy_gazebo mbari_wec.launch.py</code></p>
+<p>Then, in another terminal, source your workspace, and launch the empty controller:
+<div class="highlight"><pre><span></span><code>$ source ~/buoy_ws/install/local_setup.bash
+$ ros2 launch &lt;your_package_name&gt; controller.launch.py
+</code></pre></div></p>
+<p>And you should see something similar to:
+<div class="highlight"><pre><span></span><code>[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [controller-1]: process started with pid [1409887]
+[controller-1] [INFO] [1678130539.867493131] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._xb_record.XBRecord&#39;&gt; on &#39;/ahrs_data&#39;
+[controller-1] [INFO] [1678130540.031500810] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._bc_record.BCRecord&#39;&gt; on &#39;/battery_data&#39;
+[controller-1] [INFO] [1678130540.031972332] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._sc_record.SCRecord&#39;&gt; on &#39;/spring_data&#39;
+[controller-1] [INFO] [1678130540.032390456] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._pc_record.PCRecord&#39;&gt; on &#39;/power_data&#39;
+[controller-1] [INFO] [1678130540.032810815] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._tf_record.TFRecord&#39;&gt; on &#39;/trefoil_data&#39;
+[controller-1] [INFO] [1678130540.033268687] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._xb_record.XBRecord&#39;&gt; on &#39;/xb_record&#39;
+[controller-1] [INFO] [1678130540.033703510] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._bc_record.BCRecord&#39;&gt; on &#39;/bc_record&#39;
+[controller-1] [INFO] [1678130540.034091374] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._sc_record.SCRecord&#39;&gt; on &#39;/sc_record&#39;
+[controller-1] [INFO] [1678130540.034467140] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._pc_record.PCRecord&#39;&gt; on &#39;/pc_record&#39;
+[controller-1] [INFO] [1678130540.034868686] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._tf_record.TFRecord&#39;&gt; on &#39;/tf_record&#39;
+[controller-1] [INFO] [1678130540.035298496] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._pb_record.PBRecord&#39;&gt; on &#39;/powerbuoy_data&#39;
+[controller-1] [INFO] [1678130540.286577653] [controller]: /pc_pack_rate_command not available
+[controller-1] [INFO] [1678130540.537643441] [controller]: /sc_pack_rate_command not available
+[controller-1] [INFO] [1678130540.538230613] [controller]: Found all required services.
+</code></pre></div></p>
 <hr />
 <h2 id="example">Example</h2>
 <p>An example using this interface will follow in the next tutorial: <a href="../PythonLinearDamperExample/">Linear Damper Example (Python)</a></p>
