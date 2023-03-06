@@ -39,11 +39,18 @@ button with the text `Use this template` and select `Create a new repository`
 
 2. Next, set up the repository like you would any new GitHub repository choosing the owner,
 repository name, public/private, etc.
+3. Make a ROS 2 workspace
+   ```
+   $ mkdir -p ~/buoy_ws/src
+   $ cd ~/buoy_ws/src
+   ```
+4. Now that your new repository is set up, clone it to your local machine, make a branch, etc.  
+   ```
+   $ git clone https://github.com/<owner>/<repo_name>.git
+   $ cd ~/buoy_ws
+   ```
 
-3. Now that your new repository is set up, clone it to your local machine, make a branch, etc.  
-   `$ git clone https://github.com/<owner>/<repo_name>.git`
-
-You should now have a C++ ROS 2 package with the following structure:
+You should now have a C++ ROS 2 package with the following structure in your workspace `src`:
 
 ```
 <repo_name>
@@ -137,7 +144,7 @@ def generate_launch_description():
     foo: 1.0
 ```
 
-and rename the folder
+and rename the folder:
 
 - `include/mbari_wec_template_cpp` (containing `controller.hpp` and `control_policy.hpp`) to your
   package name
@@ -162,7 +169,7 @@ resulting in the following folder structure:
         └── controller.cpp
 ```
 
-Update the include paths in
+Update the include paths in:
 
 - `controller.cpp` (lines 18-19)
 ``` cpp linenums="18" hl_lines="1 2" title="src/controller.cpp"
@@ -174,18 +181,7 @@ Update the include paths in
 ``` cpp linenums="22" hl_lines="1" title="include/your_package_name/control_policy.hpp"
 #include <mbari_wec_template_cpp/controller.hpp>  // update include path
 ```
-
-Update include guards in
-
-- `controller.hpp`
-``` cpp linenums="15" hl_lines="1 2" title="include/your_package_name/controller.hpp"
-#ifndef YOUR_PACKAGE_NAME__CONTROLLER_HPP_
-#define YOUR_PACKAGE_NAME__CONTROLLER_HPP_
-```
-`...`
-``` cpp linenums="74" hl_lines="1"
-#endif  // YOUR_PACKAGE_NAME__CONTROLLER_HPP_
-```
+Also, update include guards:
 
 - `control_policy.hpp`
 ``` cpp linenums="15" hl_lines="1 2" title="include/your_package_name/control_policy.hpp"
@@ -195,6 +191,16 @@ Update include guards in
 `...`
 ``` cpp linenums="67" hl_lines="1"
 #endif  // YOUR_PACKAGE_NAME__CONTROL_POLICY_HPP_
+```
+
+- `controller.hpp`
+``` cpp linenums="15" hl_lines="1 2" title="include/your_package_name/controller.hpp"
+#ifndef YOUR_PACKAGE_NAME__CONTROLLER_HPP_
+#define YOUR_PACKAGE_NAME__CONTROLLER_HPP_
+```
+`...`
+``` cpp linenums="74" hl_lines="1"
+#endif  // YOUR_PACKAGE_NAME__CONTROLLER_HPP_
 ```
 
 Modify `CMakeLists.txt` as desired and add any dependencies in `package.xml` following standard
@@ -384,6 +390,51 @@ Controller::Controller(const std::string & node_name)
   // this->set_sc_pack_rate_param();  // set SC publish rate to 50Hz
   // this->set_pc_pack_rate_param();  // set PC publish rate to 50Hz
 }
+```
+
+## Compile, Test, Run
+
+At this point, your new package should build, pass tests, and run against the sim (will connect
+but do nothing).
+
+From your workspace:
+```
+$ colcon build
+Starting >>> mbari_wec_template_cpp
+Finished <<< mbari_wec_template_cpp [25.0s]                       
+
+Summary: 1 package finished [25.2s]
+```
+```
+$ colcon test
+Starting >>> mbari_wec_template_cpp
+Finished <<< mbari_wec_template_cpp [1.38s]          
+
+Summary: 1 package finished [1.54s]
+```
+
+Next, run the sim in another terminal:
+`$ ros2 launch buoy_gazebo mbari_wec.launch.py`
+
+Then, in another terminal, source your workspace, and launch the empty controller:
+```
+$ source ~/buoy_ws/install/local_setup.bash
+$ ros2 launch <your_package_name> controller.launch.py
+```
+
+And you should see something similar to:
+```
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [mbari_wec_template_cpp-1]: process started with pid [1297902]
+[mbari_wec_template_cpp-1] [INFO] [1678127525.594948064] [mbari_wec_template_cpp]: Subscribing to XBRecord on '/ahrs_data' and '/xb_record'
+[mbari_wec_template_cpp-1] [INFO] [1678127525.595508167] [mbari_wec_template_cpp]: Subscribing to BCRecord on '/battery_data' and '/bc_record'
+[mbari_wec_template_cpp-1] [INFO] [1678127525.595795098] [mbari_wec_template_cpp]: Subscribing to SCRecord on '/spring_data' and '/sc_record'
+[mbari_wec_template_cpp-1] [INFO] [1678127525.596027219] [mbari_wec_template_cpp]: Subscribing to PCRecord on '/power_data' and '/pc_record'
+[mbari_wec_template_cpp-1] [INFO] [1678127525.596275007] [mbari_wec_template_cpp]: Subscribing to TFRecord on '/trefoil_data' and '/tf_record'
+[mbari_wec_template_cpp-1] [INFO] [1678127525.596593805] [mbari_wec_template_cpp]: Subscribing to PBRecord on '/powerbuoy_data'
+[mbari_wec_template_cpp-1] [INFO] [1678127525.697067297] [mbari_wec_template_cpp]: /pc_pack_rate_command not available
+[mbari_wec_template_cpp-1] [INFO] [1678127525.797309937] [mbari_wec_template_cpp]: /sc_pack_rate_command not available
+[mbari_wec_template_cpp-1] [INFO] [1678127525.797524439] [mbari_wec_template_cpp]: Found all required services.
 ```
 
 ---
