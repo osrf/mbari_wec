@@ -143,12 +143,16 @@ button with the text <code>Use this template</code> and select <code>Create a ne
 <p>Next, set up the repository like you would any new GitHub repository choosing the owner,
 repository name, public/private, etc.</p>
 </li>
-<li>
-<p>Now that your new repository is set up, clone it to your local machine, make a branch, etc.<br />
-<code>$ git clone https://github.com/&lt;owner&gt;/&lt;repo_name&gt;.git</code></p>
-</li>
+<li>Make a ROS 2 workspace
+   <div class="highlight"><pre><span></span><code>$ mkdir -p ~/controller_ws/src
+$ cd ~/controller_ws/src
+</code></pre></div></li>
+<li>Now that your new repository is set up, clone it to your local machine, make a branch, etc.<br />
+   <div class="highlight"><pre><span></span><code>$ git clone https://github.com/&lt;owner&gt;/&lt;repo_name&gt;.git
+$ cd ~/controller_ws
+</code></pre></div></li>
 </ol>
-<p>You should now have a C++ ROS 2 package with the following structure:</p>
+<p>You should now have a C++ ROS 2 package with the following structure in your workspace <code>src</code>:</p>
 <div class="highlight"><pre><span></span><code>&lt;repo_name&gt;
     ├── CMakeLists.txt
     ├── config
@@ -272,7 +276,7 @@ repository name, public/private, etc.</p>
 </span><span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">foo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
 </code></pre></div></td></tr></table></div>
-<p>and rename the folder</p>
+<p>and rename the folder:</p>
 <ul>
 <li><code>include/mbari_wec_template_cpp</code> (containing <code>controller.hpp</code> and <code>control_policy.hpp</code>) to your
   package name</li>
@@ -294,33 +298,23 @@ repository name, public/private, etc.</p>
     └── src
         └── controller.cpp
 </code></pre></div>
-<p>Update the include paths in</p>
+<p>Update the include paths in:</p>
 <ul>
 <li>
-<p><code>controller.cpp</code> (lines 15-16)
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/controller.cpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
-<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mbari_wec_template_cpp/control_policy.hpp&gt;</span><span class="c1">  // update include path</span>
+<p><code>controller.cpp</code> (lines 18-19)
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/controller.cpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mbari_wec_template_cpp/control_policy.hpp&gt;</span><span class="c1">  // update include path</span>
 </span><span class="hll"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mbari_wec_template_cpp/controller.hpp&gt;</span><span class="c1">  // update include path</span>
 </span></code></pre></div></td></tr></table></div></p>
 </li>
 <li>
-<p><code>control_policy.hpp</code> (line 15)
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/control_policy.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mbari_wec_template_cpp/controller.hpp&gt;</span><span class="c1">  // update include path</span>
+<p><code>control_policy.hpp</code> (line 22)
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/control_policy.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mbari_wec_template_cpp/controller.hpp&gt;</span><span class="c1">  // update include path</span>
 </span></code></pre></div></td></tr></table></div></p>
 </li>
 </ul>
-<p>Update include guards in</p>
+<p>Also, update include guards:</p>
 <ul>
-<li>
-<p><code>controller.hpp</code>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/controller.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
-<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#ifndef YOUR_PACKAGE_NAME__CONTROLLER_HPP_</span>
-</span><span class="hll"><span class="cp">#define YOUR_PACKAGE_NAME__CONTROLLER_HPP_</span>
-</span></code></pre></div></td></tr></table></div>
-<code>...</code>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#endif  </span><span class="c1">// YOUR_PACKAGE_NAME__CONTROLLER_HPP_</span>
-</span></code></pre></div></td></tr></table></div></p>
-</li>
 <li>
 <p><code>control_policy.hpp</code>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/control_policy.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
@@ -328,7 +322,17 @@ repository name, public/private, etc.</p>
 </span><span class="hll"><span class="cp">#define YOUR_PACKAGE_NAME__CONTROL_POLICY_HPP_</span>
 </span></code></pre></div></td></tr></table></div>
 <code>...</code>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#endif  </span><span class="c1">// YOUR_PACKAGE_NAME__CONTROL_POLICY_HPP_</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">&#8203</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#endif  </span><span class="c1">// YOUR_PACKAGE_NAME__CONTROL_POLICY_HPP_</span>
+</span></code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p><code>controller.hpp</code>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/controller.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#ifndef YOUR_PACKAGE_NAME__CONTROLLER_HPP_</span>
+</span><span class="hll"><span class="cp">#define YOUR_PACKAGE_NAME__CONTROLLER_HPP_</span>
+</span></code></pre></div></td></tr></table></div>
+<code>...</code>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">&#8203</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#endif  </span><span class="c1">// YOUR_PACKAGE_NAME__CONTROLLER_HPP_</span>
 </span></code></pre></div></td></tr></table></div></p>
 </li>
 </ul>
@@ -345,7 +349,7 @@ ROS 2 documentation.</p>
 <code>config/controller.yaml</code> for any policy parameters.</p>
 <h3 id="controlpolicy">ControlPolicy</h3>
 <p>You may use the struct <code>ControlPolicy</code> in <code>control_policy.hpp</code> to implement your controller.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/control_policy.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
@@ -410,9 +414,9 @@ ROS 2 documentation.</p>
 <span class="p">};</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li>declare/define any configurable parameters in the struct and init list</li>
+<li>Declare/define any configurable parameters in the struct and init list</li>
 </ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/control_policy.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
@@ -429,20 +433,20 @@ ROS 2 documentation.</p>
 <ul>
 <li>Set any dependent variables in <code>update_params</code> on line 39</li>
 </ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/control_policy.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code>  <span class="o">//</span> <span class="n">Update</span> <span class="n">dependent</span> <span class="n">variables</span> <span class="n">after</span> <span class="n">reading</span> <span class="ow">in</span> <span class="n">params</span>
-  <span class="n">void</span> <span class="n">update_params</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="n">bar</span> <span class="o">=</span> <span class="mf">10.0</span><span class="o">*</span><span class="n">foo</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="c1">// Update dependent variables after reading in params</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">update_params</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.0</span><span class="o">*</span><span class="n">foo</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <ul>
 <li>Declare/get/update params in the <code>set_params</code> function of the <code>Controller</code> class on line 58</li>
 </ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">58</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/control_policy.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
@@ -464,7 +468,7 @@ ROS 2 documentation.</p>
 <li>Then, your control logic will go in the <code>target</code> function on line 46.
     Modify the input args as well as the return value as necessary</li>
 </ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/control_policy.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span>
@@ -489,11 +493,11 @@ ROS 2 documentation.</p>
 <span class="w">  </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="controller">Controller</h3>
-<p>The <code>Controller</code> class contains an instance of <code>ControlPolicy</code> as the member variable,
+<p>The <code>Controller</code> class contains an instance of <code>ControlPolicy</code> as the member variable,<br />
 <code>this-&gt;policy</code>. The <code>this-&gt;policy-&gt;target</code> function may be called anywhere within the
 <code>Controller</code> class. You may call it inside any of the data callbacks to enable feedback
 control (for example):</p>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="c1">// To subscribe to any topic, simply declare &amp; define the specific callback, e.g. power_callback</span>
+<div class="highlight"><span class="filename"><span style="margin-left:25%;"><b>(EXAMPLE) include/your_package_name/controller.hpp</b></span></span><pre><span></span><code><span class="w">  </span><span class="c1">// To subscribe to any topic, simply declare &amp; define the specific callback, e.g. power_callback</span>
 
 <span class="w">  </span><span class="c1">// Callback for &#39;/power_data&#39; topic from Power Controller</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">power_callback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">buoy_interfaces</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PCRecord</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
@@ -505,7 +509,7 @@ control (for example):</p>
 <span class="w">  </span><span class="p">}</span>
 </code></pre></div>
 <p>Or, set up a loop in <code>main</code> and run open-loop:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span>
+<div class="highlight"><span class="filename"><span style="margin-left:35%;"><b>(EXAMPLE) src/controller.cpp</b></span></span><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
 
@@ -539,9 +543,11 @@ assign them to class variables.</p>
 <code>this-&gt;send_pc_scale_command(scale_factor);</code><br />
 <code>this-&gt;send_pc_retract_command(retract_factor);</code>  </p>
 <p>In the <code>Controller</code> constructor, you may also uncomment lines 31 or 32 to set the publish rates for
-the Spring or Power Controllers on the buoy. These controllers default to publishing at 10Hz. You
-can call commands to set the rates anywhere from 10Hz to 50Hz (default argument is 50Hz).</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
+the Spring or Power Controllers on the buoy. These controllers default to publishing feedback at
+10Hz to conserve data/bandwidth (on the physical buoy). For feedback control, you have the option
+to increase the publish rate. You can call commands to set the rates anywhere from 10Hz
+to 50Hz (default argument is 50Hz).</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/controller.cpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
@@ -565,6 +571,48 @@ can call commands to set the rates anywhere from 10Hz to 50Hz (default argument 
 <span class="w">  </span><span class="c1">// this-&gt;set_pc_pack_rate_param();  // set PC publish rate to 50Hz</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
+<h2 id="build-test-run">Build, Test, Run</h2>
+<p>At this point, your new package should build, pass tests, and run against the sim (will connect
+but do nothing).</p>
+<p>It is assumed that you have already installed or built the buoy packages.</p>
+<p>From your workspace (e.g. <code>~/controller_ws</code>) build your package:
+<div class="highlight"><pre><span></span><code>$ colcon build
+Starting &gt;&gt;&gt; mbari_wec_template_cpp
+Finished &lt;&lt;&lt; mbari_wec_template_cpp [25.0s]
+
+Summary: 1 package finished [25.2s]
+</code></pre></div>
+You may also build only your new controller package (if you have other packages in the workspace)
+using:<br />
+<code>$ colcon build --packages-up-to &lt;your_package_name&gt;</code></p>
+<p>Then, source and test:
+<div class="highlight"><pre><span></span><code>$ source install/local_setup.bash
+$ colcon test
+Starting &gt;&gt;&gt; mbari_wec_template_cpp
+Finished &lt;&lt;&lt; mbari_wec_template_cpp [1.38s]
+
+Summary: 1 package finished [1.54s]
+</code></pre></div>
+Or, you may test only your new controller package using:<br />
+<code>$ colcon test --packages-select &lt;your_package_name&gt;</code></p>
+<p>Next, in another terminal run the sim (after sourcing the sim packages of course):
+<code>$ ros2 launch buoy_gazebo mbari_wec.launch.py</code></p>
+<p>Now, in the previous terminal, launch the empty controller:
+<div class="highlight"><pre><span></span><code>$ ros2 launch &lt;your_package_name&gt; controller.launch.py
+</code></pre></div></p>
+<p>And you should see something similar to:
+<div class="highlight"><pre><span></span><code>[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [mbari_wec_template_cpp-1]: process started with pid [1297902]
+[mbari_wec_template_cpp-1] [INFO] [1678127525.594948064] [mbari_wec_template_cpp]: Subscribing to XBRecord on &#39;/ahrs_data&#39; and &#39;/xb_record&#39;
+[mbari_wec_template_cpp-1] [INFO] [1678127525.595508167] [mbari_wec_template_cpp]: Subscribing to BCRecord on &#39;/battery_data&#39; and &#39;/bc_record&#39;
+[mbari_wec_template_cpp-1] [INFO] [1678127525.595795098] [mbari_wec_template_cpp]: Subscribing to SCRecord on &#39;/spring_data&#39; and &#39;/sc_record&#39;
+[mbari_wec_template_cpp-1] [INFO] [1678127525.596027219] [mbari_wec_template_cpp]: Subscribing to PCRecord on &#39;/power_data&#39; and &#39;/pc_record&#39;
+[mbari_wec_template_cpp-1] [INFO] [1678127525.596275007] [mbari_wec_template_cpp]: Subscribing to TFRecord on &#39;/trefoil_data&#39; and &#39;/tf_record&#39;
+[mbari_wec_template_cpp-1] [INFO] [1678127525.596593805] [mbari_wec_template_cpp]: Subscribing to PBRecord on &#39;/powerbuoy_data&#39;
+[mbari_wec_template_cpp-1] [INFO] [1678127525.697067297] [mbari_wec_template_cpp]: /pc_pack_rate_command not available
+[mbari_wec_template_cpp-1] [INFO] [1678127525.797309937] [mbari_wec_template_cpp]: /sc_pack_rate_command not available
+[mbari_wec_template_cpp-1] [INFO] [1678127525.797524439] [mbari_wec_template_cpp]: Found all required services.
+</code></pre></div></p>
 <hr />
 <h2 id="example">Example</h2>
 <p>An example using this interface will follow in the next tutorial:
