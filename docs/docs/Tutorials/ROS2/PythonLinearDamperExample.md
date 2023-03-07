@@ -50,7 +50,7 @@ and simulated buoy.
 
 A full example starting from the template may be found
 [here](https://github.com/mbari-org/mbari_wec_template_py/tree/linear_damper_example). Line numbers
-in this tutorial refer to files in the full example.
+in this tutorial corresponds to the lines in relevant files in the full example.
 
 ### Parameters
 
