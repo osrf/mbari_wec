@@ -34,7 +34,7 @@ mbari_wec_linear_damper_py
     └── test_pep257.py
 ```
 
-with the files modified according to the previous tutorial. The package for this tutorial is named
+with the files modified from the previous tutorial. If haven't already, follow the steps in the above mentioned link to create a package for this tutorial named
 `mbari_wec_linear_damper_py`.
 
 ---
