@@ -2,6 +2,15 @@
 
 ---
 
+In this tutorial you will implement a simple linear damper controller for the piston in the WEC
+Power-Take-Off (PTO). Given motor RPM, it outputs desired motor winding current (interpolated from
+RPM->Torque lookup table) to generate a torque to resist piston velocity with a damping force.
+Configurable gains (scale/retract factor) are applied before output. In the end, you will have a
+working linear damper controller that is very close to the controller running on both the physical
+and simulated buoy.
+
+---
+
 ## Prerequisite
 
 This tutorial assumes you have followed the steps from the previous
@@ -34,23 +43,16 @@ mbari_wec_linear_damper_py
     └── test_pep257.py
 ```
 
-with the files modified from the previous tutorial. If haven't already, follow the steps in the above mentioned link to create a package for this tutorial named
-`mbari_wec_linear_damper_py`.
+with the files modified from the previous tutorial. If you haven't already, follow the steps in
+the above mentioned link to create a package for this tutorial named `mbari_wec_linear_damper_py`.
 
 ---
 
 ## Linear Damper ControlPolicy
 
-In this tutorial you will implement a simple linear damper controller for the piston in the WEC
-Power-Take-Off (PTO). Given motor RPM, it outputs desired motor winding current (interpolated from
-RPM->Torque lookup table) to generate a torque to resist piston velocity with a damping force.
-Configurable gains (scale/retract factor) are applied before output. In the end, you will have a
-working linear damper controller that is very close to the controller running on both the physical
-and simulated buoy.
-
-A full example starting from the template may be found
+A complete example starting from the template may be found
 [here](https://github.com/mbari-org/mbari_wec_template_py/tree/linear_damper_example). Line numbers
-in this tutorial corresponds to the lines in relevant files in the full example.
+in this tutorial correspond to the lines in relevant files in the full example.
 
 ### Parameters
 
