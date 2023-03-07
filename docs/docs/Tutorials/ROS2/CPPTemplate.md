@@ -181,6 +181,7 @@ Update the include paths in:
 ``` cpp linenums="22" hl_lines="1" title="include/your_package_name/control_policy.hpp"
 #include <mbari_wec_template_cpp/controller.hpp>  // update include path
 ```
+
 Also, update include guards:
 
 - `control_policy.hpp`
@@ -189,7 +190,7 @@ Also, update include guards:
 #define YOUR_PACKAGE_NAME__CONTROL_POLICY_HPP_
 ```
 `...`
-``` cpp linenums="67" hl_lines="1"
+``` cpp linenums="67" hl_lines="1" title="&#8203"
 #endif  // YOUR_PACKAGE_NAME__CONTROL_POLICY_HPP_
 ```
 
@@ -199,7 +200,7 @@ Also, update include guards:
 #define YOUR_PACKAGE_NAME__CONTROLLER_HPP_
 ```
 `...`
-``` cpp linenums="74" hl_lines="1"
+``` cpp linenums="74" hl_lines="1" title="&#8203"
 #endif  // YOUR_PACKAGE_NAME__CONTROLLER_HPP_
 ```
 
@@ -221,7 +222,7 @@ are stubbed out to implement your custom external controller. You may also use
 
 You may use the struct `ControlPolicy` in `control_policy.hpp` to implement your controller.
 
-``` cpp linenums="25"
+``` cpp linenums="25" title="include/your_package_name/control_policy.hpp"
 struct ControlPolicy
 {
   // declare/init any parameter variables here
@@ -258,7 +259,7 @@ struct ControlPolicy
 
 - Declare/define any configurable parameters in the struct and init list
 
-``` cpp linenums="27"
+``` cpp linenums="27" title="include/your_package_name/control_policy.hpp"
   // declare/init any parameter variables here
   double foo{1.0};
   double bar{10.0*foo};
@@ -270,7 +271,7 @@ struct ControlPolicy
 
 - Set any dependent variables in `update_params` on line 39
 
-``` cpp linenums="38"
+``` cpp linenums="38" title="include/your_package_name/control_policy.hpp"
   // Update dependent variables after reading in params
   void update_params()
   {
@@ -280,7 +281,7 @@ struct ControlPolicy
 
 - Declare/get/update params in the `set_params` function of the `Controller` class on line 58
 
-``` cpp linenums="58"
+``` cpp linenums="58" title="include/your_package_name/control_policy.hpp"
 // Use ROS2 declare_parameter and get_parameter to set policy params
 void Controller::set_params()
 {
@@ -295,7 +296,7 @@ void Controller::set_params()
 - Then, your control logic will go in the `target` function on line 46.
     Modify the input args as well as the return value as necessary
 
-``` cpp linenums="44"
+``` cpp linenums="44" title="include/your_package_name/control_policy.hpp"
   // Modify function inputs as desired
   // Calculate target value from feedback inputs
   double target(
@@ -317,7 +318,7 @@ The `Controller` class contains an instance of `ControlPolicy` as the member var
 `Controller` class. You may call it inside any of the data callbacks to enable feedback
 control (for example):
 
-``` cpp
+``` cpp title='<span style="margin-left:25%;"><b>(EXAMPLE) include/your_package_name/controller.hpp</b></span>'
   // To subscribe to any topic, simply declare & define the specific callback, e.g. power_callback
 
   // Callback for '/power_data' topic from Power Controller
@@ -332,7 +333,7 @@ control (for example):
 
 Or, set up a loop in `main` and run open-loop:
 
-``` cpp
+``` cpp title='<span style="margin-left:35%;"><b>(EXAMPLE) src/controller.cpp</b></span>'
 int main(int argc, char ** argv)
 {
   rclcpp::init(argc, argv);
@@ -374,8 +375,10 @@ You may also send commands from within the `Controller` class:
 `this->send_pc_retract_command(retract_factor);`  
 
 In the `Controller` constructor, you may also uncomment lines 31 or 32 to set the publish rates for
-the Spring or Power Controllers on the buoy. These controllers default to publishing at 10Hz. You
-can call commands to set the rates anywhere from 10Hz to 50Hz (default argument is 50Hz).
+the Spring or Power Controllers on the buoy. These controllers default to publishing feedback at
+10Hz to conserve data/bandwidth (on the physical buoy). For feedback control, you have the option
+to increase the publish rate. You can call commands to set the rates anywhere from 10Hz
+to 50Hz (default argument is 50Hz).
 
 ``` cpp linenums="22" title="src/controller.cpp"
 Controller::Controller(const std::string & node_name)
@@ -401,14 +404,14 @@ From your workspace:
 ```
 $ colcon build
 Starting >>> mbari_wec_template_cpp
-Finished <<< mbari_wec_template_cpp [25.0s]                       
+Finished <<< mbari_wec_template_cpp [25.0s]
 
 Summary: 1 package finished [25.2s]
 ```
 ```
 $ colcon test
 Starting >>> mbari_wec_template_cpp
-Finished <<< mbari_wec_template_cpp [1.38s]          
+Finished <<< mbari_wec_template_cpp [1.38s]
 
 Summary: 1 package finished [1.54s]
 ```
