@@ -310,9 +310,11 @@ $ cd ~/buoy_ws
 <li>
 <p><code>control_policy.hpp</code> (line 22)
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/control_policy.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mbari_wec_template_cpp/controller.hpp&gt;</span><span class="c1">  // update include path</span>
-</span></code></pre></div></td></tr></table></div>
-Also, update include guards:</p>
+</span></code></pre></div></td></tr></table></div></p>
 </li>
+</ul>
+<p>Also, update include guards:</p>
+<ul>
 <li>
 <p><code>control_policy.hpp</code>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/control_policy.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
@@ -320,7 +322,7 @@ Also, update include guards:</p>
 </span><span class="hll"><span class="cp">#define YOUR_PACKAGE_NAME__CONTROL_POLICY_HPP_</span>
 </span></code></pre></div></td></tr></table></div>
 <code>...</code>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#endif  </span><span class="c1">// YOUR_PACKAGE_NAME__CONTROL_POLICY_HPP_</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">&#8203</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#endif  </span><span class="c1">// YOUR_PACKAGE_NAME__CONTROL_POLICY_HPP_</span>
 </span></code></pre></div></td></tr></table></div></p>
 </li>
 <li>
@@ -330,7 +332,7 @@ Also, update include guards:</p>
 </span><span class="hll"><span class="cp">#define YOUR_PACKAGE_NAME__CONTROLLER_HPP_</span>
 </span></code></pre></div></td></tr></table></div>
 <code>...</code>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#endif  </span><span class="c1">// YOUR_PACKAGE_NAME__CONTROLLER_HPP_</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">&#8203</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#endif  </span><span class="c1">// YOUR_PACKAGE_NAME__CONTROLLER_HPP_</span>
 </span></code></pre></div></td></tr></table></div></p>
 </li>
 </ul>
@@ -347,7 +349,7 @@ ROS 2 documentation.</p>
 <code>config/controller.yaml</code> for any policy parameters.</p>
 <h3 id="controlpolicy">ControlPolicy</h3>
 <p>You may use the struct <code>ControlPolicy</code> in <code>control_policy.hpp</code> to implement your controller.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/control_policy.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
@@ -414,7 +416,7 @@ ROS 2 documentation.</p>
 <ul>
 <li>Declare/define any configurable parameters in the struct and init list</li>
 </ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/control_policy.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
@@ -431,7 +433,7 @@ ROS 2 documentation.</p>
 <ul>
 <li>Set any dependent variables in <code>update_params</code> on line 39</li>
 </ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/control_policy.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
@@ -444,7 +446,7 @@ ROS 2 documentation.</p>
 <ul>
 <li>Declare/get/update params in the <code>set_params</code> function of the <code>Controller</code> class on line 58</li>
 </ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">58</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/control_policy.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
@@ -466,7 +468,7 @@ ROS 2 documentation.</p>
 <li>Then, your control logic will go in the <code>target</code> function on line 46.
     Modify the input args as well as the return value as necessary</li>
 </ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">include/your_package_name/control_policy.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span>
@@ -495,7 +497,7 @@ ROS 2 documentation.</p>
 <code>this-&gt;policy</code>. The <code>this-&gt;policy-&gt;target</code> function may be called anywhere within the
 <code>Controller</code> class. You may call it inside any of the data callbacks to enable feedback
 control (for example):</p>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="c1">// To subscribe to any topic, simply declare &amp; define the specific callback, e.g. power_callback</span>
+<div class="highlight"><span class="filename"><span style="margin-left:25%;"><b>(EXAMPLE) include/your_package_name/controller.hpp</b></span></span><pre><span></span><code><span class="w">  </span><span class="c1">// To subscribe to any topic, simply declare &amp; define the specific callback, e.g. power_callback</span>
 
 <span class="w">  </span><span class="c1">// Callback for &#39;/power_data&#39; topic from Power Controller</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">power_callback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">buoy_interfaces</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PCRecord</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
@@ -507,7 +509,7 @@ control (for example):</p>
 <span class="w">  </span><span class="p">}</span>
 </code></pre></div>
 <p>Or, set up a loop in <code>main</code> and run open-loop:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span>
+<div class="highlight"><span class="filename"><span style="margin-left:35%;"><b>(EXAMPLE) src/controller.cpp</b></span></span><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
 
@@ -541,8 +543,10 @@ assign them to class variables.</p>
 <code>this-&gt;send_pc_scale_command(scale_factor);</code><br />
 <code>this-&gt;send_pc_retract_command(retract_factor);</code>  </p>
 <p>In the <code>Controller</code> constructor, you may also uncomment lines 31 or 32 to set the publish rates for
-the Spring or Power Controllers on the buoy. These controllers default to publishing at 10Hz. You
-can call commands to set the rates anywhere from 10Hz to 50Hz (default argument is 50Hz).</p>
+the Spring or Power Controllers on the buoy. These controllers default to publishing feedback at
+10Hz to conserve data/bandwidth (on the physical buoy). For feedback control, you have the option
+to increase the publish rate. You can call commands to set the rates anywhere from 10Hz
+to 50Hz (default argument is 50Hz).</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/controller.cpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
@@ -573,13 +577,13 @@ but do nothing).</p>
 <p>From your workspace:
 <div class="highlight"><pre><span></span><code>$ colcon build
 Starting &gt;&gt;&gt; mbari_wec_template_cpp
-Finished &lt;&lt;&lt; mbari_wec_template_cpp [25.0s]                       
+Finished &lt;&lt;&lt; mbari_wec_template_cpp [25.0s]
 
 Summary: 1 package finished [25.2s]
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>$ colcon test
 Starting &gt;&gt;&gt; mbari_wec_template_cpp
-Finished &lt;&lt;&lt; mbari_wec_template_cpp [1.38s]          
+Finished &lt;&lt;&lt; mbari_wec_template_cpp [1.38s]
 
 Summary: 1 package finished [1.54s]
 </code></pre></div></p>
