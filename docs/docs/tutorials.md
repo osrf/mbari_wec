@@ -15,6 +15,7 @@
 - [Controller GitHub Template (Python)](Tutorials/ROS2/PythonTemplate.md)
 - [Controller GitHub Template (C++)](Tutorials/ROS2/CPPTemplate.md)
 - [Linear Damper Example (Python)](Tutorials/ROS2/PythonLinearDamperExample.md)
+- [Linear Damper Example (C++)](Tutorials/ROS2/CppLinearDamperExample.md)
 - [Open-Loop Control Example](Tutorials/ROS2/OpenLoopControl.md)
 - [Closed-Loop Control Example](Tutorials/ROS2/ClosedLoopControl.md)
 - [Model-Predictive Control Example](Tutorials/ROS2/MPC.md)
