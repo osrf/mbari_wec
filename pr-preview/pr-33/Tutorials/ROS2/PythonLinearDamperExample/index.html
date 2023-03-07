@@ -109,6 +109,13 @@
               
                 <h1 id="quick-start-simple-linear-damper-controller-python">Quick Start -- Simple Linear Damper Controller (Python)</h1>
 <hr />
+<p>In this tutorial you will implement a simple linear damper controller for the piston in the WEC
+Power-Take-Off (PTO). Given motor RPM, it outputs desired motor winding current (interpolated from
+RPM-&gt;Torque lookup table) to generate a torque to resist piston velocity with a damping force.
+Configurable gains (scale/retract factor) are applied before output. In the end, you will have a
+working linear damper controller that is very close to the controller running on both the physical
+and simulated buoy.</p>
+<hr />
 <h2 id="prerequisite">Prerequisite</h2>
 <p>This tutorial assumes you have followed the steps from the previous
 <a href="../PythonTemplate/">tutorial</a> on creating and customizing your own Python ROS 2 controller package
@@ -136,19 +143,13 @@ repository.</p>
     ├── test_flake8.py
     └── test_pep257.py
 </code></pre></div>
-<p>with the files modified from the previous tutorial. If haven't already, follow the steps in the above mentioned link to create a package for this tutorial named
-<code>mbari_wec_linear_damper_py</code>.</p>
+<p>with the files modified from the previous tutorial. If you haven't already, follow the steps in
+the above mentioned link to create a package for this tutorial named <code>mbari_wec_linear_damper_py</code>.</p>
 <hr />
 <h2 id="linear-damper-controlpolicy">Linear Damper ControlPolicy</h2>
-<p>In this tutorial you will implement a simple linear damper controller for the piston in the WEC
-Power-Take-Off (PTO). Given motor RPM, it outputs desired motor winding current (interpolated from
-RPM-&gt;Torque lookup table) to generate a torque to resist piston velocity with a damping force.
-Configurable gains (scale/retract factor) are applied before output. In the end, you will have a
-working linear damper controller that is very close to the controller running on both the physical
-and simulated buoy.</p>
-<p>A full example starting from the template may be found
+<p>A complete example starting from the template may be found
 <a href="https://github.com/mbari-org/mbari_wec_template_py/tree/linear_damper_example">here</a>. Line numbers
-in this tutorial corresponds to the lines in relevant files in the full example.</p>
+in this tutorial correspond to the lines in relevant files in the full example.</p>
 <h3 id="parameters">Parameters</h3>
 <p>Parameters for the controller are:</p>
 <ul>
