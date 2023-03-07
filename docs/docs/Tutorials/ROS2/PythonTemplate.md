@@ -39,9 +39,16 @@ button with the text `Use this template` and select `Create a new repository`
 
 2. Next, set up the repository like you would any new GitHub repository choosing the owner,
 repository name, public/private, etc.
-
-3. Now that your new repository is set up, clone it to your local machine, make a branch, etc.  
-   `$ git clone https://github.com/<owner>/<repo_name>.git`
+3. Make a ROS 2 workspace
+   ```
+   $ mkdir -p ~/controller_ws/src
+   $ cd ~/controller_ws/src
+   ```
+4. Now that your new repository is set up, clone it to your local machine, make a branch, etc.  
+   ```
+   $ git clone https://github.com/<owner>/<repo_name>.git
+   $ cd ~/controller_ws
+   ```
 
 You should now have a Python ROS 2 package with the following structure:
 
@@ -343,16 +350,18 @@ can call commands to set the rates anywhere from 10Hz to 50Hz (default argument 
         # self.set_sc_pack_rate_param()  # set PC publish rate to 50Hz
 ```
 
-## Compile, Test, Run
+## Build, Test, Run
 
 At this point, your new package should build, pass tests, and run against the sim (will connect
 but do nothing).
 
-From your workspace:
+It is assumed that you have already installed or built the buoy packages.
+
+From your workspace (e.g. `~/controller_ws`) build your package:
 ```
 $ colcon build
 Starting >>> mbari_wec_template_py
---- stderr: mbari_wec_template_py                   
+--- stderr: mbari_wec_template_py
 /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
   warnings.warn(
 ---
@@ -361,11 +370,16 @@ Finished <<< mbari_wec_template_py [0.74s]
 Summary: 1 package finished [0.89s]
   1 package had stderr output: mbari_wec_template_py
 ```
+You may also build only your new controller package (if you have other packages in the workspace)
+using:  
+`$ colcon build --packages-up-to <your_package_name>`
 
+Then, source and test:
 ```
+$ source install/local_setup.bash
 $ colcon test
 Starting >>> mbari_wec_template_py
---- stderr: mbari_wec_template_py                   
+--- stderr: mbari_wec_template_py
 
 =============================== warnings summary ===============================
 test/test_flake8.py::test_flake8
@@ -379,13 +393,14 @@ Finished <<< mbari_wec_template_py [0.74s]
 Summary: 1 package finished [0.87s]
   1 package had stderr output: mbari_wec_template_py
 ```
+Or, you may test only your new controller package using:  
+`$ colcon test --packages-select <your_package_name>`
 
-Next, run the sim in another terminal:
+Next, in another terminal run the sim (after sourcing the sim packages of course):
 `$ ros2 launch buoy_gazebo mbari_wec.launch.py`
 
-Then, in another terminal, source your workspace, and launch the empty controller:
+Now, in the previous terminal, launch the empty controller:
 ```
-$ source ~/buoy_ws/install/local_setup.bash
 $ ros2 launch <your_package_name> controller.launch.py
 ```
 

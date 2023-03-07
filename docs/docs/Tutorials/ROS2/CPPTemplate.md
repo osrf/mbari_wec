@@ -41,13 +41,13 @@ button with the text `Use this template` and select `Create a new repository`
 repository name, public/private, etc.
 3. Make a ROS 2 workspace
    ```
-   $ mkdir -p ~/buoy_ws/src
-   $ cd ~/buoy_ws/src
+   $ mkdir -p ~/controller_ws/src
+   $ cd ~/controller_ws/src
    ```
 4. Now that your new repository is set up, clone it to your local machine, make a branch, etc.  
    ```
    $ git clone https://github.com/<owner>/<repo_name>.git
-   $ cd ~/buoy_ws
+   $ cd ~/controller_ws
    ```
 
 You should now have a C++ ROS 2 package with the following structure in your workspace `src`:
@@ -313,7 +313,7 @@ void Controller::set_params()
 
 ### Controller
 
-The `Controller` class contains an instance of `ControlPolicy` as the member variable,
+The `Controller` class contains an instance of `ControlPolicy` as the member variable,  
 `this->policy`. The `this->policy->target` function may be called anywhere within the
 `Controller` class. You may call it inside any of the data callbacks to enable feedback
 control (for example):
@@ -395,12 +395,14 @@ Controller::Controller(const std::string & node_name)
 }
 ```
 
-## Compile, Test, Run
+## Build, Test, Run
 
 At this point, your new package should build, pass tests, and run against the sim (will connect
 but do nothing).
 
-From your workspace:
+It is assumed that you have already installed or built the buoy packages.
+
+From your workspace (e.g. `~/controller_ws`) build your package:
 ```
 $ colcon build
 Starting >>> mbari_wec_template_cpp
@@ -408,20 +410,27 @@ Finished <<< mbari_wec_template_cpp [25.0s]
 
 Summary: 1 package finished [25.2s]
 ```
+You may also build only your new controller package (if you have other packages in the workspace)
+using:  
+`$ colcon build --packages-up-to <your_package_name>`
+
+Then, source and test:
 ```
+$ source install/local_setup.bash
 $ colcon test
 Starting >>> mbari_wec_template_cpp
 Finished <<< mbari_wec_template_cpp [1.38s]
 
 Summary: 1 package finished [1.54s]
 ```
+Or, you may test only your new controller package using:  
+`$ colcon test --packages-select <your_package_name>`
 
-Next, run the sim in another terminal:
+Next, in another terminal run the sim (after sourcing the sim packages of course):
 `$ ros2 launch buoy_gazebo mbari_wec.launch.py`
 
-Then, in another terminal, source your workspace, and launch the empty controller:
+Now, in the previous terminal, launch the empty controller:
 ```
-$ source ~/buoy_ws/install/local_setup.bash
 $ ros2 launch <your_package_name> controller.launch.py
 ```
 
