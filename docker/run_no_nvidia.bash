@@ -59,7 +59,7 @@ then
   DOCKER_OPTS="$DOCKER_OPTS -v $VIMRC:/home/developer/.vimrc:ro"
 fi
 
-# Mabel: Share your custom terminal setup commands
+# Share your custom terminal setup commands
 GITCONFIG=~/.gitconfig
 DOCKER_OPTS="$DOCKER_OPTS -v $GITCONFIG:/home/developer/.gitconfig:ro"
 
