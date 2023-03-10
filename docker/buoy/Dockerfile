@@ -59,6 +59,16 @@ RUN /bin/bash -c 'source /opt/ros/${ROS_DISTRO}/setup.bash \
   && cd ${BUOY_WS} \
   && colcon build'
 
-# TODO: Add a run script under home/$USERNAME/run_simulation.sh to execute ros2 launch
+# Add quick access scripts
+ENV SETUP_SH /home/$USERNAME/setup.bash
+RUN touch ${SETUP_SH} \
+ && chmod 755 ${SETUP_SH} \
+ && echo ". ${BUOY_WS}/install/setup.bash" >> ${SETUP_SH}
+ENV RUN_SH /home/$USERNAME/run_simulation.bash
+RUN touch ${RUN_SH} \
+ && chmod 755 ${RUN_SH} \
+ && echo ". ${BUOY_WS}/install/setup.bash" >> ${RUN_SH} \
+ && echo "ros2 launch buoy_gazebo mbari_wec.launch.py" >> ${RUN_SH}
 
+# Start the container at a bash prompt
 ENTRYPOINT ["/bin/bash" , "-c" , "source ${BUOY_WS}/install/setup.bash && /bin/bash"]
