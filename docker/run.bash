@@ -20,7 +20,6 @@
 # Runs a docker container with the image created by build.bash
 # Requires:
 #   docker
-#   nvidia-docker
 #   an X server
 # Optional:
 #   A joystick mounted to /dev/input/js0 or /dev/input/js1
@@ -30,6 +29,8 @@ then
     echo "Usage: $0 <docker image> [<dir with workspace> ...]"
     exit 1
 fi
+
+DOCKER_OPTS=
 
 IMG=$(basename $1)
 
@@ -50,8 +51,6 @@ then
     fi
     chmod a+r $XAUTH
 fi
-
-DOCKER_OPTS=
 
 # Share your vim settings.
 VIMRC=~/.vimrc
@@ -82,6 +81,7 @@ done
 # -v "/opt/sublime_text:/opt/sublime_text" \
 
 # --ipc=host and --network=host are needed for no-NVIDIA Dockerfile to work
+# If need NVIDIA, add --runtime=nvidia
 docker run -it \
   -e DISPLAY \
   -e QT_X11_NO_MITSHM=1 \
@@ -92,7 +92,6 @@ docker run -it \
   -v "/dev/input:/dev/input" \
   --privileged \
   --rm \
-  --runtime=nvidia \
   --security-opt seccomp=unconfined \
   --ipc=host \
   --network=host \
