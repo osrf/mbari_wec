@@ -4,9 +4,9 @@ nav:
   - Home: index.md
   - Architecture: architecture.md
   - Buoy Control and Telemetry: ControlAndTelemetry.md
-  - ROS2 Interface: ros2.md
-  - Simulation: simulation.md
   - At Sea Operation: atseaoperation.md
+  - ROS 2 Interface: ros2.md
+  - Simulation: simulation.md
   - Tutorials: tutorials.md
   - Theory: theory.md
   - Resources: resources.md
