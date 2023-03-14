@@ -53,15 +53,15 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../ros2/">ROS2 Interface</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../../atseaoperation/">At Sea Operation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../ros2/">ROS 2 Interface</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../simulation/">Simulation</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../atseaoperation/">At Sea Operation</a>
                 </li>
               </ul>
               <ul>
@@ -147,10 +147,14 @@ button with the text <code>Use this template</code> and select <code>Create a ne
 <p>Next, set up the repository like you would any new GitHub repository choosing the owner,
 repository name, public/private, etc.</p>
 </li>
-<li>
-<p>Now that your new repository is set up, clone it to your local machine, make a branch, etc.<br />
-<code>$ git clone https://github.com/&lt;owner&gt;/&lt;repo_name&gt;.git</code></p>
-</li>
+<li>Make a ROS 2 workspace
+   <div class="highlight"><pre><span></span><code>$ mkdir -p ~/controller_ws/src
+$ cd ~/controller_ws/src
+</code></pre></div></li>
+<li>Now that your new repository is set up, clone it to your local machine, make a branch, etc.<br />
+   <div class="highlight"><pre><span></span><code>$ git clone https://github.com/&lt;owner&gt;/&lt;repo_name&gt;.git
+$ cd ~/controller_ws
+</code></pre></div></li>
 </ol>
 <p>You should now have a Python ROS 2 package with the following structure:</p>
 <div class="highlight"><pre><span></span><code>&lt;repo_name&gt;
@@ -493,6 +497,93 @@ assign them to class variables.</p>
 <code>self.send_pc_bias_curr_command(bias_curr_amps, blocking=False)</code><br />
 <code>self.send_pc_scale_command(scale_factor, blocking=False)</code><br />
 <code>self.send_pc_retract_command(retract_factor, blocking=False)</code>  </p>
+<p>In the <code>Controller</code> constructor, you may also uncomment lines 55 or 56 to set the publish rates for
+the Spring or Power Controllers on the buoy. These controllers default to publishing at 10Hz. You
+can call commands to set the rates anywhere from 10Hz to 50Hz (default argument is 50Hz).</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;controller&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">policy</span> <span class="o">=</span> <span class="n">ControlPolicy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_params</span><span class="p">()</span>
+
+        <span class="c1"># set packet rates from controllers here</span>
+        <span class="c1"># controller defaults to publishing @ 10Hz</span>
+        <span class="c1"># call these to set rate to 50Hz or provide argument for specific rate</span>
+        <span class="c1"># self.set_pc_pack_rate_param()  # set SC publish rate to 50Hz</span>
+        <span class="c1"># self.set_sc_pack_rate_param()  # set PC publish rate to 50Hz</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="build-test-run">Build, Test, Run</h2>
+<p>At this point, your new package should build, pass tests, and run against the sim (will connect
+but do nothing).</p>
+<p>It is assumed that you have already installed or built the buoy packages.</p>
+<p>From your workspace (e.g. <code>~/controller_ws</code>) build your package:
+<div class="highlight"><pre><span></span><code>$ colcon build
+Starting &gt;&gt;&gt; mbari_wec_template_py
+--- stderr: mbari_wec_template_py
+/usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+---
+Finished &lt;&lt;&lt; mbari_wec_template_py [0.74s]
+
+Summary: 1 package finished [0.89s]
+  1 package had stderr output: mbari_wec_template_py
+</code></pre></div>
+You may also build only your new controller package (if you have other packages in the workspace)
+using:<br />
+<code>$ colcon build --packages-up-to &lt;your_package_name&gt;</code></p>
+<p>Then, source and test:
+<div class="highlight"><pre><span></span><code>$ source install/local_setup.bash
+$ colcon test
+Starting &gt;&gt;&gt; mbari_wec_template_py
+--- stderr: mbari_wec_template_py
+
+=============================== warnings summary ===============================
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+  Warning: SelectableGroups dict interface is deprecated. Use select.
+
+-- Docs: https://docs.pytest.org/en/stable/warnings.html
+---
+Finished &lt;&lt;&lt; mbari_wec_template_py [0.74s]
+
+Summary: 1 package finished [0.87s]
+  1 package had stderr output: mbari_wec_template_py
+</code></pre></div>
+Or, you may test only your new controller package using:<br />
+<code>$ colcon test --packages-select &lt;your_package_name&gt;</code></p>
+<p>Next, in another terminal run the sim (after sourcing the sim packages of course):
+<code>$ ros2 launch buoy_gazebo mbari_wec.launch.py</code></p>
+<p>Now, in the previous terminal, launch the empty controller:
+<div class="highlight"><pre><span></span><code>$ ros2 launch &lt;your_package_name&gt; controller.launch.py
+</code></pre></div></p>
+<p>And you should see something similar to:
+<div class="highlight"><pre><span></span><code>[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [controller-1]: process started with pid [1409887]
+[controller-1] [INFO] [1678130539.867493131] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._xb_record.XBRecord&#39;&gt; on &#39;/ahrs_data&#39;
+[controller-1] [INFO] [1678130540.031500810] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._bc_record.BCRecord&#39;&gt; on &#39;/battery_data&#39;
+[controller-1] [INFO] [1678130540.031972332] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._sc_record.SCRecord&#39;&gt; on &#39;/spring_data&#39;
+[controller-1] [INFO] [1678130540.032390456] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._pc_record.PCRecord&#39;&gt; on &#39;/power_data&#39;
+[controller-1] [INFO] [1678130540.032810815] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._tf_record.TFRecord&#39;&gt; on &#39;/trefoil_data&#39;
+[controller-1] [INFO] [1678130540.033268687] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._xb_record.XBRecord&#39;&gt; on &#39;/xb_record&#39;
+[controller-1] [INFO] [1678130540.033703510] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._bc_record.BCRecord&#39;&gt; on &#39;/bc_record&#39;
+[controller-1] [INFO] [1678130540.034091374] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._sc_record.SCRecord&#39;&gt; on &#39;/sc_record&#39;
+[controller-1] [INFO] [1678130540.034467140] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._pc_record.PCRecord&#39;&gt; on &#39;/pc_record&#39;
+[controller-1] [INFO] [1678130540.034868686] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._tf_record.TFRecord&#39;&gt; on &#39;/tf_record&#39;
+[controller-1] [INFO] [1678130540.035298496] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._pb_record.PBRecord&#39;&gt; on &#39;/powerbuoy_data&#39;
+[controller-1] [INFO] [1678130540.286577653] [controller]: /pc_pack_rate_command not available
+[controller-1] [INFO] [1678130540.537643441] [controller]: /sc_pack_rate_command not available
+[controller-1] [INFO] [1678130540.538230613] [controller]: Found all required services.
+</code></pre></div></p>
 <hr />
 <h2 id="example">Example</h2>
 <p>An example using this interface will follow in the next tutorial: <a href="../PythonLinearDamperExample/">Linear Damper Example (Python)</a></p>

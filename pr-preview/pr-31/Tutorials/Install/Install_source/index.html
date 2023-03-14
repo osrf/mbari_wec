@@ -53,15 +53,15 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../ros2/">ROS2 Interface</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../../atseaoperation/">At Sea Operation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../ros2/">ROS 2 Interface</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../simulation/">Simulation</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../atseaoperation/">At Sea Operation</a>
                 </li>
               </ul>
               <ul>
@@ -111,7 +111,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h5 id="install-requirements">Install Requirements</h5>
+                <h2 id="install-requirements">Install Requirements</h2>
 <p>Use Ubuntu 22.04.</p>
 <ol>
 <li>Install <a href="https://docs.ros.org/en/humble/index.html">ROS 2 Humble</a></li>
@@ -130,7 +130,7 @@ export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 </ol>
 <div class="highlight"><pre><span></span><code>$ sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
 </code></pre></div>
-<h5 id="buoy-simulation-software-build">Buoy Simulation Software Build</h5>
+<h2 id="buoy-simulation-software-build">Buoy Simulation Software Build</h2>
 <ol>
 <li>Create a workspace, for example:</li>
 </ol>
@@ -166,7 +166,7 @@ $ cd ~/buoy_ws
 $ colcon build
 </code></pre></div>
 <p>The simulation software should build without errors.  To run and test, proceed to the <a href="../../../tutorials/#running-the-simulator">Run the Simulator</a> tutorial series.  Or run a quick test as described below to confirm all has worked as expected.</p>
-<h5 id="run-an-example-to-test">Run an example to test</h5>
+<h2 id="run-an-example-to-test">Run an example to test</h2>
 <ol>
 <li>In a new terminal, source the workspace</li>
 </ol>

@@ -53,15 +53,15 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ros2/">ROS2 Interface</a>
+                <li class="toctree-l1"><a class="reference internal" href="../atseaoperation/">At Sea Operation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ros2/">ROS 2 Interface</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../simulation/">Simulation</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../atseaoperation/">At Sea Operation</a>
                 </li>
               </ul>
               <ul>
@@ -252,8 +252,8 @@ Also, the description below includes alternative notation for added mass, e.g.  
 <td align="center">
 <script type="math/tex">X_{\dot{q}}</script>
 </td>
-<td align="left">Surge-Pitch Added Mass, origin at pivot (<script type="math/tex">\mu_{xq}</script>)</td>
-<td align="center">370</td>
+<td align="left">Surge-Pitch Added Mass, origin at c.m. (<script type="math/tex">\mu_{xq}</script>)</td>
+<td align="center">150</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -268,8 +268,8 @@ Also, the description below includes alternative notation for added mass, e.g.  
 <td align="center">
 <script type="math/tex">Y_{\dot{p}}</script>
 </td>
-<td align="left">Sway-Roll Added Mass, origin at pivot (<script type="math/tex">\mu_{yp}</script>)</td>
-<td align="center">-370</td>
+<td align="left">Sway-Roll Added Mass, origin at c.m. (<script type="math/tex">\mu_{yp}</script>)</td>
+<td align="center">-150</td>
 <td align="center">kg</td>
 </tr>
 <tr>
@@ -284,8 +284,8 @@ Also, the description below includes alternative notation for added mass, e.g.  
 <td align="center">
 <script type="math/tex">K_{\dot{p}}</script>
 </td>
-<td align="left">Roll Added Mass MOI, origin at pivot (<script type="math/tex">\mu_{pp}</script>)</td>
-<td align="center">780</td>
+<td align="left">Roll Added Mass MOI, origin at c.m. (<script type="math/tex">\mu_{pp}</script>)</td>
+<td align="center">330</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -293,8 +293,8 @@ Also, the description below includes alternative notation for added mass, e.g.  
 <td align="center">
 <script type="math/tex">M_{\dot{q}}</script>
 </td>
-<td align="left">Pitch Added Mass MOI, origin at pivot (<script type="math/tex">\mu_{qq}</script>)</td>
-<td align="center">780</td>
+<td align="left">Pitch Added Mass MOI, origin at c.m. (<script type="math/tex">\mu_{qq}</script>)</td>
+<td align="center">330</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -354,9 +354,9 @@ Also, the description below includes alternative notation for added mass, e.g.  
 <ul>
 <li>Buoy Link Frame is located at base of the buoy bridle at the pivot.</li>
 <li>Unspecified stability derivative values (<script type="math/tex">M_{\dot{r}}</script>, <script type="math/tex">X_{uv}</script>, <script type="math/tex">Y_{vu}</script>, etc) are zero. </li>
-<li>Added mass moments of inertia  and stability derivatives are all specified about the link frame origin, i.e. the pivot.</li>
-<li>Mass moments of inertia are specified about the center of mass.</li>
-<li>Added mass values are infinite frequency.</li>
+<li>Stability derivatives are specified about the link frame origin, i.e. the pivot.</li>
+<li>Mass-moments of inertia and added-mass-moments of inertia are specified about the center of mass.</li>
+<li>Added-mass values are infinite frequency.</li>
 <li>Free-Surface Hydrodynamic Coefficients and Impulse Response Functions can be found <a href="https://www.google.com/") target="_blank">here</a>:</li>
 </ul>
 <h3 id="power-take-off-device">Power Take-Off Device</h3>
@@ -440,27 +440,11 @@ Also, the description below includes alternative notation for added mass, e.g.  
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">X_{\dot{q}}</script>
-</td>
-<td align="left">Surge-Pitch Added Mass MOI (<script type="math/tex">\mu_{xq}</script>)</td>
-<td align="center">1250</td>
-<td align="center">kg m</td>
-</tr>
-<tr>
-<td align="center">
 <script type="math/tex">Y_{\dot{v}}</script>
 </td>
 <td align="left">Sway Added Mass (<script type="math/tex">\mu_{yy}</script>)</td>
 <td align="center">310</td>
 <td align="center">kg</td>
-</tr>
-<tr>
-<td align="center">
-<script type="math/tex">Y_{\dot{p}}</script>
-</td>
-<td align="left">Sway-Roll Added Mass MOI (<script type="math/tex">\mu_{yp}</script>)</td>
-<td align="center">-1250</td>
-<td align="center">kg m</td>
 </tr>
 <tr>
 <td align="center">
@@ -475,7 +459,7 @@ Also, the description below includes alternative notation for added mass, e.g.  
 <script type="math/tex">K_{\dot{p}}</script>
 </td>
 <td align="left">Roll Added Mass MOI  (<script type="math/tex">\mu_{pp}</script>)</td>
-<td align="center">7040</td>
+<td align="center">2030</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -484,7 +468,7 @@ Also, the description below includes alternative notation for added mass, e.g.  
 <script type="math/tex">M_{\dot{q}}</script>
 </td>
 <td align="left">Pitch Added Mass MOI (<script type="math/tex">\mu_{qq}</script>)</td>
-<td align="center">7040</td>
+<td align="center">2030</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -523,7 +507,7 @@ Also, the description below includes alternative notation for added mass, e.g.  
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">M_{p\mid p \mid}</script>
+<script type="math/tex">M_{q\mid q \mid}</script>
 </td>
 <td align="left">Pitch Quadratic Drag</td>
 <td align="center">-195400</td>
@@ -544,8 +528,8 @@ Also, the description below includes alternative notation for added mass, e.g.  
 <ul>
 <li>PTO Link Frame is located at top attachment of the PTO (where connects to the buoy).</li>
 <li>Unspecified stability derivative values (<script type="math/tex">M_{\dot{r}}</script>, <script type="math/tex">X_{uv}</script>, <script type="math/tex">Y_{vu}</script>, etc) are zero. </li>
-<li>Added mass moments of inertia and stability derivatives are all specified about the link frame origin.</li>
-<li>Mass moments of inertia are specified about the center of mass.</li>
+<li>Stability derivatives are specified about the link frame origin, i.e. the pivot.</li>
+<li>Mass-moments of inertia and added-mass-moments of inertia are specified about the center of mass.</li>
 </ul>
 <h3 id="piston">Piston</h3>
 <table>
@@ -688,14 +672,6 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 </tr>
 <tr>
 <td align="center">
-<script type="math/tex">X_{\dot{q}}</script>
-</td>
-<td align="left">Surge-Pitch Added Mass MOI (<script type="math/tex">\mu_{xq}</script>)</td>
-<td align="center">900</td>
-<td align="center">kg m</td>
-</tr>
-<tr>
-<td align="center">
 <script type="math/tex">Y_{\dot{v}}</script>
 </td>
 <td align="left">Sway Added Mass (<script type="math/tex">\mu_{yy}</script>)</td>
@@ -731,7 +707,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <script type="math/tex">K_{\dot{p}}</script>
 </td>
 <td align="left">Roll Added Mass MOI (<script type="math/tex">\mu_{pp}</script>)</td>
-<td align="center">3990</td>
+<td align="center">2870</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -740,7 +716,7 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <script type="math/tex">M_{\dot{q}}</script>
 </td>
 <td align="left">Pitch Added Mass MOI(<script type="math/tex">\mu_{qq}</script>)</td>
-<td align="center">3990</td>
+<td align="center">2870</td>
 <td align="center">kg m<script type="math/tex">^2</script>
 </td>
 </tr>
@@ -817,8 +793,8 @@ no buoyancy, added mass, or quadratic fluid drag.</li>
 <ul>
 <li>Heave-Cone Link Frame is located at top attachment of the Heave Cone (where it connects to the tether).</li>
 <li>Unspecified stability derivative values (<script type="math/tex">M_{\dot{r}}</script>, <script type="math/tex">X_{uv}</script>, <script type="math/tex">Y_{vu}</script>, etc) are zero. </li>
-<li>Added mass moments of inertia and stability derivatives are all specified about the link frame origin.</li>
-<li>Mass moments of inertia are specified about the center of mass.</li>
+<li>Stability derivatives are specified about the link frame origin, i.e. the pivot.</li>
+<li>Mass-moments of inertia and added-mass-moments of inertia are specified about the center of mass.</li>
 </ul>
 <hr />
 <h2 id="electro-hydraulic-pto-forces">Electro-Hydraulic PTO Forces</h2>

@@ -53,15 +53,15 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../ros2/">ROS2 Interface</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../../atseaoperation/">At Sea Operation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../ros2/">ROS 2 Interface</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../simulation/">Simulation</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../atseaoperation/">At Sea Operation</a>
                 </li>
               </ul>
               <ul>
@@ -111,7 +111,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>"<a href="https://www.plotjuggler.io/">PlotJuggler</a>" is a plotting program that includes support for ROS2 messages, and allows real-time plotting of data from ROS2 messages while the simulator runs, as well as plotting of logged data.  </p>
+                <p>"<a href="https://www.plotjuggler.io/">PlotJuggler</a>" is a plotting program that includes support for ROS 2 messages, and allows real-time plotting of data from ROS 2 messages while the simulator runs, as well as plotting of logged data.  </p>
+<h2 id="installation-and-running">Installation and Running</h2>
 <ul>
 <li>
 <p>To install, see instructions <a href="https://index.ros.org/p/plotjuggler/">here</a>.  If using the supplied docker images, this step is not necessary as the software is already installed.</p>
@@ -123,12 +124,13 @@
 <div class="highlight"><pre><span></span><code>$ ros2 run plotjuggler plotjuggler 
 </code></pre></div>
 <ul>
-<li>After an entertaining splash-screen, a blank PlotJuggler screen will appear. Under "Streaming" (upper left, second item below "File"), select the "ROS2 Topic Subscriber" option and click "Start".  A new window will appear showing the ROS2 topics available on the system.  Note that the Gazebo Simulator of the buoy must be running for the ROS2 topics that contain the buoy data to be present.</li>
+<li>After an entertaining splash-screen, a blank PlotJuggler screen will appear. Under "Streaming" (upper left, second item below "File"), select the "ROS 2 Topic Subscriber" option and click "Start".  A new window will appear showing the ROS 2 topics available on the system.  Note that the Gazebo Simulator of the buoy must be running for the ROS 2 topics that contain the buoy data to be present.</li>
 </ul>
-<p>Select the /arhs_data, /power_data, /spring_data, battery_data, heavecone_data and /xb_data topics and click "OK"</p>
+<h2 id="plotting-wave-energy-converter-data">Plotting Wave Energy Converter Data</h2>
+<p>In the window on the left that shows the available topics, select the /arhs_data, /power_data, /spring_data, battery_data, heavecone_data and /xb_data topics and click "OK".  Note that for these topics to be available, the simulation needs to be running.</p>
 <ul>
 <li>
-<p>The selected topics will appear in the "Timeseries List" window, and selecting the carot to the left of each topic will expand them and show the data that can be plotted.  Note that these topics and data are the same as are visible using the <code>$ ros2 topic list</code> and <code>$ ros2 topic echo</code> commands from the command-line.</p>
+<p>The selected topics will appear in the "Timeseries List" window, and selecting the carrot to the left of each topic will expand them and show the data that can be plotted.  Note that these topics and data are the same as are visible using the <code>$ ros2 topic list</code> and <code>$ ros2 topic echo</code> commands from the command-line.</p>
 </li>
 <li>
 <p>Dragging any data item into the plot field on the right will plot that data on a scrolling graph. The time-extent of the graph can be changed using the "Buffer" text-box under the "Streaming" box in the upper left.  Graphs can be split horizontally and vertically to make room for more data items, see <a href="https://facontidavide.github.io/PlotJuggler/visualization_howto/index.html">this</a> guide for information on manipulating the PlotJuggler windows.  </p>
