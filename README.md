@@ -65,7 +65,7 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
     sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
     ```
 
-##### Usage
+##### Build
 
 1. Create a workspace, for example:
 
@@ -106,17 +106,6 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
     colcon build
     ```
 
-##### Run
-
-1. In a new terminal, source the workspace
-
-    `. ~/buoy_ws/install/setup.sh`
-
-1. Launch the simulation
-
-    `ros2 launch buoy_gazebo mbari_wec.launch.py`
-
-
 ### Using docker
 ##### Requirements
 
@@ -126,34 +115,37 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
 
 1. Complete the [Linux Postinstall steps](https://docs.docker.com/engine/install/linux-postinstall/) to allow you to manage Docker as a non-root user.
 
-1. Install `rocker` by `sudo apt-get install python3-rocker`.
-
-##### Usage
+##### Build
 
 1. Clone the buoy_entrypoint repository to download the latest Dockerfile.
 
-    ```
-    git clone https://github.com/osrf/buoy_entrypoint.git
-    cd ~/buoy_entrypoint/docker/
-    ```
+   ```
+   git clone https://github.com/osrf/buoy_entrypoint.git
+   cd ~/buoy_entrypoint/docker/
+   ```
 
 1. Build the docker image
 
-    ```
-    ./build.bash buoy
-    ```
+   If you have an NVIDIA graphics card
+   ```
+   ./build.bash nvidia_opengl_ubuntu22
+   ./build.bash buoy
+   ```
+   Otherwise
+   ```
+   ./build.bash buoy --no-nvidia
+   ```
 
 1. Run the container
 
-    ```
-    ./run.bash [-d|s] buoy:latest
-    ```
-    where `./run.bash` option:
-    * -d     Use for development with host system volume mount
-    * -s     Simulation purposes only
-
-    The development use case enables to either use host system home directory for user's custom workspace, or a fresh clone inside the docker container. If using host system workspace, follow the [On Host System](#on-host-system) instructions to build and run the project in the container.
-    Regardless the script option, project source files can be found in `/tmp/buoy_ws/' in the container. Note that any changes to files in the container will have limited scope.
+   If you have an NVIDIA graphics card
+   ```
+   ./run.bash buoy
+   ```
+   Otherwise
+   ```
+   ./run.bash buoy --no-nvidia
+   ```
 
 1. To have another window running the same docker container, run this command in a new terminal:
 
@@ -161,12 +153,26 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
    ./join.bash buoy_latest_runtime
    ```
 
-> The build and run bash scripts are a wrapper around rocker, checkout its [documentation](https://github.com/osrf/rocker) for additional options.
+##### Quick start
 
-##### Run
+Quick start scripts are provided in the home directory:
 
-Inside the docker container, run:
-
+This sources the compiled workspace:
 ```
-gz sim mbari_wec.sdf -r
+./setup.bash
 ```
+
+This sources the compiled workspace and launches the simulation:
+```
+./run_simulation.bash
+```
+
+## Run
+
+1. In a new terminal (whether on host machine or in Docker container), source the workspace
+
+    `. ~/buoy_ws/install/setup.sh`
+
+1. Launch the simulation
+
+    `ros2 launch buoy_gazebo mbari_wec.launch.py`

@@ -22,6 +22,7 @@
 #   docker
 #   an X server
 # Optional:
+#   nvidia-docker
 #   A joystick mounted to /dev/input/js0 or /dev/input/js1
 
 if [ $# -lt 1 ]
@@ -30,7 +31,29 @@ then
     exit 1
 fi
 
-DOCKER_OPTS=
+# Default to NVIDIA
+DOCKER_OPTS="--runtime=nvidia"
+
+# Parse and remove args
+PARAMS=""
+while (( "$#" )); do
+  case "$1" in
+    --no-nvidia)
+        DOCKER_OPTS=""
+      shift
+      ;;
+    -*|--*=) # unsupported flags
+      echo "Error: Unsupported flag $1" >&2
+      exit 1
+      ;;
+    *) # preserve positional arguments
+      PARAMS="$PARAMS $1"
+      shift
+      ;;
+  esac
+done
+# set positional arguments in their proper place
+eval set -- "$PARAMS"
 
 IMG=$(basename $1)
 
@@ -45,6 +68,7 @@ then
     xauth_list=$(xauth nlist $DISPLAY | sed -e 's/^..../ffff/')
     if [ ! -z "$xauth_list" ]
     then
+        touch $XAUTH
         echo $xauth_list | xauth -f $XAUTH nmerge -
     else
         touch $XAUTH
@@ -59,7 +83,7 @@ then
   DOCKER_OPTS="$DOCKER_OPTS -v $VIMRC:/home/developer/.vimrc:ro"
 fi
 
-# Mabel: Share your custom terminal setup commands
+# Share your custom terminal setup commands
 GITCONFIG=~/.gitconfig
 DOCKER_OPTS="$DOCKER_OPTS -v $GITCONFIG:/home/developer/.gitconfig:ro"
 
@@ -81,7 +105,6 @@ done
 # -v "/opt/sublime_text:/opt/sublime_text" \
 
 # --ipc=host and --network=host are needed for no-NVIDIA Dockerfile to work
-# If need NVIDIA, add --runtime=nvidia
 docker run -it \
   -e DISPLAY \
   -e QT_X11_NO_MITSHM=1 \

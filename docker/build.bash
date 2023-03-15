@@ -19,14 +19,46 @@
 
 # Builds a Docker image.
 
-if [ $# -lt 1 ]
+# No arg
+if [ $# -eq 0 ]
 then
-    echo "Usage: $0 <name of Dockerfile>"
+    echo "Usage: $0 directory-name"
     exit 1
 fi
 
-# get path to current directory
+# Get path to current directory
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Default base image, defined in nvidia_opengl_ubuntu22/Dockerfile
+
+# Ubuntu with nvidia-docker2 beta opengl support, i.e.
+# nvidia/opengl:1.0-glvnd-devel-ubuntu22.04, doesn't exist for Ubuntu 22.04
+# at time of writing. Use homebrewed version in ./nvidia_opengl_ubuntu22/.
+# https://hub.docker.com/r/nvidia/opengl
+base="nvidia_opengl_ubuntu22:latest"
+image_suffix="_nvidia"
+
+# Parse and remove args
+PARAMS=""
+while (( "$#" )); do
+  case "$1" in
+    --no-nvidia)
+      base="ubuntu:jammy"
+      image_suffix="_no_nvidia"
+      shift
+      ;;
+    -*|--*=) # unsupported flags
+      echo "Error: Unsupported flag $1" >&2
+      exit 1
+      ;;
+    *) # preserve positional arguments
+      PARAMS="$PARAMS $1"
+      shift
+      ;;
+  esac
+done
+# set positional arguments in their proper place
+eval set -- "$PARAMS"
 
 if [ ! -d $DIR/$1 ]
 then
@@ -36,13 +68,14 @@ fi
 
 user_id=$(id -u)
 image_name=$(basename $1)
-# Remove timestamp tag to avoid too many tags
-#image_plus_tag=$image_name:$(export LC_ALL=C; date +%Y_%m_%d_%H%M)
+#image_plus_tag=$image_name:$(date +%Y_%b_%d_%H%M)
+# Tag as latest so don't have a dozen uniquely timestamped images hanging around
 image_plus_tag=$image_name:latest
 
-docker build --rm -t $image_plus_tag --build-arg user_id=$user_id -f "$DIR/$image_name/Dockerfile" .
-#docker tag $image_plus_tag $image_name:latest
-
+echo "Building $image_name with base image $base"
+docker build --rm -t $image_plus_tag --build-arg base=$base --build-arg user_id=$user_id $DIR/$image_name
 echo "Built $image_plus_tag"
-echo "To run:"
-echo "./run.bash [-d|s] $image_name:latest"
+
+# Extra tag in case you have both the NVIDIA and no-NVIDIA images
+docker tag $image_plus_tag $image_name$image_suffix:latest
+echo "Tagged as $image_name$image_suffix:latest"
