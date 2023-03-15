@@ -1,4 +1,4 @@
-##### Install Requirements
+## Install Requirements
 Use Ubuntu 22.04.
 
 1. Install [ROS 2 Humble](https://docs.ros.org/en/humble/index.html)
@@ -18,7 +18,7 @@ export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 $ sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
 ```
 
-##### Buoy Simulation Software Build
+## Buoy Simulation Software Build
 
 1. Create a workspace, for example:
 
@@ -61,7 +61,7 @@ $ colcon build
 
 The simulation software should build without errors.  To run and test, proceed to the [Run the Simulator](../../../tutorials/#running-the-simulator) tutorial series.  Or run a quick test as described below to confirm all has worked as expected.
 
-##### Run an example to test
+## Run an example to test
 
 1. In a new terminal, source the workspace
 

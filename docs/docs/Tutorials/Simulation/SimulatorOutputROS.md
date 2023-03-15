@@ -1,6 +1,6 @@
-##### ROS2 Message
+## ROS 2 Message
 
-While running, the simulator generates exactly the same ROS2 messages that the buoy hardware does during operation.  These are grouped into ROS2 topics that corresponds to data being produced by each micro-controller or instrument on the buoy.  To see all ROS2 topics being published to on the system, issue the following command (after sourcing the workspace if needed in a new terminal ``` $ . ~/buoy_ws/install/setup.sh```
+While running, the simulator generates exactly the same ROS 2 messages that the buoy hardware does during operation.  These are grouped into ROS 2 topics that corresponds to data being produced by each micro-controller or instrument on the buoy.  To see all ROS 2 topics being published to on the system, issue the following command (after sourcing the workspace if needed in a new terminal ``` $ . ~/buoy_ws/install/setup.sh```
 
 ``` 
 $ ros2 topic list 
@@ -16,7 +16,10 @@ $ ros2 topic list
 /xb_imu
 ```
 
-The topics /ahrs_data, /battery_data, /spring_data, /power_data, and /heavecone_data coorespond to the buoy-based instrumentation (AHRS), battery controller, spring controller, power-converter controller, and heave-cone controller.  To see the data being published in these topics, issue the following command and the data will scroll by:
+The topics /ahrs_data, /battery_data, /spring_data, /power_data, and /heavecone_data corresponds to the buoy-based instrumentation (AHRS), battery controller, spring controller, power-converter controller, and heave-cone controller.  Several of these topics are only available in simulation, and only /ahrs_data, /battery_data, /spring_data, /power_data, and /heavecone_data will be present on the real buoy.
+
+
+To see the data being published in these topics, issue the following command and the data will scroll by, for example:
 
 ```
 $ ros2 topic echo power_data
@@ -46,8 +49,6 @@ status: 0
 ---
 ```
 
-The data in each topic corresponds to the message descriptions which can be seen here along wit a description of each field.
-
-Several of these topics are only available in simulation, and only /ahrs_data, /battery_data, /spring_data, /power_data, and /heavecone_data will be present on the real buoy.
+The data in each topic corresponds to the message descriptions which can be seen here along with a description of each field.
 
 The next tutorial "[View Messages with Plotjuggler](SimulatorOutputPlotjuggler.md)" shows how to conveniently plot these data items while the simulator is running.
