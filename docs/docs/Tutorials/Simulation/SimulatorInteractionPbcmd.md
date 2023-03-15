@@ -97,7 +97,7 @@ $ ros2 run plotjuggler plotjuggler &
 5. Issue the following command to introduce a 10A winding current offset in the motor-current/RPM relationship.
 
 ```
-$ PC_BiasCurr 10
+$ pc_BiasCurr 10
 ```
 
 - After 20 seconds of simulation time or so, the plotjuggler window should look approximately as below.  One can see that the command resulted in an additional 10 Amps of motor winding current being present (time = 6 seconds in plot), this additional torque spins the motor and a force is applied to retract the piston, which is evident in the range_finder data.  
