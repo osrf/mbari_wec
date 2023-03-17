@@ -13,10 +13,10 @@ and simulated buoy.
 
 ## Prerequisite
 
-This tutorial assumes you have followed the steps from the previous
-[tutorial](PythonTemplate.md) on creating and customizing your own Python ROS 2 controller package
-from the [mbari_wec_template_py](https://github.com/mbari-org/mbari_wec_template_py) template
-repository.
+This tutorial assumes you are familiar the steps from the previous [tutorial](PythonTemplate.md)
+and have built your own custom Python ROS 2 controller package from the
+[mbari_wec_template_py](https://github.com/mbari-org/mbari_wec_template_py) template
+repository which we will use to implement a simple linear damper controller.
 
 To begin, you should have a Python ROS 2 controller package that looks similar to:
 
@@ -89,9 +89,14 @@ As you can see, as motor speed increases, so does the damping torque. For low RP
 there is no damping.
 
 Initialize these variables in `ControlPolicy` in `mbari_wec_linear_damper_py/controller.py`. This
-example makes use of `numpy.array`.
+example makes use of `numpy.array` as well as `scipy.interpolate.interp1d`, so don't forget to
+include those.
 
-``` py linenums="24" title="mbari_wec_linear_damper_py/controller.py"
+``` py linenums="21" title="mbari_wec_linear_damper_py/controller.py"
+import numpy as np
+from scipy import interpolate
+
+
 class ControlPolicy(object):
     """
     Simple Linear Damper Control Policy.
@@ -179,7 +184,7 @@ Typical values for these gains are
         # Apply damping gain
         I *= scale_factor
 
-        # Hysteresis due to gravity assist
+        # Hysteresis due to gravity / wave assist
         if rpm > 0.0:
             I *= -retract_factor
 
@@ -230,11 +235,15 @@ to set the PC Pack Rate in `Controller.__init__`:
         self.set_pc_pack_rate_param()  # set PC feedback publish rate to 50Hz
 ```
 
+In this tutorial, we've named this controller `linear_damper`. Don't forget to update controller
+names along with other changes according to the previous tutorial.
+
 ## Try It Out
 
 We will be using `ros2 launch` and `launch/controller.launch.py` to run our new controller.
 
-To run the controller along with the simulation, first source your workspace. Then, launch your controller:  
+To run the controller along with the simulation, first source your workspace. Then, launch your
+controller:  
 `$ ros2 launch mbari_wec_linear_damper_py controller.launch.py`
 
 Then, launch the sim:  
