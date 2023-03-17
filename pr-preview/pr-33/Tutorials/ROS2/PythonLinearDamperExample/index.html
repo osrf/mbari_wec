@@ -53,7 +53,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../ros2/">ROS2 Interface</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../../atseaoperation/">At Sea Operation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../ros2/">ROS 2 Interface</a>
                 </li>
               </ul>
               <ul>
@@ -61,19 +65,15 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../atseaoperation/">At Sea Operation</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/">Tutorials</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../resources/">Resources</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../../theory/">Theory</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../theory/">Theory</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../../resources/">Resources</a>
                 </li>
               </ul>
               <ul>
@@ -82,6 +82,10 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../citation/">How to Cite</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../roadmap/">Project Roadmap</a>
                 </li>
               </ul>
       </div>
@@ -117,10 +121,10 @@ working linear damper controller that is very close to the controller running on
 and simulated buoy.</p>
 <hr />
 <h2 id="prerequisite">Prerequisite</h2>
-<p>This tutorial assumes you have followed the steps from the previous
-<a href="../PythonTemplate/">tutorial</a> on creating and customizing your own Python ROS 2 controller package
-from the <a href="https://github.com/mbari-org/mbari_wec_template_py">mbari_wec_template_py</a> template
-repository.</p>
+<p>This tutorial assumes you are familiar the steps from the previous <a href="../PythonTemplate/">tutorial</a>
+and have built your own custom Python ROS 2 controller package from the
+<a href="https://github.com/mbari-org/mbari_wec_template_py">mbari_wec_template_py</a> template
+repository which we will use to implement a simple linear damper controller.</p>
 <p>To begin, you should have a Python ROS 2 controller package that looks similar to:</p>
 <div class="highlight"><pre><span></span><code>mbari_wec_linear_damper_py
 ├── config
@@ -184,8 +188,12 @@ in this tutorial correspond to the lines in relevant files in the full example.<
 <p>As you can see, as motor speed increases, so does the damping torque. For low RPM (up to 300),
 there is no damping.</p>
 <p>Initialize these variables in <code>ControlPolicy</code> in <code>mbari_wec_linear_damper_py/controller.py</code>. This
-example makes use of <code>numpy.array</code>.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">mbari_wec_linear_damper_py/controller.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
+example makes use of <code>numpy.array</code> as well as <code>scipy.interpolate.interp1d</code>, so don't forget to
+include those.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">mbari_wec_linear_damper_py/controller.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
@@ -199,7 +207,12 @@ example makes use of <code>numpy.array</code>.</p>
 <span class="normal">35</span>
 <span class="normal">36</span>
 <span class="normal">37</span>
-<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ControlPolicy</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="normal">38</span>
+<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interpolate</span>
+
+
+<span class="k">class</span> <span class="nc">ControlPolicy</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Simple Linear Damper Control Policy.</span>
 <span class="sd">    Implements a simple linear damper controller for the piston in the WEC</span>
@@ -267,7 +280,7 @@ uses <code>interp1d</code> from <code>scipy.interpolate</code>.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">update_params</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-<p>The example includes a helper function, <code>__str__</code>, in the <code>ControlPolicy</code> class to report the
+<p>Add a helper function, <code>__str__</code>, in the <code>ControlPolicy</code> class for this example to report the
 parameters used.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">mbari_wec_linear_damper_py/controller.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">66</span>
 <span class="normal">67</span>
@@ -316,7 +329,7 @@ Typical values for these gains are</p>
         <span class="c1"># Apply damping gain</span>
         <span class="n">I</span> <span class="o">*=</span> <span class="n">scale_factor</span>
 
-        <span class="c1"># Hysteresis due to gravity assist</span>
+        <span class="c1"># Hysteresis due to gravity / wave assist</span>
         <span class="k">if</span> <span class="n">rpm</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
             <span class="n">I</span> <span class="o">*=</span> <span class="o">-</span><span class="n">retract_factor</span>
 
@@ -375,9 +388,12 @@ to set the PC Pack Rate in <code>Controller.__init__</code>:</p>
         <span class="c1"># call these to set rate to 50Hz or provide argument for specific rate</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_pc_pack_rate_param</span><span class="p">()</span>  <span class="c1"># set PC feedback publish rate to 50Hz</span>
 </code></pre></div></td></tr></table></div>
+<p>In this tutorial, we've named this controller <code>linear_damper</code>. Don't forget to update controller
+names along with other changes according to the previous tutorial.</p>
 <h2 id="try-it-out">Try It Out</h2>
 <p>We will be using <code>ros2 launch</code> and <code>launch/controller.launch.py</code> to run our new controller.</p>
-<p>To run the controller along with the simulation, first source your workspace. Then, launch your controller:<br />
+<p>To run the controller along with the simulation, first source your workspace. Then, launch your
+controller:<br />
 <code>$ ros2 launch mbari_wec_linear_damper_py controller.launch.py</code></p>
 <p>Then, launch the sim:<br />
 <code>$ ros2 launch buoy_gazebo mbari_wec.launch.py</code><br />
