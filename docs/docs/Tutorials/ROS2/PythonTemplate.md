@@ -39,9 +39,16 @@ button with the text `Use this template` and select `Create a new repository`
 
 2. Next, set up the repository like you would any new GitHub repository choosing the owner,
 repository name, public/private, etc.
-
-3. Now that your new repository is set up, clone it to your local machine, make a branch, etc.  
-   `$ git clone https://github.com/<owner>/<repo_name>.git`
+3. Make a ROS 2 workspace
+   ```
+   $ mkdir -p ~/controller_ws/src
+   $ cd ~/controller_ws/src
+   ```
+4. Now that your new repository is set up, clone it to your local machine, make a branch, etc.  
+   ```
+   $ git clone https://github.com/<owner>/<repo_name>.git
+   $ cd ~/controller_ws
+   ```
 
 You should now have a Python ROS 2 package with the following structure:
 
@@ -342,6 +349,80 @@ can call commands to set the rates anywhere from 10Hz to 50Hz (default argument 
         # call these to set rate to 50Hz or provide argument for specific rate
         # self.set_pc_pack_rate_param()  # set PC publish rate to 50Hz
         # self.set_sc_pack_rate_param()  # set SC publish rate to 50Hz
+```
+
+## Build, Test, Run
+
+At this point, your new package should build, pass tests, and run against the sim (will connect
+but do nothing).
+
+It is assumed that you have already installed or built the buoy packages.
+
+From your workspace (e.g. `~/controller_ws`) build your package:
+```
+$ colcon build
+Starting >>> mbari_wec_template_py
+--- stderr: mbari_wec_template_py
+/usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+---
+Finished <<< mbari_wec_template_py [0.74s]
+
+Summary: 1 package finished [0.89s]
+  1 package had stderr output: mbari_wec_template_py
+```
+You may also build only your new controller package (if you have other packages in the workspace)
+using:  
+`$ colcon build --packages-up-to <your_package_name>`
+
+Then, source and test:
+```
+$ source install/local_setup.bash
+$ colcon test
+Starting >>> mbari_wec_template_py
+--- stderr: mbari_wec_template_py
+
+=============================== warnings summary ===============================
+test/test_flake8.py::test_flake8
+test/test_flake8.py::test_flake8
+  Warning: SelectableGroups dict interface is deprecated. Use select.
+
+-- Docs: https://docs.pytest.org/en/stable/warnings.html
+---
+Finished <<< mbari_wec_template_py [0.74s]
+
+Summary: 1 package finished [0.87s]
+  1 package had stderr output: mbari_wec_template_py
+```
+Or, you may test only your new controller package using:  
+`$ colcon test --packages-select <your_package_name>`
+
+Next, in another terminal run the sim (after sourcing the sim packages of course):
+`$ ros2 launch buoy_gazebo mbari_wec.launch.py`
+
+Now, in the previous terminal, launch the empty controller:
+```
+$ ros2 launch <your_package_name> controller.launch.py
+```
+
+And you should see something similar to:
+```
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [controller-1]: process started with pid [1409887]
+[controller-1] [INFO] [1678130539.867493131] [controller]: Subscribing to <class 'buoy_interfaces.msg._xb_record.XBRecord'> on '/ahrs_data'
+[controller-1] [INFO] [1678130540.031500810] [controller]: Subscribing to <class 'buoy_interfaces.msg._bc_record.BCRecord'> on '/battery_data'
+[controller-1] [INFO] [1678130540.031972332] [controller]: Subscribing to <class 'buoy_interfaces.msg._sc_record.SCRecord'> on '/spring_data'
+[controller-1] [INFO] [1678130540.032390456] [controller]: Subscribing to <class 'buoy_interfaces.msg._pc_record.PCRecord'> on '/power_data'
+[controller-1] [INFO] [1678130540.032810815] [controller]: Subscribing to <class 'buoy_interfaces.msg._tf_record.TFRecord'> on '/trefoil_data'
+[controller-1] [INFO] [1678130540.033268687] [controller]: Subscribing to <class 'buoy_interfaces.msg._xb_record.XBRecord'> on '/xb_record'
+[controller-1] [INFO] [1678130540.033703510] [controller]: Subscribing to <class 'buoy_interfaces.msg._bc_record.BCRecord'> on '/bc_record'
+[controller-1] [INFO] [1678130540.034091374] [controller]: Subscribing to <class 'buoy_interfaces.msg._sc_record.SCRecord'> on '/sc_record'
+[controller-1] [INFO] [1678130540.034467140] [controller]: Subscribing to <class 'buoy_interfaces.msg._pc_record.PCRecord'> on '/pc_record'
+[controller-1] [INFO] [1678130540.034868686] [controller]: Subscribing to <class 'buoy_interfaces.msg._tf_record.TFRecord'> on '/tf_record'
+[controller-1] [INFO] [1678130540.035298496] [controller]: Subscribing to <class 'buoy_interfaces.msg._pb_record.PBRecord'> on '/powerbuoy_data'
+[controller-1] [INFO] [1678130540.286577653] [controller]: /pc_pack_rate_command not available
+[controller-1] [INFO] [1678130540.537643441] [controller]: /sc_pack_rate_command not available
+[controller-1] [INFO] [1678130540.538230613] [controller]: Found all required services.
 ```
 
 ---

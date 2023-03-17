@@ -1,6 +1,6 @@
 Docker images that include the neccessary software and dependencies have been created for convenience. 
 
-##### Requirements
+## Requirements
 
 1. Install Docker using [installation instructions.](https://docs.docker.com/engine/install/ubuntu/).
 
@@ -10,7 +10,7 @@ Docker images that include the neccessary software and dependencies have been cr
 
 1. Install `rocker` by `sudo apt-get install python3-rocker`.
 
-##### Usage
+## Usage
 
 1. Clone the buoy_entrypoint repository to download the latest Dockerfile.
 
@@ -46,7 +46,7 @@ $ ./join.bash buoy_latest_runtime
 
 > The build and run bash scripts are a wrapper around rocker, checkout its [documentation](https://github.com/osrf/rocker) for additional options.
 
-##### Run an example to test
+## Run an example to test
 
 Inside the docker container, run:
 

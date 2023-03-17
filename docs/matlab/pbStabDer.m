@@ -26,8 +26,8 @@
 %
   dia_b   = 2.64;              %m
   h_b     = 1.12-.81;          %m height of the beveled section [3]
-  h_cg    = 2.03;              %m height of the cg above the bridle pivot.
-  zG      = .24;               %m height of the cg above the water plane.
+  h_cm    = 2.03;              %m height of the cm above the bridle pivot.
+  zG      = .24;               %m height of the cm above the water plane.
   m_b     = 1400;              %kg Mass of the buoy (in air, no water).
   m_w_pto = 395;               %kg This is in-water "weight" 
   m_w_hc  = 703;               %kg This is in-water "weight"
@@ -111,10 +111,16 @@
 %
 % Transform it to the bridle point using Joan's generalized parallel axis theorem:
 %
-  h_wlw = h_wl + .1;            %m, WAMIT origin 10 cm above waterline
-%  
-  MAT_bw = parallelAxis( MA_bw, [0  0  -h_wlw]' );
+% h_wlw = h_wl + .1;            %m, WAMIT origin 10 cm above waterline
 %
+% Update 7 Mar 2023:  Recompute the inertias and added mass inertias about the
+% center of mass instead of the bridle point.  Note: pivot point = bridle point.
+%
+ h_wlw  = h_wl + .1 - h_cm;   % Pivot-to-waterline + 10 cm - pivot-to-cm
+%  
+ MAT_bw = parallelAxis( MA_bw, [0  0  -h_wlw]' );
+%  
+%  
 % Now build the generalized mass matrix, about the COW:
 %
   M_b = [ m_b     0      0     0   zG*m_b  0;
@@ -126,7 +132,10 @@
 %
 % Transform it to the bridle point using Joan's generalized parallel axis theorem:
 %
-  MT_b = parallelAxis( M_b, [0  0  -h_wl]' );
+% MT_b = parallelAxis( M_b, [0  0  -h_wl]' );
+%
+% 7 Mar 2023 move origin to c.m.
+  MT_b = parallelAxis( M_b, [0  0  -(h_wl - h_cm)]' );
 %
 % Drag:  
 %  
@@ -141,10 +150,10 @@
   Xuabsu_b = -1/2*rho*Cdp*At;   %kg/m. 
   Yvabsv_b = Xuabsu_b;
 %
-% The location of the c.g. appears to be in the center of the side-view,
+% The location of the c.m. appears to be in the center of the side-view,
 % excluding the bridle framework.  Thus I'll assume this is also the 
 % center-of-area as well as the center-of-drag.
-  Kpabsp_b = Xuabsu_b*h_cg;
+  Kpabsp_b = Xuabsu_b*h_cm;
   Mqabsq_b = Kpabsp_b;
   Nrabsr_b = -50;                       %kg-m^2 arbitrary
 %
@@ -161,29 +170,33 @@
   l_pto = 8.82;                          %m, total length not including tether, L.
   d_pto = .21;                           %m, diameter, D, scaled from .34 m, [2].
   r_pto = d_pto/2;                       %m, radius
-  cg_pto= 4;                             %m, distance of the link origin above the c.g.
+  cm_pto= 4;                             %m, distance of the link origin above the c.m.
   m_pto = 605;                           %kg, mass (in air).
   Cd_pto= 1.2;                           %none. Section drag of a cylinder for 
                                          % 1e4 < Re < 1.3e5
-  Ixx_pto   = 3526;                      %kg-m^2 Moment of inertia about c.g. [2]
-  Ixy_pto   = .4293;                     %kg-m^2 Product of inertia about c.g. [2]
+  Ixx_pto   = 3526;                      %kg-m^2 Moment of inertia about c.m. [2]
+  Ixy_pto   = .4293;                     %kg-m^2 Product of inertia about c.m. [2]
   Ixz_pto   = -2.289;
   Iyy_pto   = 3526;
   Iyz_pto   = -3.089;
   Izz_pto   = 7.276;
 %
-% Now build the generalized mass matrix, about the CG:
+% Now build the generalized mass matrix, about the CM:
 %
-  M_pto = [ m_pto     0      0     0   cg_pto*m_pto  0;
-            0      m_pto     0  -cg_pto*m_pto  0     0;
+  M_pto = [ m_pto     0      0     0   cm_pto*m_pto  0;
+            0      m_pto     0  -cm_pto*m_pto  0     0;
             0         0    m_pto   0           0     0;
-            0    -cg_pto*m_pto     0    Ixx_pto Ixy_pto Ixz_pto;
-          cg_pto*m_pto       0     0    Ixy_pto Iyy_pto Iyz_pto;
+            0    -cm_pto*m_pto     0    Ixx_pto Ixy_pto Ixz_pto;
+          cm_pto*m_pto       0     0    Ixy_pto Iyy_pto Iyz_pto;
             0                0     0    Ixz_pto Iyz_pto Izz_pto ];
 %
 % Transform it to the bridle point using Joan's generalized parallel axis theorem:
 %
-  MT_pto = parallelAxis( M_pto, [0  0  cg_pto]' );
+% MT_pto = parallelAxis( M_pto, [0  0  cm_pto]' );
+%
+% 7 Mar 2023.  Transform to c.m. So just leave it!
+%
+  MT_pto = M_pto;
 %
 % Translation:
 %
@@ -211,8 +224,14 @@
                 0          0       0      0       0  Nrdot_pto];
 %
 % Translate to bridle frame:
-  MAT_pto = parallelAxis( MA_pto, [0 0 cg_pto]');
-  
+% MAT_pto = parallelAxis( MA_pto, [0 0 cm_pto]');
+%
+% 7 Mar 2023.  Transform to c.m. So just leave it!
+%
+  MAT_pto = MA_pto;
+%
+% Note:  In the pivot point case there were off-diagonal added mass values for
+% surge-pitch and sway-roll.  These go to zero for the origin at the c.m.
 %  
 % Drag of cylindrical section Re ~ 10^4
 %
@@ -254,13 +273,13 @@
   A_o       = 5.14;          %m^2 Projected area, doors open, along z.
   w_hc      = 2.8;           %m,  Width of the heave cone, [1]
   hs_hc     = 1.3;           %m,  height of the stem.  See drawing.
-  cg_hc     = 1.25;          %m,  height of the pivot above the c.g.  See drawing.
+  cm_hc     = 1.25;          %m,  height of the pivot above the c.m.  See drawing.
   h_hc      = .4;            %m,  height of the heave cone.
   A_x       = w_hc-h_hc^2;   %m^2 Frontal area (trapezoid), perpendicular to x.
   Cd_hc     = 1.2;           %none. Drag of cylindrical section.  
   m_hc      = 817;           %kg  Mass of heave cone
-  Ixx_hc    = 339.8;         %kg-m^2 Moment of inertia about cg [3]
-  Ixy_hc    = .16;           %kg-m^2 Product of inertia about cg [3]
+  Ixx_hc    = 339.8;         %kg-m^2 Moment of inertia about cm [3]
+  Ixy_hc    = .16;           %kg-m^2 Product of inertia about cm [3]
   Ixz_hc    = -.9;
   Iyy_hc    = 343.73;
   Iyz_hc    = .33;
@@ -298,18 +317,19 @@
 % Translate inertias to pivot point:  
 %
 %
-% Now build the generalized mass matrix, about the CG:
+% Now build the generalized mass matrix, about the CM:
 %
-  M_hc = [ m_hc     0      0     0   cg_hc*m_hc  0;
-            0      m_hc    0  -cg_hc*m_hc  0     0;
+  M_hc = [ m_hc     0      0     0   cm_hc*m_hc  0;
+            0      m_hc    0  -cm_hc*m_hc  0     0;
             0        0    m_hc   0         0     0;
-            0    -cg_hc*m_hc     0    Ixx_hc Ixy_hc Ixz_hc;
-          cg_hc*m_hc       0     0    Ixy_hc Iyy_hc Iyz_hc;
+            0    -cm_hc*m_hc     0    Ixx_hc Ixy_hc Ixz_hc;
+          cm_hc*m_hc       0     0    Ixy_hc Iyy_hc Iyz_hc;
             0              0     0    Ixz_hc Iyz_hc Izz_hc ];
 %
 % Transform it to the pivot point using Joan's generalized parallel axis theorem:
 %
-  MT_hc = parallelAxis( M_hc, [0  0  cg_hc]' );
+% MT_hc = parallelAxis( M_hc, [0  0  cm_hc]' );
+  MT_hc = M_hc;
 %  
 % Added Mass Inertia:
 %
@@ -349,7 +369,11 @@
 %
 % Translate to the pivot point:
 %
-  MAT_hcw = parallelAxis( MA_hcw, [0 0 cg_hc]');
+% MAT_hcw = parallelAxis( MA_hcw, [0 0 cm_hc]');
+%
+% Translate to c.m.:
+%
+  MAT_hcw = MA_hcw;
 
 % Drag Rotation:
 %
@@ -420,7 +444,8 @@ fprintf('Kp|p|       [kg m^2]: %12.f  \n',Kpabsp_b);
 fprintf('Mq|q|       [kg m^2]: %12.f  \n',Mqabsq_b);
 fprintf('Nr|r|       [kg m^2]: %12.f  \n',Nrabsr_b);
 
-fprintf('Generalized Mass Matrix about Bridle Point:\n\n');
+%fprintf('Generalized Mass Matrix about Bridle Point:\n\n');
+fprintf('Generalized Mass Matrix about c.m.:\n\n');
 fprintf('%12.f %12.f %12.f %12.f %12.f %12.f\n',MT_b');
 
 if( 0 )
@@ -433,7 +458,8 @@ end
 
 end
 
-fprintf('WAMIT Generalized Added Mass Matrix about Bridle Point:\n\n');
+%fprintf('WAMIT Generalized Added Mass Matrix about Bridle Point:\n\n');
+fprintf('WAMIT Generalized Added Mass Matrix about c.m.:\n\n');
 %fprintf('%12.f %12.f %12.f %12.f %12.f %12.f\n',MAT_b');
 buoyAMw = amText(MAT_bw);
 for(i = 1:length(buoyAMw))
@@ -441,7 +467,7 @@ for(i = 1:length(buoyAMw))
 end
 
 fprintf('\n** Power Take Off **\n\n');  
-fprintf('Added masses below are about the c.g.\n\n');  
+fprintf('Added masses below are about the c.m.\n\n');  
 fprintf('Xudot           [kg]: %12.f  \n',Xudot_pto);
 fprintf('Yvdot           [kg]: %12.f  \n',Yvdot_pto);
 fprintf('Stability Derivatives below are about the pivot.\n\n');  
@@ -450,9 +476,11 @@ fprintf('Yv|v|         [kg/m]: %12.f  \n',Yvabsv_pto);
 fprintf('Kp|p|       [kg m^2]: %12.f  \n',Kpabsp_pto);
 fprintf('Mq|q|       [kg m^2]: %12.f  \n',Mqabsq_pto);
 fprintf('Nr|r|       [kg m^2]: %12.f  \n',Nrabsr_pto);
-fprintf('Generalized Mass Matrix about pivot:\n\n');
+%fprintf('Generalized Mass Matrix about pivot:\n\n');
+fprintf('Generalized Mass Matrix about c.m.:\n\n');
 fprintf('%12.f %12.f %12.f %12.f %12.f %12.f\n',MT_pto');
-fprintf('Generalized Added Mass Matrix about pivot:\n\n');
+%fprintf('Generalized Added Mass Matrix about pivot:\n\n');
+fprintf('Generalized Added Mass Matrix about c.m.:\n\n');
 %fprintf('%12.f %12.f %12.f %12.f %12.f %12.f\n',MAT_b');
 ptoAM = amText(MAT_pto);
 for(i = 1:length(ptoAM))
@@ -462,16 +490,16 @@ end
 
 fprintf('\n** Heave Cone **\n\n');  
 fprintf('Doors Open::\n');
+fprintf('Zwdot             [kg]: %12.f    \n',Zwdot_o);
 fprintf('Zww, Moving Up:   [kg/m]: %12.f  \n',Zww_o_u);
 fprintf('Zww, Moving Down: [kg/m]: %12.f  \n',Zww_o_d);
-fprintf('Zwdot             [kg]: %12.f    \n',Zwdot_o_d);
 fprintf('\n');
 fprintf('Doors Closed:\n');
+fprintf('Zwdot             [kg]: %12.f    \n',Zwdot_c);
 fprintf('Zww, Moving Up:   [kg/m]: %12.f  \n',Zww_c_u);
 fprintf('Zww, Moving Down: [kg/m]: %12.f  \n',Zww_c_d);
-fprintf('Zwdot           [kg]: %12.f      \n',Zwdot_c_d);
 fprintf('\n');
-fprintf('Added masses below are about the c.g.\n\n');  
+fprintf('Added masses below are about the c.m.\n\n');  
 fprintf('Xudot  (R,W)    [kg]: %12.f, %12.f  \n',Xudot_hc, Xudot_hcw);
 fprintf('Yvdot  (R,W)    [kg]: %12.f, %12.f  \n',Yvdot_hc, Yvdot_hcw);
 fprintf('Xu|u|         [kg/m]: %12.f      \n',Xuabsu_hc);
@@ -480,9 +508,11 @@ fprintf('These are about the pivot:\n');
 fprintf('Kp|p|       [kg m^2]: %12.f      \n',Kpabsp_hc);
 fprintf('Mq|q|       [kg m^2]: %12.f      \n',Mqabsq_hc);
 fprintf('Nr|r|       [kg m^2]: %12.f      \n',Nrabsr_hc);
-fprintf('Generalized Mass Matrix about pivot:\n\n');
+%fprintf('Generalized Mass Matrix about pivot:\n\n');
+fprintf('Generalized Mass Matrix about c.m.:\n\n');
 fprintf('%12.f %12.f %12.f %12.f %12.f %12.f\n',MT_hc');
-fprintf('Generalized Added Mass Matrix about pivot:\n\n');
+%fprintf('Generalized Added Mass Matrix about pivot:\n\n');
+fprintf('Generalized Added Mass Matrix about c.m.:\n\n');
 hc_AM = amText(MAT_hcw);
 for(i = 1:length(hc_AM))
   disp(hc_AM(i))

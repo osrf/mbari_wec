@@ -40,10 +40,19 @@ button with the text `Use this template` and select `Create a new repository`
 2. Next, set up the repository like you would any new GitHub repository choosing the owner,
 repository name, public/private, etc.
 
-3. Now that your new repository is set up, clone it to your local machine, make a branch, etc.  
-   `$ git clone https://github.com/<owner>/<repo_name>.git`
+3. Make a ROS 2 workspace  
+   ```
+   $ mkdir -p ~/controller_ws/src
+   $ cd ~/controller_ws/src
+   ```
 
-You should now have a C++ ROS 2 package with the following structure:
+4. Now that your new repository is set up, clone it to your local machine, make a branch, etc.  
+   ```
+   $ git clone https://github.com/<owner>/<repo_name>.git
+   $ cd ~/controller_ws
+   ```
+
+You should now have a C++ ROS 2 package with the following structure in your workspace `src`:
 
 ```
 <repo_name>
@@ -137,7 +146,7 @@ def generate_launch_description():
     foo: 1.0
 ```
 
-and rename the folder
+and rename the folder:
 
 - `include/mbari_wec_template_cpp` (containing `controller.hpp` and `control_policy.hpp`) to your
   package name
@@ -162,30 +171,20 @@ resulting in the following folder structure:
         └── controller.cpp
 ```
 
-Update the include paths in
+Update the include paths in:
 
-- `controller.cpp` (lines 15-16)
-``` cpp linenums="15" hl_lines="1 2" title="src/controller.cpp"
+- `controller.cpp` (lines 18-19)
+``` cpp linenums="18" hl_lines="1 2" title="src/controller.cpp"
 #include <mbari_wec_template_cpp/control_policy.hpp>  // update include path
 #include <mbari_wec_template_cpp/controller.hpp>  // update include path
 ```
 
-- `control_policy.hpp` (line 15)
-``` cpp linenums="15" hl_lines="1" title="include/your_package_name/control_policy.hpp"
+- `control_policy.hpp` (line 22)
+``` cpp linenums="22" hl_lines="1" title="include/your_package_name/control_policy.hpp"
 #include <mbari_wec_template_cpp/controller.hpp>  // update include path
 ```
 
-Update include guards in
-
-- `controller.hpp`
-``` cpp linenums="15" hl_lines="1 2" title="include/your_package_name/controller.hpp"
-#ifndef YOUR_PACKAGE_NAME__CONTROLLER_HPP_
-#define YOUR_PACKAGE_NAME__CONTROLLER_HPP_
-```
-`...`
-``` cpp linenums="74" hl_lines="1"
-#endif  // YOUR_PACKAGE_NAME__CONTROLLER_HPP_
-```
+Also, update include guards:
 
 - `control_policy.hpp`
 ``` cpp linenums="15" hl_lines="1 2" title="include/your_package_name/control_policy.hpp"
@@ -193,8 +192,18 @@ Update include guards in
 #define YOUR_PACKAGE_NAME__CONTROL_POLICY_HPP_
 ```
 `...`
-``` cpp linenums="67" hl_lines="1"
+``` cpp linenums="67" hl_lines="1" title="&#8203"
 #endif  // YOUR_PACKAGE_NAME__CONTROL_POLICY_HPP_
+```
+
+- `controller.hpp`
+``` cpp linenums="15" hl_lines="1 2" title="include/your_package_name/controller.hpp"
+#ifndef YOUR_PACKAGE_NAME__CONTROLLER_HPP_
+#define YOUR_PACKAGE_NAME__CONTROLLER_HPP_
+```
+`...`
+``` cpp linenums="74" hl_lines="1" title="&#8203"
+#endif  // YOUR_PACKAGE_NAME__CONTROLLER_HPP_
 ```
 
 Modify `CMakeLists.txt` as desired and add any dependencies in `package.xml` following standard
@@ -215,7 +224,7 @@ are stubbed out to implement your custom external controller. You may also use
 
 You may use the struct `ControlPolicy` in `control_policy.hpp` to implement your controller.
 
-``` cpp linenums="25"
+``` cpp linenums="25" title="include/your_package_name/control_policy.hpp"
 struct ControlPolicy
 {
   // declare/init any parameter variables here
@@ -250,9 +259,9 @@ struct ControlPolicy
 };
 ```
 
-- declare/define any configurable parameters in the struct and init list
+- Declare/define any configurable parameters in the struct and init list
 
-``` cpp linenums="27"
+``` cpp linenums="27" title="include/your_package_name/control_policy.hpp"
   // declare/init any parameter variables here
   double foo{1.0};
   double bar{10.0*foo};
@@ -264,7 +273,7 @@ struct ControlPolicy
 
 - Set any dependent variables in `update_params` on line 39
 
-``` py linenums="38"
+``` cpp linenums="38" title="include/your_package_name/control_policy.hpp"
   // Update dependent variables after reading in params
   void update_params()
   {
@@ -274,7 +283,7 @@ struct ControlPolicy
 
 - Declare/get/update params in the `set_params` function of the `Controller` class on line 58
 
-``` cpp linenums="58"
+``` cpp linenums="58" title="include/your_package_name/control_policy.hpp"
 // Use ROS2 declare_parameter and get_parameter to set policy params
 void Controller::set_params()
 {
@@ -289,7 +298,7 @@ void Controller::set_params()
 - Then, your control logic will go in the `target` function on line 46.
     Modify the input args as well as the return value as necessary
 
-``` cpp linenums="44"
+``` cpp linenums="44" title="include/your_package_name/control_policy.hpp"
   // Modify function inputs as desired
   // Calculate target value from feedback inputs
   double target(
@@ -306,12 +315,12 @@ void Controller::set_params()
 
 ### Controller
 
-The `Controller` class contains an instance of `ControlPolicy` as the member variable,
+The `Controller` class contains an instance of `ControlPolicy` as the member variable,  
 `this->policy`. The `this->policy->target` function may be called anywhere within the
 `Controller` class. You may call it inside any of the data callbacks to enable feedback
 control (for example):
 
-``` cpp
+``` cpp title='<span style="margin-left:25%;"><b>(EXAMPLE) include/your_package_name/controller.hpp</b></span>'
   // To subscribe to any topic, simply declare & define the specific callback, e.g. power_callback
 
   // Callback for '/power_data' topic from Power Controller
@@ -326,7 +335,7 @@ control (for example):
 
 Or, set up a loop in `main` and run open-loop:
 
-``` cpp
+``` cpp title='<span style="margin-left:35%;"><b>(EXAMPLE) src/controller.cpp</b></span>'
 int main(int argc, char ** argv)
 {
   rclcpp::init(argc, argv);
@@ -368,10 +377,12 @@ You may also send commands from within the `Controller` class:
 `this->send_pc_retract_command(retract_factor);`  
 
 In the `Controller` constructor, you may also uncomment lines 31 or 32 to set the publish rates for
-the Spring or Power Controllers on the buoy. These controllers default to publishing at 10Hz. You
-can call commands to set the rates anywhere from 10Hz to 50Hz (default argument is 50Hz).
+the Spring or Power Controllers on the buoy. These controllers default to publishing feedback at
+10Hz to conserve data/bandwidth (on the physical buoy). For feedback control, you have the option
+to increase the publish rate. You can call commands to set the rates anywhere from 10Hz
+to 50Hz (default argument is 50Hz).
 
-``` cpp linenums="22"
+``` cpp linenums="22" title="src/controller.cpp"
 Controller::Controller(const std::string & node_name)
 : buoy_api::Interface<Controller>(node_name),
   policy_(std::make_unique<ControlPolicy>())
@@ -384,6 +395,60 @@ Controller::Controller(const std::string & node_name)
   // this->set_sc_pack_rate_param();  // set SC publish rate to 50Hz
   // this->set_pc_pack_rate_param();  // set PC publish rate to 50Hz
 }
+```
+
+## Build, Test, Run
+
+At this point, your new package should build, pass tests, and run against the sim (will connect
+but do nothing).
+
+It is assumed that you have already installed or built the buoy packages.
+
+From your workspace (e.g. `~/controller_ws`) build your package:
+```
+$ colcon build
+Starting >>> mbari_wec_template_cpp
+Finished <<< mbari_wec_template_cpp [25.0s]
+
+Summary: 1 package finished [25.2s]
+```
+You may also build only your new controller package (if you have other packages in the workspace)
+using:  
+`$ colcon build --packages-up-to <your_package_name>`
+
+Then, source and test:
+```
+$ source install/local_setup.bash
+$ colcon test
+Starting >>> mbari_wec_template_cpp
+Finished <<< mbari_wec_template_cpp [1.38s]
+
+Summary: 1 package finished [1.54s]
+```
+Or, you may test only your new controller package using:  
+`$ colcon test --packages-select <your_package_name>`
+
+Next, in another terminal run the sim (after sourcing the sim packages of course):
+`$ ros2 launch buoy_gazebo mbari_wec.launch.py`
+
+Now, in the previous terminal, launch the empty controller:
+```
+$ ros2 launch <your_package_name> controller.launch.py
+```
+
+And you should see something similar to:
+```
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [mbari_wec_template_cpp-1]: process started with pid [1297902]
+[mbari_wec_template_cpp-1] [INFO] [1678127525.594948064] [mbari_wec_template_cpp]: Subscribing to XBRecord on '/ahrs_data' and '/xb_record'
+[mbari_wec_template_cpp-1] [INFO] [1678127525.595508167] [mbari_wec_template_cpp]: Subscribing to BCRecord on '/battery_data' and '/bc_record'
+[mbari_wec_template_cpp-1] [INFO] [1678127525.595795098] [mbari_wec_template_cpp]: Subscribing to SCRecord on '/spring_data' and '/sc_record'
+[mbari_wec_template_cpp-1] [INFO] [1678127525.596027219] [mbari_wec_template_cpp]: Subscribing to PCRecord on '/power_data' and '/pc_record'
+[mbari_wec_template_cpp-1] [INFO] [1678127525.596275007] [mbari_wec_template_cpp]: Subscribing to TFRecord on '/trefoil_data' and '/tf_record'
+[mbari_wec_template_cpp-1] [INFO] [1678127525.596593805] [mbari_wec_template_cpp]: Subscribing to PBRecord on '/powerbuoy_data'
+[mbari_wec_template_cpp-1] [INFO] [1678127525.697067297] [mbari_wec_template_cpp]: /pc_pack_rate_command not available
+[mbari_wec_template_cpp-1] [INFO] [1678127525.797309937] [mbari_wec_template_cpp]: /sc_pack_rate_command not available
+[mbari_wec_template_cpp-1] [INFO] [1678127525.797524439] [mbari_wec_template_cpp]: Found all required services.
 ```
 
 ---
