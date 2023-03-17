@@ -145,7 +145,7 @@ Finally, in the `Controller` class, declare/get/set/update these parameters from
         self.get_logger().info(str(self.policy))
 ```
 
-The example includes a helper function, `__str__`, in the `ControlPolicy` class to report the
+Add a helper function, `__str__`, in the `ControlPolicy` class for this example to report the
 parameters used.
 
 ``` py linenums="66" title="mbari_wec_linear_damper_py/controller.py"
