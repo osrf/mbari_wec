@@ -39,11 +39,13 @@ button with the text `Use this template` and select `Create a new repository`
 
 2. Next, set up the repository like you would any new GitHub repository choosing the owner,
 repository name, public/private, etc.
-3. Make a ROS 2 workspace
+
+3. Make a ROS 2 workspace  
    ```
    $ mkdir -p ~/controller_ws/src
    $ cd ~/controller_ws/src
    ```
+
 4. Now that your new repository is set up, clone it to your local machine, make a branch, etc.  
    ```
    $ git clone https://github.com/<owner>/<repo_name>.git
