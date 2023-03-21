@@ -19,8 +19,12 @@
 # Typical usage: ./join.bash <container_name>
 #
 
-CONTAINER_ID=$1
+IMG=$(basename $1)
+# Use quotes if image name contains symbols like a forward slash /, but then
+# cannot use `basename`.
+#IMG="$1"
 
 xhost +
-docker exec --privileged -e DISPLAY=${DISPLAY} -e LINES=`tput lines` -it ${CONTAINER_ID} bash
+containerid=$(docker ps -aqf "ancestor=${IMG}")
+docker exec --privileged -e DISPLAY=${DISPLAY} -e LINES=`tput lines` -it ${containerid} bash
 xhost -

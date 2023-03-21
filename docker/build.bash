@@ -68,7 +68,6 @@ fi
 
 user_id=$(id -u)
 image_name=$(basename $1)
-#image_plus_tag=$image_name:$(date +%Y_%b_%d_%H%M)
 # Tag as latest so don't have a dozen uniquely timestamped images hanging around
 image_plus_tag=$image_name:latest
 

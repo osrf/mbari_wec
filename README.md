@@ -152,7 +152,7 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
 1. To have another window running the same docker container, run this command in a new terminal:
 
    ```
-   ./join.bash buoy_latest_runtime
+   ./join.bash buoy
    ```
 
 #### Quick start
