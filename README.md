@@ -50,9 +50,10 @@ export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 2. Install [Gazebo Garden](https://gazebosim.org/docs/garden)
 
 Installing the binaries for Gazebo is recommended, but if building Gazebo Garden from source, it is necessary to export the `PYTHONPATH` for gz-math python bindings when building buoy_sim
-``
+```
 export PYTHONPATH=$PYTHONPATH:<path to your gz-sim workspace>/install/lib/python`
 ```
+
 See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/blob/gz-math7/tutorials/pythongetstarted.md). This step is needed until `PYTHONPATH` is automatically exported upstream, tracked in [this issue](https://github.com/osrf/buoy_sim/issues/81)
 
 
