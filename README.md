@@ -37,7 +37,7 @@ controller implementations.
 ## Install
 ### On Host System
 ##### Requirements
-At the moment, only source installation is supported. Use Ubuntu Jammy.
+At the moment, only source installation is supported. Use Ubuntu Jammy (22.04).
 
 1. Install [ROS 2 Humble](https://docs.ros.org/en/humble/index.html)
 
@@ -49,13 +49,10 @@ export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 2. Install [Gazebo Garden](https://gazebosim.org/docs/garden)
 
-Currently, in order to use added mass, it is necessary to build gz-sim Garden from source.
-
-When building from source, it is necessary to export the `PYTHONPATH` for gz-math python bindings when building buoy_sim
-```
+Installing the binaries for Gazebo is recommended, but if building Gazebo Garden from source, it is necessary to export the `PYTHONPATH` for gz-math python bindings when building buoy_sim
+``
 export PYTHONPATH=$PYTHONPATH:<path to your gz-sim workspace>/install/lib/python`
 ```
-
 See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/blob/gz-math7/tutorials/pythongetstarted.md). This step is needed until `PYTHONPATH` is automatically exported upstream, tracked in [this issue](https://github.com/osrf/buoy_sim/issues/81)
 
 
@@ -64,6 +61,15 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
     ```
     sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
     ```
+
+4. Install necessary libraries
+    ```
+    curl -s --compressed "https://hamilton8415.github.io/ppa/KEY.gpg" | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg >/dev/null
+    sudo curl -s --compressed -o /etc/apt/sources.list.d/my_list_file.list "https://hamilton8415.github.io/ppa/my_list_file.list"
+    sudo apt update
+    sudo apt install libfshydrodynamics
+    ```
+
 
 ##### Usage
 
