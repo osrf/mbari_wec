@@ -21,6 +21,7 @@ These are the repositories for the project:
       Gazebo plugins, worlds and launch files to simulate the buoy.
 
 ## Interfaces and Examples
+
 There are two GitHub
 [template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
 repositories set up (cpp/python) for a quick start on writing a
@@ -36,7 +37,8 @@ controller implementations.
 
 ## Install
 ### On Host System
-##### Requirements
+#### Requirements
+
 At the moment, only source installation is supported. Use Ubuntu Jammy.
 
 1. Install [ROS 2 Humble](https://docs.ros.org/en/humble/index.html)
@@ -65,7 +67,7 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
     sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
     ```
 
-##### Build
+#### Build
 
 1. Create a workspace, for example:
 
@@ -107,15 +109,15 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
     ```
 
 ### Using docker
-##### Requirements
+#### Requirements
 
-1. Install Docker using [installation instructions.](https://docs.docker.com/engine/install/ubuntu/).
-
-1. Install [nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker).
+1. Install Docker using [installation instructions](https://docs.docker.com/engine/install/ubuntu/).
 
 1. Complete the [Linux Postinstall steps](https://docs.docker.com/engine/install/linux-postinstall/) to allow you to manage Docker as a non-root user.
 
-##### Build
+1. If you have an NVIDIA graphics card, it can help speed up rendering. Install [nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker).
+
+#### Build
 
 1. Clone the buoy_entrypoint repository to download the latest Dockerfile.
 
@@ -153,7 +155,7 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
    ./join.bash buoy_latest_runtime
    ```
 
-##### Quick start
+#### Quick start
 
 Quick start scripts are provided in the home directory:
 
@@ -171,8 +173,12 @@ This sources the compiled workspace and launches the simulation:
 
 1. In a new terminal (whether on host machine or in Docker container), source the workspace
 
-    `. ~/buoy_ws/install/setup.sh`
+   ```
+   . ~/buoy_ws/install/setup.sh
+   ```
 
 1. Launch the simulation
 
-    `ros2 launch buoy_gazebo mbari_wec.launch.py`
+   ```
+   ros2 launch buoy_gazebo mbari_wec.launch.py
+   ```
