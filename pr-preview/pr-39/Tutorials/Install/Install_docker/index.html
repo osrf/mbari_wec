@@ -126,35 +126,37 @@
 </ol>
 <h2 id="build">Build</h2>
 <ol>
-<li>Clone the buoy_entrypoint repository to download the latest Dockerfile.</li>
-</ol>
+<li>
+<p>Clone the buoy_entrypoint repository to download the latest Dockerfile.</p>
 <div class="highlight"><pre><span></span><code>git clone https://github.com/osrf/buoy_entrypoint.git
 cd ~/buoy_entrypoint/docker/
 </code></pre></div>
-<ol>
-<li>Build the docker image</li>
-</ol>
+</li>
+<li>
+<p>Build the docker image</p>
 <p>If you have an NVIDIA graphics card
-   <div class="highlight"><pre><span></span><code>./build.bash nvidia_opengl_ubuntu22
+<div class="highlight"><pre><span></span><code>./build.bash nvidia_opengl_ubuntu22
 ./build.bash buoy
 </code></pre></div>
-   Otherwise
-   <div class="highlight"><pre><span></span><code>./build.bash buoy --no-nvidia
+Otherwise
+<div class="highlight"><pre><span></span><code>./build.bash buoy --no-nvidia
 </code></pre></div></p>
-<ol>
-<li>Run the container</li>
-</ol>
+</li>
+<li>
+<p>Run the container</p>
 <p>If you have an NVIDIA graphics card
-   <div class="highlight"><pre><span></span><code>./run.bash buoy
+<div class="highlight"><pre><span></span><code>./run.bash buoy
 </code></pre></div>
-   Otherwise
-   <div class="highlight"><pre><span></span><code>./run.bash buoy --no-nvidia
+Otherwise
+<div class="highlight"><pre><span></span><code>./run.bash buoy --no-nvidia
 </code></pre></div></p>
-<ol>
-<li>To have another window running the same docker container, run this command in a new terminal:</li>
-</ol>
+</li>
+<li>
+<p>To have another window running the same docker container, run this command in a new terminal:</p>
 <div class="highlight"><pre><span></span><code>./join.bash buoy
 </code></pre></div>
+</li>
+</ol>
 <h2 id="quick-start">Quick start</h2>
 <p>Quick start scripts are provided in the home directory:</p>
 <p>This sources the compiled workspace:
@@ -165,15 +167,17 @@ cd ~/buoy_entrypoint/docker/
 </code></pre></div></p>
 <h2 id="run-an-example-to-test">Run an example to test</h2>
 <ol>
-<li>In a new terminal (whether on host machine or in Docker container), source the workspace</li>
-</ol>
+<li>
+<p>In a new terminal (whether on host machine or in Docker container), source the workspace</p>
 <div class="highlight"><pre><span></span><code>. ~/buoy_ws/install/setup.sh
 </code></pre></div>
-<ol>
-<li>Launch the simulation</li>
-</ol>
+</li>
+<li>
+<p>Launch the simulation</p>
 <div class="highlight"><pre><span></span><code>ros2 launch buoy_gazebo mbari_wec.launch.py
 </code></pre></div>
+</li>
+</ol>
 <p>The simulation software should now be available.  To run and test, proceed to the <a href="../../../tutorials/#running-the-simulator">Run the Simulator</a> tutorial series. </p>
               
             </div>
