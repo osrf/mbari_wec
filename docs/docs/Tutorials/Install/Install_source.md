@@ -8,8 +8,8 @@ Use Ubuntu 22.04.
         sudo apt install -y ros-humble-rmw-cyclonedds-cpp
         export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
         ```
-1. Install [Gazebo Garden](https://gazebosim.org/docs/garden)
 
+1. Install [Gazebo Garden](https://gazebosim.org/docs/garden)
 
 1. Install necessary tools
 
