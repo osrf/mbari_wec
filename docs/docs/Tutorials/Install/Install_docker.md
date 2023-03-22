@@ -12,39 +12,39 @@ Docker images that include the neccessary software and dependencies have been cr
 
 1. Clone the buoy_entrypoint repository to download the latest Dockerfile.
 
-   ```
-   git clone https://github.com/osrf/buoy_entrypoint.git
-   cd ~/buoy_entrypoint/docker/
-   ```
+    ```
+    git clone https://github.com/osrf/buoy_entrypoint.git
+    cd ~/buoy_entrypoint/docker/
+    ```
 
 1. Build the docker image
 
-   If you have an NVIDIA graphics card
-   ```
-   ./build.bash nvidia_opengl_ubuntu22
-   ./build.bash buoy
-   ```
-   Otherwise
-   ```
-   ./build.bash buoy --no-nvidia
-   ```
+    If you have an NVIDIA graphics card
+    ```
+    ./build.bash nvidia_opengl_ubuntu22
+    ./build.bash buoy
+    ```
+    Otherwise
+    ```
+    ./build.bash buoy --no-nvidia
+    ```
 
 1. Run the container
 
-   If you have an NVIDIA graphics card
-   ```
-   ./run.bash buoy
-   ```
-   Otherwise
-   ```
-   ./run.bash buoy --no-nvidia
-   ```
+    If you have an NVIDIA graphics card
+    ```
+    ./run.bash buoy
+    ```
+    Otherwise
+    ```
+    ./run.bash buoy --no-nvidia
+    ```
 
 1. To have another window running the same docker container, run this command in a new terminal:
 
-   ```
-   ./join.bash buoy
-   ```
+    ```
+    ./join.bash buoy
+    ```
 
 ## Quick start
 
@@ -64,14 +64,14 @@ This sources the compiled workspace and launches the simulation:
 
 1. In a new terminal (whether on host machine or in Docker container), source the workspace
 
-   ```
-   . ~/buoy_ws/install/setup.sh
-   ```
+    ```
+    . ~/buoy_ws/install/setup.sh
+    ```
 
 1. Launch the simulation
 
-   ```
-   ros2 launch buoy_gazebo mbari_wec.launch.py
-   ```
+    ```
+    ros2 launch buoy_gazebo mbari_wec.launch.py
+    ```
 
 The simulation software should now be available.  To run and test, proceed to the [Run the Simulator](../../../tutorials/#running-the-simulator) tutorial series. 
