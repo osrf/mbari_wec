@@ -21,6 +21,7 @@ These are the repositories for the project:
       Gazebo plugins, worlds and launch files to simulate the buoy.
 
 ## Interfaces and Examples
+
 There are two GitHub
 [template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
 repositories set up (cpp/python) for a quick start on writing a
@@ -36,6 +37,7 @@ controller implementations.
 
 ## Install
 ### On Host System
+
 ##### Requirements
 At the moment, only source installation is supported. Use Ubuntu Jammy (22.04).
 
@@ -63,16 +65,7 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
     sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
     ```
 
-4. Install necessary libraries
-    ```
-    curl -s --compressed "https://hamilton8415.github.io/ppa/KEY.gpg" | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg >/dev/null
-    sudo curl -s --compressed -o /etc/apt/sources.list.d/my_list_file.list "https://hamilton8415.github.io/ppa/my_list_file.list"
-    sudo apt update
-    sudo apt install libfshydrodynamics=1.2.3
-    ```
-
-
-##### Usage
+#### Build
 
 1. Create a workspace, for example:
 
@@ -113,67 +106,77 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
     colcon build
     ```
 
-##### Run
-
-1. In a new terminal, source the workspace
-
-    `. ~/buoy_ws/install/setup.sh`
-
-1. Launch the simulation
-
-    `ros2 launch buoy_gazebo mbari_wec.launch.py`
-
-
 ### Using docker
-##### Requirements
+#### Requirements
 
-1. Install Docker using [installation instructions.](https://docs.docker.com/engine/install/ubuntu/).
-
-1. Install [nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker).
+1. Install Docker using [installation instructions](https://docs.docker.com/engine/install/ubuntu/).
 
 1. Complete the [Linux Postinstall steps](https://docs.docker.com/engine/install/linux-postinstall/) to allow you to manage Docker as a non-root user.
 
-1. Install `rocker` by `sudo apt-get install python3-rocker`.
+1. If you have an NVIDIA graphics card, it can help speed up rendering. Install [nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker).
 
-##### Usage
+#### Build
 
 1. Clone the buoy_entrypoint repository to download the latest Dockerfile.
 
-    ```
-    git clone https://github.com/osrf/buoy_entrypoint.git
-    cd ~/buoy_entrypoint/docker/
-    ```
+   ```
+   git clone https://github.com/osrf/buoy_entrypoint.git
+   cd ~/buoy_entrypoint/docker/
+   ```
 
 1. Build the docker image
 
-    ```
-    ./build.bash buoy
-    ```
+   If you have an NVIDIA graphics card
+   ```
+   ./build.bash nvidia_opengl_ubuntu22
+   ./build.bash buoy
+   ```
+   Otherwise
+   ```
+   ./build.bash buoy --no-nvidia
+   ```
 
 1. Run the container
 
-    ```
-    ./run.bash [-d|s] buoy:latest
-    ```
-    where `./run.bash` option:
-    * -d     Use for development with host system volume mount
-    * -s     Simulation purposes only
-
-    The development use case enables to either use host system home directory for user's custom workspace, or a fresh clone inside the docker container. If using host system workspace, follow the [On Host System](#on-host-system) instructions to build and run the project in the container.
-    Regardless the script option, project source files can be found in `/tmp/buoy_ws/' in the container. Note that any changes to files in the container will have limited scope.
+   If you have an NVIDIA graphics card
+   ```
+   ./run.bash buoy
+   ```
+   Otherwise
+   ```
+   ./run.bash buoy --no-nvidia
+   ```
 
 1. To have another window running the same docker container, run this command in a new terminal:
 
    ```
-   ./join.bash buoy_latest_runtime
+   ./join.bash buoy
    ```
 
-> The build and run bash scripts are a wrapper around rocker, checkout its [documentation](https://github.com/osrf/rocker) for additional options.
+#### Quick start
 
-##### Run
+Quick start scripts are provided in the home directory:
 
-Inside the docker container, run:
-
+This sources the compiled workspace:
 ```
-gz sim mbari_wec.sdf -r
+./setup.bash
 ```
+
+This sources the compiled workspace and launches the simulation:
+```
+./run_simulation.bash
+```
+
+## Run
+
+1. In a new terminal (whether on host machine or in Docker container), source the workspace
+
+   ```
+   . ~/buoy_ws/install/setup.sh
+   ```
+
+1. Launch the simulation
+
+   ```
+   ros2 launch buoy_gazebo mbari_wec.launch.py
+   ```
