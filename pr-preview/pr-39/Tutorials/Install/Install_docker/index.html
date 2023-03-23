@@ -127,12 +127,10 @@
 <h2 id="build">Build</h2>
 <ol>
 <li>
-<p>Clone the buoy_entrypoint repository to download the latest Dockerfile.</p>
-<div class="highlight"><pre><span></span><code>```
-git clone https://github.com/osrf/buoy_entrypoint.git
+<p>Clone the buoy_entrypoint repository to download the latest Dockerfile.
+        <div class="highlight"><pre><span></span><code>git clone https://github.com/osrf/buoy_entrypoint.git
 cd ~/buoy_entrypoint/docker/
-```
-</code></pre></div>
+</code></pre></div></p>
 </li>
 <li>
 <p>Build the docker image</p>
@@ -154,11 +152,9 @@ Otherwise
 </code></pre></div></p>
 </li>
 <li>
-<p>To have another window running the same docker container, run this command in a new terminal:</p>
-<div class="highlight"><pre><span></span><code>```
-./join.bash buoy
-```
-</code></pre></div>
+<p>To have another window running the same docker container, run this command in a new terminal:
+        <div class="highlight"><pre><span></span><code>./join.bash buoy
+</code></pre></div></p>
 </li>
 </ol>
 <h2 id="quick-start">Quick start</h2>
@@ -172,18 +168,14 @@ Otherwise
 <h2 id="run-an-example-to-test">Run an example to test</h2>
 <ol>
 <li>
-<p>In a new terminal (whether on host machine or in Docker container), source the workspace</p>
-<div class="highlight"><pre><span></span><code>```
-. ~/buoy_ws/install/setup.sh
-```
-</code></pre></div>
+<p>In a new terminal (whether on host machine or in Docker container), source the workspace
+        <div class="highlight"><pre><span></span><code>. ~/buoy_ws/install/setup.sh
+</code></pre></div></p>
 </li>
 <li>
-<p>Launch the simulation</p>
-<div class="highlight"><pre><span></span><code>```
-ros2 launch buoy_gazebo mbari_wec.launch.py
-```
-</code></pre></div>
+<p>Launch the simulation
+        <div class="highlight"><pre><span></span><code>ros2 launch buoy_gazebo mbari_wec.launch.py
+</code></pre></div></p>
 </li>
 </ol>
 <p>The simulation software should now be available.  To run and test, proceed to the <a href="../../../tutorials/#running-the-simulator">Run the Simulator</a> tutorial series. </p>

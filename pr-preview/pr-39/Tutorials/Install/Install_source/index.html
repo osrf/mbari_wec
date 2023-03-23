@@ -125,86 +125,68 @@ export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 <p>Install <a href="https://gazebosim.org/docs/garden">Gazebo Garden</a></p>
 </li>
 <li>
-<p>Install necessary tools</p>
-<div class="highlight"><pre><span></span><code>```
-sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
-```
-</code></pre></div>
+<p>Install necessary tools
+        <div class="highlight"><pre><span></span><code>sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
+</code></pre></div></p>
 </li>
 <li>
-<p>Install necessary libraries</p>
-<div class="highlight"><pre><span></span><code>```
-curl -s --compressed &quot;https://hamilton8415.github.io/ppa/KEY.gpg&quot; | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg &gt;/dev/null
+<p>Install necessary libraries
+        <div class="highlight"><pre><span></span><code>curl -s --compressed &quot;https://hamilton8415.github.io/ppa/KEY.gpg&quot; | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg &gt;/dev/null
 sudo curl -s --compressed -o /etc/apt/sources.list.d/my_list_file.list &quot;https://hamilton8415.github.io/ppa/my_list_file.list&quot;
 sudo apt update
 sudo apt install libfshydrodynamics=1.2.3
-```
-</code></pre></div>
+</code></pre></div></p>
 </li>
 </ol>
 <h2 id="buoy-simulation-software-build">Buoy Simulation Software Build</h2>
 <ol>
 <li>
-<p>Create a workspace, for example:</p>
-<div class="highlight"><pre><span></span><code>```
-mkdir -p ~/buoy_ws/src
+<p>Create a workspace, for example:
+        <div class="highlight"><pre><span></span><code>mkdir -p ~/buoy_ws/src
 cd ~/buoy_ws/src
-```
-</code></pre></div>
+</code></pre></div></p>
 </li>
 <li>
-<p>Clone all source repos with the help of <code>vcstool</code>:</p>
-<div class="highlight"><pre><span></span><code>```
-wget https://raw.githubusercontent.com/osrf/buoy_entrypoint/main/buoy_all.yaml
+<p>Clone all source repos with the help of <code>vcstool</code>:
+        <div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/osrf/buoy_entrypoint/main/buoy_all.yaml
 vcs import &lt; buoy_all.yaml
 cd ~/buoy_ws
-```
-</code></pre></div>
+</code></pre></div></p>
 </li>
 <li>
 <p>Set the Gazebo version to Garden. This is needed because we're not using an
-   official ROS + Gazebo combination (place this in ~/.bashrc for convenience if rebuilding often):</p>
-<div class="highlight"><pre><span></span><code>```
-export GZ_VERSION=garden
-```
-</code></pre></div>
+   official ROS + Gazebo combination (place this in ~/.bashrc for convenience if rebuilding often):
+        <div class="highlight"><pre><span></span><code>export GZ_VERSION=garden
+</code></pre></div></p>
 </li>
 <li>
-<p>Install ROS dependencies</p>
-<div class="highlight"><pre><span></span><code>```
-sudo pip3 install -U rosdep
+<p>Install ROS dependencies
+        <div class="highlight"><pre><span></span><code>sudo pip3 install -U rosdep
 sudo rosdep init
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y -i
-```
-</code></pre></div>
+</code></pre></div></p>
 </li>
 <li>
-<p>Build and install</p>
-<div class="highlight"><pre><span></span><code>```
-source /opt/ros/humble/setup.bash
+<p>Build and install
+        <div class="highlight"><pre><span></span><code>source /opt/ros/humble/setup.bash
 cd ~/buoy_ws
 colcon build
-```
-</code></pre></div>
+</code></pre></div></p>
 </li>
 </ol>
 <p>The simulation software should build without errors.  To run and test, proceed to the <a href="../../../tutorials/#running-the-simulator">Run the Simulator</a> tutorial series.  Or run a quick test as described below to confirm all has worked as expected.</p>
 <h2 id="run-an-example-to-test">Run an example to test</h2>
 <ol>
 <li>
-<p>In a new terminal, source the workspace</p>
-<div class="highlight"><pre><span></span><code>```
-. ~/buoy_ws/install/setup.sh`
-```
-</code></pre></div>
+<p>In a new terminal, source the workspace
+        <div class="highlight"><pre><span></span><code>. ~/buoy_ws/install/setup.sh`
+</code></pre></div></p>
 </li>
 <li>
-<p>Launch the simulation</p>
-<div class="highlight"><pre><span></span><code>```
-ros2 launch buoy_gazebo mbari_wec.launch.py`
-```
-</code></pre></div>
+<p>Launch the simulation
+        <div class="highlight"><pre><span></span><code>ros2 launch buoy_gazebo mbari_wec.launch.py`
+</code></pre></div></p>
 </li>
 </ol>
               
