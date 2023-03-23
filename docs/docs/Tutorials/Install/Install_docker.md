@@ -11,7 +11,6 @@ Docker images that include the neccessary software and dependencies have been cr
 ## Build
 
 1. Clone the buoy_entrypoint repository to download the latest Dockerfile.
-
         ```
         git clone https://github.com/osrf/buoy_entrypoint.git
         cd ~/buoy_entrypoint/docker/
@@ -41,7 +40,6 @@ Docker images that include the neccessary software and dependencies have been cr
         ```
 
 1. To have another window running the same docker container, run this command in a new terminal:
-
         ```
         ./join.bash buoy
         ```
@@ -63,13 +61,11 @@ This sources the compiled workspace and launches the simulation:
 ## Run an example to test
 
 1. In a new terminal (whether on host machine or in Docker container), source the workspace
-
         ```
         . ~/buoy_ws/install/setup.sh
         ```
 
 1. Launch the simulation
-
         ```
         ros2 launch buoy_gazebo mbari_wec.launch.py
         ```
