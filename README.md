@@ -1,6 +1,6 @@
 This is the entrypoint for the wave energy harvesting buoy project.
 
-See [documentation here](https://osrf.github.io/mbari_wec_entrypoint).
+See [documentation here](https://osrf.github.io/mbari_wec).
 
 ## Simulation Repositories
 
@@ -79,7 +79,7 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
 1. Clone all source repos with the help of `vcstool`:
 
     ```
-    wget https://raw.githubusercontent.com/osrf/mbari_wec_entrypoint/main/mbari_wec_all.yaml
+    wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml
     vcs import < mbari_wec_all.yaml
     cd ~/buoy_ws
     ```
@@ -119,11 +119,11 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
 
 #### Build
 
-1. Clone the mbari_wec_entrypoint repository to download the latest Dockerfile.
+1. Clone the mbari_wec repository to download the latest Dockerfile.
 
    ```
-   git clone https://github.com/osrf/mbari_wec_entrypoint.git
-   cd ~/mbari_wec_entrypoint/docker/
+   git clone https://github.com/osrf/mbari_wec.git
+   cd ~/mbari_wec/docker/
    ```
 
 1. Build the docker image

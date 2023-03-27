@@ -92,7 +92,7 @@ WORKDIR /home/$USERNAME
 ENV BUOY_WS /home/$USERNAME/buoy_ws
 RUN mkdir -p ${BUOY_WS}/src \
  && cd ${BUOY_WS}/src/ \
- && wget https://raw.githubusercontent.com/osrf/mbari_wec_entrypoint/main/mbari_wec_all.yaml \
+ && wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml \
  && vcs import < mbari_wec_all.yaml
 
 # Install rosdep dependencies

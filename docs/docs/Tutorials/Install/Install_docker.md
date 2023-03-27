@@ -12,11 +12,11 @@ Docker images that include the neccessary software and dependencies have been cr
 
 ## Usage
 
-1. Clone the buoy_entrypoint repository to download the latest Dockerfile.
+1. Clone the mbari_wec repository to download the latest Dockerfile.
 
 ```
-$ git clone https://github.com/osrf/buoy_entrypoint.git
-$ cd ~/buoy_entrypoint/docker/
+$ git clone https://github.com/osrf/mbari_wec.git
+$ cd ~/mbari_wec/docker/
 ```
 
 1. Build the docker image
