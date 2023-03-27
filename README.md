@@ -1,6 +1,6 @@
 This is the entrypoint for the wave energy harvesting buoy project.
 
-See [documentation here](https://osrf.github.io/buoy_entrypoint).
+See [documentation here](https://osrf.github.io/mbari_wec/).
 
 ## Simulation Repositories
 
