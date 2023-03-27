@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/Tutorials/Install/Install_docker/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Install docker - MBARI-WEC</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Install docker";
+        var mkdocs_page_input_path = "Tutorials/Install/Install_docker.md";
+        var mkdocs_page_url = "/Tutorials/Install/Install_docker/";
+      </script>
+    
+    <script src="../../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> MBARI-WEC
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../ControlAndTelemetry/">Buoy Control and Telemetry</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../atseaoperation/">At Sea Operation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../ros2/">ROS 2 Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../simulation/">Simulation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/">Tutorials</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../theory/">Theory</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../resources/">Resources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../license/">License</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../citation/">How to Cite</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../roadmap/">Project Roadmap</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">MBARI-WEC</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Install docker</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p>Docker images that include the neccessary software and dependencies have been created for convenience. </p>
+<h2 id="requirements">Requirements</h2>
+<ol>
+<li>
+<p>Install Docker using <a href="https://docs.docker.com/engine/install/ubuntu/">installation instructions</a>.</p>
+</li>
+<li>
+<p>Complete the <a href="https://docs.docker.com/engine/install/linux-postinstall/">Linux Postinstall steps</a> to allow you to manage Docker as a non-root user.</p>
+</li>
+<li>
+<p>If you have an NVIDIA graphics card, it can help speed up rendering. Install <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker">nvidia-docker</a>.</p>
+</li>
+</ol>
+<h2 id="build">Build</h2>
+<ol>
+<li>
+<p>Clone the buoy_entrypoint repository to download the latest Dockerfile.
+        <div class="highlight"><pre><span></span><code>git clone https://github.com/osrf/buoy_entrypoint.git
+cd ~/buoy_entrypoint/docker/
+</code></pre></div></p>
+</li>
+<li>
+<p>Build the docker image</p>
+<p>If you have an NVIDIA graphics card
+    <div class="highlight"><pre><span></span><code>./build.bash nvidia_opengl_ubuntu22
+./build.bash buoy
+</code></pre></div>
+Otherwise
+    <div class="highlight"><pre><span></span><code>./build.bash buoy --no-nvidia
+</code></pre></div></p>
+</li>
+<li>
+<p>Run the container</p>
+<p>If you have an NVIDIA graphics card
+    <div class="highlight"><pre><span></span><code>./run.bash buoy
+</code></pre></div>
+Otherwise
+    <div class="highlight"><pre><span></span><code>./run.bash buoy --no-nvidia
+</code></pre></div></p>
+</li>
+<li>
+<p>To have another window running the same docker container, run this command in a new terminal:
+        <div class="highlight"><pre><span></span><code>./join.bash buoy
+</code></pre></div></p>
+</li>
+</ol>
+<h2 id="quick-start">Quick start</h2>
+<p>Quick start scripts are provided in the home directory:</p>
+<p>This sources the compiled workspace:
+    <div class="highlight"><pre><span></span><code>./setup.bash
+</code></pre></div></p>
+<p>This sources the compiled workspace and launches the simulation:
+    <div class="highlight"><pre><span></span><code>./run_simulation.bash
+</code></pre></div></p>
+<h2 id="run-an-example-to-test">Run an example to test</h2>
+<ol>
+<li>
+<p>In a new terminal (whether on host machine or in Docker container), source the workspace
+        <div class="highlight"><pre><span></span><code>. ~/buoy_ws/install/setup.sh
+</code></pre></div></p>
+</li>
+<li>
+<p>Launch the simulation
+        <div class="highlight"><pre><span></span><code>ros2 launch buoy_gazebo mbari_wec.launch.py
+</code></pre></div></p>
+</li>
+</ol>
+<p>The simulation software should now be available.  To run and test, proceed to the <a href="../../../tutorials/#running-the-simulator">Run the Simulator</a> tutorial series. </p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme_extra.js" defer></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
