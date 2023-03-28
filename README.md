@@ -6,13 +6,13 @@ See [documentation here](https://osrf.github.io/mbari_wec).
 
 These are the repositories for the project:
 
-* [mbari_wec_msgs](https://github.com/osrf/mbari_wec_msgs): ROS 2 messages, interface API, and examples for
+* [mbari_wec_utils](https://github.com/osrf/mbari_wec_utils): ROS 2 messages, interface API, and examples for
   receiving and sending data to a physical or simulated buoy.
-    * [buoy_interfaces](https://github.com/osrf/mbari_wec_msgs/tree/main/buoy_api_cpp): ROS 2 messages
+    * [buoy_interfaces](https://github.com/osrf/mbari_wec_utils/tree/main/buoy_api_cpp): ROS 2 messages
       to recieve and send data to a physical or simulated buoy
-    * [buoy_api_cpp](https://github.com/osrf/mbari_wec_msgs/tree/main/buoy_api_cpp): C++ Interface to
+    * [buoy_api_cpp](https://github.com/osrf/mbari_wec_utils/tree/main/buoy_api_cpp): C++ Interface to
       MBARI Power Buoy including Controller examples to run against a physical or simulated buoy.
-    * [buoy_api_py](https://github.com/osrf/mbari_wec_msgs/tree/main/buoy_api_py): Python Interface to
+    * [buoy_api_py](https://github.com/osrf/mbari_wec_utils/tree/main/buoy_api_py): Python Interface to
       MBARI Power Buoy including Controller examples to run against a physical or simulated buoy.
 * [mbari_wec_gz](https://github.com/osrf/mbari_wec_gz)
     * [buoy_description](https://github.com/osrf/buoy_description/tree/main/buoy_description):
@@ -26,10 +26,10 @@ There are two GitHub
 [template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
 repositories set up (cpp/python) for a quick start on writing a
 custom controller utilizing
-[buoy_api_cpp](https://github.com/osrf/mbari_wec_msgs/tree/main/buoy_api_cpp) and
-[buoy_api_py](https://github.com/osrf/mbari_wec_msgs/tree/main/buoy_api_py). Please see
-[cpp examples](https://github.com/osrf/mbari_wec_msgs/tree/main/buoy_api_cpp/examples) and
-[python examples](https://github.com/osrf/mbari_wec_msgs/tree/main/buoy_api_py/buoy_api/examples) for example
+[buoy_api_cpp](https://github.com/osrf/mbari_wec_utils/tree/main/buoy_api_cpp) and
+[buoy_api_py](https://github.com/osrf/mbari_wec_utils/tree/main/buoy_api_py). Please see
+[cpp examples](https://github.com/osrf/mbari_wec_utils/tree/main/buoy_api_cpp/examples) and
+[python examples](https://github.com/osrf/mbari_wec_utils/tree/main/buoy_api_py/buoy_api/examples) for example
 controller implementations.
 
 * [mbari_wec_template_cpp](https://github.com/mbari-org/mbari_wec_template_cpp)
