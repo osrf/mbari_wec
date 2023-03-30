@@ -93,7 +93,7 @@ To run this example, create the above file in a new directory and name it "Irreg
 $ mkdir FOO
 $ cd FOO
 $ Create file using editor of your choice, name it IrregularWaves.yaml
-$ . ~/buoy_ws/install/setup.bash
+$ . ~/mbari_wec_ws/install/setup.bash
 $ ros2 launch buoy_gazebo mbari_wec_batch.launch.py sim_params_yaml:=IrregularWaves.yaml
 ```
 

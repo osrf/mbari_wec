@@ -28,15 +28,15 @@ Use Ubuntu 22.04.
 
 1. Create a workspace, for example:
         ```
-        mkdir -p ~/buoy_ws/src
-        cd ~/buoy_ws/src
+        mkdir -p ~/mbari_wec_ws/src
+        cd ~/mbari_wec_ws/src
         ```
 
 2. Clone all source repos with the help of `vcstool`:
         ```
         wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml
         vcs import < mbari_wec_all.yaml
-        cd ~/buoy_ws
+        cd ~/mbari_wec_ws
         ```
 
 3. Set the Gazebo version to Garden. This is needed because we're not using an
@@ -56,7 +56,7 @@ Use Ubuntu 22.04.
 5. Build and install
         ```
         source /opt/ros/humble/setup.bash
-        cd ~/buoy_ws
+        cd ~/mbari_wec_ws
         colcon build
         ```
 
@@ -68,7 +68,7 @@ Use Ubuntu 22.04.
 
 1. In a new terminal, source the workspace
         ```
-        . ~/buoy_ws/install/setup.sh`
+        . ~/mbari_wec_ws/install/setup.sh`
         ```
 
 1. Launch the simulation

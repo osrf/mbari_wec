@@ -78,8 +78,8 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
 1. Create a workspace, for example:
 
     ```
-    mkdir -p ~/buoy_ws/src
-    cd ~/buoy_ws/src
+    mkdir -p ~/mbari_wec_ws/src
+    cd ~/mbari_wec_ws/src
     ```
 
 1. Clone all source repos with the help of `vcstool`:
@@ -87,7 +87,7 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
     ```
     wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml
     vcs import < mbari_wec_all.yaml
-    cd ~/buoy_ws
+    cd ~/mbari_wec_ws
     ```
 
 1. Set the Gazebo version to Garden. This is needed because we're not using an
@@ -110,7 +110,7 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
 
     ```
     source /opt/ros/humble/setup.bash
-    cd ~/buoy_ws
+    cd ~/mbari_wec_ws
     colcon build
     ```
 
@@ -180,7 +180,7 @@ This sources the compiled workspace and launches the simulation:
 1. In a new terminal (whether on host machine or in Docker container), source the workspace
 
    ```
-   . ~/buoy_ws/install/setup.sh
+   . ~/mbari_wec_ws/install/setup.sh
    ```
 
 1. Launch the simulation

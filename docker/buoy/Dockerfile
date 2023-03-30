@@ -89,15 +89,15 @@ USER $USERNAME
 WORKDIR /home/$USERNAME
 
 # Create project directory and import packages
-ENV BUOY_WS /home/$USERNAME/buoy_ws
-RUN mkdir -p ${BUOY_WS}/src \
- && cd ${BUOY_WS}/src/ \
+ENV MBARI_WEC_WS /home/$USERNAME/mbari_wec_ws
+RUN mkdir -p ${MBARI_WEC_WS}/src \
+ && cd ${MBARI_WEC_WS}/src/ \
  && wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml \
  && vcs import < mbari_wec_all.yaml
 
 # Install rosdep dependencies
 RUN sudo apt update \
- && cd ${BUOY_WS} \
+ && cd ${MBARI_WEC_WS} \
  && sudo rosdep init \
  && rosdep update \
  && rosdep install --from-paths src --ignore-src -r -y -i --rosdistro humble \
@@ -106,19 +106,19 @@ RUN sudo apt update \
 
 # Build the project
 RUN /bin/bash -c 'source /opt/ros/humble/setup.bash \
-  && cd ${BUOY_WS} \
+  && cd ${MBARI_WEC_WS} \
   && colcon build'
 
 # Add quick access scripts
 ENV SETUP_SH /home/$USERNAME/setup.bash
 RUN touch ${SETUP_SH} \
  && chmod 755 ${SETUP_SH} \
- && echo ". ${BUOY_WS}/install/setup.bash" >> ${SETUP_SH}
+ && echo ". ${MBARI_WEC_WS}/install/setup.bash" >> ${SETUP_SH}
 ENV RUN_SH /home/$USERNAME/run_simulation.bash
 RUN touch ${RUN_SH} \
  && chmod 755 ${RUN_SH} \
- && echo ". ${BUOY_WS}/install/setup.bash" >> ${RUN_SH} \
+ && echo ". ${MBARI_WEC_WS}/install/setup.bash" >> ${RUN_SH} \
  && echo "ros2 launch buoy_gazebo mbari_wec.launch.py" >> ${RUN_SH}
 
 # Start the container at a bash prompt
-ENTRYPOINT ["/bin/bash" , "-c" , "source ${BUOY_WS}/install/setup.bash && /bin/bash"]
+ENTRYPOINT ["/bin/bash" , "-c" , "source ${MBARI_WEC_WS}/install/setup.bash && /bin/bash"]
