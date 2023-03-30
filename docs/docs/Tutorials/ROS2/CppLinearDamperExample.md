@@ -83,11 +83,11 @@ These can be configured using the `config/controller.yaml` file.
 As you can see, as motor speed increases, so does the damping torque. For low RPM (up to 300),
 there is no damping.
 
-Initialize these variables in `ControlPolicy` in
+Initialize these variables and create the interpolator,
+`winding_current`, in `ControlPolicy` in
 `include/mbari_wec_linear_damper_cpp/control_policy.hpp`. This
-example makes use of `<simple_interp/interp1d.hpp>`, so don't forget to
-include that as well as `<algorithm>` and `<vector>`. Also, create the interpolator,
-`winding_current`, which uses `Interp1d` from `simple_interp`.
+example makes use of `<simple_interp/interp1d.hpp>` from `mbari_wec_utils`, so don't forget to
+include that as well as `<algorithm>` and `<vector>`.
 
 ``` cpp linenums="22" title="include/mbari_wec_linear_damper_cpp/control_policy.hpp"
 #include <algorithm>
@@ -234,8 +234,8 @@ Typical values for these gains are
   }
 ```
 
-So, as you can see we apply a positive damping torque when `N` is negative (piston extending), and
-a positive damping torque when `N` is positive (piston retracting). The damping torque required is
+So, as you can see we apply a positive damping torque when RPM is negative (piston extending), and
+a positive damping torque when RPM is positive (piston retracting). The damping torque required is
 reduced when retracting.
 
 ### Controller
@@ -244,38 +244,46 @@ All that is left is to connect the necessary feedback data to the `ControlPolicy
 `rpm`, `scale`, and `retract` are present in `buoy_interfaces.msg.PCRecord` on the `/power_data`
 topic published by the Power Controller running on the buoy.
 
-To access the data, all that is required is to define the callback `def power_callback(self, data)`
-in the `Controller` class, and pass the data to `self.policy.target` to get the desired winding
+To access the data, all that is required is to define the callback
+`void Controller::power_callback(const buoy_interfaces::msg::PCRecord & data)`
+in the `Controller` class, and pass the data to `this->policy_->target` to get the desired winding
 current command. Various commands are available, and this time we will be using  
-`self.send_pc_wind_curr_command(wind_curr, blocking=False)`
+`this->send_pc_wind_curr_command(wind_curr_amps);`
 
-``` py linenums="107" title="mbari_wec_linear_damper_py/controller.py"
-    def power_callback(self, data):
-        """Provide feedback of '/power_data' topic from Power Controller."""
-        # Update class variables, get control policy target, send commands, etc.
-        wind_curr = self.policy.target(data.rpm, data.scale, data.retract)
+``` cpp linenums="54" title="src/controller.cpp"
+// Callback for '/power_data' topic from Power Controller
+void Controller::power_callback(const buoy_interfaces::msg::PCRecord & data)
+{
+  // Update class variables, get control policy target, send commands, etc.
+  // get target value from control policy
+  double wind_curr = this->policy_->target(data.rpm, data.scale, data.retract);
 
-        self.get_logger().info('WindingCurrent:' +
-                               f' f({data.rpm:.02f}, {data.scale:.02f}, {data.retract:.02f})' +
-                               f' = {wind_curr:.02f}')
+  RCLCPP_INFO_STREAM(
+    rclcpp::get_logger(
+      this->get_name()),
+    "WindingCurrent: f(" << data.rpm << ", " << data.scale << ", " << data.retract << ") = " <<
+      wind_curr);
 
-        self.send_pc_wind_curr_command(wind_curr, blocking=False)
+  auto future = this->send_pc_wind_curr_command(wind_curr);
+}
 ```
 
 Finally, let's set the Power Controller's publish rate to the maximum of 50Hz. Uncomment the line
-to set the PC Pack Rate in `Controller.__init__`:
+to set the PC Pack Rate in `Controller` constructor:
 
-``` py linenums="79" title="mbari_wec_linear_damper_py/controller.py"
-    def __init__(self):
-        super().__init__('linear_damper')
+``` cpp linenums="22" title="src/controller.cpp"
+Controller::Controller(const std::string & node_name)
+: buoy_api::Interface<Controller>(node_name),
+  policy_(std::make_unique<ControlPolicy>())
+{
+  this->set_params();
 
-        self.policy = ControlPolicy()
-        self.set_params()
-
-        # set packet rates from controllers here
-        # controller defaults to publishing feedback @ 10Hz
-        # call these to set rate to 50Hz or provide argument for specific rate
-        self.set_pc_pack_rate_param()  # set PC feedback publish rate to 50Hz
+  // set packet rates from controllers here
+  // controller defaults to publishing @ 10Hz
+  // call these to set rate to 50Hz or provide argument for specific rate
+  // this->set_sc_pack_rate_param();  // set SC publish rate to 50Hz
+  this->set_pc_pack_rate_param();  // set PC publish rate to 50Hz
+}
 ```
 
 In this tutorial, we've named this controller `linear_damper`. Don't forget to update controller
@@ -283,13 +291,21 @@ names along with other changes according to the previous tutorial.
 
 ## Try It Out
 
+Make sure to build and source your workspace. This tutorial assumes you cloned your package to
+`~/controller_ws/src` and you have sourced `mbari_wec_gz` and `mbari_wec_utils`
+```
+$ cd ~/controller_ws
+$ colcon build
+$ source install/local_setup.bash
+```
+
 We will be using `ros2 launch` and `launch/controller.launch.py` to run our new controller.
 
-To run the controller along with the simulation, first source your workspace. Then, launch your
+To run the controller along with the simulation, launch your
 controller:  
-`$ ros2 launch mbari_wec_linear_damper_py controller.launch.py`
+`$ ros2 launch mbari_wec_linear_damper_cpp controller.launch.py`
 
-Then, launch the sim:  
+Then, in another terminal (with `mbari_wec_gz` sourced), launch the sim:  
 `$ ros2 launch buoy_gazebo mbari_wec.launch.py`  
 and click the play button.
 
@@ -297,42 +313,35 @@ and click the play button.
 You should see output similar to:
 
 ```
-[linear_damper-1] [INFO] [1677864397.617058507] [linear_damper]: Found all required services.
-[linear_damper-1] [INFO] [1677864397.618426488] [linear_damper]: ControlPolicy:
-[linear_damper-1]       Torque_constant: 0.438
-[linear_damper-1]       N_Spec: [   0.  300.  600. 1000. 1700. 4400. 6790.]
-[linear_damper-1]       Torque_Spec: [ 0.   0.   0.8  2.9  5.6  9.8 16.6]
-[linear_damper-1]       I_Spec: [ 0.          0.          1.82648402  6.62100457 12.78538813 22.37442922
-[linear_damper-1]  37.89954338]
-[linear_damper-1] [INFO] [1677864197.432679525] [linear_damper]: WindingCurrent: f(4962.91, 1.00, 0.60) = -15.62
-[linear_damper-1] [INFO] [1677864197.532727531] [linear_damper]: WindingCurrent: f(7764.73, 1.00, 0.60) = -22.74
-[linear_damper-1] [INFO] [1677864197.632748699] [linear_damper]: WindingCurrent: f(10504.88, 1.00, 0.60) = -22.74
-[linear_damper-1] [INFO] [1677864197.732851121] [linear_damper]: WindingCurrent: f(11491.33, 1.00, 0.60) = -22.74
-[linear_damper-1] [INFO] [1677864197.833078440] [linear_damper]: WindingCurrent: f(11075.84, 1.00, 0.60) = -22.74
-[linear_damper-1] [INFO] [1677864197.933050356] [linear_damper]: WindingCurrent: f(9546.51, 1.00, 0.60) = -22.74
-[linear_damper-1] [INFO] [1677864198.033185882] [linear_damper]: WindingCurrent: f(7499.68, 1.00, 0.60) = -22.74
-[linear_damper-1] [INFO] [1677864198.133197926] [linear_damper]: WindingCurrent: f(5190.35, 1.00, 0.60) = -16.51
-[linear_damper-1] [INFO] [1677864198.233322713] [linear_damper]: WindingCurrent: f(2353.02, 1.00, 0.60) = -9.06
-[linear_damper-1] [INFO] [1677864198.333507127] [linear_damper]: WindingCurrent: f(-257.59, 1.00, 0.60) = 0.00
-[linear_damper-1] [INFO] [1677864198.433489830] [linear_damper]: WindingCurrent: f(-2185.58, 1.00, 0.60) = 14.51
-[linear_damper-1] [INFO] [1677864198.533538450] [linear_damper]: WindingCurrent: f(-2987.98, 1.00, 0.60) = 17.36
-[linear_damper-1] [INFO] [1677864198.633671249] [linear_damper]: WindingCurrent: f(-3513.15, 1.00, 0.60) = 19.22
-[linear_damper-1] [INFO] [1677864198.733703803] [linear_damper]: WindingCurrent: f(-3738.12, 1.00, 0.60) = 20.02
-[linear_damper-1] [INFO] [1677864198.833889518] [linear_damper]: WindingCurrent: f(-3751.64, 1.00, 0.60) = 20.07
-[linear_damper-1] [INFO] [1677864198.933993414] [linear_damper]: WindingCurrent: f(-3595.71, 1.00, 0.60) = 19.52
-[linear_damper-1] [INFO] [1677864199.034078009] [linear_damper]: WindingCurrent: f(-3306.87, 1.00, 0.60) = 18.49
-[linear_damper-1] [INFO] [1677864199.134273438] [linear_damper]: WindingCurrent: f(-3012.52, 1.00, 0.60) = 17.45
-[linear_damper-1] [INFO] [1677864199.234371669] [linear_damper]: WindingCurrent: f(-2617.97, 1.00, 0.60) = 16.05
-[linear_damper-1] [INFO] [1677864199.334275962] [linear_damper]: WindingCurrent: f(-2269.58, 1.00, 0.60) = 14.81
-[linear_damper-1] [INFO] [1677864199.434369620] [linear_damper]: WindingCurrent: f(-1893.56, 1.00, 0.60) = 13.47
-[linear_damper-1] [INFO] [1677864199.534461914] [linear_damper]: WindingCurrent: f(-1513.34, 1.00, 0.60) = 11.14
-[linear_damper-1] [INFO] [1677864199.634556815] [linear_damper]: WindingCurrent: f(-1128.46, 1.00, 0.60) = 7.75
-[linear_damper-1] [INFO] [1677864199.734798736] [linear_damper]: WindingCurrent: f(-825.91, 1.00, 0.60) = 4.53
-[linear_damper-1] [INFO] [1677864199.834753871] [linear_damper]: WindingCurrent: f(-586.78, 1.00, 0.60) = 1.75
-[linear_damper-1] [INFO] [1677864199.934809041] [linear_damper]: WindingCurrent: f(-393.25, 1.00, 0.60) = 0.57
-[linear_damper-1] [INFO] [1677864200.035109715] [linear_damper]: WindingCurrent: f(-132.04, 1.00, 0.60) = 0.00
-[linear_damper-1] [INFO] [1677864200.134981992] [linear_damper]: WindingCurrent: f(92.19, 1.00, 0.60) = -0.00
-[linear_damper-1] [INFO] [1677864200.235094219] [linear_damper]: WindingCurrent: f(338.10, 1.00, 0.60) = -0.14
-[linear_damper-1] [INFO] [1677864200.335164181] [linear_damper]: WindingCurrent: f(636.96, 1.00, 0.60) = -1.36
-[linear_damper-1] [INFO] [1677864200.435227880] [linear_damper]: WindingCurrent: f(863.33, 1.00, 0.60) = -2.99
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.623306255] [mbari_wec_linear_damper_cpp]: Found all required services.
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.623437968] [mbari_wec_linear_damper_cpp]: ControlPolicy:
+[mbari_wec_linear_damper_cpp-1]         Torque_constant: 0.438
+[mbari_wec_linear_damper_cpp-1]         N_Spec: 0,300,600,1000,1700,4400,6790
+[mbari_wec_linear_damper_cpp-1]         Torque_Spec: 0,0,0.8,2.9,5.6,9.8,16.6
+[mbari_wec_linear_damper_cpp-1]         I_Spec: 0,0,1.82648,6.621,12.7854,22.3744,37.8995
+[mbari_wec_linear_damper_cpp-1]
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.623585767] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2911.62, 1, 0.6) = -10.2531
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.623769091] [mbari_wec_linear_damper_cpp]: Successfully set publish_rate for power_controller
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.723139301] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2881.34, 1, 0.6) = -10.1886
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.723199020] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2881.34, 1, 0.6) = -10.1886
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.743295542] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2864.91, 1, 0.6) = -10.1535
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.763406662] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2845.41, 1, 0.6) = -10.112
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.783518884] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2822.43, 1, 0.6) = -10.063
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.803625212] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2796.29, 1, 0.6) = -10.0073
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.823736947] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2767.06, 1, 0.6) = -9.94502
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.843817290] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2734.81, 1, 0.6) = -9.87631
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.863931284] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2699.67, 1, 0.6) = -9.80143
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.884041064] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2661.74, 1, 0.6) = -9.7206
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.904159386] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2621.09, 1, 0.6) = -9.63398
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.924232170] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2577.85, 1, 0.6) = -9.54184
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.944361837] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2532.15, 1, 0.6) = -9.44445
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.964467851] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2484.08, 1, 0.6) = -9.34203
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215528.984588134] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2433.76, 1, 0.6) = -9.23479
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215529.004697490] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2381.3, 1, 0.6) = -9.12301
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215529.024807195] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2326.81, 1, 0.6) = -9.00691
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215529.044928940] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2270.4, 1, 0.6) = -8.88669
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215529.065039660] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2212.17, 1, 0.6) = -8.76262
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215529.085145551] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2152.24, 1, 0.6) = -8.63491
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215529.105256007] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2090.71, 1, 0.6) = -8.50379
+[mbari_wec_linear_damper_cpp-1] [INFO] [1680215529.125363653] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2027.67, 1, 0.6) = -8.36947
 ```

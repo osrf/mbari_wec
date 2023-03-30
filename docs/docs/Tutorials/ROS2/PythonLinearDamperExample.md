@@ -191,8 +191,8 @@ Typical values for these gains are
         return float(I)
 ```
 
-So, as you can see we apply a positive damping torque when `N` is negative (piston extending), and
-a positive damping torque when `N` is positive (piston retracting). The damping torque required is
+So, as you can see we apply a positive damping torque when RPM is negative (piston extending), and
+a positive damping torque when RPM is positive (piston retracting). The damping torque required is
 reduced when retracting.
 
 ### Controller
@@ -240,13 +240,21 @@ names along with other changes according to the previous tutorial.
 
 ## Try It Out
 
+Make sure to build and source your workspace. This tutorial assumes you cloned your package to
+`~/controller_ws/src` and you have sourced `mbari_wec_gz` and `mbari_wec_utils`
+```
+$ cd ~/controller_ws
+$ colcon build
+$ source install/local_setup.bash
+```
+
 We will be using `ros2 launch` and `launch/controller.launch.py` to run our new controller.
 
-To run the controller along with the simulation, first source your workspace. Then, launch your
+To run the controller along with the simulation, launch your
 controller:  
-`$ ros2 launch mbari_wec_linear_damper_py controller.launch.py`
+`$ ros2 launch mbari_wec_linear_damper_cpp controller.launch.py`
 
-Then, launch the sim:  
+Then, in another terminal (with `mbari_wec_gz` sourced), launch the sim:  
 `$ ros2 launch buoy_gazebo mbari_wec.launch.py`  
 and click the play button.
 
