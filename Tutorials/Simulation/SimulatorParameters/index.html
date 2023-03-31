@@ -187,7 +187,7 @@ IncidentWaveSpectrumType:
 <div class="highlight"><pre><span></span><code>$ mkdir FOO
 $ cd FOO
 $ Create file using editor of your choice, name it IrregularWaves.yaml
-$ . ~/buoy_ws/install/setup.bash
+$ . ~/mbari_wec_ws/install/setup.bash
 $ ros2 launch buoy_gazebo mbari_wec_batch.launch.py sim_params_yaml:=IrregularWaves.yaml
 </code></pre></div>
 <p>Running these commands will run the simulation, all output is stored in a directory named similar to `batch_results_20230228210735', the trailing numbers indicate a timestamp.  Inside this directory the yaml file is repeated, along with a log file 'batch_results.log' that lists all of the simulation runs that were performed.  Alongside that are specific directories that hold output from each run.  For convenience, a symbolic link is formed that points at the most recent batch output directory.</p>
