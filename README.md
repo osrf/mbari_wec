@@ -2,7 +2,7 @@ This is the entrypoint for the wave energy harvesting buoy project.
 
 See [documentation here](https://osrf.github.io/mbari_wec).
 
-## Simulation Repositories
+# Simulation Repositories
 
 These are the repositories for the project:
 
@@ -20,7 +20,7 @@ These are the repositories for the project:
     * [buoy_gazebo](https://github.com/osrf/buoy_description/tree/main/buoy_gazebo):
       Gazebo plugins, worlds and launch files to simulate the buoy.
 
-## Interfaces and Examples
+# Interfaces and Examples
 
 There are two GitHub
 [template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
@@ -35,27 +35,27 @@ controller implementations.
 * [mbari_wec_template_cpp](https://github.com/mbari-org/mbari_wec_template_cpp)
 * [mbari_wec_template_py](https://github.com/mbari-org/mbari_wec_template_py)
 
-## Install
-### On Host System
-##### Requirements
+# Install
+## On Host System
+### Requirements
 At the moment, only source installation is supported. Use Ubuntu Jammy (22.04).
 
 1. Install [ROS 2 Humble](https://docs.ros.org/en/humble/index.html)
 
-Buoy Sim is tested against cyclonedds rmw implementation (default changed from Galactic to Humble)
-```
-sudo apt install -y ros-humble-rmw-cyclonedds-cpp
-export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-```
+    Buoy Sim is tested against cyclonedds rmw implementation (default changed from Galactic to Humble)
+    ```
+    sudo apt install -y ros-humble-rmw-cyclonedds-cpp
+    export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+    ```
 
 2. Install [Gazebo Garden](https://gazebosim.org/docs/garden)
 
-Installing the binaries for Gazebo is recommended, but if building Gazebo Garden from source, it is necessary to export the `PYTHONPATH` for gz-math python bindings when building mbari_wec_gz
-```
-export PYTHONPATH=$PYTHONPATH:<path to your gz-sim workspace>/install/lib/python`
-```
+    Installing the binaries for Gazebo is recommended, but if building Gazebo Garden from source, it is necessary to export the `PYTHONPATH` for gz-math python bindings when building mbari_wec_gz
+    ```
+    export PYTHONPATH=$PYTHONPATH:<path to your gz-sim workspace>/install/lib/python`
+    ```
 
-See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/blob/gz-math7/tutorials/pythongetstarted.md). This step is needed until `PYTHONPATH` is automatically exported upstream, tracked in [this issue](https://github.com/osrf/mbari_wec_gz/issues/81)
+    See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/blob/gz-math7/tutorials/pythongetstarted.md). This step is needed until `PYTHONPATH` is automatically exported upstream, tracked in [this issue](https://github.com/osrf/mbari_wec_gz/issues/81)
 
 
 3. Install necessary tools
@@ -73,7 +73,7 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
     ```
 
 
-#### Build
+### Build
 
 1. Create a workspace, for example:
 
@@ -114,8 +114,8 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
     colcon build
     ```
 
-### Using docker
-#### Requirements
+## Using docker
+### Requirements
 
 1. Install Docker using [installation instructions](https://docs.docker.com/engine/install/ubuntu/).
 
@@ -123,7 +123,7 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
 
 1. If you have an NVIDIA graphics card, it can help speed up rendering. Install [nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker).
 
-#### Build
+### Build
 
 1. Clone the mbari_wec repository to download the latest Dockerfile.
 
@@ -161,7 +161,7 @@ See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/b
    ./join.bash buoy
    ```
 
-#### Quick start
+### Quick start
 
 Quick start scripts are provided in the home directory:
 
@@ -175,7 +175,7 @@ This sources the compiled workspace and launches the simulation:
 ./run_simulation.bash
 ```
 
-## Run
+# Run
 
 1. In a new terminal (whether on host machine or in Docker container), source the workspace
 
