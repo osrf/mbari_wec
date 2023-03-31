@@ -1,12 +1,16 @@
 ---
 repositories:
-  buoy_msgs:
+  mbari_wec:
     type: git
-    url: https://github.com/osrf/buoy_msgs
+    url: https://github.com/osrf/mbari_wec
     version: main
-  buoy_sim:
+  mbari_wec_utils:
     type: git
-    url: https://github.com/osrf/buoy_sim
+    url: https://github.com/osrf/mbari_wec_utils
+    version: main
+  mbari_wec_gz:
+    type: git
+    url: https://github.com/osrf/mbari_wec_gz
     version: main
   # Must compile ros_gz from source because Humble + Garden is not an official combination
   ros_gz:
