@@ -80,7 +80,7 @@ As an example, issue the following commands in a terminal where the workspace ha
 
 1. Launch the simulation without incident waves by issuing the following commands, the first command over-rides the default sea-state and results in no incident wave-forcing on the buoy when the "regenerate_models" flag is set to false:
 ```
-$ empy -D 'inc_wave_spectrum_type="None"' -o ~/buoy_ws/install/buoy_description/share/buoy_description/models/mbari_wec/model.sdf ~/buoy_ws/install/buoy_description/share/buoy_description/models/mbari_wec/model.sdf.em
+$ empy -D 'inc_wave_spectrum_type="None"' -o ~/mbari_wec_ws/install/buoy_description/share/buoy_description/models/mbari_wec/model.sdf ~/mbari_wec_ws/install/buoy_description/share/buoy_description/models/mbari_wec/model.sdf.em
 
 $ ros2 launch buoy_gazebo mbari_wec.launch.py regenerate_models:=false
 ```

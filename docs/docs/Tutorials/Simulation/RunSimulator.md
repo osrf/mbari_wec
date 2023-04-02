@@ -10,7 +10,7 @@ To run the simulator, it is necessary to source the workspace in a separate term
 
 1. Source the workspace
 ```
-$ . ~/buoy_ws/install/setup.sh
+$ . ~/mbari_wec_ws/install/setup.sh
 ```
 2. Launch the simulation
 ```
