@@ -38,17 +38,17 @@ controller implementations.
 # Install
 ## On Host System
 ### Requirements
-At the moment, only source installation is supported. Use Ubuntu Jammy (22.04).
+At the moment, MBARI WEC is supported by source installation only. Use Ubuntu Jammy (22.04).
 
-1. Install [ROS 2 Humble](https://docs.ros.org/en/humble/index.html)
+1. Install [ROS 2 Humble](https://docs.ros.org/en/humble/index.html) (preferably binary installation)
 
-    Buoy Sim is tested against cyclonedds rmw implementation (default changed from Galactic to Humble)
+    MBARI WEC is tested against cyclonedds rmw implementation (default changed from Galactic to Humble)
     ```
     sudo apt install -y ros-humble-rmw-cyclonedds-cpp
     export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
     ```
 
-2. Install [Gazebo Garden](https://gazebosim.org/docs/garden)
+2. Install [Gazebo Garden](https://gazebosim.org/docs/garden) (preferably binary installation)
 
     Installing the binaries for Gazebo is recommended, but if building Gazebo Garden from source, it is necessary to export the `PYTHONPATH` for gz-math python bindings when building mbari_wec_gz
     ```
