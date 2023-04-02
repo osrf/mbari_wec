@@ -38,11 +38,11 @@ controller implementations.
 # Install
 ## On Host System
 ### Requirements
-At the moment, Buoy Sim is supported by source installation only. Use Ubuntu Jammy (22.04).
+At the moment, MBARI WEC is supported by source installation only. Use Ubuntu Jammy (22.04).
 
 1. Install [ROS 2 Humble](https://docs.ros.org/en/humble/index.html) (preferably binary installation)
 
-    Buoy Sim is tested against cyclonedds rmw implementation (default changed from Galactic to Humble)
+    MBARI WEC is tested against cyclonedds rmw implementation (default changed from Galactic to Humble)
     ```
     sudo apt install -y ros-humble-rmw-cyclonedds-cpp
     export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
