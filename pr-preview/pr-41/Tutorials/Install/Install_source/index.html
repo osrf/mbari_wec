@@ -142,15 +142,15 @@ sudo apt install libfshydrodynamics=1.2.3
 <ol>
 <li>
 <p>Create a workspace, for example:
-        <div class="highlight"><pre><span></span><code>mkdir -p ~/buoy_ws/src
-cd ~/buoy_ws/src
+        <div class="highlight"><pre><span></span><code>mkdir -p ~/mbari_wec_ws/src
+cd ~/mbari_wec_ws/src
 </code></pre></div></p>
 </li>
 <li>
 <p>Clone all source repos with the help of <code>vcstool</code>:
-        <div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/osrf/buoy_entrypoint/main/buoy_all.yaml
-vcs import &lt; buoy_all.yaml
-cd ~/buoy_ws
+        <div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml
+vcs import &lt; mbari_wec_all.yaml
+cd ~/mbari_wec_ws
 </code></pre></div></p>
 </li>
 <li>
@@ -170,7 +170,7 @@ rosdep install --from-paths src --ignore-src -r -y -i
 <li>
 <p>Build and install
         <div class="highlight"><pre><span></span><code>source /opt/ros/humble/setup.bash
-cd ~/buoy_ws
+cd ~/mbari_wec_ws
 colcon build
 </code></pre></div></p>
 </li>
@@ -182,7 +182,7 @@ colcon build
 <ol>
 <li>
 <p>In a new terminal, source the workspace
-        <div class="highlight"><pre><span></span><code>. ~/buoy_ws/install/setup.sh`
+        <div class="highlight"><pre><span></span><code>. ~/mbari_wec_ws/install/setup.sh`
 </code></pre></div></p>
 </li>
 <li>

@@ -193,7 +193,7 @@ DO NOT enter reset_battery and expect to get help. The command will execute!
 <ol>
 <li>
 <p>Launch the simulation without incident waves by issuing the following commands, the first command over-rides the default sea-state and results in no incident wave-forcing on the buoy when the "regenerate_models" flag is set to false:
-<div class="highlight"><pre><span></span><code>$ empy -D &#39;inc_wave_spectrum_type=&quot;None&quot;&#39; -o ~/buoy_ws/install/buoy_description/share/buoy_description/models/mbari_wec/model.sdf ~/buoy_ws/install/buoy_description/share/buoy_description/models/mbari_wec/model.sdf.em
+<div class="highlight"><pre><span></span><code>$ empy -D &#39;inc_wave_spectrum_type=&quot;None&quot;&#39; -o ~/mbari_wec_ws/install/buoy_description/share/buoy_description/models/mbari_wec/model.sdf ~/mbari_wec_ws/install/buoy_description/share/buoy_description/models/mbari_wec/model.sdf.em
 
 $ ros2 launch buoy_gazebo mbari_wec.launch.py regenerate_models:=false
 </code></pre></div></p>
