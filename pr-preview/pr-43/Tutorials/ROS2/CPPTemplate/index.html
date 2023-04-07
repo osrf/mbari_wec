@@ -244,7 +244,9 @@ $ cd ~/controller_ws
 <span class="nb">target_compile_features</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="s">c_std_99</span><span class="w"> </span><span class="s">cxx_std_17</span><span class="p">)</span><span class="w">  </span><span class="c"># Require C99 and C++17</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-<li><code>launch/controller.launch.py</code> (line 22)</li>
+<li><code>launch/controller.launch.py</code> (line 22)
+    Update <code>package_name</code> and node name with your controller name (same as the name in 
+    <code>config/controller.yaml</code>)</li>
 </ul>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">launch/controller.launch.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
 <span class="normal">23</span>
@@ -271,7 +273,7 @@ $ cd ~/controller_ws
 
     <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
         <span class="n">package</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span>  <span class="c1"># ensure same as name in config.yaml</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;your_controller_name&#39;</span><span class="p">,</span>  <span class="c1"># ensure same as name in config.yaml</span>
         <span class="n">executable</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span>
 </code></pre></div></td></tr></table></div>
 <ul>
