@@ -2,7 +2,7 @@
 Use Ubuntu 22.04.
 
 1. Install [ROS 2 Humble](https://docs.ros.org/en/humble/index.html)
-    Buoy Sim is tested against the cyclonedds rmw implementation, so set that up as follows:
+    MBARI WEC is tested against the cyclonedds rmw implementation, so set that up as follows:
         ```
         sudo apt install -y ros-humble-rmw-cyclonedds-cpp
         export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
