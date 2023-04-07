@@ -250,7 +250,7 @@ in the `Controller` class, and pass the data to `this->policy_->target` to get t
 current command. Various commands are available, and this time we will be using  
 `this->send_pc_wind_curr_command(wind_curr_amps);`
 
-``` cpp linenums="54" title="src/controller.cpp"
+``` cpp linenums="76" title="src/controller.cpp"
 // Callback for '/power_data' topic from Power Controller
 void Controller::power_callback(const buoy_interfaces::msg::PCRecord & data)
 {
