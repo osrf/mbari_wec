@@ -119,6 +119,8 @@ target_compile_features(${PROJECT_NAME} PUBLIC c_std_99 cxx_std_17)  # Require C
 ```
 
 - `launch/controller.launch.py` (line 22)
+    Update `package_name` and node name with your controller name (same as the name in 
+    `config/controller.yaml`)
 
 ``` py linenums="22" hl_lines="1" title="launch/controller.launch.py"
 package_name = 'your_package_name'   # Update package name (same as in CMakeLists.txt)
@@ -133,7 +135,7 @@ def generate_launch_description():
 
     node = Node(
         package=package_name,
-        name=package_name,  # ensure same as name in config.yaml
+        name='your_controller_name',  # ensure same as name in config.yaml
         executable=package_name,
 ```
 
