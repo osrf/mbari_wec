@@ -437,21 +437,21 @@ topic published by the Power Controller running on the buoy.</p>
 in the <code>Controller</code> class, and pass the data to <code>this-&gt;policy_-&gt;target</code> to get the desired winding
 current command. Various commands are available, and this time we will be using<br />
 <code>this-&gt;send_pc_wind_curr_command(wind_curr_amps);</code></p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/controller.cpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// Callback for &#39;/power_data&#39; topic from Power Controller</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">src/controller.cpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// Callback for &#39;/power_data&#39; topic from Power Controller</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">Controller::power_callback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">buoy_interfaces</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PCRecord</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w">  </span><span class="c1">// Update class variables, get control policy target, send commands, etc.</span>
