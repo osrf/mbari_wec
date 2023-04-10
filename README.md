@@ -188,3 +188,26 @@ This sources the compiled workspace and launches the simulation:
    ```
    ros2 launch buoy_gazebo mbari_wec.launch.py
    ```
+
+# For maintainers only: To upload to DockerHub
+
+Make sure you have permissions to push to the
+[MBARI organization on DockerHub](https://hub.docker.com/u/mbari).
+This permission is given by the MBARI administrator.
+
+Build the `mbari_wec` Docker image, as detailed above.
+
+Find the image ID for `mbari_wec`:
+```
+docker images
+```
+
+Tag the image with the destination name:
+```
+docker tag <IMAGE ID> mbari/mbari_wec:latest
+```
+
+Push to the [`mbari/mbari_wec` public image](https://hub.docker.com/r/mbari/mbari_wec).
+```
+docker push mbari/mbari_wec:latest
+```
