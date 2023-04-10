@@ -57,7 +57,7 @@ while (( "$#" )); do
       ;;
   esac
 done
-# set positional arguments in their proper place
+# Set positional arguments in their proper place
 eval set -- "$PARAMS"
 
 if [ ! -d $DIR/$1 ]
@@ -75,6 +75,9 @@ echo "Building $image_name with base image $base"
 docker build --rm -t $image_plus_tag --build-arg base=$base --build-arg user_id=$user_id $DIR/$image_name
 echo "Built $image_plus_tag"
 
-# Extra tag in case you have both the NVIDIA and no-NVIDIA images
-docker tag $image_plus_tag $image_name$image_suffix:latest
-echo "Tagged as $image_name$image_suffix:latest"
+# Don't add extra tage if just building the nvidia image
+if [[ "$image_name" != nvidia_opengl_ubuntu22 ]]; then
+  # Extra tag in case you have both the NVIDIA and no-NVIDIA images
+  docker tag $image_plus_tag $image_name$image_suffix:latest
+  echo "Tagged as $image_name$image_suffix:latest"
+fi
