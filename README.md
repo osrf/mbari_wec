@@ -167,7 +167,7 @@ Quick start scripts are provided in the home directory:
 
 This sources the compiled workspace:
 ```
-./setup.bash
+. setup.bash
 ```
 
 This sources the compiled workspace and launches the simulation:
