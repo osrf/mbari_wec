@@ -61,7 +61,7 @@ Parameters for the controller are:
   \(N\) (RPM) is the input to the controller and `n_spec` are the x-components of the breakpoints
   \(\left(n\_spec, \frac{torque\_spec}{torque_constant}\right)\) for the interpolant,  
 <br/>
-  \(\hat{f}_{I}(n\_spec) = \frac{torque\_spec}{torque\_constant} \approx f_{I}(N) = I\)
+  \(\hat{f_{I}}(n\_spec) = \frac{torque\_spec}{torque\_constant} \approx f_{I}(N) = I\)
 <br/>
 <br/>
 - `torque_spec`: Desired Output Motor Torque (N-m) Breakpoints  
