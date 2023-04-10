@@ -137,28 +137,28 @@ At the moment, MBARI WEC is supported by source installation only. Use Ubuntu Ja
    If you have an NVIDIA graphics card
    ```
    ./build.bash nvidia_opengl_ubuntu22
-   ./build.bash buoy
+   ./build.bash mbari_wec
    ```
    Otherwise
    ```
-   ./build.bash buoy --no-nvidia
+   ./build.bash mbari_wec --no-nvidia
    ```
 
 1. Run the container
 
    If you have an NVIDIA graphics card
    ```
-   ./run.bash buoy
+   ./run.bash mbari_wec
    ```
    Otherwise
    ```
-   ./run.bash buoy --no-nvidia
+   ./run.bash mbari_wec --no-nvidia
    ```
 
 1. To have another window running the same docker container, run this command in a new terminal:
 
    ```
-   ./join.bash buoy
+   ./join.bash mbari_wec
    ```
 
 ### Quick start
