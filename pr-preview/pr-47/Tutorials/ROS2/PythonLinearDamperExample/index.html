@@ -335,8 +335,8 @@ Typical values for these gains are</p>
 
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-<p>So, as you can see we apply a positive damping torque when <code>N</code> is negative (piston extending), and
-a positive damping torque when <code>N</code> is positive (piston retracting). The damping torque required is
+<p>So, as you can see we apply a positive damping torque when RPM is negative (piston extending), and
+a positive damping torque when RPM is positive (piston retracting). The damping torque required is
 reduced when retracting.</p>
 <h3 id="controller">Controller</h3>
 <p>All that is left is to connect the necessary feedback data to the <code>ControlPolicy</code>. In this case,
@@ -391,11 +391,17 @@ to set the PC Pack Rate in <code>Controller.__init__</code>:</p>
 <p>In this tutorial, we've named this controller <code>linear_damper</code>. Don't forget to update controller
 names along with other changes according to the previous tutorial.</p>
 <h2 id="try-it-out">Try It Out</h2>
+<p>Make sure to build and source your workspace. This tutorial assumes you cloned your package to
+<code>~/controller_ws/src</code> and you have sourced <code>mbari_wec_gz</code> and <code>mbari_wec_utils</code>
+<div class="highlight"><pre><span></span><code>$ cd ~/controller_ws
+$ colcon build
+$ source install/local_setup.bash
+</code></pre></div></p>
 <p>We will be using <code>ros2 launch</code> and <code>launch/controller.launch.py</code> to run our new controller.</p>
-<p>To run the controller along with the simulation, first source your workspace. Then, launch your
+<p>To run the controller along with the simulation, launch your
 controller:<br />
-<code>$ ros2 launch mbari_wec_linear_damper_py controller.launch.py</code></p>
-<p>Then, launch the sim:<br />
+<code>$ ros2 launch mbari_wec_linear_damper_cpp controller.launch.py</code></p>
+<p>Then, in another terminal (with <code>mbari_wec_gz</code> sourced), launch the sim:<br />
 <code>$ ros2 launch buoy_gazebo mbari_wec.launch.py</code><br />
 and click the play button.</p>
 <p>You should see output similar to:</p>
