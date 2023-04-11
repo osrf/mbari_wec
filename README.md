@@ -211,3 +211,8 @@ Push to the [`mbari/mbari_wec` public image](https://hub.docker.com/r/mbari/mbar
 ```
 docker push mbari/mbari_wec:latest
 ```
+
+You may have to log in for it to recognize your permissions:
+```
+docker login
+```
