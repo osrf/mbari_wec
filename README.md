@@ -50,9 +50,9 @@ At the moment, MBARI WEC is supported by source installation only. Use Ubuntu Ja
 
 2. Install [Gazebo Garden](https://gazebosim.org/docs/garden) (preferably binary installation)
 
-    Installing the binaries for Gazebo is recommended, but if building Gazebo Garden from source, it is necessary to export the `PYTHONPATH` for gz-math python bindings when building mbari_wec_gz
+    Installing the binaries for Gazebo is recommended, but if building Gazebo Garden from source, it is necessary to export the `PYTHONPATH` for gz-math python bindings when building the mbari_wec_gz repository below:
     ```
-    export PYTHONPATH=$PYTHONPATH:<path to your gz-sim workspace>/install/lib/python`
+    export PYTHONPATH=$PYTHONPATH:<path to your gz-sim workspace>/install/lib/python
     ```
 
     See [gz-math Python Get Started tutorial](https://github.com/gazebosim/gz-math/blob/gz-math7/tutorials/pythongetstarted.md). This step is needed until `PYTHONPATH` is automatically exported upstream, tracked in [this issue](https://github.com/osrf/mbari_wec_gz/issues/81)
@@ -167,7 +167,7 @@ Quick start scripts are provided in the home directory:
 
 This sources the compiled workspace:
 ```
-./setup.bash
+. setup.bash
 ```
 
 This sources the compiled workspace and launches the simulation:
