@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/Tutorials/Install/Install_source/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Install (from source) - MBARI-WEC</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Install (from source)";
+        var mkdocs_page_input_path = "Tutorials/Install/Install_source.md";
+        var mkdocs_page_url = "/Tutorials/Install/Install_source/";
+      </script>
+    
+    <script src="../../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> MBARI-WEC
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../ControlAndTelemetry/">Buoy Control and Telemetry</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../atseaoperation/">At Sea Operation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../ros2/">ROS 2 Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../simulation/">Simulation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/">Tutorials</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Installation</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Install (from source)</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Install_docker/">Install (Docker)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Running the Simulator</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Simulation/RunSimulator/">Run the Simulator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Simulation/SimulatorOutputROS/">View ROS 2 Messages</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Simulation/SimulatorOutputPlotjuggler/">View ROS 2 Messages with Plotjuggler</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Simulation/SimulatorOutputLogs/">Simulator Output Data Logs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Simulation/SimulatorInteractionPbcmd/">Control Simulator with pbcmd</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Simulation/SimulatorParameters/">Adjust Simulator parameters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Adding Control Code</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/MessagesAndServices/">ROS 2 Messages and Services</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/PythonTemplate/">Controller GitHub Template (Python)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/CPPTemplate/">Controller GitHub Template (C++)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/PythonLinearDamperExample/">Linear Damper Example (Python)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/CppLinearDamperExample/">Linear Damper Example (C++)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/CPPOpenLoopControl/">Open-Loop Force Command Example (C++)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/PythonOpenLoopControl/">Open-Loop Force Command Example (Python)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/ClosedLoopControl/">Closed-Loop Control</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../theory/">Theory</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../resources/">Resources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../license/">License</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../citation/">How to Cite</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../roadmap/">Project Roadmap</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">MBARI-WEC</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Installation &raquo;</li>
+      <li>Install (from source)</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="install-requirements">Install Requirements</h2>
+<p>Use Ubuntu 22.04.</p>
+<ol>
+<li>
+<p>Install <a href="https://docs.ros.org/en/humble/index.html">ROS 2 Humble</a>
+    MBARI WEC is tested against the cyclonedds rmw implementation, so set that up as follows:
+        <div class="highlight"><pre><span></span><code>sudo apt install -y ros-humble-rmw-cyclonedds-cpp
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+</code></pre></div></p>
+</li>
+<li>
+<p>Install <a href="https://gazebosim.org/docs/garden">Gazebo Garden</a></p>
+</li>
+<li>
+<p>Install necessary tools
+        <div class="highlight"><pre><span></span><code>sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
+</code></pre></div></p>
+</li>
+<li>
+<p>Install necessary libraries
+        <div class="highlight"><pre><span></span><code>curl -s --compressed &quot;https://hamilton8415.github.io/ppa/KEY.gpg&quot; | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg &gt;/dev/null
+sudo curl -s --compressed -o /etc/apt/sources.list.d/my_list_file.list &quot;https://hamilton8415.github.io/ppa/my_list_file.list&quot;
+sudo apt update
+sudo apt install libfshydrodynamics=1.2.3
+</code></pre></div></p>
+</li>
+</ol>
+<h2 id="buoy-simulation-software-build">Buoy Simulation Software Build</h2>
+<ol>
+<li>
+<p>Create a workspace, for example:
+        <div class="highlight"><pre><span></span><code>mkdir -p ~/mbari_wec_ws/src
+cd ~/mbari_wec_ws/src
+</code></pre></div></p>
+</li>
+<li>
+<p>Clone all source repos with the help of <code>vcstool</code>:
+        <div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml
+vcs import &lt; mbari_wec_all.yaml
+cd ~/mbari_wec_ws
+</code></pre></div></p>
+</li>
+<li>
+<p>Set the Gazebo version to Garden. This is needed because we're not using an
+   official ROS + Gazebo combination (place this in ~/.bashrc for convenience if rebuilding often):
+        <div class="highlight"><pre><span></span><code>export GZ_VERSION=garden
+</code></pre></div></p>
+</li>
+<li>
+<p>Install ROS dependencies
+        <div class="highlight"><pre><span></span><code>sudo pip3 install -U rosdep
+sudo rosdep init
+rosdep update
+rosdep install --from-paths src --ignore-src -r -y -i
+</code></pre></div></p>
+</li>
+<li>
+<p>Build and install
+        <div class="highlight"><pre><span></span><code>source /opt/ros/humble/setup.bash
+cd ~/mbari_wec_ws
+colcon build
+</code></pre></div></p>
+</li>
+</ol>
+<p>The simulation software should build without errors.  To run and test, proceed to the
+   <a href="../../../tutorials/#running-the-simulator">Run the Simulator</a> tutorial series.  Or run a quick
+   test as described below to confirm all has worked as expected.</p>
+<h2 id="run-an-example-to-test">Run an example to test</h2>
+<ol>
+<li>
+<p>In a new terminal, source the workspace
+        <div class="highlight"><pre><span></span><code>. ~/mbari_wec_ws/install/setup.sh`
+</code></pre></div></p>
+</li>
+<li>
+<p>Launch the simulation
+        <div class="highlight"><pre><span></span><code>ros2 launch buoy_gazebo mbari_wec.launch.py`
+</code></pre></div></p>
+</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../../tutorials/" class="btn btn-neutral float-left" title="Tutorials"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Install_docker/" class="btn btn-neutral float-right" title="Install (Docker)">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../../tutorials/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Install_docker/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme_extra.js" defer></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
