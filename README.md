@@ -137,28 +137,28 @@ At the moment, MBARI WEC is supported by source installation only. Use Ubuntu Ja
    If you have an NVIDIA graphics card
    ```
    ./build.bash nvidia_opengl_ubuntu22
-   ./build.bash buoy
+   ./build.bash mbari_wec
    ```
    Otherwise
    ```
-   ./build.bash buoy --no-nvidia
+   ./build.bash mbari_wec --no-nvidia
    ```
 
 1. Run the container
 
    If you have an NVIDIA graphics card
    ```
-   ./run.bash buoy
+   ./run.bash mbari_wec
    ```
    Otherwise
    ```
-   ./run.bash buoy --no-nvidia
+   ./run.bash mbari_wec --no-nvidia
    ```
 
 1. To have another window running the same docker container, run this command in a new terminal:
 
    ```
-   ./join.bash buoy
+   ./join.bash mbari_wec
    ```
 
 ### Quick start
@@ -188,3 +188,31 @@ This sources the compiled workspace and launches the simulation:
    ```
    ros2 launch buoy_gazebo mbari_wec.launch.py
    ```
+
+# For maintainers only: To upload to DockerHub
+
+Make sure you have permissions to push to the
+[MBARI organization on DockerHub](https://hub.docker.com/u/mbari).
+This permission is given by the MBARI administrator.
+
+Build the `mbari_wec` Docker image, as detailed above.
+
+Find the image ID for `mbari_wec`:
+```
+docker images
+```
+
+Tag the image with the destination name:
+```
+docker tag <IMAGE ID> mbari/mbari_wec:latest
+```
+
+Push to the [`mbari/mbari_wec` public image](https://hub.docker.com/r/mbari/mbari_wec).
+```
+docker push mbari/mbari_wec:latest
+```
+
+You may have to log in for it to recognize your permissions:
+```
+docker login
+```
