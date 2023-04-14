@@ -55,7 +55,9 @@ done
 # set positional arguments in their proper place
 eval set -- "$PARAMS"
 
-IMG=$(basename $1)
+#IMG=$(basename $1)
+# Use this for image repos with a slash "/" in the name
+IMG=$1
 
 ARGS=("$@")
 WORKSPACES=("${ARGS[@]:1}")
