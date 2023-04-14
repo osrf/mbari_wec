@@ -1,3 +1,5 @@
+# Install using Docker
+
 Docker images that include the neccessary software and dependencies have been created for convenience. 
 
 ## Requirements
