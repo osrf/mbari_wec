@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/Tutorials/Install/Install_docker/" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>Install (Docker) - MBARI-WEC</title>
+    <title>Install_docker - MBARI-WEC</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Install (Docker)";
+        var mkdocs_page_name = "Install_docker";
         var mkdocs_page_input_path = "Tutorials/Install/Install_docker.md";
         var mkdocs_page_url = "/Tutorials/Install/Install_docker/";
       </script>
@@ -64,53 +64,59 @@
                 <li class="toctree-l1"><a class="reference internal" href="../../../simulation/">Simulation</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../tutorials/">Tutorials</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Install</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Install</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../Install_source/">Install (from source)</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Install_docker</a>
     <ul class="current">
-                <li class="toctree-l2"><a class="reference internal" href="../Install_source/">Install (from source)</a>
-                </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="./">Install (Docker)</a>
-    <ul class="current">
-    </ul>
-                </li>
+    <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#build">Build</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick start</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#run-an-example-to-test">Run an example to test</a>
+    </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Simulation</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../Simulation/RunSimulator/">Run the Simulator</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../Simulation/SimulatorOutputROS/">View ROS 2 Messages</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../Simulation/SimulatorOutputPlotjuggler/">View ROS 2 Messages with Plotjuggler</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../Simulation/SimulatorOutputLogs/">Simulator Output Data Logs</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../Simulation/SimulatorInteractionPbcmd/">Control Simulator with pbcmd</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../Simulation/SimulatorParameters/">Adjust Simulator parameters</a>
-                </li>
-    </ul>
+              </ul>
+              <p class="caption"><span class="caption-text">Simulation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Simulation/RunSimulator/">Run the Simulator</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">ROS2</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/MessagesAndServices/">ROS 2 Messages and Services</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/PythonTemplate/">Controller GitHub Template (Python)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/CPPTemplate/">Controller GitHub Template (C++)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/PythonLinearDamperExample/">Linear Damper Example (Python)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/CppLinearDamperExample/">Linear Damper Example (C++)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/CPPOpenLoopControl/">Open-Loop Force Command Example (C++)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/PythonOpenLoopControl/">Open-Loop Force Command Example (Python)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/ClosedLoopControl/">Closed-Loop Control</a>
-                </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Simulation/SimulatorOutputROS/">View ROS 2 Messages</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Simulation/SimulatorOutputPlotjuggler/">View ROS 2 Messages with Plotjuggler</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Simulation/SimulatorOutputLogs/">Simulator Output Data Logs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Simulation/SimulatorInteractionPbcmd/">Control Simulator with pbcmd</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Simulation/SimulatorParameters/">Adjust Simulator parameters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">ROS2</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/MessagesAndServices/">ROS 2 Messages and Services</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/PythonTemplate/">Controller GitHub Template (Python)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/CPPTemplate/">Controller GitHub Template (C++)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/PythonLinearDamperExample/">Linear Damper Example (Python)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/CppLinearDamperExample/">Linear Damper Example (C++)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/CPPOpenLoopControl/">Open-Loop Force Command Example (C++)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/PythonOpenLoopControl/">Open-Loop Force Command Example (Python)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ROS2/ClosedLoopControl/">Closed-Loop Control</a>
                   </li>
               </ul>
               <ul>
@@ -147,9 +153,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>Tutorials &raquo;</li>
           <li>Install &raquo;</li>
-      <li>Install (Docker)</li>
+      <li>Install_docker</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -158,7 +163,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>Docker images that include the neccessary software and dependencies have been created for convenience. </p>
+                <h1 id="install_docker">Install_docker</h1>
+<p>Docker images that include the neccessary software and dependencies have been created for convenience. </p>
 <h2 id="requirements">Requirements</h2>
 <ol>
 <li>

@@ -56,6 +56,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://example.com/Tutorials/tutorials/</loc>
+         <lastmod>2023-04-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://example.com/Tutorials/Install/Install_docker/</loc>
          <lastmod>2023-04-14</lastmod>
          <changefreq>daily</changefreq>
