@@ -61,12 +61,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/Install/Install_docker/</loc>
+         <loc>https://example.com/Tutorials/install-from-source/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/Install/install-from-source/</loc>
+         <loc>https://example.com/Tutorials/Install/Install_docker/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
