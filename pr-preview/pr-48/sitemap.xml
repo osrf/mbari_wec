@@ -61,82 +61,82 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/install-from-source/</loc>
+         <loc>https://example.com/tutorials/install-from-source/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/Install/Install_docker/</loc>
+         <loc>https://example.com/tutorials/Install/Install_docker/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/ROS2/CPPOpenLoopControl/</loc>
+         <loc>https://example.com/tutorials/ROS2/CPPOpenLoopControl/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/ROS2/CPPTemplate/</loc>
+         <loc>https://example.com/tutorials/ROS2/CPPTemplate/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/ROS2/ClosedLoopControl/</loc>
+         <loc>https://example.com/tutorials/ROS2/ClosedLoopControl/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/ROS2/CppLinearDamperExample/</loc>
+         <loc>https://example.com/tutorials/ROS2/CppLinearDamperExample/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/ROS2/MessagesAndServices/</loc>
+         <loc>https://example.com/tutorials/ROS2/MessagesAndServices/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/ROS2/PythonLinearDamperExample/</loc>
+         <loc>https://example.com/tutorials/ROS2/PythonLinearDamperExample/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/ROS2/PythonOpenLoopControl/</loc>
+         <loc>https://example.com/tutorials/ROS2/PythonOpenLoopControl/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/ROS2/PythonTemplate/</loc>
+         <loc>https://example.com/tutorials/ROS2/PythonTemplate/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/Simulation/RunSimulator/</loc>
+         <loc>https://example.com/tutorials/Simulation/RunSimulator/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/Simulation/SimulatorInteractionPbcmd/</loc>
+         <loc>https://example.com/tutorials/Simulation/SimulatorInteractionPbcmd/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/Simulation/SimulatorOutputLogs/</loc>
+         <loc>https://example.com/tutorials/Simulation/SimulatorOutputLogs/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/Simulation/SimulatorOutputPlotjuggler/</loc>
+         <loc>https://example.com/tutorials/Simulation/SimulatorOutputPlotjuggler/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/Simulation/SimulatorOutputROS/</loc>
+         <loc>https://example.com/tutorials/Simulation/SimulatorOutputROS/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/Simulation/SimulatorParameters/</loc>
+         <loc>https://example.com/tutorials/Simulation/SimulatorParameters/</loc>
          <lastmod>2023-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
