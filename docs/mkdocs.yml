@@ -7,7 +7,7 @@ nav:
   - At Sea Operation: atseaoperation.md
   - ROS 2 Interface: ros2.md
   - Simulation: simulation.md
-  - Tutorials: Tutorials/tutorials.md
+  - Tutorials: tutorials.md
   - Theory: theory.md
   - Resources: resources.md
   - License: license.md
