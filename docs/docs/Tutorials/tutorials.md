@@ -1,7 +1,7 @@
 # Tutorials
 ## Installation
-- ##### [Install_source](/Tutorials/Install/Install_source.md)
-- ##### [Install_docker](/Tutorials/Install/Install_docker.md)
+- ##### [Install_source](Install/Install_source.md)
+- ##### [Install_docker](/Tutorials/Install/Install_docker/)
 ---
 ## Running the Simulator
 - #### [Run the Simulator](Simulation/RunSimulator.md)
