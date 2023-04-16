@@ -1,178 +1,409 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/Tutorials/ROS2/CppLinearDamperExample/" />
-      <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>Linear Damper Example (C++) - MBARI-WEC</title>
-    <link rel="stylesheet" href="../../../css/theme.css" />
-    <link rel="stylesheet" href="../../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
-    
-      <script>
-        // Current page data
-        var mkdocs_page_name = "Linear Damper Example (C++)";
-        var mkdocs_page_input_path = "Tutorials/ROS2/CppLinearDamperExample.md";
-        var mkdocs_page_url = "/Tutorials/ROS2/CppLinearDamperExample/";
-      </script>
-    
-    <script src="../../../js/jquery-3.6.0.min.js" defer></script>
-    <!--[if lt IE 9]>
-      <script src="../../../js/html5shiv.min.js"></script>
-    <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>Linear Damper Example (C++) - MBARI-WEC</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Linear Damper Example (C++)";
+    var mkdocs_page_input_path = "Tutorials/ROS2/CppLinearDamperExample.md";
+    var mkdocs_page_url = "/Tutorials/ROS2/CppLinearDamperExample/";
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
+
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="../../.." class="icon icon-home"> MBARI-WEC
-        </a><div role="search">
+        <a href="../../.." class="icon icon-home"> MBARI-WEC</a>
+        <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../architecture/">Architecture</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../ControlAndTelemetry/">Buoy Control and Telemetry</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../atseaoperation/">At Sea Operation</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../ros2/">ROS 2 Interface</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../simulation/">Simulation</a>
-                </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Tutorials</span></p>
-              <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="#">Installation</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../Install/Install_source/">Install from source</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../Install/Install_docker/">Install using Docker</a>
-                </li>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="tocbase current">
+    
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../..">Home</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../../architecture/">Architecture</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../../ControlAndTelemetry/">Buoy Control and Telemetry</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../../atseaoperation/">At Sea Operation</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../../ros2/">ROS 2 Interface</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../../simulation/">Simulation</a>
+  </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Tutorials</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Installation</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../Install/Install_source/">Install from source</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../Install/Install_docker/">Install using Docker</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Running the Simulator</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../Simulation/RunSimulator/">Run the Simulator</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../Simulation/SimulatorOutputROS/">View ROS 2 Messages</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../Simulation/SimulatorOutputPlotjuggler/">View ROS 2 Messages with Plotjuggler</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../Simulation/SimulatorOutputLogs/">Simulator Output Data Logs</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../Simulation/SimulatorInteractionPbcmd/">Control Simulator with pbcmd</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../../Simulation/SimulatorParameters/">Adjust Simulator parameters</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Adding Control Code</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../MessagesAndServices/">ROS 2 Messages and Services</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../PythonTemplate/">Controller GitHub Template (Python)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../CPPTemplate/">Controller GitHub Template (C++)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../PythonLinearDamperExample/">Linear Damper Example (Python)</a>
+  </li>
+        
+          
+
+
+  
+    
+    <li class="navtree toctree-l3 page current">
+      <a class="current" href="./">
+        Linear Damper Example (C++)
+      </a>
+    </li>
+    
+      
+
+  <li class="toctree-l3 current with-children">
+    <a href="#quick-start-simple-linear-damper-controller-c">
+      Quick Start -- Simple Linear Damper Controller (C++)
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l3 current">
+    <ul class="subnav-l3 current">
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#prerequisite">Prerequisite</a>
+        </li>
+    
+      
+          
+
+  <li class="toctree-l4">
+    <a href="#linear-damper-controlpolicy">
+      Linear Damper ControlPolicy
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+  <li class="toctree-l4">
+    <ul class="subnav-l4 toc-hidden">
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#parameters">Parameters</a>
+        </li>
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#control-policy-target">Control Policy Target</a>
+        </li>
+    
+      
+        <li class="toctree-l5">
+          <a class="toctree-l6" href="#controller">Controller</a>
+        </li>
+    
     </ul>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Running the Simulator</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../Simulation/RunSimulator/">Run the Simulator</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../Simulation/SimulatorOutputROS/">View ROS 2 Messages</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../Simulation/SimulatorOutputPlotjuggler/">View ROS 2 Messages with Plotjuggler</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../Simulation/SimulatorOutputLogs/">Simulator Output Data Logs</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../Simulation/SimulatorInteractionPbcmd/">Control Simulator with pbcmd</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../Simulation/SimulatorParameters/">Adjust Simulator parameters</a>
-                </li>
+  </li>
+
+      
+    
+      
+        <li class="toctree-l4">
+          <a class="toctree-l5" href="#try-it-out">Try It Out</a>
+        </li>
+    
     </ul>
-                  </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Adding Control Code</a>
-    <ul class="current">
-                <li class="toctree-l2"><a class="reference internal" href="../MessagesAndServices/">ROS 2 Messages and Services</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../PythonTemplate/">Controller GitHub Template (Python)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../CPPTemplate/">Controller GitHub Template (C++)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../PythonLinearDamperExample/">Linear Damper Example (Python)</a>
-                </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="./">Linear Damper Example (C++)</a>
-    <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#prerequisite">Prerequisite</a>
+  </li>
+
+
+  
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../CPPOpenLoopControl/">Open-Loop Force Command Example (C++)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../PythonOpenLoopControl/">Open-Loop Force Command Example (Python)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../ClosedLoopControl/">Closed-Loop Control</a>
+  </li>
+        
+      </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#linear-damper-controlpolicy">Linear Damper ControlPolicy</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a>
+        
+      </ul>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#control-policy-target">Control Policy Target</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#controller">Controller</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#try-it-out">Try It Out</a>
-    </li>
-    </ul>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../CPPOpenLoopControl/">Open-Loop Force Command Example (C++)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../PythonOpenLoopControl/">Open-Loop Force Command Example (Python)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../ClosedLoopControl/">Closed-Loop Control</a>
-                </li>
-    </ul>
-                  </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../theory/">Theory</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../resources/">Resources</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../license/">License</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../citation/">How to Cite</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../roadmap/">Project Roadmap</a>
-                </li>
-              </ul>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../../theory/">Theory</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../../resources/">Resources</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../../license/">License</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../../citation/">How to Cite</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../../../roadmap/">Project Roadmap</a>
+  </li>
+    
+  </ul>
       </div>
-    </div>
+      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../..">MBARI-WEC</a>
-        
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">MBARI-WEC</a>
       </nav>
+
+      
       <div class="wy-nav-content">
-        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>Tutorials &raquo;</li>
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+        
           <li>Adding Control Code &raquo;</li>
-      <li>Linear Damper Example (C++)</li>
+        
+      
+        
+          <li>Tutorials &raquo;</li>
+        
+      
+    
+    <li>Linear Damper Example (C++)</li>
     <li class="wy-breadcrumbs-aside">
+      
     </li>
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-            <div class="section" itemprop="articleBody">
+          <div role="main">
+            <div class="section">
               
-                <h1 id="quick-start-simple-linear-damper-controller-c">Quick Start -- Simple Linear Damper Controller (C++)</h1>
+                <h1 id="quick-start-simple-linear-damper-controller-c">Quick Start -- Simple Linear Damper Controller (C++)<a class="headerlink" href="#quick-start-simple-linear-damper-controller-c" title="Permanent link">&para;</a></h1>
 <hr />
 <p>In this tutorial you will implement a simple linear damper controller for the piston in the WEC
 Power-Take-Off (PTO). Given motor RPM, it outputs desired motor winding current (interpolated from
@@ -181,7 +412,7 @@ Configurable gains (scale/retract factor) are applied before output. In the end,
 working linear damper controller that is very close to the controller running on both the physical
 and simulated buoy.</p>
 <hr />
-<h2 id="prerequisite">Prerequisite</h2>
+<h2 id="prerequisite">Prerequisite<a class="headerlink" href="#prerequisite" title="Permanent link">&para;</a></h2>
 <p>This tutorial assumes you are familiar the steps from the previous <a href="../CPPTemplate/">tutorial</a>
 and have built your own custom C++ ROS 2 controller package from the
 <a href="https://github.com/mbari-org/mbari_wec_template_cpp">mbari_wec_template_cpp</a> template
@@ -206,11 +437,11 @@ repository which we will use to implement a simple linear damper controller.</p>
 <p>with the files modified from the previous tutorial. If you haven't already, follow the steps in
 the above mentioned link to create a package for this tutorial named <code>mbari_wec_linear_damper_cpp</code>.</p>
 <hr />
-<h2 id="linear-damper-controlpolicy">Linear Damper ControlPolicy</h2>
+<h2 id="linear-damper-controlpolicy">Linear Damper ControlPolicy<a class="headerlink" href="#linear-damper-controlpolicy" title="Permanent link">&para;</a></h2>
 <p>A complete example starting from the template may be found
 <a href="https://github.com/mbari-org/mbari_wec_template_cpp/tree/linear_damper_example">here</a>. Line numbers
 in this tutorial correspond to the lines in relevant files in the full example.</p>
-<h3 id="parameters">Parameters</h3>
+<h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
 <p>Parameters for the controller are:</p>
 <ul>
 <li><code>torque_constant</code>: Motor Torque Constant (N-m/Amp)<br />
@@ -439,7 +670,7 @@ parameters used.</p>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="control-policy-target">Control Policy Target</h3>
+<h3 id="control-policy-target">Control Policy Target<a class="headerlink" href="#control-policy-target" title="Permanent link">&para;</a></h3>
 <p>To implement the torque control control policy, we use the <code>target</code> function in <code>ControlPolicy</code>.
 This is where we accept feedback data and return a command value. In this case, we need the motor
 <code>rpm</code>, and the gains applied to the winding current damping, <code>scale_factor</code> and <code>retract_factor</code>.
@@ -489,7 +720,7 @@ Typical values for these gains are</p>
 <p>So, as you can see we apply a positive damping torque when RPM is negative (piston extending), and
 a positive damping torque when RPM is positive (piston retracting). The damping torque required is
 reduced when retracting.</p>
-<h3 id="controller">Controller</h3>
+<h3 id="controller">Controller<a class="headerlink" href="#controller" title="Permanent link">&para;</a></h3>
 <p>All that is left is to connect the necessary feedback data to the <code>ControlPolicy</code>. In this case,
 <code>rpm</code>, <code>scale</code>, and <code>retract</code> are present in <a href="https://github.com/osrf/mbari_wec_utils/blob/main/buoy_interfaces/msg/PCRecord.msg"><code>buoy_interfaces.msg.PCRecord</code></a> on the <code>/power_data</code>
 topic published by the Power Controller running on the buoy.</p>
@@ -556,7 +787,7 @@ to set the PC Pack Rate in <code>Controller</code> constructor:</p>
 </code></pre></div></td></tr></table></div>
 <p>In this tutorial, we've named this controller <code>linear_damper</code>. Don't forget to update controller
 names along with other changes according to the previous tutorial.</p>
-<h2 id="try-it-out">Try It Out</h2>
+<h2 id="try-it-out">Try It Out<a class="headerlink" href="#try-it-out" title="Permanent link">&para;</a></h2>
 <p>Make sure to build and source your workspace. This tutorial assumes you cloned your package to
 <code>~/controller_ws/src</code> and you have sourced <code>mbari_wec_gz</code> and <code>mbari_wec_utils</code>
 <div class="highlight"><pre><span></span><code>$ cd ~/controller_ws
@@ -605,21 +836,29 @@ and click the play button.</p>
 </code></pre></div>
               
             </div>
-          </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../PythonLinearDamperExample/" class="btn btn-neutral float-left" title="Linear Damper Example (Python)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
         <a href="../CPPOpenLoopControl/" class="btn btn-neutral float-right" title="Open-Loop Force Command Example (C++)">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../PythonLinearDamperExample/" class="btn btn-neutral" title="Linear Damper Example (Python)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+    
   </div>
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-          
+      
         </div>
       </div>
 
@@ -627,27 +866,21 @@ and click the play button.</p>
 
   </div>
 
-  <div class="rst-versions" role="note" aria-label="Versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    
-    
-      <span><a href="../PythonLinearDamperExample/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../CPPOpenLoopControl/" style="color: #fcfcfc">Next &raquo;</a></span>
-    
-  </span>
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../PythonLinearDamperExample/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../CPPOpenLoopControl/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
 </div>
     <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme_extra.js" defer></script>
     <script src="../../../js/theme.js" defer></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
       <script src="../../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
 
 </body>
 </html>

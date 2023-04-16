@@ -1,174 +1,406 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/architecture/" />
-      <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Architecture - MBARI-WEC</title>
-    <link rel="stylesheet" href="../css/theme.css" />
-    <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
-    
-      <script>
-        // Current page data
-        var mkdocs_page_name = "Architecture";
-        var mkdocs_page_input_path = "architecture.md";
-        var mkdocs_page_url = "/architecture/";
-      </script>
-    
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
-    <!--[if lt IE 9]>
-      <script src="../js/html5shiv.min.js"></script>
-    <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Architecture - MBARI-WEC</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Architecture";
+    var mkdocs_page_input_path = "architecture.md";
+    var mkdocs_page_url = "/architecture/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
+
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> MBARI-WEC
-        </a><div role="search">
+        <a href=".." class="icon icon-home"> MBARI-WEC</a>
+        <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
-                </li>
-              </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Architecture</a>
-    <ul class="current">
-    </ul>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ControlAndTelemetry/">Buoy Control and Telemetry</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../atseaoperation/">At Sea Operation</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ros2/">ROS 2 Interface</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../simulation/">Simulation</a>
-                </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Tutorials</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Installation</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/Install/Install_source/">Install from source</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/Install/Install_docker/">Install using Docker</a>
-                </li>
-    </ul>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Running the Simulator</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/Simulation/RunSimulator/">Run the Simulator</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/Simulation/SimulatorOutputROS/">View ROS 2 Messages</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/Simulation/SimulatorOutputPlotjuggler/">View ROS 2 Messages with Plotjuggler</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/Simulation/SimulatorOutputLogs/">Simulator Output Data Logs</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/Simulation/SimulatorInteractionPbcmd/">Control Simulator with pbcmd</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/Simulation/SimulatorParameters/">Adjust Simulator parameters</a>
-                </li>
-    </ul>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Adding Control Code</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/ROS2/MessagesAndServices/">ROS 2 Messages and Services</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/ROS2/PythonTemplate/">Controller GitHub Template (Python)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/ROS2/CPPTemplate/">Controller GitHub Template (C++)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/ROS2/PythonLinearDamperExample/">Linear Damper Example (Python)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/ROS2/CppLinearDamperExample/">Linear Damper Example (C++)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/ROS2/CPPOpenLoopControl/">Open-Loop Force Command Example (C++)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/ROS2/PythonOpenLoopControl/">Open-Loop Force Command Example (Python)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../Tutorials/ROS2/ClosedLoopControl/">Closed-Loop Control</a>
-                </li>
-    </ul>
-                  </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../theory/">Theory</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../resources/">Resources</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../license/">License</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../citation/">How to Cite</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Project Roadmap</a>
-                </li>
-              </ul>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="tocbase current">
+    
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="..">Home</a>
+  </li>
+    
+      
+
+
+  
+    
+    <li class="navtree toctree-l1 page current">
+      <a class="current" href="./">
+        Architecture
+      </a>
+    </li>
+    
+      
+
+  <li class="toctree-l1 current with-children">
+    <a href="#buoy-heave-cone-and-mooring">
+      Buoy, Heave Cone, and Mooring
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+      
+
+  <li class="toctree-l1">
+    <a href="#pto-system">
+      PTO System
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+      
+
+  <li class="toctree-l1">
+    <a href="#electrical-system">
+      Electrical System
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+      
+
+  <li class="toctree-l1">
+    <a href="#compute-and-control-systems">
+      Compute and Control Systems
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+      
+
+  <li class="toctree-l1">
+    <a href="#sensors-and-measurements">
+      Sensors and Measurements
+      <span class="toctree-expand"></span>
+    </a>
+  </li>
+
+
+
+
+  
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../ControlAndTelemetry/">Buoy Control and Telemetry</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../atseaoperation/">At Sea Operation</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../ros2/">ROS 2 Interface</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../simulation/">Simulation</a>
+  </li>
+    
+      
+  <li class="navtree toctree-l1 label">
+    <p class="caption">Tutorials</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l1 group">
+      <ul class="navtree subnav-l1 current">
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Installation</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/Install/Install_source/">Install from source</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/Install/Install_docker/">Install using Docker</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Running the Simulator</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/Simulation/RunSimulator/">Run the Simulator</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/Simulation/SimulatorOutputROS/">View ROS 2 Messages</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/Simulation/SimulatorOutputPlotjuggler/">View ROS 2 Messages with Plotjuggler</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/Simulation/SimulatorOutputLogs/">Simulator Output Data Logs</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/Simulation/SimulatorInteractionPbcmd/">Control Simulator with pbcmd</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/Simulation/SimulatorParameters/">Adjust Simulator parameters</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+          
+  <li class="navtree toctree-l2 label">
+    <p class="caption">Adding Control Code</p>
+  </li>
+
+
+  
+
+  
+    <li class="navtree toctree-l2 group">
+      <ul class="navtree subnav-l2 current">
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/ROS2/MessagesAndServices/">ROS 2 Messages and Services</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/ROS2/PythonTemplate/">Controller GitHub Template (Python)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/ROS2/CPPTemplate/">Controller GitHub Template (C++)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/ROS2/PythonLinearDamperExample/">Linear Damper Example (Python)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/ROS2/CppLinearDamperExample/">Linear Damper Example (C++)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/ROS2/CPPOpenLoopControl/">Open-Loop Force Command Example (C++)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/ROS2/PythonOpenLoopControl/">Open-Loop Force Command Example (Python)</a>
+  </li>
+        
+          
+
+
+  <li class="navtree toctree-l3 inactive">
+    <a class="" href="../Tutorials/ROS2/ClosedLoopControl/">Closed-Loop Control</a>
+  </li>
+        
+      </ul>
+    </li>
+        
+      </ul>
+    </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../theory/">Theory</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../resources/">Resources</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../license/">License</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../citation/">How to Cite</a>
+  </li>
+    
+      
+
+
+  <li class="navtree toctree-l1 inactive">
+    <a class="" href="../roadmap/">Project Roadmap</a>
+  </li>
+    
+  </ul>
       </div>
-    </div>
+      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">MBARI-WEC</a>
-        
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">MBARI-WEC</a>
       </nav>
+
+      
       <div class="wy-nav-content">
-        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Architecture</li>
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Architecture</li>
     <li class="wy-breadcrumbs-aside">
+      
     </li>
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-            <div class="section" itemprop="articleBody">
+          <div role="main">
+            <div class="section">
               
                 <p>The MBARI Wave-Energy-Converter is a small point absorber design that includes a surface expression, an electro-hydraulic PTO, and a submerged heave-cone device.  The system is moored to the seafloor (typically in 80m of water) through a chain-catenary mooring connected to an anchor.  As waves excite the system, a differential motion results between the buoy at the surface and the submerged heave cone.  Resisting this motion results in energy being absorbed by the system, and this energy is converted to electrical form and stored in a battery bank on the buoy. The rest of this section provides details about the various components of the system</p>
 <p><img alt="some description" src="../images/MBARI_WEC_Assembly_12-5-2019-1.png" /></p>
-<h2 id="buoy-heave-cone-and-mooring">Buoy, Heave Cone, and Mooring</h2>
+<h2 id="buoy-heave-cone-and-mooring">Buoy, Heave Cone, and Mooring<a class="headerlink" href="#buoy-heave-cone-and-mooring" title="Permanent link">&para;</a></h2>
 <p>The buoy in the MBARI-WEC has a diameter of 2.6m, a water-plane area of 5 m^2, and a mass of 1400kg.  This buoy houses the system battery and compute infrastructure, described below.</p>
 <p>The heave-cone component sits at about 30m depth and provides inertia and drag for the surface-buoy to pull against.  The heave-cone has operable doors that can be opened to reduce the drag and inertial of this component in high sea-states.  When the doors are open, the heave-cone has added-mass of about 10,000kg, in addition to it's own 600kg mass.  When opened, the added-mass reduces to about 3,000kg, which reduces the inertial forcing and increases the natural frequency of the buoy -- heave-cone pair.</p>
 <p>A chain-catenary mooring and anchor connects to heave-cone to the ocean floor, keeping the buoy on-station.  The system loading due to the mooring increases in higher winds and currents, but remains relatively low compared with the inertia forces the heave-cone creates.</p>
-<h2 id="pto-system">PTO System</h2>
+<h2 id="pto-system">PTO System<a class="headerlink" href="#pto-system" title="Permanent link">&para;</a></h2>
 <p>The power take-off device is located below the buoy and converts the differential motion and forces between the buoy and heave-cone from mechanical to electrical energy.  This device is an electro-hydraulic device in which a piston pumps oil through a hydraulic motor, causing an electrical motor/generator to spin and generate electrical energy.  In parallel to the hydraulic ram, a pneumatic piston charged with an inert gas provides a sprint returning force for the system. </p>
 <p>The combination of the hydraulic and pneumatic pistons creates a spring-damper system for which the spring constant is set by the amount of gas in the system, and the damping behavior is adjustable electronically by varying the torque on the hydraulic motor in response to conditions.  The electrical-drive is a four-quadrant device in which the electric motor can operate as a generator in which energy flows into the battery, or as a motor in which energy is drawn from the battery.  The winding-currents (and resulting torque) can be set arbitrarily, but by default the power take-off device acts as a generator, i.e. a damper resisting motion.</p>
-<h2 id="electrical-system">Electrical System</h2>
+<h2 id="electrical-system">Electrical System<a class="headerlink" href="#electrical-system" title="Permanent link">&para;</a></h2>
 <p>The electrical system of this buoy consists of a 325V battery system for energy storage, and a 24V system for powering ancillary instrumentation.  The 325V battery is connected directly to the power take-off device motor drive electronics.  In normal use, the motor-drive device is generating electrical energy at 325V which charges the battery system.  In the case the battery is full (or dis-connected), the motor-drive system directs excess energy to an electrical load-dump device.  This submerged heater plays a critical role in maintaining a load on the power take-off device at all times.  </p>
 <p>The electrical system also includes 300V-24V power supplies that provides 24 volts to the compute and instrumentation infrastructure in the system.  In the case of low battery voltage due to an extended period of calm seas, the </p>
-<h2 id="compute-and-control-systems">Compute and Control Systems</h2>
+<h2 id="compute-and-control-systems">Compute and Control Systems<a class="headerlink" href="#compute-and-control-systems" title="Permanent link">&para;</a></h2>
 <p>The compute and control architecture of the system is such that critical functions are performed by micro-controllers throughout the system that implement default behaviors and stream sensor data continuously.  A Linux computer on the buoy performs data-logging and provides a command interface to the underlying micro-controllers. See figure. The system is designed such that the Linux computer is not necessary for safe behavior, if this computer re-boots or goes offline, the system will default to safe behaviors.  Additionally, the micro-controllers will ignore damaging commands from the Linux computer.  This architecture allows control algorithms running on the Linux computer to be started, stopped, and changed while the device is at sea through the cell-modem connection.  </p>
 <p><img alt="some description" src="../images/SoftwareArchitectureDiagramV2aDeployed.png" /></p>
 <p>The fundamental system behaviors are performed by a network of micro-controller based compute nodes, that communicate with the buoy Linux computer and with one-another through a Controller Area Network (CAN) bus.  There are four of these controllers as follows:</p>
@@ -187,7 +419,7 @@
 </li>
 </ul>
 <p>The on-board linux computer is accessible from shore over a radio link (cell-modem, satellite, or line-of-site radio).  This link enables  enabling data-telemetry, real-time control, and software-updates to be applied to the Linux computer.</p>
-<h2 id="sensors-and-measurements">Sensors and Measurements</h2>
+<h2 id="sensors-and-measurements">Sensors and Measurements<a class="headerlink" href="#sensors-and-measurements" title="Permanent link">&para;</a></h2>
 <p><strong> Load Cell: </strong> This is a load cell between the buoy and the power take-off device, and has a range of up to 20,000lbs.</p>
 <p><strong> Piston Position: </strong> Inside the pneumatic spring there is a laser range-finder that continuously monitors the position of the power take-off piston.  </p>
 <p><strong> Pneumatic Pressures: </strong>  The spring controller monitors the pressures of the two gas-chambers that make up the pneumatic spring.</p>
@@ -197,21 +429,29 @@
 <p><strong> Electrical System Sensors: </strong>  Voltages and currents are monitored throughout the electrical system and reported by various controllers.  In particular the motor winding currents, the load-dump current, and the battery current are all independently monitored and reported.</p>
               
             </div>
-          </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
         <a href="../ControlAndTelemetry/" class="btn btn-neutral float-right" title="Buoy Control and Telemetry">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+    
   </div>
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-          
+      
         </div>
       </div>
 
@@ -219,27 +459,21 @@
 
   </div>
 
-  <div class="rst-versions" role="note" aria-label="Versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    
-    
-      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../ControlAndTelemetry/" style="color: #fcfcfc">Next &raquo;</a></span>
-    
-  </span>
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../ControlAndTelemetry/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
 </div>
     <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
       <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
 
 </body>
 </html>
