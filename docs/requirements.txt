@@ -1,3 +1,4 @@
 mkdocs
 python-markdown-math
 mkdocs-material
+mkdocs-rtd-dropdown
