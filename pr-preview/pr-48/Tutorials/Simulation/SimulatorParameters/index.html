@@ -1,397 +1,182 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Adjust Simulator parameters - MBARI-WEC</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-  <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Adjust Simulator parameters";
-    var mkdocs_page_input_path = "Tutorials/Simulation/SimulatorParameters.md";
-    var mkdocs_page_url = "/Tutorials/Simulation/SimulatorParameters/";
-  </script>
-  
-  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/Tutorials/Simulation/SimulatorParameters/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Adjust Simulator parameters - MBARI-WEC</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Adjust Simulator parameters";
+        var mkdocs_page_input_path = "Tutorials/Simulation/SimulatorParameters.md";
+        var mkdocs_page_url = "/Tutorials/Simulation/SimulatorParameters/";
+      </script>
+    
+    <script src="../../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> MBARI-WEC</a>
-        <div role="search">
+          <a href="../../.." class="icon icon-home"> MBARI-WEC
+        </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="tocbase current">
-    
-    
-      
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../../..">Home</a>
-  </li>
-    
-      
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../../../architecture/">Architecture</a>
-  </li>
-    
-      
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../../../ControlAndTelemetry/">Buoy Control and Telemetry</a>
-  </li>
-    
-      
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../../../atseaoperation/">At Sea Operation</a>
-  </li>
-    
-      
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../../../ros2/">ROS 2 Interface</a>
-  </li>
-    
-      
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../../../simulation/">Simulation</a>
-  </li>
-    
-      
-  <li class="navtree toctree-l1 label">
-    <p class="caption">Tutorials</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l1 group">
-      <ul class="navtree subnav-l1 current">
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Installation</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../Install/Install_source/">Install from source</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../Install/Install_docker/">Install using Docker</a>
-  </li>
-        
-      </ul>
-    </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Running the Simulator</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../RunSimulator/">Run the Simulator</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../SimulatorOutputROS/">View ROS 2 Messages</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../SimulatorOutputPlotjuggler/">View ROS 2 Messages with Plotjuggler</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../SimulatorOutputLogs/">Simulator Output Data Logs</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../SimulatorInteractionPbcmd/">Control Simulator with pbcmd</a>
-  </li>
-        
-          
-
-
-  
-    
-    <li class="navtree toctree-l3 page current">
-      <a class="current" href="./">
-        Adjust Simulator parameters
-      </a>
-    </li>
-    
-      
-
-  <li class="toctree-l3 current with-children">
-    <a href="#parameters-and-batch-runs">
-      Parameters and Batch Runs
-      <span class="toctree-expand"></span>
-    </a>
-  </li>
-
-
-
-  <li class="toctree-l3 current">
-    <ul class="subnav-l3 current">
-    
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#introduction">Introduction</a>
-        </li>
-    
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#parameters">Parameters</a>
-        </li>
-    
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#example-batch-file">Example Batch File</a>
-        </li>
-    
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#running-an-example">Running an example</a>
-        </li>
-    
-      
-        <li class="toctree-l4">
-          <a class="toctree-l5" href="#finding-the-output">Finding the output</a>
-        </li>
-    
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../ControlAndTelemetry/">Buoy Control and Telemetry</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../atseaoperation/">At Sea Operation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../ros2/">ROS 2 Interface</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../simulation/">Simulation</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="#">Installation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../Install/Install_source/">Install from source</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../Install/Install_docker/">Install using Docker</a>
+                </li>
     </ul>
-  </li>
-
-
-  
-        
-      </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Running the Simulator</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../RunSimulator/">Run the Simulator</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../SimulatorOutputROS/">View ROS 2 Messages</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../SimulatorOutputPlotjuggler/">View ROS 2 Messages with Plotjuggler</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../SimulatorOutputLogs/">Simulator Output Data Logs</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../SimulatorInteractionPbcmd/">Control Simulator with pbcmd</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Adjust Simulator parameters</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a>
     </li>
-        
-          
-  <li class="navtree toctree-l2 label">
-    <p class="caption">Adding Control Code</p>
-  </li>
-
-
-  
-
-  
-    <li class="navtree toctree-l2 group">
-      <ul class="navtree subnav-l2 current">
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../ROS2/MessagesAndServices/">ROS 2 Messages and Services</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../ROS2/PythonTemplate/">Controller GitHub Template (Python)</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../ROS2/CPPTemplate/">Controller GitHub Template (C++)</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../ROS2/PythonLinearDamperExample/">Linear Damper Example (Python)</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../ROS2/CppLinearDamperExample/">Linear Damper Example (C++)</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../ROS2/CPPOpenLoopControl/">Open-Loop Force Command Example (C++)</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../ROS2/PythonOpenLoopControl/">Open-Loop Force Command Example (Python)</a>
-  </li>
-        
-          
-
-
-  <li class="navtree toctree-l3 inactive">
-    <a class="" href="../../ROS2/ClosedLoopControl/">Closed-Loop Control</a>
-  </li>
-        
-      </ul>
+    <li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a>
     </li>
-        
-      </ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-batch-file">Example Batch File</a>
     </li>
-    
-      
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../../../theory/">Theory</a>
-  </li>
-    
-      
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../../../resources/">Resources</a>
-  </li>
-    
-      
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../../../license/">License</a>
-  </li>
-    
-      
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../../../citation/">How to Cite</a>
-  </li>
-    
-      
-
-
-  <li class="navtree toctree-l1 inactive">
-    <a class="" href="../../../roadmap/">Project Roadmap</a>
-  </li>
-    
-  </ul>
+    <li class="toctree-l3"><a class="reference internal" href="#running-an-example">Running an example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#finding-the-output">Finding the output</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Adding Control Code</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/MessagesAndServices/">ROS 2 Messages and Services</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/PythonTemplate/">Controller GitHub Template (Python)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/CPPTemplate/">Controller GitHub Template (C++)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/PythonLinearDamperExample/">Linear Damper Example (Python)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/CppLinearDamperExample/">Linear Damper Example (C++)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/CPPOpenLoopControl/">Open-Loop Force Command Example (C++)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/PythonOpenLoopControl/">Open-Loop Force Command Example (Python)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/ClosedLoopControl/">Closed-Loop Control</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../theory/">Theory</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../resources/">Resources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../license/">License</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../citation/">How to Cite</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../roadmap/">Project Roadmap</a>
+                </li>
+              </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">MBARI-WEC</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">MBARI-WEC</a>
+        
       </nav>
-
-      
       <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../../..">Docs</a> &raquo;</li>
-    
-      
-        
-          <li>Running the Simulator &raquo;</li>
-        
-      
-        
+    <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
           <li>Tutorials &raquo;</li>
-        
-      
-    
-    <li>Adjust Simulator parameters</li>
+          <li>Running the Simulator &raquo;</li>
+      <li>Adjust Simulator parameters</li>
     <li class="wy-breadcrumbs-aside">
-      
     </li>
   </ul>
   <hr/>
 </div>
-          <div role="main">
-            <div class="section">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
               
-                <h2 id="parameters-and-batch-runs">Parameters and Batch Runs<a class="headerlink" href="#parameters-and-batch-runs" title="Permanent link">&para;</a></h2>
-<h4 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h4>
+                <h1 id="parameters-and-batch-runs">Parameters and Batch Runs<a class="headerlink" href="#parameters-and-batch-runs" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>When running a simple instance of the simulator as described in the <a href="../RunSimulator/">Run the Simulator</a> Tutorial. i.e. using:</p>
 <div class="highlight"><pre><span></span><code>$ ros2 launch buoy_gazebo mbari_wec.launch.py
 </code></pre></div>
 <p>the simulation uses a number of defaults for a range of parameters. In most cases, one may want to run the simulator with different values for these parameters, and/or run a number of simulations that iterate across a range of values for particular parameters. For instance, one may want to run the simulator in a batch mode that runs the same buoy and controller set-up in a range of sea-states.</p>
 <p>To facilitate this, a batch tool is provided that allows one to specify ranges for a number of parameters, and then run a number of simulations for all combinations of parameters, saving the results separately.</p>
 <p>This tutorial describes these capabilities, demonstrates with some examples, and discusses how this tool can be used.</p>
-<h4 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h4>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <p>There are a number of parameters that impact the behavior of the simulator, and must be specified at start-up:</p>
 <ul>
 <li><strong>Simulation duration</strong>:  How long the simulation will run for (simulation time) in seconds.</li>
@@ -405,7 +190,7 @@
 <li><strong>Scale Factor</strong>:  The buoy (and simulator) implements a default control algorithm in which the current in the motor windings is set as a function of motor RPM, with the resulting torque opposing the motors motion.  This approximately implements a linear damping behavior and the specified Scale Factor is multiplied by the default Winding-Current/RPM relationship before being applied.  Allowable values are from 0.5 to 1.4, and the result is a simple way to change the damping the power-takeoff device is applying to the system.  As discussed in a later tutorial, this relationship can be over-ridden with external code, so this Scale Factor only applies to the default behavior of the system.</li>
 <li><strong> GUI Output</strong>:  The graphical output of the simulator can be turned on or off as needed, for large batches of runs that are meant to run un-attended this is probably not appropriate, but for single runs or debugging the graphical output can be useful.</li>
 </ul>
-<h4 id="example-batch-file">Example Batch File<a class="headerlink" href="#example-batch-file" title="Permanent link">&para;</a></h4>
+<h2 id="example-batch-file">Example Batch File<a class="headerlink" href="#example-batch-file" title="Permanent link">&para;</a></h2>
 <p>The above parameters are specified in a .yaml file that the batch-run tool reads in before execution begins.  A commented example is below and illustrates the use of the above parameters.  Lines that begin with # are comments and have no impact.</p>
 <div class="highlight"><pre><span></span><code>#
 # Batch-Specific Scalar Parameters
@@ -440,7 +225,7 @@ IncidentWaveSpectrumType:
 <p>As seen in this example, some parameters are enforced to be scalar values and apply to the entire batch of specified runs.  These are the specification of simulation duration (300), random seed (42), and the physics real-time factor (11). </p>
 <p>The remaining run-specific parameters can be specified as arrays, and the batch-run tool then executes simulations for all possible combinations of these values.  Note that some values are specified in pairs.  For instance, three mono-chromatic waves are specified by this file with a specification of (A=1.0m, T=12s), (A=2.0m, T=14s), and (A=3.0m, T=15s), not nine runs that include all possible combinations of the specified amplitude and periods.</p>
 <p>Obviously it would be very easy to write a batch file specification that includes thousands of runs, more practical usage will most likely iterate over a small number of parameters at at a time. </p>
-<h4 id="running-an-example">Running an example<a class="headerlink" href="#running-an-example" title="Permanent link">&para;</a></h4>
+<h2 id="running-an-example">Running an example<a class="headerlink" href="#running-an-example" title="Permanent link">&para;</a></h2>
 <p>For a simpler example, a batch file that iterates across a range of sea-states is used.  As a concise example, the following file illustrates this, comments have been removed for brevity.</p>
 <div class="highlight"><pre><span></span><code>duration: 3
 seed: 42
@@ -475,7 +260,7 @@ cWaveSpectrumParams
 <p>For simulations that take longer to run, it can be convenient to tail this log file from the terminal to keep track of progress. i.e.  From the directory the batch was started from:</p>
 <div class="highlight"><pre><span></span><code>$ tail -f latest_batch_results/batch_runs.log
 </code></pre></div>
-<h4 id="finding-the-output">Finding the output<a class="headerlink" href="#finding-the-output" title="Permanent link">&para;</a></h4>
+<h2 id="finding-the-output">Finding the output<a class="headerlink" href="#finding-the-output" title="Permanent link">&para;</a></h2>
 <p>Within the batch process output directory, (e.g. `batch_results_20230228210735'), the output of each simulation run is stored within a single sub-directory.  The resulting directory tree from the above example is as follows:</p>
 <div class="highlight"><pre><span></span><code>$ tree batch_results_20230301200627/
 batch_results_20230301200627/
@@ -501,29 +286,21 @@ batch_results_20230301200627/
 <p>This output includes rosbag files and .csv files that are in the same format as the files generated on the physical buoy.  In general the information in these two files are the same, the .csv files are in clear text and are easy to inspect, and can be processed by the same tools used for the actual buoy data.  The rosbag files are binary files that encode all of the ROS2 messages on the computer during the simulation.  These files can be processed by a number of tools for post-processing and inspection of results.  It is also possible to load the rosbag files into plotjuggler for plotting and inspection, as described in the <a href="../SimulatorOutputPlotjuggler/">View Messages with Plotjuggler</a> Tutorial.</p>
               
             </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../SimulatorInteractionPbcmd/" class="btn btn-neutral float-left" title="Control Simulator with pbcmd"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../../ROS2/MessagesAndServices/" class="btn btn-neutral float-right" title="ROS 2 Messages and Services">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../SimulatorInteractionPbcmd/" class="btn btn-neutral" title="Control Simulator with pbcmd"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-    
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+          
         </div>
       </div>
 
@@ -531,21 +308,27 @@ batch_results_20230301200627/
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-        <span><a href="../SimulatorInteractionPbcmd/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../../ROS2/MessagesAndServices/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../SimulatorInteractionPbcmd/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../ROS2/MessagesAndServices/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme_extra.js" defer></script>
     <script src="../../../js/theme.js" defer></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
       <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
