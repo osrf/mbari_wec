@@ -1,4 +1,4 @@
-## Run-Time Control using pbcmd
+# Run-Time Control using pbcmd
 
 ## Introduction
 There is a command interpreter running on the physical buoy that provides some control over the behavior of the buoy while it is deployed.  This is a Linux executable that implements a number of commands, accepts appropriate arguments, and issues commands over the CANbus or ROS 2 on the buoy to effect a change of buoy behavior.  These commands can also be issued programmatically as described in subsequent tutorials, but pbcmd is the human interface.  

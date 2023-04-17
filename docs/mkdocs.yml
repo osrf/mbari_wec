@@ -46,4 +46,4 @@ markdown_extensions:
   - toc:
       permalink: True
 
-theme: 'rtd-dropdown'
+theme: readthedocs

@@ -1,6 +1,6 @@
-## Parameters and Batch Runs
+# Parameters and Batch Runs
 
-#### Introduction
+## Introduction
 When running a simple instance of the simulator as described in the [Run the Simulator](RunSimulator.md) Tutorial. i.e. using:
 
 ```
@@ -13,7 +13,7 @@ To facilitate this, a batch tool is provided that allows one to specify ranges f
 
 This tutorial describes these capabilities, demonstrates with some examples, and discusses how this tool can be used.
 
-#### Parameters
+## Parameters
 
 There are a number of parameters that impact the behavior of the simulator, and must be specified at start-up:
 
@@ -28,7 +28,7 @@ There are a number of parameters that impact the behavior of the simulator, and 
 - **Scale Factor**:  The buoy (and simulator) implements a default control algorithm in which the current in the motor windings is set as a function of motor RPM, with the resulting torque opposing the motors motion.  This approximately implements a linear damping behavior and the specified Scale Factor is multiplied by the default Winding-Current/RPM relationship before being applied.  Allowable values are from 0.5 to 1.4, and the result is a simple way to change the damping the power-takeoff device is applying to the system.  As discussed in a later tutorial, this relationship can be over-ridden with external code, so this Scale Factor only applies to the default behavior of the system.
 - ** GUI Output**:  The graphical output of the simulator can be turned on or off as needed, for large batches of runs that are meant to run un-attended this is probably not appropriate, but for single runs or debugging the graphical output can be useful.
 
-#### Example Batch File
+## Example Batch File
 The above parameters are specified in a .yaml file that the batch-run tool reads in before execution begins.  A commented example is below and illustrates the use of the above parameters.  Lines that begin with # are comments and have no impact.
 
 ```
@@ -69,7 +69,7 @@ The remaining run-specific parameters can be specified as arrays, and the batch-
 
 Obviously it would be very easy to write a batch file specification that includes thousands of runs, more practical usage will most likely iterate over a small number of parameters at at a time. 
 
-#### Running an example
+## Running an example
 For a simpler example, a batch file that iterates across a range of sea-states is used.  As a concise example, the following file illustrates this, comments have been removed for brevity.
 
 ```
@@ -117,7 +117,7 @@ For simulations that take longer to run, it can be convenient to tail this log f
 $ tail -f latest_batch_results/batch_runs.log
 ```
 
-#### Finding the output
+## Finding the output
 Within the batch process output directory, (e.g. `batch_results_20230228210735'), the output of each simulation run is stored within a single sub-directory.  The resulting directory tree from the above example is as follows:
 
 ```
