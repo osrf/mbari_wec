@@ -46,4 +46,9 @@ markdown_extensions:
   - toc:
       permalink: True
 
-theme: readthedocs
+theme:
+    name: readthedocs
+    prev_next_buttons_location: none
+    navigation_depth: 2
+    collapse_navigation: true
+    sticky_navigation: false
