@@ -15,5 +15,5 @@ authors:
   given-names: "Mabel"
 title: "MBARI Wave Energy Conversion Simulation"
 version: 1.0.0
-date-released: TBD
+date-released: 2023
 url: "https://github.com/osrf/mbari_wec"
