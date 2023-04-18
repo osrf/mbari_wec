@@ -7,6 +7,18 @@ authors:
 - family-names: "Michael"
   given-names: "Anderson"
   # orcid: "https://orcid.org/0000-0000-0000-0000"
+- family-names: "Louise"
+  given-names: "Poubel"
+  # orcid: "https://orcid.org/0000-0000-0000-0000"
+- family-names: "Dharini"
+  given-names: "Dutia"
+  # orcid: "https://orcid.org/0000-0000-0000-0000"
+- family-names: "Michael"
+  given-names: "Carroll"
+  # orcid: "https://orcid.org/0000-0000-0000-0000"
+- family-names: "Mabel"
+  given-names: "Zhang"
+  # orcid: "https://orcid.org/0000-0000-0000-0000"
 title: "MBARI Wave Energy Conversion Simulation"
 version: 1.0.0
 # doi: 10.5281/zenodo.1234
