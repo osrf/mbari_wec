@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/Tutorials/Simulation/SimulatorParameters/" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>Adjust Simulator parameters - MBARI-WEC</title>
+    <title>SimulatorParameters - MBARI-WEC</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Adjust Simulator parameters";
+        var mkdocs_page_name = "SimulatorParameters";
         var mkdocs_page_input_path = "Tutorials/Simulation/SimulatorParameters.md";
         var mkdocs_page_url = "/Tutorials/Simulation/SimulatorParameters/";
       </script>
@@ -64,52 +64,9 @@
                 <li class="toctree-l1"><a class="reference internal" href="../../../simulation/">Simulation</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">Tutorials</span></p>
-              <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="#">Installation</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../Install/Install_source/">Install from source</a>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/">Tutorials</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../Install/Install_docker/">Install using Docker</a>
-                </li>
-    </ul>
-                  </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Running the Simulator</a>
-    <ul class="current">
-                <li class="toctree-l2"><a class="reference internal" href="../RunSimulator/">Run the Simulator</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../SimulatorOutputROS/">View ROS 2 Messages</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../SimulatorOutputPlotjuggler/">View ROS 2 Messages with Plotjuggler</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../SimulatorOutputLogs/">Simulator Output Data Logs</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../SimulatorInteractionPbcmd/">Control Simulator with pbcmd</a>
-                </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="./">Adjust Simulator parameters</a>
-                </li>
-    </ul>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="#">Adding Control Code</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/MessagesAndServices/">ROS 2 Messages and Services</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/PythonTemplate/">Controller GitHub Template (Python)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/CPPTemplate/">Controller GitHub Template (C++)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/PythonLinearDamperExample/">Linear Damper Example (Python)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/CppLinearDamperExample/">Linear Damper Example (C++)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/CPPOpenLoopControl/">Open-Loop Force Command Example (C++)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/PythonOpenLoopControl/">Open-Loop Force Command Example (Python)</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../ROS2/ClosedLoopControl/">Closed-Loop Control</a>
-                </li>
-    </ul>
-                  </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../theory/">Theory</a>
@@ -145,9 +102,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>Tutorials &raquo;</li>
-          <li>Running the Simulator &raquo;</li>
-      <li>Adjust Simulator parameters</li>
+      <li>SimulatorParameters</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -156,7 +111,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="parameters-and-batch-runs">Parameters and Batch Runs<a class="headerlink" href="#parameters-and-batch-runs" title="Permanent link">&para;</a></h1>
+                <p>[Back to <a href="../../../tutorials/">Tutorials</a> list]</p>
+<h1 id="parameters-and-batch-runs">Parameters and Batch Runs<a class="headerlink" href="#parameters-and-batch-runs" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>When running a simple instance of the simulator as described in the <a href="../RunSimulator/">Run the Simulator</a> Tutorial. i.e. using:</p>
 <div class="highlight"><pre><span></span><code>$ ros2 launch buoy_gazebo mbari_wec.launch.py
@@ -272,6 +228,7 @@ batch_results_20230301200627/
         └── rosbag2_0.db3
 </code></pre></div>
 <p>This output includes rosbag files and .csv files that are in the same format as the files generated on the physical buoy.  In general the information in these two files are the same, the .csv files are in clear text and are easy to inspect, and can be processed by the same tools used for the actual buoy data.  The rosbag files are binary files that encode all of the ROS2 messages on the computer during the simulation.  These files can be processed by a number of tools for post-processing and inspection of results.  It is also possible to load the rosbag files into plotjuggler for plotting and inspection, as described in the <a href="../SimulatorOutputPlotjuggler/">View Messages with Plotjuggler</a> Tutorial.</p>
+<p>[Back to <a href="../../../tutorials/">Tutorials</a> list]</p>
               
             </div>
           </div><footer>
@@ -296,10 +253,6 @@ batch_results_20230301200627/
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../SimulatorInteractionPbcmd/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../../ROS2/MessagesAndServices/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
