@@ -12,11 +12,11 @@ If you use this software, please cite it as below:
 
   ```
   @software{Hamilton_MBARI_Wave_Energy_2023,
-  author = {Hamilton, Andrew and Anderson, Michael and Poubel, Louise and Dutia, Dharini and Carroll, Michael and Zhang, Mabel},
-  month = may,
-  title = {{MBARI Wave Energy Conversion Simulation}},
-  url = {https://github.com/osrf/mbari_wec},
-  version = {1.0.0},
-  year = {2023}
+   author = {Hamilton, Andrew and Anderson, Michael and Poubel, Louise and Dutia, Dharini and Carroll, Michael and Zhang, Mabel},
+   month = may,
+   title = {{MBARI Wave Energy Conversion Simulation}},
+   url = {https://github.com/osrf/mbari_wec},
+   version = {1.0.0},
+   year = {2023}
   }
   ```
