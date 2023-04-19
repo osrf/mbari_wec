@@ -1,3 +1,5 @@
+[Back to [Tutorials](../../tutorials.md) list]
+
 # Parameters and Batch Runs
 
 ## Introduction
@@ -144,3 +146,6 @@ batch_results_20230301200627/
 ```
 
  This output includes rosbag files and .csv files that are in the same format as the files generated on the physical buoy.  In general the information in these two files are the same, the .csv files are in clear text and are easy to inspect, and can be processed by the same tools used for the actual buoy data.  The rosbag files are binary files that encode all of the ROS2 messages on the computer during the simulation.  These files can be processed by a number of tools for post-processing and inspection of results.  It is also possible to load the rosbag files into plotjuggler for plotting and inspection, as described in the [View Messages with Plotjuggler](SimulatorOutputPlotjuggler.md) Tutorial.
+
+
+[Back to [Tutorials](../../tutorials.md) list]

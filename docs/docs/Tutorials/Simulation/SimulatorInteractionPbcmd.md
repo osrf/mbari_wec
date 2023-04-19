@@ -1,3 +1,5 @@
+[Back to [Tutorials](../../tutorials.md) list]
+
 # Run-Time Control using pbcmd
 
 ## Introduction
@@ -121,3 +123,6 @@ To extend the previous example, some interesting exercises to try are the follow
 - Issue a "pc_WindCurr 10" command instead of the pc_BiasCurr command.  This command directly sets the winding current, so the resulting winding current is not affected by the motor RPM until after the timeout has expired.  For this command, the timeout is two seconds.
 
 - Plot other messages while manipulating the winding current.  Note how the buoy and heave-cone positions as well as the load cell value respond to the dynamics of the floating bodies.
+
+
+[Back to [Tutorials](../../tutorials.md) list]

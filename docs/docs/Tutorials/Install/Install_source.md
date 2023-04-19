@@ -1,3 +1,5 @@
+[Back to [Tutorials](../../tutorials.md) list]
+
 # Install from source
 
 ## Requirements
@@ -77,3 +79,6 @@ Use Ubuntu 22.04.
         ```
         ros2 launch buoy_gazebo mbari_wec.launch.py`
         ```
+
+
+[Back to [Tutorials](../../tutorials.md) list]

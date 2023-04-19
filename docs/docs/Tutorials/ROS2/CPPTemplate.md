@@ -1,3 +1,5 @@
+[Back to [Tutorials](../../tutorials.md) list]
+
 # Quick Start &mdash; Writing External Controller With GitHub Template Repository
 ---
 
@@ -459,3 +461,6 @@ And you should see something similar to:
 
 An example using this interface will follow in the next tutorial:
 [Linear Damper Example (C++)](CppLinearDamperExample.md)
+
+
+[Back to [Tutorials](../../tutorials.md) list]

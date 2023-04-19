@@ -1,3 +1,5 @@
+[Back to [Tutorials](../../tutorials.md) list]
+
 # Quick Start -- Simple Linear Damper Controller (Python)
 
 ---
@@ -301,3 +303,6 @@ You should see output similar to:
 [linear_damper-1] [INFO] [1677864200.335164181] [linear_damper]: WindingCurrent: f(636.96, 1.00, 0.60) = -1.36
 [linear_damper-1] [INFO] [1677864200.435227880] [linear_damper]: WindingCurrent: f(863.33, 1.00, 0.60) = -2.99
 ```
+
+
+[Back to [Tutorials](../../tutorials.md) list]
