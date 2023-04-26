@@ -1,0 +1,15 @@
+.clipboard {
+    position: relative;
+    display: block;
+    float: right;
+}
+
+.btn-clipboard {
+    position: relative;
+    top: .5rem;
+    right: .5rem;
+    z-index: 10;
+    display: block;
+    padding: .25rem .5rem;
+    cursor: pointer;
+}

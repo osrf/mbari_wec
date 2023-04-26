@@ -15,7 +15,13 @@ nav:
   - Project Roadmap: roadmap.md
 
 extra_javascript:
-    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - js/popper.min.js
+  - js/tippy-bundle.umd.min.js
+  - js/clipboard.min.js
+  - js/extra.js
+extra_css:
+  - css/extra.css
 
 markdown_extensions:
   - mdx_math
