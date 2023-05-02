@@ -1,5 +1,3 @@
-[Back to [Tutorials](../../tutorials.md) list]
-
 # View ROS 2 Messages
 
 While running, the simulator generates exactly the same ROS 2 messages that the buoy hardware does during operation.  These are grouped into ROS 2 topics that corresponds to data being produced by each micro-controller or instrument on the buoy.  To see all ROS 2 topics being published to on the system, issue the following command (after sourcing the workspace if needed in a new terminal ``` $ . ~/mbari_wec_ws/install/setup.sh```
@@ -55,5 +53,3 @@ The data in each topic corresponds to the message descriptions which can be seen
 
 The next tutorial "[View Messages with Plotjuggler](SimulatorOutputPlotjuggler.md)" shows how to conveniently plot these data items while the simulator is running.
 
-
-[Back to [Tutorials](../../tutorials.md) list]

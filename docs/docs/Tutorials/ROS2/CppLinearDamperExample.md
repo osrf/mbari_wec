@@ -1,5 +1,3 @@
-[Back to [Tutorials](../../tutorials.md) list]
-
 # Quick Start -- Simple Linear Damper Controller (C++)
 
 ---
@@ -348,5 +346,3 @@ You should see output similar to:
 [mbari_wec_linear_damper_cpp-1] [INFO] [1680215529.125363653] [mbari_wec_linear_damper_cpp]: WindingCurrent: f(2027.67, 1, 0.6) = -8.36947
 ```
 
-
-[Back to [Tutorials](../../tutorials.md) list]

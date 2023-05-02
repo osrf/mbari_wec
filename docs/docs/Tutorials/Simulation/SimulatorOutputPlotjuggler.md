@@ -1,5 +1,3 @@
-[Back to [Tutorials](../../tutorials.md) list]
-
 # View ROS 2 Messages with Plotjuggler
 
 "[PlotJuggler](https://www.plotjuggler.io/)" is a plotting program that includes support for ROS 2 messages, and allows real-time plotting of data from ROS 2 messages while the simulator runs, as well as plotting of logged data.  
@@ -28,5 +26,3 @@ In the window on the left that shows the available topics, select the /arhs_data
 
 ![](images/PlotJuggler.png)
 
-
-[Back to [Tutorials](../../tutorials.md) list]

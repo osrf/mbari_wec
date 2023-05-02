@@ -1,5 +1,3 @@
-[Back to [Tutorials](../../tutorials.md) list]
-
 # Running the Simulator
 
 ## Introduction
@@ -34,5 +32,3 @@ To view the ROS2 messages and associated data while the simulation runs, proceed
 ## Notes on Workspaces
 The step of sourcing the workspace is important and must be done in every window that the simulation and associated tools are accessed from.  It is possible, and possibly convenient, to put the source command from step 1 above in the .bashrc or similar place if a different shell is being used.  This will automatically perform this step anytime a new window is opened.  Beware however, the software can not be built from source in a window where this workspace has previously been sourced.  So when re-compiling the source often it can be problematic to have this line in .bashrc.  When primarily running the simulations without frequent re-building of the software, it is then appropriate to use .bashrc in this way, just remember to take it out before opening a window where you want to do a "colcon build".
 
-
-[Back to [Tutorials](../../tutorials.md) list]
