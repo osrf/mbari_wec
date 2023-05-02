@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/Tutorials/Simulation/RunSimulator/" />
       <link rel="shortcut icon" href="../../../img/favicon.ico" />
-    <title>RunSimulator - MBARI-WEC</title>
+    <title>Running the Simulator - MBARI-WEC</title>
     <link rel="stylesheet" href="../../../css/theme.css" />
     <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "RunSimulator";
+        var mkdocs_page_name = "Running the Simulator";
         var mkdocs_page_input_path = "Tutorials/Simulation/RunSimulator.md";
         var mkdocs_page_url = "/Tutorials/Simulation/RunSimulator/";
       </script>
@@ -34,7 +34,7 @@
           <a href="../../.." class="icon icon-home"> MBARI-WEC
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -101,8 +101,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>RunSimulator</li>
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Running the Simulator</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -111,8 +111,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>[Back to <a href="../../../tutorials/">Tutorials</a> list]</p>
-<h1 id="running-the-simulator">Running the Simulator<a class="headerlink" href="#running-the-simulator" title="Permanent link">&para;</a></h1>
+                <h1 id="running-the-simulator">Running the Simulator<a class="headerlink" href="#running-the-simulator" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>This tutorial will illustrate how to start the buoy simulation in Gazebo, when the simulation is running, a rendering of the buoy system motions will be visible, and ROS2 messages will be published that represent the buoy systems state.  The simulation also provides the same ROS2 services the real buoy does, so will respond to ROS2 messages appropriately.</p>
 <p>Subsequent tutorials will illustrate how to view and plot data being published by the simulation, view data logs being generated, and control the simulated buoy with the command-line tool that is available on the buoy.</p>
@@ -133,7 +132,6 @@
 <p>To view the ROS2 messages and associated data while the simulation runs, proceed to the next tutorial: <a href="../SimulatorOutputROS/">View ROS2 Messages</a></p>
 <h2 id="notes-on-workspaces">Notes on Workspaces<a class="headerlink" href="#notes-on-workspaces" title="Permanent link">&para;</a></h2>
 <p>The step of sourcing the workspace is important and must be done in every window that the simulation and associated tools are accessed from.  It is possible, and possibly convenient, to put the source command from step 1 above in the .bashrc or similar place if a different shell is being used.  This will automatically perform this step anytime a new window is opened.  Beware however, the software can not be built from source in a window where this workspace has previously been sourced.  So when re-compiling the source often it can be problematic to have this line in .bashrc.  When primarily running the simulations without frequent re-building of the software, it is then appropriate to use .bashrc in this way, just remember to take it out before opening a window where you want to do a "colcon build".</p>
-<p>[Back to <a href="../../../tutorials/">Tutorials</a> list]</p>
               
             </div>
           </div><footer>
