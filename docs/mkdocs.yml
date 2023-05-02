@@ -15,7 +15,8 @@ nav:
   - Project Roadmap: roadmap.md
 
 extra_javascript:
-    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - js/extra.js
 
 markdown_extensions:
   - mdx_math
@@ -28,8 +29,7 @@ markdown_extensions:
       permalink: True
 
 theme:
-    name: readthedocs
-    prev_next_buttons_location: none
-    navigation_depth: 2
-    collapse_navigation: True
-    sticky_navigation: False
+  name:
+    "material"
+  features:
+    content.code.copy
