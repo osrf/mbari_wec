@@ -11,13 +11,17 @@
         <link rel="canonical" href="https://example.com/Tutorials/Simulation/SimulatorParameters/">
       
       
+        <link rel="prev" href="../SimulatorInteractionPbcmd/">
+      
+      
+        <link rel="next" href="../../ROS2/MessagesAndServices/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
     
     
       
-        <title>SimulatorParameters - MBARI-WEC</title>
+        <title>Adjust Simulator parameters - MBARI-WEC</title>
       
     
     
@@ -94,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SimulatorParameters
+              Adjust Simulator parameters
             
           </span>
         </div>
@@ -268,11 +272,492 @@
 
   
   
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          Tutorials
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
   
     <li class="md-nav__item">
       <a href="../../../tutorials/" class="md-nav__link">
         Tutorials
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Install/Install_source/" class="md-nav__link">
+        Install from source
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Install/Install_docker/" class="md-nav__link">
+        Install using Docker
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+          Running the Simulator
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_7_3">
+          <span class="md-nav__icon md-icon"></span>
+          Running the Simulator
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RunSimulator/" class="md-nav__link">
+        Run the Simulator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulatorOutputROS/" class="md-nav__link">
+        View ROS 2 Messages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulatorOutputPlotjuggler/" class="md-nav__link">
+        View ROS 2 Messages with Plotjuggler
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulatorOutputLogs/" class="md-nav__link">
+        Simulator Output Data Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulatorInteractionPbcmd/" class="md-nav__link">
+        Control Simulator with pbcmd
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Adjust Simulator parameters
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Adjust Simulator parameters
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-batch-file" class="md-nav__link">
+    Example Batch File
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-an-example" class="md-nav__link">
+    Running an example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-the-output" class="md-nav__link">
+    Finding the output
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+          Adding Control Code
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_4">
+          <span class="md-nav__icon md-icon"></span>
+          Adding Control Code
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/MessagesAndServices/" class="md-nav__link">
+        ROS 2 Messages and Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/PythonTemplate/" class="md-nav__link">
+        Controller GitHub Template (Python)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/CPPTemplate/" class="md-nav__link">
+        Controller GitHub Template (C++)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/PythonLinearDamperExample/" class="md-nav__link">
+        Linear Damper Example (Python)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/CppLinearDamperExample/" class="md-nav__link">
+        Linear Damper Example (C++)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/CPPOpenLoopControl/" class="md-nav__link">
+        Open-Loop Force Command Example (C++)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/PythonOpenLoopControl/" class="md-nav__link">
+        Open-Loop Force Command Example (Python)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/ClosedLoopControl/" class="md-nav__link">
+        Closed-Loop Control
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -369,6 +854,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -377,50 +864,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#parameters-and-batch-runs" class="md-nav__link">
-    Parameters and Batch Runs
-  </a>
-  
-    <nav class="md-nav" aria-label="Parameters and Batch Runs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#introduction" class="md-nav__link">
     Introduction
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#parameters" class="md-nav__link">
     Parameters
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#example-batch-file" class="md-nav__link">
     Example Batch File
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#running-an-example" class="md-nav__link">
     Running an example
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#finding-the-output" class="md-nav__link">
     Finding the output
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -439,17 +913,15 @@
                   
 
 
-  <h1>SimulatorParameters</h1>
-
-<h2 id="parameters-and-batch-runs">Parameters and Batch Runs</h2>
-<h4 id="introduction">Introduction</h4>
+<h1 id="parameters-and-batch-runs">Parameters and Batch Runs<a class="headerlink" href="#parameters-and-batch-runs" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>When running a simple instance of the simulator as described in the <a href="../RunSimulator/">Run the Simulator</a> Tutorial. i.e. using:</p>
 <div class="highlight"><pre><span></span><code>$ ros2 launch buoy_gazebo mbari_wec.launch.py
 </code></pre></div>
 <p>the simulation uses a number of defaults for a range of parameters. In most cases, one may want to run the simulator with different values for these parameters, and/or run a number of simulations that iterate across a range of values for particular parameters. For instance, one may want to run the simulator in a batch mode that runs the same buoy and controller set-up in a range of sea-states.</p>
 <p>To facilitate this, a batch tool is provided that allows one to specify ranges for a number of parameters, and then run a number of simulations for all combinations of parameters, saving the results separately.</p>
 <p>This tutorial describes these capabilities, demonstrates with some examples, and discusses how this tool can be used.</p>
-<h4 id="parameters">Parameters</h4>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <p>There are a number of parameters that impact the behavior of the simulator, and must be specified at start-up:</p>
 <ul>
 <li><strong>Simulation duration</strong>:  How long the simulation will run for (simulation time) in seconds.</li>
@@ -463,7 +935,7 @@
 <li><strong>Scale Factor</strong>:  The buoy (and simulator) implements a default control algorithm in which the current in the motor windings is set as a function of motor RPM, with the resulting torque opposing the motors motion.  This approximately implements a linear damping behavior and the specified Scale Factor is multiplied by the default Winding-Current/RPM relationship before being applied.  Allowable values are from 0.5 to 1.4, and the result is a simple way to change the damping the power-takeoff device is applying to the system.  As discussed in a later tutorial, this relationship can be over-ridden with external code, so this Scale Factor only applies to the default behavior of the system.</li>
 <li><strong> GUI Output</strong>:  The graphical output of the simulator can be turned on or off as needed, for large batches of runs that are meant to run un-attended this is probably not appropriate, but for single runs or debugging the graphical output can be useful.</li>
 </ul>
-<h4 id="example-batch-file">Example Batch File</h4>
+<h2 id="example-batch-file">Example Batch File<a class="headerlink" href="#example-batch-file" title="Permanent link">&para;</a></h2>
 <p>The above parameters are specified in a .yaml file that the batch-run tool reads in before execution begins.  A commented example is below and illustrates the use of the above parameters.  Lines that begin with # are comments and have no impact.</p>
 <div class="highlight"><pre><span></span><code>#
 # Batch-Specific Scalar Parameters
@@ -498,7 +970,7 @@ IncidentWaveSpectrumType:
 <p>As seen in this example, some parameters are enforced to be scalar values and apply to the entire batch of specified runs.  These are the specification of simulation duration (300), random seed (42), and the physics real-time factor (11). </p>
 <p>The remaining run-specific parameters can be specified as arrays, and the batch-run tool then executes simulations for all possible combinations of these values.  Note that some values are specified in pairs.  For instance, three mono-chromatic waves are specified by this file with a specification of (A=1.0m, T=12s), (A=2.0m, T=14s), and (A=3.0m, T=15s), not nine runs that include all possible combinations of the specified amplitude and periods.</p>
 <p>Obviously it would be very easy to write a batch file specification that includes thousands of runs, more practical usage will most likely iterate over a small number of parameters at at a time. </p>
-<h4 id="running-an-example">Running an example</h4>
+<h2 id="running-an-example">Running an example<a class="headerlink" href="#running-an-example" title="Permanent link">&para;</a></h2>
 <p>For a simpler example, a batch file that iterates across a range of sea-states is used.  As a concise example, the following file illustrates this, comments have been removed for brevity.</p>
 <div class="highlight"><pre><span></span><code>duration: 3
 seed: 42
@@ -533,7 +1005,7 @@ cWaveSpectrumParams
 <p>For simulations that take longer to run, it can be convenient to tail this log file from the terminal to keep track of progress. i.e.  From the directory the batch was started from:</p>
 <div class="highlight"><pre><span></span><code>$ tail -f latest_batch_results/batch_runs.log
 </code></pre></div>
-<h4 id="finding-the-output">Finding the output</h4>
+<h2 id="finding-the-output">Finding the output<a class="headerlink" href="#finding-the-output" title="Permanent link">&para;</a></h2>
 <p>Within the batch process output directory, (e.g. `batch_results_20230228210735'), the output of each simulation run is stored within a single sub-directory.  The resulting directory tree from the above example is as follows:</p>
 <div class="highlight"><pre><span></span><code>$ tree batch_results_20230301200627/
 batch_results_20230301200627/
@@ -594,7 +1066,7 @@ batch_results_20230301200627/
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": "content.code.copy", "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "navigation.indexes", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.fac441b0.min.js"></script>
