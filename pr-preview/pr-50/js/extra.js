@@ -16,11 +16,13 @@ function getIndicesOf(searchStr, str, caseSensitive) {
     return indices;
 }
 
+// https://code-boxx.com/detect-browser-with-javascript/
 function isFF() {
-  var isFirefox = typeof InstallTrigger !== 'undefined';
+  var isFirefox = typeof InstallTrigger !== 'undefined';  // Warning: InstallTrigger deprecated and may be removed
   return isFirefox;
 }
 
+// https://stackoverflow.com/questions/21229067/firefox-triple-click-selection-returns-incorrect-start-and-end-offsets
 function adjustRange(range) {
   if(isFF()) {
     range = range.cloneRange();
