@@ -1,4 +1,6 @@
-## Install Requirements
+# Install from source
+
+## Requirements
 Use Ubuntu 22.04.
 
 1. Install [ROS 2 Humble](https://docs.ros.org/en/humble/index.html)
@@ -75,3 +77,4 @@ Use Ubuntu 22.04.
         ```
         ros2 launch buoy_gazebo mbari_wec.launch.py`
         ```
+

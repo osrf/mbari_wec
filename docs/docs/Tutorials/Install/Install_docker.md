@@ -1,3 +1,5 @@
+# Install using Docker
+
 Docker images that include the neccessary software and dependencies have been created for convenience. 
 
 ## Requirements
@@ -71,3 +73,4 @@ This sources the compiled workspace and launches the simulation:
         ```
 
 The simulation software should now be available.  To run and test, proceed to the [Run the Simulator](../../../tutorials/#running-the-simulator) tutorial series. 
+

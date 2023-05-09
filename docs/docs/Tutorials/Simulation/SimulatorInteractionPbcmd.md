@@ -1,4 +1,4 @@
-## Run-Time Control using pbcmd
+# Run-Time Control using pbcmd
 
 ## Introduction
 There is a command interpreter running on the physical buoy that provides some control over the behavior of the buoy while it is deployed.  This is a Linux executable that implements a number of commands, accepts appropriate arguments, and issues commands over the CANbus or ROS 2 on the buoy to effect a change of buoy behavior.  These commands can also be issued programmatically as described in subsequent tutorials, but pbcmd is the human interface.  
@@ -121,3 +121,4 @@ To extend the previous example, some interesting exercises to try are the follow
 - Issue a "pc_WindCurr 10" command instead of the pc_BiasCurr command.  This command directly sets the winding current, so the resulting winding current is not affected by the motor RPM until after the timeout has expired.  For this command, the timeout is two seconds.
 
 - Plot other messages while manipulating the winding current.  Note how the buoy and heave-cone positions as well as the load cell value respond to the dynamics of the floating bodies.
+
