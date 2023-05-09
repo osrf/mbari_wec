@@ -73,8 +73,6 @@ document.addEventListener('copy', function(e){
   var start_node = rng_all.startContainer;
   var end_node = rng_all.endContainer;
   if (indices.length > 0) {
-    text_ = text.replaceAll('$ ', '');
-    console.log(text_);
     if(!rng_all.collapsed) {
       sel.removeAllRanges();
       let idx = 0;
@@ -97,6 +95,9 @@ document.addEventListener('copy', function(e){
         idx = idx + 1;
       } while(idx < indices.length - 1);
     }
+    text = getSelectionText();
+    text_ = text.replaceAll('$ ', '');
+    console.log(text_);
   }
   e.clipboardData.setData('text/plain', text_);
   e.preventDefault();
