@@ -1,3 +1,5 @@
+# Running the Simulator
+
 ## Introduction
 
 This tutorial will illustrate how to start the buoy simulation in Gazebo, when the simulation is running, a rendering of the buoy system motions will be visible, and ROS2 messages will be published that represent the buoy systems state.  The simulation also provides the same ROS2 services the real buoy does, so will respond to ROS2 messages appropriately.
