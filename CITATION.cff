@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Hamilton"
+  given-names: "Andrew"
+- family-names: "Anderson"
+  given-names: "Michael"
+- family-names: "Poubel"
+  given-names: "Louise"
+- family-names: "Dutia"
+  given-names: "Dharini"
+- family-names: "Carroll"
+  given-names: "Michael"
+- family-names: "Zhang"
+  given-names: "Mabel"
+- family-names: "McEwen"
+  given-names: "Rob"
+- family-names: "Mayans"
+  given-names: "Joan"
+title: "MBARI Wave Energy Conversion Simulation"
+version: 1.0.0
+date-released: 2023-05-01
+url: "https://github.com/osrf/mbari_wec"
