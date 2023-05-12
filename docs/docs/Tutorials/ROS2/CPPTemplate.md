@@ -384,7 +384,7 @@ the Spring or Power Controllers on the buoy. These controllers default to publis
 to increase the publish rate. You can call commands to set the rates anywhere from 10Hz
 to 50Hz (default argument is 50Hz).
 
-``` cpp linenums="22" title="src/controller.cpp"
+``` cpp linenums="22" hl_lines="10 11" title="src/controller.cpp"
 Controller::Controller(const std::string & node_name)
 : buoy_api::Interface<Controller>(node_name),
   policy_(std::make_unique<ControlPolicy>())
@@ -396,7 +396,17 @@ Controller::Controller(const std::string & node_name)
   // call these to set rate to 50Hz or provide argument for specific rate
   // this->set_sc_pack_rate_param();  // set SC publish rate to 50Hz
   // this->set_pc_pack_rate_param();  // set PC publish rate to 50Hz
-}
+
+```
+
+The `Controller` is also capable of synchronizing its clock from the sim `/clock` by uncommenting
+line 36. Since the `Controller` inherits from `rclcpp::Node`, you may use `this->get_clock()` and
+other various time-related functions of `rclcpp::Node`.
+
+``` cpp linenums="58" hl_lines="3"
+  // Use this to set node clock to use sim time from /clock (from gazebo sim time)
+  // Access node clock via this->get_clock() or other various time-related functions of rclcpp::Node
+  // this->use_sim_time();
 ```
 
 ## Build, Test, Run
