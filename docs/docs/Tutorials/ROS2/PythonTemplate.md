@@ -249,9 +249,9 @@ class ControlPolicy(object):
         pass  # remove if there's anything to set above
 ```
 
-- Declare/get/update params in the `set_params` function of the `Controller` class on line 113
+- Declare/get/update params in the `set_params` function of the `Controller` class on line 118
 
-``` py linenums="113"
+``` py linenums="118"
     def set_params(self):
         """Use ROS2 declare_parameter and get_parameter to set policy params."""
         self.declare_parameter('foo', self.policy.foo)
@@ -295,7 +295,7 @@ control (for example):
 
 Or, set up a loop in `main()` and run open-loop:
 
-``` py linenums="123"
+``` py linenums="128"
 def main():
     rclpy.init()
     controller = Controller()
@@ -337,7 +337,7 @@ In the `Controller` constructor, you may also uncomment lines 55 or 56 to set th
 the Spring or Power Controllers on the buoy. These controllers default to publishing at 10Hz. You
 can call commands to set the rates anywhere from 10Hz to 50Hz (default argument is 50Hz).
 
-``` py linenums="46"
+``` py linenums="46" hl_lines="10 11"
     def __init__(self):
         super().__init__('controller')
 
@@ -349,6 +349,17 @@ can call commands to set the rates anywhere from 10Hz to 50Hz (default argument 
         # call these to set rate to 50Hz or provide argument for specific rate
         # self.set_pc_pack_rate_param()  # set PC publish rate to 50Hz
         # self.set_sc_pack_rate_param()  # set SC publish rate to 50Hz
+```
+
+The `Controller` is also capable of synchronizing its clock from the sim `/clock` by uncommenting
+line 61. Since the `Controller` inherits from `rclpy.Node`, you may use `self.get_clock()` and
+other various time-related functions of `rclpy.Node`.
+
+``` py linenums="58" hl_lines="4"
+        # Use this to set node clock to use sim time from /clock (from gazebo sim time)
+        # Access node clock via self.get_clock() or other various
+        # time-related functions of rclpy.Node
+        # self.use_sim_time()
 ```
 
 ## Build, Test, Run
