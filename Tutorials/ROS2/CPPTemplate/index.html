@@ -17,7 +17,7 @@
         <link rel="next" href="../PythonLinearDamperExample/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.26e3688c.min.css">
       
       
 
@@ -1475,8 +1475,7 @@ to 50Hz (default argument is 50Hz).</p>
 <span class="normal">29</span>
 <span class="normal">30</span>
 <span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">Controller</span><span class="o">::</span><span class="n">Controller</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">node_name</span><span class="p">)</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">Controller</span><span class="o">::</span><span class="n">Controller</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">node_name</span><span class="p">)</span>
 <span class="o">:</span><span class="w"> </span><span class="n">buoy_api</span><span class="o">::</span><span class="n">Interface</span><span class="o">&lt;</span><span class="n">Controller</span><span class="o">&gt;</span><span class="p">(</span><span class="n">node_name</span><span class="p">),</span>
 <span class="w">  </span><span class="n">policy_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">ControlPolicy</span><span class="o">&gt;</span><span class="p">())</span>
 <span class="p">{</span>
@@ -1485,10 +1484,18 @@ to 50Hz (default argument is 50Hz).</p>
 <span class="w">  </span><span class="c1">// set packet rates from controllers here</span>
 <span class="w">  </span><span class="c1">// controller defaults to publishing @ 10Hz</span>
 <span class="w">  </span><span class="c1">// call these to set rate to 50Hz or provide argument for specific rate</span>
-<span class="w">  </span><span class="c1">// this-&gt;set_sc_pack_rate_param();  // set SC publish rate to 50Hz</span>
-<span class="w">  </span><span class="c1">// this-&gt;set_pc_pack_rate_param();  // set PC publish rate to 50Hz</span>
-<span class="p">}</span>
-</code></pre></div></td></tr></table></div>
+<span class="hll"><span class="w">  </span><span class="c1">// this-&gt;set_sc_pack_rate_param();  // set SC publish rate to 50Hz</span>
+</span><span class="hll"><span class="w">  </span><span class="c1">// this-&gt;set_pc_pack_rate_param();  // set PC publish rate to 50Hz</span>
+</span></code></pre></div></td></tr></table></div>
+<p>The <code>Controller</code> is also capable of synchronizing its clock from the sim <code>/clock</code> by uncommenting
+line 36. Since the <code>Controller</code> inherits from <code>rclcpp::Node</code>, you may use <code>this-&gt;get_clock()</code> and
+other various time-related functions of <code>rclcpp::Node</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="c1">// Use this to set node clock to use sim time from /clock (from gazebo sim time)</span>
+<span class="w">  </span><span class="c1">// Access node clock via this-&gt;get_clock() or other various time-related functions of rclcpp::Node</span>
+<span class="hll"><span class="w">  </span><span class="c1">// this-&gt;use_sim_time();</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="build-test-run">Build, Test, Run<a class="headerlink" href="#build-test-run" title="Permanent link">&para;</a></h2>
 <p>At this point, your new package should build, pass tests, and run against the sim (will connect
 but do nothing).</p>
@@ -1575,9 +1582,11 @@ Or, you may test only your new controller package using:<br />
     <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "navigation.indexes", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.fac441b0.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.b4d07000.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+        <script src="../../../js/extra.js"></script>
       
     
   </body>
