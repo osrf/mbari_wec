@@ -7,7 +7,7 @@ autonomous and persistent presence of oceanographic instrumentation in the world
 project is complemented by developments in autonomous underwater vehicles, underwater vehicle
 docking, oceanographic instrumentation, autonomy, and science use. 
 
-![MBARI-WEC in action using Gazebo simulator](media/buoy_sim.mp4)
+![MBARI-WEC in action using Gazebo simulator](images/buoy_sim.gif)
 
 The MBARI-WEC is currently maintained by MBARI and operates for six-month periods near the MBARI
 facility in Moss Landing, California, and averages about 250 Watts of power capture, averaged

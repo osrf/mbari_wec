@@ -2,7 +2,7 @@
 
 The MBARI Wave-Energy-Converter is a small point absorber design that includes a surface expression, an electro-hydraulic PTO, and a submerged heave-cone device.  The system is moored to the seafloor (typically in 80m of water) through a chain-catenary mooring connected to an anchor.  As waves excite the system, a differential motion results between the buoy at the surface and the submerged heave cone.  Resisting this motion results in energy being absorbed by the system, and this energy is converted to electrical form and stored in a battery bank on the buoy. The rest of this section provides details about the various components of the system
 
-![some description](media/MBARI_WEC_Assembly_12-5-2019-1.png)
+![some description](images/MBARI_WEC_Assembly_12-5-2019-1.png)
 
 ## Buoy, Heave Cone, and Mooring
 The buoy in the MBARI-WEC has a diameter of 2.6m, a water-plane area of 5 m^2, and a mass of 1400kg.  This buoy houses the system battery and compute infrastructure, described below.
@@ -24,7 +24,7 @@ The electrical system also includes 300V-24V power supplies that provides 24 vol
 ## Compute and Control Systems
 The compute and control architecture of the system is such that critical functions are performed by micro-controllers throughout the system that implement default behaviors and stream sensor data continuously.  A Linux computer on the buoy performs data-logging and provides a command interface to the underlying micro-controllers. See figure. The system is designed such that the Linux computer is not necessary for safe behavior, if this computer re-boots or goes offline, the system will default to safe behaviors.  Additionally, the micro-controllers will ignore damaging commands from the Linux computer.  This architecture allows control algorithms running on the Linux computer to be started, stopped, and changed while the device is at sea through the cell-modem connection.  
 
-![some description](media/SoftwareArchitectureDiagramV2aDeployed.png)
+![some description](images/SoftwareArchitectureDiagramV2aDeployed.png)
 
 The fundamental system behaviors are performed by a network of micro-controller based compute nodes, that communicate with the buoy Linux computer and with one-another through a Controller Area Network (CAN) bus.  There are four of these controllers as follows:
 
