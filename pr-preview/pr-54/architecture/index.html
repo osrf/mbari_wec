@@ -911,7 +911,7 @@
 
 <h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
 <p>The MBARI Wave-Energy-Converter is a small point absorber design that includes a surface expression, an electro-hydraulic PTO, and a submerged heave-cone device.  The system is moored to the seafloor (typically in 80m of water) through a chain-catenary mooring connected to an anchor.  As waves excite the system, a differential motion results between the buoy at the surface and the submerged heave cone.  Resisting this motion results in energy being absorbed by the system, and this energy is converted to electrical form and stored in a battery bank on the buoy. The rest of this section provides details about the various components of the system</p>
-<p><img alt="some description" src="../media/MBARI_WEC_Assembly_12-5-2019-1.png" /></p>
+<p><img alt="some description" src="../images/MBARI_WEC_Assembly_12-5-2019-1.png" /></p>
 <h2 id="buoy-heave-cone-and-mooring">Buoy, Heave Cone, and Mooring<a class="headerlink" href="#buoy-heave-cone-and-mooring" title="Permanent link">&para;</a></h2>
 <p>The buoy in the MBARI-WEC has a diameter of 2.6m, a water-plane area of 5 m^2, and a mass of 1400kg.  This buoy houses the system battery and compute infrastructure, described below.</p>
 <p>The heave-cone component sits at about 30m depth and provides inertia and drag for the surface-buoy to pull against.  The heave-cone has operable doors that can be opened to reduce the drag and inertial of this component in high sea-states.  When the doors are open, the heave-cone has added-mass of about 10,000kg, in addition to it's own 600kg mass.  When opened, the added-mass reduces to about 3,000kg, which reduces the inertial forcing and increases the natural frequency of the buoy -- heave-cone pair.</p>
@@ -924,7 +924,7 @@
 <p>The electrical system also includes 300V-24V power supplies that provides 24 volts to the compute and instrumentation infrastructure in the system.  In the case of low battery voltage due to an extended period of calm seas, the </p>
 <h2 id="compute-and-control-systems">Compute and Control Systems<a class="headerlink" href="#compute-and-control-systems" title="Permanent link">&para;</a></h2>
 <p>The compute and control architecture of the system is such that critical functions are performed by micro-controllers throughout the system that implement default behaviors and stream sensor data continuously.  A Linux computer on the buoy performs data-logging and provides a command interface to the underlying micro-controllers. See figure. The system is designed such that the Linux computer is not necessary for safe behavior, if this computer re-boots or goes offline, the system will default to safe behaviors.  Additionally, the micro-controllers will ignore damaging commands from the Linux computer.  This architecture allows control algorithms running on the Linux computer to be started, stopped, and changed while the device is at sea through the cell-modem connection.  </p>
-<p><img alt="some description" src="../media/SoftwareArchitectureDiagramV2aDeployed.png" /></p>
+<p><img alt="some description" src="../images/SoftwareArchitectureDiagramV2aDeployed.png" /></p>
 <p>The fundamental system behaviors are performed by a network of micro-controller based compute nodes, that communicate with the buoy Linux computer and with one-another through a Controller Area Network (CAN) bus.  There are four of these controllers as follows:</p>
 <ul>
 <li>
