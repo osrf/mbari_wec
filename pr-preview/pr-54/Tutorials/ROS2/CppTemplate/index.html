@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://example.com/Tutorials/ROS2/CPPTemplate/">
+        <link rel="canonical" href="https://example.com/Tutorials/ROS2/CppTemplate/">
       
       
         <link rel="prev" href="../PythonTemplate/">
@@ -552,8 +552,6 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
@@ -766,7 +764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CPPOpenLoopControl/" class="md-nav__link">
+      <a href="../CppOpenLoopControl/" class="md-nav__link">
         Open-Loop Force Command Example (C++)
       </a>
     </li>
@@ -782,20 +780,6 @@
     <li class="md-nav__item">
       <a href="../PythonOpenLoopControl/" class="md-nav__link">
         Open-Loop Force Command Example (Python)
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ClosedLoopControl/" class="md-nav__link">
-        Closed-Loop Control
       </a>
     </li>
   
@@ -1484,8 +1468,8 @@ to 50Hz (default argument is 50Hz).</p>
 <span class="w">  </span><span class="c1">// set packet rates from controllers here</span>
 <span class="w">  </span><span class="c1">// controller defaults to publishing @ 10Hz</span>
 <span class="w">  </span><span class="c1">// call these to set rate to 50Hz or provide argument for specific rate</span>
-<span class="hll"><span class="w">  </span><span class="c1">// this-&gt;set_sc_pack_rate_param();  // set SC publish rate to 50Hz</span>
-</span><span class="hll"><span class="w">  </span><span class="c1">// this-&gt;set_pc_pack_rate_param();  // set PC publish rate to 50Hz</span>
+<span class="hll"><span class="w">  </span><span class="c1">// this-&gt;set_sc_pack_rate();  // set SC publish rate to 50Hz</span>
+</span><span class="hll"><span class="w">  </span><span class="c1">// this-&gt;set_pc_pack_rate();  // set PC publish rate to 50Hz</span>
 </span></code></pre></div></td></tr></table></div>
 <p>The <code>Controller</code> is also capable of synchronizing its clock from the sim <code>/clock</code> by uncommenting
 line 36. Since the <code>Controller</code> inherits from <code>rclcpp::Node</code>, you may use <code>this-&gt;get_clock()</code> and

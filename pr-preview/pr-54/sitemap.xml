@@ -71,22 +71,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Tutorials/ROS2/CPPOpenLoopControl/</loc>
-         <lastmod>2023-06-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://example.com/Tutorials/ROS2/CPPTemplate/</loc>
-         <lastmod>2023-06-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://example.com/Tutorials/ROS2/ClosedLoopControl/</loc>
-         <lastmod>2023-06-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://example.com/Tutorials/ROS2/CppLinearDamperExample/</loc>
+         <lastmod>2023-06-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://example.com/Tutorials/ROS2/CppOpenLoopControl/</loc>
+         <lastmod>2023-06-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://example.com/Tutorials/ROS2/CppTemplate/</loc>
          <lastmod>2023-06-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
