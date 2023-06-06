@@ -2,6 +2,11 @@ This is the entrypoint for the wave energy harvesting buoy project.
 
 See [documentation here](https://osrf.github.io/mbari_wec).
 
+And MBARI-WEC in action using Gazebo simulator here:
+
+![](docs/docs/images/buoy_sim.gif)
+
+
 # Simulation Repositories
 
 These are the repositories for the project:

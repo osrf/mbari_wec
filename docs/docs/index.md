@@ -1,17 +1,19 @@
 # Background  
 
-The Monterey Bay Aquarium Research Institute ([MBARI](https://www.mbari.org)) Wave-Energy converter
+The Monterey Bay Aquarium Research Institute ([MBARI](http://www.mbari.org)) Wave-Energy Converter
 is a point-absorber type wave-energy converter that has been operating in Monterey Bay, CA since
 2014. This system was developed as part of MBARI's goals of advancing and demonstrating an
 autonomous and persistent presence of oceanographic instrumentation in the worlds oceans. This
 project is complemented by developments in autonomous underwater vehicles, underwater vehicle
 docking, oceanographic instrumentation, autonomy, and science use. 
 
+![MBARI-WEC in action using Gazebo simulator](images/buoy_sim.gif)
+
 The MBARI-WEC is currently maintained by MBARI and operates for six-month periods near the MBARI
 facility in Moss Landing, California, and averages about 250 Watts of power capture, averaged
 through the weather cycles and seasons.
 
-THe MBARI WEC is a complete system with a four-quadrant electro-hydraulic power-take-off device,
+The MBARI-WEC is a complete system with a four-quadrant electro-hydraulic power-take-off device,
 board battery storage, control-computers, sensors and instrumentation, and an always-on cell-modem
 connection to the internet. The architecture of the system is such that critical functions are
 performed by micro-controllers throughout the system that implement default behaviors and stream
