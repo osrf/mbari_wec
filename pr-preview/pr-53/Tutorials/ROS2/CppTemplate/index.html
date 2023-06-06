@@ -11,13 +11,17 @@
         <link rel="canonical" href="https://example.com/Tutorials/ROS2/CppTemplate/">
       
       
+        <link rel="prev" href="../PythonTemplate/">
+      
+      
+        <link rel="next" href="../PythonLinearDamperExample/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
     
     
       
-        <title>Quick Start — Writing External Controller With GitHub Template Repository - MBARI-WEC</title>
+        <title>Controller GitHub Template (C++) - MBARI-WEC</title>
       
     
     
@@ -94,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Quick Start &mdash; Writing External Controller With GitHub Template Repository
+              Controller GitHub Template (C++)
             
           </span>
         </div>
@@ -268,14 +272,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
       
       
         
@@ -294,7 +300,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
           Tutorials
@@ -519,18 +525,18 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" checked>
       
       
-        
-          
         
           
         
@@ -553,7 +559,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_7_4">
           <span class="md-nav__icon md-icon"></span>
           Adding Control Code
@@ -592,11 +598,133 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../CPPTemplate.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Controller GitHub Template (C++)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Controller GitHub Template (C++)
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#interfaces-and-templates" class="md-nav__link">
+    Interfaces and Templates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-c-template" class="md-nav__link">
+    Using C++ Template
+  </a>
+  
+    <nav class="md-nav" aria-label="Using C++ Template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-your-own-repo-from-the-template" class="md-nav__link">
+    Creating your own repo from the template
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customizing-the-controller" class="md-nav__link">
+    Customizing the controller
+  </a>
+  
+    <nav class="md-nav" aria-label="Customizing the controller">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modify-template-for-your-package" class="md-nav__link">
+    Modify template for your package
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implement-controller" class="md-nav__link">
+    Implement Controller
+  </a>
+  
+    <nav class="md-nav" aria-label="Implement Controller">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#controlpolicy" class="md-nav__link">
+    ControlPolicy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller" class="md-nav__link">
+    Controller
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-test-run" class="md-nav__link">
+    Build, Test, Run
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -636,7 +764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CPPOpenLoopControl.md" class="md-nav__link">
+      <a href="../CppOpenLoopControl/" class="md-nav__link">
         Open-Loop Force Command Example (C++)
       </a>
     </li>
@@ -652,20 +780,6 @@
     <li class="md-nav__item">
       <a href="../PythonOpenLoopControl/" class="md-nav__link">
         Open-Loop Force Command Example (Python)
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ClosedLoopControl.md" class="md-nav__link">
-        Closed-Loop Control
       </a>
     </li>
   
