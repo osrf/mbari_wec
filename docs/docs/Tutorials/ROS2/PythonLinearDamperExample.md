@@ -232,7 +232,7 @@ to set the PC Pack Rate in `Controller.__init__`:
         # set packet rates from controllers here
         # controller defaults to publishing feedback @ 10Hz
         # call these to set rate to 50Hz or provide argument for specific rate
-        self.set_pc_pack_rate_param()  # set PC feedback publish rate to 50Hz
+        self.set_pc_pack_rate(blocking=False)  # set PC feedback publish rate to 50Hz
 ```
 
 In this tutorial, we've named this controller `linear_damper`. Don't forget to update controller

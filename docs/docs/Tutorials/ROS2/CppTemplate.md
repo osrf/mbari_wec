@@ -394,8 +394,8 @@ Controller::Controller(const std::string & node_name)
   // set packet rates from controllers here
   // controller defaults to publishing @ 10Hz
   // call these to set rate to 50Hz or provide argument for specific rate
-  // this->set_sc_pack_rate_param();  // set SC publish rate to 50Hz
-  // this->set_pc_pack_rate_param();  // set PC publish rate to 50Hz
+  // this->set_sc_pack_rate();  // set SC publish rate to 50Hz
+  // this->set_pc_pack_rate();  // set PC publish rate to 50Hz
 
 ```
 

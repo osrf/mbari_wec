@@ -347,8 +347,8 @@ can call commands to set the rates anywhere from 10Hz to 50Hz (default argument 
         # set packet rates from controllers here
         # controller defaults to publishing @ 10Hz
         # call these to set rate to 50Hz or provide argument for specific rate
-        # self.set_pc_pack_rate_param()  # set PC publish rate to 50Hz
-        # self.set_sc_pack_rate_param()  # set SC publish rate to 50Hz
+        # self.set_pc_pack_rate(blocking=False)  # set PC publish rate to 50Hz
+        # self.set_sc_pack_rate(blocking=False)  # set SC publish rate to 50Hz
 ```
 
 The `Controller` is also capable of synchronizing its clock from the sim `/clock` by uncommenting
