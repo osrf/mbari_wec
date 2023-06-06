@@ -13,7 +13,7 @@ and simulated buoy.
 
 ## Prerequisite
 
-This tutorial assumes you are familiar the steps from the previous [tutorial](CPPTemplate.md)
+This tutorial assumes you are familiar the steps from the previous [tutorial](CppTemplate.md)
 and have built your own custom C++ ROS 2 controller package from the
 [mbari_wec_template_cpp](https://github.com/mbari-org/mbari_wec_template_cpp) template
 repository which we will use to implement a simple linear damper controller.
@@ -281,8 +281,8 @@ Controller::Controller(const std::string & node_name)
   // set packet rates from controllers here
   // controller defaults to publishing @ 10Hz
   // call these to set rate to 50Hz or provide argument for specific rate
-  // this->set_sc_pack_rate_param();  // set SC publish rate to 50Hz
-  this->set_pc_pack_rate_param();  // set PC publish rate to 50Hz
+  // this->set_sc_pack_rate();  // set SC publish rate to 50Hz
+  this->set_pc_pack_rate();  // set PC publish rate to 50Hz
 }
 ```
 

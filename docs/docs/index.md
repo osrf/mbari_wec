@@ -34,8 +34,8 @@ independently, before deployment on the real system which will occur under MBARI
 
 The following sections of this documentation outlines the physical system, describes the software-
 interfaces available, describes the simulation environment, and provides all information needed to
-interact with this project. The software interface is built upon the [ROS 2](www.ros.org)
-framework, and the simulation environment uses [Ignition Gazebo](www.gazebo.org). In addition to
+interact with this project. The software interface is built upon the [ROS 2](https://www.ros.org)
+framework, and the simulation environment uses [Gazebo Simulator](https://gazebosim.org). In addition to
 descriptions of these systems, the documentation provides a number of tutorials intended to lead a
 new user through the installation of the necessary tools, basic operation of the system, and
 provide guidance on implement new algorithms to run on the simulator and ultimately the buoy. This
