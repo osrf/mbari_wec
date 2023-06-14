@@ -70,11 +70,11 @@ Use Ubuntu 22.04.
 
 1. In a new terminal, source the workspace
         ```
-        . ~/mbari_wec_ws/install/setup.sh`
+        . ~/mbari_wec_ws/install/setup.sh
         ```
 
 1. Launch the simulation
         ```
-        ros2 launch buoy_gazebo mbari_wec.launch.py`
+        ros2 launch buoy_gazebo mbari_wec.launch.py
         ```
 
