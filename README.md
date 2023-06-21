@@ -102,6 +102,12 @@ At the moment, MBARI WEC is supported by source installation only. Use Ubuntu Ja
     export GZ_VERSION=garden
     ```
 
+1. Set `SDF_PATH` to allow `robot_state_publisher` parse the robot description from the sdformat model:
+
+   ```
+   export SDF_PATH=$GZ_SIM_RESOURCE_PATH
+   ```
+
 1. Install ROS dependencies
 
     ```
