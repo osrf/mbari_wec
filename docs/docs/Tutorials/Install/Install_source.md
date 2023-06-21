@@ -47,7 +47,13 @@ Use Ubuntu 22.04.
         export GZ_VERSION=garden
         ```
 
-4. Install ROS dependencies
+4. Set `SDF_PATH` to allow `robot_state_publisher` parse the robot description
+   from the sdformat model (place this in ~/.bashrc for convenience if rebuilding often):
+       ```
+       export SDF_PATH=$GZ_SIM_RESOURCE_PATH
+       ```
+
+5. Install ROS dependencies
         ```
         sudo pip3 install -U rosdep
         sudo rosdep init
@@ -55,7 +61,7 @@ Use Ubuntu 22.04.
         rosdep install --from-paths src --ignore-src -r -y -i
         ```
 
-5. Build and install
+6. Build and install
         ```
         source /opt/ros/humble/setup.bash
         cd ~/mbari_wec_ws
