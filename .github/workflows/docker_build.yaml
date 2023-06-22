@@ -24,9 +24,11 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: mbari/mbari_wec
+          flavor: |
+            latest=true
+            suffix='-rc',onlatest=true
           tags: |
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+            type=ref,event=tag
 
       - name: Build Docker image
         uses: docker/build-push-action@v2
@@ -43,4 +45,3 @@ jobs:
           build-args: base=nvidia_opengl_ubuntu22:latest
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
