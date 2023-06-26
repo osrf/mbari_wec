@@ -12,7 +12,7 @@ To run the simulator, it is necessary to source the workspace in a separate term
 
 1. Source the workspace
 ```
-$ . ~/mbari_wec_ws/install/setup.sh
+$ . ~/mbari_wec_ws/install/setup.bash
 ```
 2. Launch the simulation
 ```

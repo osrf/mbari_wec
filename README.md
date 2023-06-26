@@ -102,12 +102,6 @@ At the moment, MBARI WEC is supported by source installation only. Use Ubuntu Ja
     export GZ_VERSION=garden
     ```
 
-1. Set `SDF_PATH` to allow `robot_state_publisher` parse the robot description from the sdformat model:
-
-   ```
-   export SDF_PATH=$GZ_SIM_RESOURCE_PATH
-   ```
-
 1. Install ROS dependencies
 
     ```
@@ -191,7 +185,13 @@ This sources the compiled workspace and launches the simulation:
 1. In a new terminal (whether on host machine or in Docker container), source the workspace
 
    ```
-   . ~/mbari_wec_ws/install/setup.sh
+   . ~/mbari_wec_ws/install/setup.bash
+   ```
+
+1. Set `SDF_PATH` to allow `robot_state_publisher` to parse the robot description from the sdformat model:
+
+   ```
+   export SDF_PATH=$GZ_SIM_RESOURCE_PATH
    ```
 
 1. Launch the simulation
