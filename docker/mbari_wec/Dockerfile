@@ -124,9 +124,8 @@ RUN touch ${SETUP_SH} \
 ENV RUN_SH /home/$USERNAME/run_simulation.bash
 RUN touch ${RUN_SH} \
  && chmod 755 ${RUN_SH} \
- && echo ". ${MBARI_WEC_WS}/install/setup.bash" >> ${RUN_SH} \
- && echo "export SDF_PATH=\$GZ_SIM_RESOURCE_PATH" >> ${RUN_SH} \
+ && echo ". ${SETUP_SH}" >> ${RUN_SH} \
  && echo "ros2 launch buoy_gazebo mbari_wec.launch.py" >> ${RUN_SH}
 
 # Start the container at a bash prompt
-ENTRYPOINT ["/bin/bash" , "-c", "source $SETUP_SH && /bin/bash"]
+ENTRYPOINT ["/bin/bash" , "-c", "source ${SETUP_SH} && /bin/bash"]
