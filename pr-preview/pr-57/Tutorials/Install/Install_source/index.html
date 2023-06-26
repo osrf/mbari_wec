@@ -919,12 +919,6 @@ cd ~/mbari_wec_ws
 </code></pre></div></p>
 </li>
 <li>
-<p>Set <code>SDF_PATH</code> to allow <code>robot_state_publisher</code> parse the robot description
-   from the sdformat model (place this in ~/.bashrc for convenience if rebuilding often):
-       <div class="highlight"><pre><span></span><code>export SDF_PATH=$GZ_SIM_RESOURCE_PATH
-</code></pre></div></p>
-</li>
-<li>
 <p>Install ROS dependencies
         <div class="highlight"><pre><span></span><code>sudo pip3 install -U rosdep
 sudo rosdep init
@@ -947,7 +941,13 @@ colcon build
 <ol>
 <li>
 <p>In a new terminal, source the workspace
-        <div class="highlight"><pre><span></span><code>. ~/mbari_wec_ws/install/setup.sh
+        <div class="highlight"><pre><span></span><code>. ~/mbari_wec_ws/install/setup.bash
+</code></pre></div></p>
+</li>
+<li>
+<p>Set <code>SDF_PATH</code> to allow <code>robot_state_publisher</code> parse the robot description
+   from the sdformat model (place this in ~/.bashrc for convenience if rebuilding often):
+       <div class="highlight"><pre><span></span><code>export SDF_PATH=$GZ_SIM_RESOURCE_PATH
 </code></pre></div></p>
 </li>
 <li>
