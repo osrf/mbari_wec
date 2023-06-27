@@ -119,12 +119,13 @@ RUN /bin/bash -c 'source /opt/ros/humble/setup.bash \
 ENV SETUP_SH /home/$USERNAME/setup.bash
 RUN touch ${SETUP_SH} \
  && chmod 755 ${SETUP_SH} \
- && echo ". ${MBARI_WEC_WS}/install/setup.bash" >> ${SETUP_SH}
+ && echo ". ${MBARI_WEC_WS}/install/setup.bash" >> ${SETUP_SH} \
+ && echo "export SDF_PATH=\$GZ_SIM_RESOURCE_PATH" >> ${SETUP_SH}
 ENV RUN_SH /home/$USERNAME/run_simulation.bash
 RUN touch ${RUN_SH} \
  && chmod 755 ${RUN_SH} \
- && echo ". ${MBARI_WEC_WS}/install/setup.bash" >> ${RUN_SH} \
+ && echo ". ${SETUP_SH}" >> ${RUN_SH} \
  && echo "ros2 launch buoy_gazebo mbari_wec.launch.py" >> ${RUN_SH}
 
 # Start the container at a bash prompt
-ENTRYPOINT ["/bin/bash" , "-c" , "source ${MBARI_WEC_WS}/install/setup.bash && /bin/bash"]
+ENTRYPOINT ["/bin/bash" , "-c", "source ${SETUP_SH} && /bin/bash"]
