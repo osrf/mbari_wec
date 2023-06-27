@@ -74,7 +74,7 @@ At the moment, MBARI WEC is supported by source installation only. Use Ubuntu Ja
     curl -s --compressed "https://hamilton8415.github.io/ppa/KEY.gpg" | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg >/dev/null
     sudo curl -s --compressed -o /etc/apt/sources.list.d/my_list_file.list "https://hamilton8415.github.io/ppa/my_list_file.list"
     sudo apt update
-    sudo apt install libfshydrodynamics=1.2.3
+    sudo apt install libfshydrodynamics=1.3.0
     ```
 
 
