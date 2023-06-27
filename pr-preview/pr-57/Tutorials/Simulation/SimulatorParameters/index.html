@@ -946,9 +946,9 @@ IncidentWaveSpectrumType:
      # Hs &amp; Tp may be vector/scalar in pairs (Hs &amp; Tp same length)
      Hs: 3.0
      Tp: 14.0
- # Multiple Custom Spectra must be listed individually (w &amp; Szz are already vectors of same size)
+ # Multiple Custom Spectra must be listed individually (f &amp; Szz are already vectors of same size)
  - Custom:
-     w: [0.0, 0.2, 0.4, 0.6, 2.0]
+     f: [0.0, 0.2, 0.4, 0.6, 2.0]
      Szz: [0.0, 0.4, 1.0, 1.0, 0.0]
 </code></pre></div>
 <p>As seen in this example, some parameters are enforced to be scalar values and apply to the entire batch of specified runs.  These are the specification of simulation duration (300), random seed (42), and the physics real-time factor (11). </p>
