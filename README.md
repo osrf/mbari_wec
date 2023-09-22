@@ -90,7 +90,7 @@ At the moment, MBARI WEC is supported by source installation only. Use Ubuntu Ja
 1. Clone all source repos with the help of `vcstool`:
 
     ```
-    wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml
+    wget https://raw.githubusercontent.com/osrf/mbari_wec/v1.0.0/mbari_wec_all.yaml
     vcs import < mbari_wec_all.yaml
     cd ~/mbari_wec_ws
     ```
