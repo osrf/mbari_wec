@@ -70,7 +70,7 @@ RUN /bin/sh -c 'wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share
         ros-humble-desktop \
         ros-humble-rmw-cyclonedds-cpp \
         gz-garden \
-        libfshydrodynamics=1.2.3 \
+        libfshydrodynamics=1.3.1 \
  && apt clean
 
 # For timing in tests, need to use cyclonedds for ROS 2 rather than default
