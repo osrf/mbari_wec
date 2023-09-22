@@ -3,21 +3,21 @@ repositories:
   mbari_wec:
     type: git
     url: https://github.com/osrf/mbari_wec
-    version: main
+    version: v1.0.0
   mbari_wec_utils:
     type: git
     url: https://github.com/osrf/mbari_wec_utils
-    version: main
+    version: v1.0.0
   mbari_wec_gz:
     type: git
     url: https://github.com/osrf/mbari_wec_gz
-    version: main
+    version: v1.0.0
   # Must compile ros_gz from source because Humble + Garden is not an official combination
-  # freezing for release
+  # freezing for release -- humble branch with on_exit_shutdown for gz
   ros_gz:
     type: git
     url: https://github.com/gazebosim/ros_gz
-    version: 7c62a1ce3cfb4eb3b54e1cfd092c9b63a9d5f255
+    version: 058542931819a56db9b9e62d0a13f3c057f6646b
   sdformat_urdf:
     type: git
     url: https://github.com/ros/sdformat_urdf
