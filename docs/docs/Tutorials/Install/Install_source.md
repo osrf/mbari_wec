@@ -22,7 +22,7 @@ Use Ubuntu 22.04.
         curl -s --compressed "https://hamilton8415.github.io/ppa/KEY.gpg" | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg >/dev/null
         sudo curl -s --compressed -o /etc/apt/sources.list.d/my_list_file.list "https://hamilton8415.github.io/ppa/my_list_file.list"
         sudo apt update
-        sudo apt install libfshydrodynamics=1.2.3
+        sudo apt install libfshydrodynamics=1.3.1
         ```
 
 
@@ -70,8 +70,14 @@ Use Ubuntu 22.04.
 
 1. In a new terminal, source the workspace
         ```
-        . ~/mbari_wec_ws/install/setup.sh
+        . ~/mbari_wec_ws/install/setup.bash
         ```
+
+1. Set `SDF_PATH` to allow `robot_state_publisher` parse the robot description
+   from the sdformat model (place this in ~/.bashrc for convenience if rebuilding often):
+       ```
+       export SDF_PATH=$GZ_SIM_RESOURCE_PATH
+       ```
 
 1. Launch the simulation
         ```

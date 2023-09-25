@@ -57,9 +57,9 @@ IncidentWaveSpectrumType:
      # Hs & Tp may be vector/scalar in pairs (Hs & Tp same length)
      Hs: 3.0
      Tp: 14.0
- # Multiple Custom Spectra must be listed individually (w & Szz are already vectors of same size)
+ # Multiple Custom Spectra must be listed individually (f & Szz are already vectors of same size)
  - Custom:
-     w: [0.0, 0.2, 0.4, 0.6, 2.0]
+     f: [0.0, 0.2, 0.4, 0.6, 2.0]
      Szz: [0.0, 0.4, 1.0, 1.0, 0.0]
 ```
 
