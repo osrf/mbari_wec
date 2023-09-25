@@ -19,6 +19,7 @@ nav:
           - 'Simulator Output Data Logs': Tutorials/Simulation/SimulatorOutputLogs.md
           - 'Control Simulator with pbcmd': Tutorials/Simulation/SimulatorInteractionPbcmd.md
           - 'Adjust Simulator parameters': Tutorials/Simulation/SimulatorParameters.md
+          - 'View Latent Data': Tutorials/Simulation/LatentData.md
       - 'Adding Control Code':
           - 'ROS 2 Messages and Services': Tutorials/ROS2/MessagesAndServices.md
           - 'Controller GitHub Template (Python)': Tutorials/ROS2/PythonTemplate.md
@@ -48,7 +49,7 @@ markdown_extensions:
       permalink: True
 
 theme:
-  name: "material"
+  name: "mkdocs"
   features:
     - content.code.copy
     - navigation.indexes
