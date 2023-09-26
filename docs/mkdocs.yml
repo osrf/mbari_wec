@@ -3,10 +3,10 @@ site_url: https://example.com/
 nav:
   - Home: index.md
   - Architecture: architecture.md
+  - Simulation: simulation.md
+  - ROS 2 Interface: ros2.md
   - Buoy Control and Telemetry: ControlAndTelemetry.md
   - At Sea Operation: atseaoperation.md
-  - ROS 2 Interface: ros2.md
-  - Simulation: simulation.md
   - Tutorials:
       - tutorials.md
       - 'Installation':
@@ -49,7 +49,7 @@ markdown_extensions:
       permalink: True
 
 theme:
-  name: "mkdocs"
+  name: "material"
   features:
     - content.code.copy
     - navigation.indexes
