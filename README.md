@@ -87,7 +87,7 @@ At the moment, MBARI WEC is supported by source installation only. Use Ubuntu Ja
     cd ~/mbari_wec_ws/src
     ```
 
-1. Clone all source repos with the help of `vcstool`:
+2. Clone all source repos with the help of `vcstool`:
 
     ```
     wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml
@@ -102,7 +102,7 @@ At the moment, MBARI WEC is supported by source installation only. Use Ubuntu Ja
     export GZ_VERSION=garden
     ```
 
-1. Install ROS dependencies
+2. Install ROS dependencies
 
     ```
     sudo pip3 install -U rosdep
@@ -111,7 +111,7 @@ At the moment, MBARI WEC is supported by source installation only. Use Ubuntu Ja
     rosdep install --from-paths src --ignore-src -r -y -i
     ```
 
-1. Build and install
+3. Build and install
 
     ```
     source /opt/ros/humble/setup.bash
@@ -119,25 +119,53 @@ At the moment, MBARI WEC is supported by source installation only. Use Ubuntu Ja
     colcon build
     ```
 
-## Using docker
+## Using Docker
 ### Requirements
 
 1. Install Docker using [installation instructions](https://docs.docker.com/engine/install/ubuntu/).
 
-1. Complete the [Linux Postinstall steps](https://docs.docker.com/engine/install/linux-postinstall/) to allow you to manage Docker as a non-root user.
+2. Complete the [Linux Postinstall steps](https://docs.docker.com/engine/install/linux-postinstall/) to allow you to manage Docker as a non-root user.
 
-1. If you have an NVIDIA graphics card, it can help speed up rendering. Install [nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker).
+3. If you have an NVIDIA graphics card, it can help speed up rendering. Install [nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker).
+
+### Use Existing Image on DockerHub
+MBARI maintains Docker images for the two most recent releases on their DockerHub:
+  - `mbari/mbari_wec:latest`
+  - `mbari/mbari_wec:previous`
+
+1. Get `run.bash` script.
+
+   ```
+   git clone -b main https://github.com/osrf/mbari_wec.git
+   cd ~/mbari_wec/docker/
+   ```
+   Or
+   ```
+   wget https://raw.githubusercontent.com/osrf/mbari_wec/main/docker/run.bash
+   chmod +x run.bash
+   ```
+
+3. Run the container
+
+   If you have an NVIDIA graphics card
+   ```
+   ./run.bash mbari/mbari_wec:latest
+   ```
+   Otherwise
+   ```
+   ./run.bash mbari/mbari_wec:latest --no-nvidia
+   ```
 
 ### Build
 
 1. Clone the mbari_wec repository to download the latest Dockerfile.
 
    ```
-   git clone https://github.com/osrf/mbari_wec.git
+   git clone -b main https://github.com/osrf/mbari_wec.git
    cd ~/mbari_wec/docker/
    ```
 
-1. Build the docker image
+2. Build the docker image
 
    If you have an NVIDIA graphics card
    ```
@@ -149,7 +177,7 @@ At the moment, MBARI WEC is supported by source installation only. Use Ubuntu Ja
    ./build.bash mbari_wec --no-nvidia
    ```
 
-1. Run the container
+3. Run the container
 
    If you have an NVIDIA graphics card
    ```
@@ -160,7 +188,7 @@ At the moment, MBARI WEC is supported by source installation only. Use Ubuntu Ja
    ./run.bash mbari_wec --no-nvidia
    ```
 
-1. To have another window running the same docker container, run this command in a new terminal:
+4. To have another window running the same docker container, run this command in a new terminal:
 
    ```
    ./join.bash mbari_wec
