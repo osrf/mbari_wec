@@ -3,15 +3,15 @@ repositories:
   mbari_wec:
     type: git
     url: https://github.com/osrf/mbari_wec
-    version: v1.1.0-rc1
+    version: release/v1.1.0-rc1
   mbari_wec_utils:
     type: git
     url: https://github.com/osrf/mbari_wec_utils
-    version: v1.1.0-rc1
+    version: release/v1.1.0-rc1
   mbari_wec_gz:
     type: git
     url: https://github.com/osrf/mbari_wec_gz
-    version: v1.1.0-rc1
+    version: release/v1.1.0-rc1
   # Must compile ros_gz from source because Humble + Garden is not an official combination
   # freezing for release
   ros_gz:

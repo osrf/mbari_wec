@@ -18,12 +18,12 @@ MBARI maintains Docker images for the two most recent releases on their DockerHu
 1. Get `run.bash` script.
 
    ```
-   git clone -b v1.1.0-rc1 https://github.com/osrf/mbari_wec.git
+   git clone -b release/v1.1.0-rc1 https://github.com/osrf/mbari_wec.git
    cd ~/mbari_wec/docker/
    ```
    Or
    ```
-   wget https://raw.githubusercontent.com/osrf/mbari_wec/v1.1.0-rc1/docker/run.bash
+   wget https://raw.githubusercontent.com/osrf/mbari_wec/release/v1.1.0-rc1/docker/run.bash
    chmod +x run.bash
    ```
 
@@ -44,7 +44,7 @@ An alternative to using the images from MBARI's DockerHub would be to build from
 1. Clone the mbari_wec repository to download the latest Dockerfile.
 
    ```
-   git clone -b v1.1.0-rc1 https://github.com/osrf/mbari_wec.git
+   git clone -b release/v1.1.0-rc1 https://github.com/osrf/mbari_wec.git
    cd ~/mbari_wec/docker/
    ```
 
