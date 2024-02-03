@@ -10,55 +10,86 @@ Docker images that include the neccessary software and dependencies have been cr
 
 1. If you have an NVIDIA graphics card, it can help speed up rendering. Install [nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker).
 
-## Build
+### Use Existing Image on DockerHub
+MBARI maintains Docker images for the two most recent releases on their DockerHub:
+  - `mbari/mbari_wec:latest`
+  - `mbari/mbari_wec:previous`
+
+1. Get `run.bash` script.
+
+   ```
+   git clone -b main https://github.com/osrf/mbari_wec.git
+   cd ~/mbari_wec/docker/
+   ```
+   Or
+   ```
+   wget https://raw.githubusercontent.com/osrf/mbari_wec/main/docker/run.bash
+   chmod +x run.bash
+   ```
+
+3. Run the container
+
+   If you have an NVIDIA graphics card
+   ```
+   ./run.bash mbari/mbari_wec:latest
+   ```
+   Otherwise
+   ```
+   ./run.bash mbari/mbari_wec:latest --no-nvidia
+   ```
+
+### Build from Dockerfile
+An alternative to using the images from MBARI's DockerHub would be to build from a Dockerfile. This is convenient if you would like to make any changes.
 
 1. Clone the mbari_wec repository to download the latest Dockerfile.
-        ```
-        git clone https://github.com/osrf/mbari_wec.git
-        cd ~/mbari_wec/docker/
-        ```
 
-1. Build the docker image
+   ```
+   git clone -b main https://github.com/osrf/mbari_wec.git
+   cd ~/mbari_wec/docker/
+   ```
 
-    If you have an NVIDIA graphics card
-        ```
-        ./build.bash nvidia_opengl_ubuntu22
-        ./build.bash buoy
-        ```
-    Otherwise
-        ```
-        ./build.bash buoy --no-nvidia
-        ```
+2. Build the docker image
 
-1. Run the container
+   If you have an NVIDIA graphics card
+   ```
+   ./build.bash nvidia_opengl_ubuntu22
+   ./build.bash mbari_wec
+   ```
+   Otherwise
+   ```
+   ./build.bash mbari_wec --no-nvidia
+   ```
 
-    If you have an NVIDIA graphics card
-        ```
-        ./run.bash buoy
-        ```
-    Otherwise
-        ```
-        ./run.bash buoy --no-nvidia
-        ```
+3. Run the container
 
-1. To have another window running the same docker container, run this command in a new terminal:
-        ```
-        ./join.bash buoy
-        ```
+   If you have an NVIDIA graphics card
+   ```
+   ./run.bash mbari_wec
+   ```
+   Otherwise
+   ```
+   ./run.bash mbari_wec --no-nvidia
+   ```
 
-## Quick start
+4. To have another window running the same docker container, run this command in a new terminal:
+
+   ```
+   ./join.bash mbari_wec
+   ```
+
+### Quick start
 
 Quick start scripts are provided in the home directory:
 
 This sources the compiled workspace:
-    ```
-    ./setup.bash
-    ```
+```
+. setup.bash
+```
 
 This sources the compiled workspace and launches the simulation:
-    ```
-    ./run_simulation.bash
-    ```
+```
+./run_simulation.bash
+```
 
 ## Run an example to test
 
