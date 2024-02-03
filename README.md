@@ -156,7 +156,8 @@ MBARI maintains Docker images for the two most recent releases on their DockerHu
    ./run.bash mbari/mbari_wec:latest --no-nvidia
    ```
 
-### Build
+### Build from Dockerfile
+An alternative to using the images from MBARI's DockerHub would be to build from a Dockerfile. This is convenient if you would like to make any changes.
 
 1. Clone the mbari_wec repository to download the latest Dockerfile.
 
