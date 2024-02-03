@@ -501,23 +501,38 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#build" class="md-nav__link">
+    <nav class="md-nav" aria-label="Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-existing-image-on-dockerhub" class="md-nav__link">
     <span class="md-ellipsis">
-      Build
+      Use Existing Image on DockerHub
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#build-from-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build from Dockerfile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
       Quick start
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1080,23 +1095,38 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#build" class="md-nav__link">
+    <nav class="md-nav" aria-label="Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-existing-image-on-dockerhub" class="md-nav__link">
     <span class="md-ellipsis">
-      Build
+      Use Existing Image on DockerHub
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#build-from-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build from Dockerfile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#quick-start" class="md-nav__link">
     <span class="md-ellipsis">
       Quick start
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1138,46 +1168,68 @@
 <p>If you have an NVIDIA graphics card, it can help speed up rendering. Install <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker">nvidia-docker</a>.</p>
 </li>
 </ol>
-<h2 id="build">Build<a class="headerlink" href="#build" title="Permanent link">&para;</a></h2>
+<h3 id="use-existing-image-on-dockerhub">Use Existing Image on DockerHub<a class="headerlink" href="#use-existing-image-on-dockerhub" title="Permanent link">&para;</a></h3>
+<p>MBARI maintains Docker images for the two most recent releases on their DockerHub:
+  - <code>mbari/mbari_wec:latest</code>
+  - <code>mbari/mbari_wec:previous</code></p>
 <ol>
-<li>
-<p>Clone the mbari_wec repository to download the latest Dockerfile.
-        <div class="highlight"><pre><span></span><code>git clone https://github.com/osrf/mbari_wec.git
-cd ~/mbari_wec/docker/
-</code></pre></div></p>
-</li>
-<li>
-<p>Build the docker image</p>
-<p>If you have an NVIDIA graphics card
-    <div class="highlight"><pre><span></span><code>./build.bash nvidia_opengl_ubuntu22
-./build.bash buoy
-</code></pre></div>
-Otherwise
-    <div class="highlight"><pre><span></span><code>./build.bash buoy --no-nvidia
-</code></pre></div></p>
-</li>
-<li>
-<p>Run the container</p>
-<p>If you have an NVIDIA graphics card
-    <div class="highlight"><pre><span></span><code>./run.bash buoy
-</code></pre></div>
-Otherwise
-    <div class="highlight"><pre><span></span><code>./run.bash buoy --no-nvidia
-</code></pre></div></p>
-</li>
-<li>
-<p>To have another window running the same docker container, run this command in a new terminal:
-        <div class="highlight"><pre><span></span><code>./join.bash buoy
-</code></pre></div></p>
-</li>
+<li>Get <code>run.bash</code> script.</li>
 </ol>
-<h2 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code>git clone -b main https://github.com/osrf/mbari_wec.git
+cd ~/mbari_wec/docker/
+</code></pre></div>
+   Or
+   <div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/osrf/mbari_wec/main/docker/run.bash
+chmod +x run.bash
+</code></pre></div></p>
+<ol>
+<li>Run the container</li>
+</ol>
+<p>If you have an NVIDIA graphics card
+   <div class="highlight"><pre><span></span><code>./run.bash mbari/mbari_wec:latest
+</code></pre></div>
+   Otherwise
+   <div class="highlight"><pre><span></span><code>./run.bash mbari/mbari_wec:latest --no-nvidia
+</code></pre></div></p>
+<h3 id="build-from-dockerfile">Build from Dockerfile<a class="headerlink" href="#build-from-dockerfile" title="Permanent link">&para;</a></h3>
+<p>An alternative to using the images from MBARI's DockerHub would be to build from a Dockerfile. This is convenient if you would like to make any changes.</p>
+<ol>
+<li>Clone the mbari_wec repository to download the latest Dockerfile.</li>
+</ol>
+<div class="highlight"><pre><span></span><code>git clone -b main https://github.com/osrf/mbari_wec.git
+cd ~/mbari_wec/docker/
+</code></pre></div>
+<ol>
+<li>Build the docker image</li>
+</ol>
+<p>If you have an NVIDIA graphics card
+   <div class="highlight"><pre><span></span><code>./build.bash nvidia_opengl_ubuntu22
+./build.bash mbari_wec
+</code></pre></div>
+   Otherwise
+   <div class="highlight"><pre><span></span><code>./build.bash mbari_wec --no-nvidia
+</code></pre></div></p>
+<ol>
+<li>Run the container</li>
+</ol>
+<p>If you have an NVIDIA graphics card
+   <div class="highlight"><pre><span></span><code>./run.bash mbari_wec
+</code></pre></div>
+   Otherwise
+   <div class="highlight"><pre><span></span><code>./run.bash mbari_wec --no-nvidia
+</code></pre></div></p>
+<ol>
+<li>To have another window running the same docker container, run this command in a new terminal:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>./join.bash mbari_wec
+</code></pre></div>
+<h3 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h3>
 <p>Quick start scripts are provided in the home directory:</p>
 <p>This sources the compiled workspace:
-    <div class="highlight"><pre><span></span><code>./setup.bash
+<div class="highlight"><pre><span></span><code>. setup.bash
 </code></pre></div></p>
 <p>This sources the compiled workspace and launches the simulation:
-    <div class="highlight"><pre><span></span><code>./run_simulation.bash
+<div class="highlight"><pre><span></span><code>./run_simulation.bash
 </code></pre></div></p>
 <h2 id="run-an-example-to-test">Run an example to test<a class="headerlink" href="#run-an-example-to-test" title="Permanent link">&para;</a></h2>
 <ol>
