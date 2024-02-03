@@ -1491,7 +1491,7 @@ a positive damping torque when RPM is positive (piston retracting). The damping 
 reduced when retracting.</p>
 <h3 id="controller">Controller<a class="headerlink" href="#controller" title="Permanent link">&para;</a></h3>
 <p>All that is left is to connect the necessary feedback data to the <code>ControlPolicy</code>. In this case,
-<code>rpm</code>, <code>scale</code>, and <code>retract</code> are present in <a href="https://github.com/osrf/mbari_wec_utils/blob/v1.1.0-rc1/buoy_interfaces/msg/PCRecord.msg"><code>buoy_interfaces.msg.PCRecord</code></a> on the <code>/power_data</code>
+<code>rpm</code>, <code>scale</code>, and <code>retract</code> are present in <a href="https://github.com/osrf/mbari_wec_utils/blob/release/v1.1.0-rc1/buoy_interfaces/msg/PCRecord.msg"><code>buoy_interfaces.msg.PCRecord</code></a> on the <code>/power_data</code>
 topic published by the Power Controller running on the buoy.</p>
 <p>To access the data, all that is required is to define the callback
 <code>void Controller::power_callback(const buoy_interfaces::msg::PCRecord &amp; data)</code>
