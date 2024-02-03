@@ -36,7 +36,7 @@ Use Ubuntu 22.04.
 
 2. Clone all source repos with the help of `vcstool`:
         ```
-        wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml
+        wget https://raw.githubusercontent.com/osrf/mbari_wec/v1.1.0-rc1/mbari_wec_all.yaml
         vcs import < mbari_wec_all.yaml
         cd ~/mbari_wec_ws
         ```
