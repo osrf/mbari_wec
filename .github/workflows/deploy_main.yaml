@@ -54,6 +54,6 @@ jobs:
           branch: gh-pages
           folder: ./docs/site
           clean: true
-          clean-exclude: pr-preview/
+          # clean-exclude: pr-preview/
           target-folder: main
           force: false
