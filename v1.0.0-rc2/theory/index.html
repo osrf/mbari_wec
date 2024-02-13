@@ -1,0 +1,1954 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://example.com/theory/">
+      
+      
+        <link rel="prev" href="../Tutorials/ROS2/PythonOpenLoopControl/">
+      
+      
+        <link rel="next" href="../resources/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>Theory - MBARI-WEC</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#theory" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MBARI-WEC" class="md-header__button md-logo" aria-label="MBARI-WEC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MBARI-WEC
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Theory
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MBARI-WEC" class="md-nav__button md-logo" aria-label="MBARI-WEC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    MBARI-WEC
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ControlAndTelemetry/" class="md-nav__link">
+        Buoy Control and Telemetry
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../atseaoperation/" class="md-nav__link">
+        At Sea Operation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ros2/" class="md-nav__link">
+        ROS 2 Interface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulation/" class="md-nav__link">
+        Simulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          Tutorials
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/" class="md-nav__link">
+        Tutorials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+          Installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          Installation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/Install/Install_source/" class="md-nav__link">
+        Install from source
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/Install/Install_docker/" class="md-nav__link">
+        Install using Docker
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+          Running the Simulator
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3">
+          <span class="md-nav__icon md-icon"></span>
+          Running the Simulator
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/Simulation/RunSimulator/" class="md-nav__link">
+        Run the Simulator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/Simulation/SimulatorOutputROS/" class="md-nav__link">
+        View ROS 2 Messages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/Simulation/SimulatorOutputPlotjuggler/" class="md-nav__link">
+        View ROS 2 Messages with Plotjuggler
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/Simulation/SimulatorOutputLogs/" class="md-nav__link">
+        Simulator Output Data Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/Simulation/SimulatorInteractionPbcmd/" class="md-nav__link">
+        Control Simulator with pbcmd
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/Simulation/SimulatorParameters/" class="md-nav__link">
+        Adjust Simulator parameters
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+          Adding Control Code
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_4">
+          <span class="md-nav__icon md-icon"></span>
+          Adding Control Code
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/ROS2/MessagesAndServices/" class="md-nav__link">
+        ROS 2 Messages and Services
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/ROS2/PythonTemplate/" class="md-nav__link">
+        Controller GitHub Template (Python)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/ROS2/CppTemplate/" class="md-nav__link">
+        Controller GitHub Template (C++)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/ROS2/PythonLinearDamperExample/" class="md-nav__link">
+        Linear Damper Example (Python)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/ROS2/CppLinearDamperExample/" class="md-nav__link">
+        Linear Damper Example (C++)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/ROS2/CppOpenLoopControl/" class="md-nav__link">
+        Open-Loop Force Command Example (C++)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tutorials/ROS2/PythonOpenLoopControl/" class="md-nav__link">
+        Open-Loop Force Command Example (Python)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Theory
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Theory
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modeling-technique-overview" class="md-nav__link">
+    Modeling Technique Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#physical-characteristics" class="md-nav__link">
+    Physical Characteristics
+  </a>
+  
+    <nav class="md-nav" aria-label="Physical Characteristics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#surface-buoy" class="md-nav__link">
+    Surface Buoy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-take-off-device" class="md-nav__link">
+    Power Take-Off Device
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#piston" class="md-nav__link">
+    Piston
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heave-cone" class="md-nav__link">
+    Heave Cone
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#electro-hydraulic-pto-forces" class="md-nav__link">
+    Electro-Hydraulic PTO Forces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pneumatic-spring-forces" class="md-nav__link">
+    Pneumatic Spring Forces
+  </a>
+  
+    <nav class="md-nav" aria-label="Pneumatic Spring Forces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    Definitions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model" class="md-nav__link">
+    Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#determining-parameter-values" class="md-nav__link">
+    Determining Parameter Values
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tether-forces" class="md-nav__link">
+    Tether Forces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mooring-forces" class="md-nav__link">
+    Mooring Forces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ocean-wave-forces" class="md-nav__link">
+    Ocean Wave Forces
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../citation/" class="md-nav__link">
+        How to Cite
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roadmap/" class="md-nav__link">
+        Project Roadmap
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modeling-technique-overview" class="md-nav__link">
+    Modeling Technique Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#physical-characteristics" class="md-nav__link">
+    Physical Characteristics
+  </a>
+  
+    <nav class="md-nav" aria-label="Physical Characteristics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#surface-buoy" class="md-nav__link">
+    Surface Buoy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-take-off-device" class="md-nav__link">
+    Power Take-Off Device
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#piston" class="md-nav__link">
+    Piston
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heave-cone" class="md-nav__link">
+    Heave Cone
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#electro-hydraulic-pto-forces" class="md-nav__link">
+    Electro-Hydraulic PTO Forces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pneumatic-spring-forces" class="md-nav__link">
+    Pneumatic Spring Forces
+  </a>
+  
+    <nav class="md-nav" aria-label="Pneumatic Spring Forces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    Definitions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model" class="md-nav__link">
+    Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#determining-parameter-values" class="md-nav__link">
+    Determining Parameter Values
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tether-forces" class="md-nav__link">
+    Tether Forces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mooring-forces" class="md-nav__link">
+    Mooring Forces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ocean-wave-forces" class="md-nav__link">
+    Ocean Wave Forces
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="theory">Theory<a class="headerlink" href="#theory" title="Permanent link">&para;</a></h1>
+<h2 id="modeling-technique-overview">Modeling Technique Overview<a class="headerlink" href="#modeling-technique-overview" title="Permanent link">&para;</a></h2>
+<p>The numerical modeling used in this simulator relies upon the Gazebo simulators ability to solve for the 
+motion of a collection of rigid bodies connected by various types of joints.  Gazebo can use several 
+different physics solvers to perform this solution, and the wave-energy buoy simulator in this project
+uses the <a href="https://dartsim.github.io/") target="_blank">DART</a> physics engine.  The physics engine
+solves the multi-body six degree-of-freedom problem for the motion of the connected buoy, power-take-off device, and heave cone,
+subject to initial conditions and forces that act on the various components as the simulation progresses.  In the Gazebo simulator,
+these forces are provided by plugin code that applies forces to each body based on the state (position and velocity) of each
+component in the system at each timestep.  </p>
+<p>The Gazebo simulator already includes several plugins that provide relevant forces such as buoyancy and hydrodynamic drag. 
+Additionally, several additional plugins have been created for this simulator that provide the forcings on the system
+due to the electro-hydraulic power-take-off system, the pneumatic spring system, the tether connecting the PTO to the
+heave-cone, the mooring system that anchors the system, and the forcing on the buoy from the ocean surface waves. 
+The sections below outline some details about how each of these forcings are modelled and computed.  First however, 
+the specific physical characteristics of the MBARI WEC are tabulated for reference.</p>
+<hr />
+<h2 id="physical-characteristics">Physical Characteristics<a class="headerlink" href="#physical-characteristics" title="Permanent link">&para;</a></h2>
+<p>Each rigid body in the simulation has a "Link Frame" coordinate system in which all other characteristics of the
+body are defined in for computational purposes.  This link-frame coordinate system is often selected to be at the
+location of a joint that connects the various bodies (which are also called links in the vernacular of Gazebo).
+Also, the description below includes alternative notation for added mass, e.g.  <script type="math/tex">\\ \mu_{xx}</script>, in the style of Newman. </p>
+<h3 id="surface-buoy">Surface Buoy<a class="headerlink" href="#surface-buoy" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="left">Description</th>
+<th align="center"></th>
+<th align="center">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">
+<script type="math/tex">m</script>
+</td>
+<td align="left">Buoy Mass</td>
+<td align="center">1400</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">V</script>
+</td>
+<td align="left">Displacement (undisturbed buoy)</td>
+<td align="center">2.39</td>
+<td align="center">m<script type="math/tex">^3</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">{\bf x}_{COG}</script>
+</td>
+<td align="left">Center of Gravity in Link Frame (x,y,z)</td>
+<td align="center">(0.0, 0.0, 2.03)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">{\bf x}_{COB}</script>
+</td>
+<td align="left">Center of Buoyancy in Link Frame (x,y,z)</td>
+<td align="center">(0.0, 0.0, 2.05)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">{\bf x}_{COW}</script>
+</td>
+<td align="left">Center of Waterplane in Link Frame, including PTO and cone</td>
+<td align="center">(0.0, 0.0, 2.27)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">S_{x}</script>
+</td>
+<td align="left">Second moment of area of water plane, about roll axis</td>
+<td align="center">1.37</td>
+<td align="center">m<script type="math/tex">^4</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">S_{y}</script>
+</td>
+<td align="left">Second moment of area of water plane, about pitch axis</td>
+<td align="center">1.37</td>
+<td align="center">m<script type="math/tex">^4</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{xx}</script>
+</td>
+<td align="left">Roll Moment of Inertia (MOI) about center of mass</td>
+<td align="center">1450</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{yy}</script>
+</td>
+<td align="left">Pitch Moment of Inertia about center of mass</td>
+<td align="center">1450</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{zz}</script>
+</td>
+<td align="left">Yaw Moment of Inertia about center of mass</td>
+<td align="center">670</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">A_{wp}</script>
+</td>
+<td align="left">Waterplane Area (undisturbed buoy)</td>
+<td align="center">5.47</td>
+<td align="center">m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{\dot{u}}</script>
+</td>
+<td align="left">Surge Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
+<td align="center">260</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{\dot{q}}</script>
+</td>
+<td align="left">Surge-Pitch Added Mass, origin at c.m. (<script type="math/tex">\mu_{xq}</script>)</td>
+<td align="center">150</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{\dot{v}}</script>
+</td>
+<td align="left">Sway Added Mass ( <script type="math/tex">\mu_{yy}</script>)</td>
+<td align="center">260</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{\dot{p}}</script>
+</td>
+<td align="left">Sway-Roll Added Mass, origin at c.m. (<script type="math/tex">\mu_{yp}</script>)</td>
+<td align="center">-150</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{\dot{w}}</script>
+</td>
+<td align="left">Heave Added Mass (<script type="math/tex">\mu_{zz}</script>)</td>
+<td align="center">3080</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">K_{\dot{p}}</script>
+</td>
+<td align="left">Roll Added Mass MOI, origin at c.m. (<script type="math/tex">\mu_{pp}</script>)</td>
+<td align="center">330</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">M_{\dot{q}}</script>
+</td>
+<td align="left">Pitch Added Mass MOI, origin at c.m. (<script type="math/tex">\mu_{qq}</script>)</td>
+<td align="center">330</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{u\mid u \mid}</script>
+</td>
+<td align="left">Surge Quadratic Drag</td>
+<td align="center">-430</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{v\mid v \mid}</script>
+</td>
+<td align="left">Sway Quadratic Drag</td>
+<td align="center">-430</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{w\mid w \mid}</script>
+</td>
+<td align="left">Heave Quadratic Drag</td>
+<td align="center">-3280</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">K_{p\mid p \mid}</script>
+</td>
+<td align="left">Roll Quadratic Drag:</td>
+<td align="center">-880</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">M_{q\mid q \mid}</script>
+</td>
+<td align="left">Pitch Quadratic Drag:</td>
+<td align="center">-880</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">N_{r\mid r \mid}</script>
+</td>
+<td align="left">Yaw Quadratic Drag:</td>
+<td align="center">-50</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Buoy Link Frame is located at base of the buoy bridle at the pivot.</li>
+<li>Unspecified stability derivative values (<script type="math/tex">M_{\dot{r}}</script>, <script type="math/tex">X_{uv}</script>, <script type="math/tex">Y_{vu}</script>, etc) are zero. </li>
+<li>Stability derivatives are specified about the link frame origin, i.e. the pivot.</li>
+<li>Mass-moments of inertia and added-mass-moments of inertia are specified about the center of mass.</li>
+<li>Added-mass values are infinite frequency.</li>
+<li>Free-Surface Hydrodynamic Coefficients and Impulse Response Functions can be found <a href="https://www.google.com/") target="_blank">here</a>:</li>
+</ul>
+<h3 id="power-take-off-device">Power Take-Off Device<a class="headerlink" href="#power-take-off-device" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="left">Description</th>
+<th align="center"></th>
+<th align="center">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">
+<script type="math/tex">m</script>
+</td>
+<td align="left">PTO Mass</td>
+<td align="center">605</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">V</script>
+</td>
+<td align="left">PTO Displacement</td>
+<td align="center">.205</td>
+<td align="center">m<script type="math/tex">^3</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">{\bf x}_{COG}</script>
+</td>
+<td align="left">Center of Gravity in Link Frame (x,y,z)</td>
+<td align="center">(0.0, 0.0, -4.0)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">{\bf x}_{COB}</script>
+</td>
+<td align="left">Center of Buoyancy in Link Frame (x,y,z)</td>
+<td align="center">(0.0, 0.0, -3.0)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{xx}</script>
+</td>
+<td align="left">Roll Moment of Inertia about center of mass</td>
+<td align="center">3525</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{yy}</script>
+</td>
+<td align="left">Pitch Moment of Inertia about center of mass</td>
+<td align="center">3525</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{zz}</script>
+</td>
+<td align="left">Yaw Moment of Inertia about center of mass</td>
+<td align="center">10</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{\dot{u}}</script>
+</td>
+<td align="left">Surge Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
+<td align="center">310</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{\dot{v}}</script>
+</td>
+<td align="left">Sway Added Mass (<script type="math/tex">\mu_{yy}</script>)</td>
+<td align="center">310</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{\dot{w}}</script>
+</td>
+<td align="left">Heave Added Mass (<script type="math/tex">\mu_{zz}</script>)</td>
+<td align="center">10</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">K_{\dot{p}}</script>
+</td>
+<td align="left">Roll Added Mass MOI  (<script type="math/tex">\mu_{pp}</script>)</td>
+<td align="center">2030</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">M_{\dot{q}}</script>
+</td>
+<td align="left">Pitch Added Mass MOI (<script type="math/tex">\mu_{qq}</script>)</td>
+<td align="center">2030</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{u\mid u \mid}</script>
+</td>
+<td align="left">Surge Quadratic Drag</td>
+<td align="center">-1140</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{v\mid v \mid}</script>
+</td>
+<td align="left">Sway Quadratic Drag</td>
+<td align="center">-1140</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{w\mid w \mid}</script>
+</td>
+<td align="left">Heave Quadratic Drag</td>
+<td align="center">-50</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">K_{p\mid p \mid}</script>
+</td>
+<td align="left">Roll Quadratic Drag</td>
+<td align="center">-195400</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">M_{q\mid q \mid}</script>
+</td>
+<td align="left">Pitch Quadratic Drag</td>
+<td align="center">-195400</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">N_{r\mid r \mid}</script>
+</td>
+<td align="left">Yaw Quadratic Drag</td>
+<td align="center">-50</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>PTO Link Frame is located at top attachment of the PTO (where connects to the buoy).</li>
+<li>Unspecified stability derivative values (<script type="math/tex">M_{\dot{r}}</script>, <script type="math/tex">X_{uv}</script>, <script type="math/tex">Y_{vu}</script>, etc) are zero. </li>
+<li>Stability derivatives are specified about the link frame origin, i.e. the pivot.</li>
+<li>Mass-moments of inertia and added-mass-moments of inertia are specified about the center of mass.</li>
+</ul>
+<h3 id="piston">Piston<a class="headerlink" href="#piston" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="left">Description</th>
+<th align="center"></th>
+<th align="center">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">
+<script type="math/tex">m</script>
+</td>
+<td align="left">Piston Mass</td>
+<td align="center">48.0</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">{\bf x}_{COG}</script>
+</td>
+<td align="left">Center of Gravity in Link Frame (x,y,z)</td>
+<td align="center">(0.0, 0.0, -2.58)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{xx}</script>
+</td>
+<td align="left">Roll Moment of Inertia</td>
+<td align="center">100.0</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{yy}</script>
+</td>
+<td align="left">Pitch Moment of Inertia</td>
+<td align="center">100.0</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{zz}</script>
+</td>
+<td align="left">Yaw Moment of Inertia</td>
+<td align="center">5.0</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The piston is contained with the PTO housing, so it has mass and moments of inertial, but contributes 
+no buoyancy, added mass, or quadratic fluid drag.</li>
+</ul>
+<h3 id="heave-cone">Heave Cone<a class="headerlink" href="#heave-cone" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="left">Description</th>
+<th align="center"></th>
+<th align="center">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">
+<script type="math/tex">m</script>
+</td>
+<td align="left">Heave Cone Mass</td>
+<td align="center">820</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">V</script>
+</td>
+<td align="left">Heave Cone Displacement</td>
+<td align="center">.12</td>
+<td align="center">m<script type="math/tex">^3</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">{\bf x}_{COG}</script>
+</td>
+<td align="left">Center of Gravity in Link Frame (x,y,z)</td>
+<td align="center">(0.0, 0.0, -1.25)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">{\bf x}_{COB}</script>
+</td>
+<td align="left">Center of Buoyancy in Link Frame (x,y,z)</td>
+<td align="center">(0.0, 0.0, -1.21)</td>
+<td align="center">m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{xx}</script>
+</td>
+<td align="left">Roll Moment of Inertia about the center of mass</td>
+<td align="center">340</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{yy}</script>
+</td>
+<td align="left">Pitch Moment of Inertia about the center of mass</td>
+<td align="center">340</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">I_{zz}</script>
+</td>
+<td align="left">Yaw Moment of Inertia about the center of mass</td>
+<td align="center">610</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{\dot{u}}</script>
+</td>
+<td align="left">Surge Added Mass (<script type="math/tex">\mu_{xx}</script>)</td>
+<td align="center">720</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{\dot{v}}</script>
+</td>
+<td align="left">Sway Added Mass (<script type="math/tex">\mu_{yy}</script>)</td>
+<td align="center">720</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{\dot{p}}</script>
+</td>
+<td align="left">Sway-Roll Added Mass MOI (<script type="math/tex">\mu_{yp}</script>)</td>
+<td align="center">-900</td>
+<td align="center">kg m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{\dot{w}}</script>
+</td>
+<td align="left">Heave Added Mass: Doors Closed (<script type="math/tex">\mu_{zz}</script>)</td>
+<td align="center">9330</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{\dot{w}}</script>
+</td>
+<td align="left">Heave Added Mass: Doors Open</td>
+<td align="center">3000</td>
+<td align="center">kg</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">K_{\dot{p}}</script>
+</td>
+<td align="left">Roll Added Mass MOI (<script type="math/tex">\mu_{pp}</script>)</td>
+<td align="center">2870</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">M_{\dot{q}}</script>
+</td>
+<td align="left">Pitch Added Mass MOI(<script type="math/tex">\mu_{qq}</script>)</td>
+<td align="center">2870</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">N_{\dot{r}}</script>
+</td>
+<td align="left">Yaw Added Mass MOI (<script type="math/tex">\mu_{rr}</script>)</td>
+<td align="center">10</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">X_{u\mid u \mid}</script>
+</td>
+<td align="left">Surge Quadratic Drag</td>
+<td align="center">-1580</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Y_{v\mid v \mid}</script>
+</td>
+<td align="left">Sway Quadratic Drag</td>
+<td align="center">-1580</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{w\mid w \mid}</script>
+</td>
+<td align="left">Vertical Quadratic Drag: Doors Open</td>
+<td align="center">-3200</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">Z_{w\mid w \mid}</script>
+</td>
+<td align="left">Vertical Quadratic Drag: Doors Closed</td>
+<td align="center">-3900</td>
+<td align="center">kg/m</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">K_{p\mid p \mid}</script>
+</td>
+<td align="left">Roll Quadratic Drag:</td>
+<td align="center">-4620</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">M_{q\mid q \mid}</script>
+</td>
+<td align="left">Pitch Quadratic Drag:</td>
+<td align="center">-4620</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex">N_{r\mid r \mid}</script>
+</td>
+<td align="left">Yaw Quadratic Drag:</td>
+<td align="center">-50</td>
+<td align="center">kg m<script type="math/tex">^2</script>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Heave-Cone Link Frame is located at top attachment of the Heave Cone (where it connects to the tether).</li>
+<li>Unspecified stability derivative values (<script type="math/tex">M_{\dot{r}}</script>, <script type="math/tex">X_{uv}</script>, <script type="math/tex">Y_{vu}</script>, etc) are zero. </li>
+<li>Stability derivatives are specified about the link frame origin, i.e. the pivot.</li>
+<li>Mass-moments of inertia and added-mass-moments of inertia are specified about the center of mass.</li>
+</ul>
+<hr />
+<h2 id="electro-hydraulic-pto-forces">Electro-Hydraulic PTO Forces<a class="headerlink" href="#electro-hydraulic-pto-forces" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="pneumatic-spring-forces">Pneumatic Spring Forces<a class="headerlink" href="#pneumatic-spring-forces" title="Permanent link">&para;</a></h2>
+<h4 id="definitions">Definitions<a class="headerlink" href="#definitions" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<script type="math/tex">x</script>
+</td>
+<td>Piston position</td>
+<td>m</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">v</script>
+</td>
+<td>Piston velocity</td>
+<td>m/s</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">m</script>
+</td>
+<td>Mass of gas in chamber</td>
+<td>kg</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">T</script>
+</td>
+<td>Temperature of gas</td>
+<td>K</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">P</script>
+</td>
+<td>Gas pressure</td>
+<td>Pa</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">V</script>
+</td>
+<td>Chamber volume (dependent on piston position)</td>
+<td>m<script type="math/tex">^{3}</script>
+</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">R_{specific}</script>
+</td>
+<td>Specific Gas Constant N<script type="math/tex">_2</script>
+</td>
+<td>J/kg/K</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">V_{dead}</script>
+</td>
+<td>Chamber dead volume (fully compressed)</td>
+<td>m<script type="math/tex">^{3}</script>
+</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">c_p</script>
+</td>
+<td>Specific Heat Capacity N<script type="math/tex">_2</script> (constant pressure)</td>
+<td>J/kg/K</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">A_{piston}</script>
+</td>
+<td>Surface area of piston head</td>
+<td>m<script type="math/tex">^{2}</script>
+</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">n</script>
+</td>
+<td>Polytropic index (Adiabatic if <script type="math/tex">n=\lambda=1.4</script> for N<script type="math/tex">_2</script>)</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">r</script>
+</td>
+<td>Coefficient of heat transfer (Newton's Law of Cooling)</td>
+<td>1/s</td>
+</tr>
+</tbody>
+</table>
+<h4 id="model">Model<a class="headerlink" href="#model" title="Permanent link">&para;</a></h4>
+<p>Under compression and expansion, the pressure, volume and temperature of the Nitrogen in each
+chamber evolves according to Ideal Gas Law:</p>
+<p>
+<script type="math/tex; mode=display"> P V = m R_{specific} T </script>
+</p>
+<p>and a polytropic process:</p>
+<p>
+<script type="math/tex; mode=display"> P = P_0 \left({V_{0} \over V}\right)^{n} </script>
+</p>
+<p>with hysteresis, there are two values for the polytropic index, <script type="math/tex">n_1</script> and <script type="math/tex">n_2</script>, to capture behavior when
+the gas is compressing or expanding. Using this quasi-static solution and
+discrete time steps, and also incorporating hysteresis, the process becomes:</p>
+<p>
+<script type="math/tex; mode=display"> V_k = x_k A_{piston} + V_{dead} </script>
+<script type="math/tex; mode=display">
+P_k = P_{k-1} \left({V_{k-1} \over V_k}\right)^n ,\,\,\, n = \begin{cases}
+    n_1 & \text{if } v \ge 0 \\
+    n_2 & \text{otherwise.}
+\end{cases}
+</script>
+<script type="math/tex; mode=display"> T_k = {P_k V_k \over m R_{specific}} </script>
+</p>
+<p>where <script type="math/tex">k</script> is the current time step.</p>
+<p>Whenever the piston velocity is slow enough, the process is dominated by heat loss and
+modeled with Newton's Law of Cooling (using forward difference) followed by an update of pressure using
+Ideal Gas Law:</p>
+<p>
+<script type="math/tex; mode=display"> T_k = r\, \Delta t\, (T_{env} - T_{k-1}) + T_{k-1} </script>
+<script type="math/tex; mode=display"> V_k = x_k A_{piston} + V_{dead} </script>
+<script type="math/tex; mode=display"> P_k = {m R_{specific} T_k \over V_k} </script>
+</p>
+<p>The mass of the Nitrogen in each chamber is determined from inputs in the SDF:</p>
+<p>
+<script type="math/tex; mode=display"> m = {P_0 (x_0 A_{piston} + V_{dead}) \over R_{specific} T_0} </script>
+</p>
+<p>and is used for mass flow between chambers in simulating the pump/valve.</p>
+<h4 id="determining-parameter-values">Determining Parameter Values<a class="headerlink" href="#determining-parameter-values" title="Permanent link">&para;</a></h4>
+<p>Linear regression was used to determine the polytropic indices for each chamber using empirical
+data from the physical system. Using pressure vs volume curves, <script type="math/tex">n_1</script> is determined from
+increasing volume, and <script type="math/tex">n_2</script> is determined from decreasing volume. The data is then preconditioned
+by taking the logarithm to linearize and perform regression to find the parameters. For a
+polytropic process:</p>
+<p>
+<script type="math/tex; mode=display"> P V^{n} = C </script>
+</p>
+<p>so,</p>
+<p>
+<script type="math/tex; mode=display"> \log{P} + n \log{V} = \log{C} </script>
+<script type="math/tex; mode=display">
+\left[ { \begin{array}{cc}
+    \log{\bf V} & 1 \\
+\end{array} } \right] \left[ { \begin{array}{c}
+    -n \\
+    \log{C} \\
+\end{array} } \right] = \log{\bf P}
+</script>
+</p>
+<p>in block matrix notation where <script type="math/tex">{\bf V}</script> and <script type="math/tex">{\bf P}</script> are the arrays of volume and pressure data, respectively.
+The other parameters in the system are taken from CAD or empirically determined by comparing logged
+data from prescribed motion between simulation and the physical test bench.</p>
+<hr />
+<h2 id="tether-forces">Tether Forces<a class="headerlink" href="#tether-forces" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="mooring-forces">Mooring Forces<a class="headerlink" href="#mooring-forces" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="ocean-wave-forces">Ocean Wave Forces<a class="headerlink" href="#ocean-wave-forces" title="Permanent link">&para;</a></h2>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.indexes", "navigation.tracking"], "search": "../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+        <script src="../js/extra.js"></script>
+      
+    
+  </body>
+</html>
