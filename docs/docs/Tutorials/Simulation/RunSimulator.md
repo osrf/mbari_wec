@@ -1,3 +1,5 @@
+# Running the Simulator
+
 ## Introduction
 
 This tutorial will illustrate how to start the buoy simulation in Gazebo, when the simulation is running, a rendering of the buoy system motions will be visible, and ROS2 messages will be published that represent the buoy systems state.  The simulation also provides the same ROS2 services the real buoy does, so will respond to ROS2 messages appropriately.
@@ -10,7 +12,7 @@ To run the simulator, it is necessary to source the workspace in a separate term
 
 1. Source the workspace
 ```
-$ . ~/buoy_ws/install/setup.sh
+$ . ~/mbari_wec_ws/install/setup.bash
 ```
 2. Launch the simulation
 ```

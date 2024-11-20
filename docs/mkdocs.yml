@@ -7,7 +7,26 @@ nav:
   - At Sea Operation: atseaoperation.md
   - ROS 2 Interface: ros2.md
   - Simulation: simulation.md
-  - Tutorials: tutorials.md
+  - Tutorials:
+      - tutorials.md
+      - 'Installation':
+          - 'Install from source': Tutorials/Install/Install_source.md
+          - 'Install using Docker': Tutorials/Install/Install_docker.md
+      - 'Running the Simulator':
+          - 'Run the Simulator': Tutorials/Simulation/RunSimulator.md
+          - 'View ROS 2 Messages': Tutorials/Simulation/SimulatorOutputROS.md
+          - 'View ROS 2 Messages with Plotjuggler': Tutorials/Simulation/SimulatorOutputPlotjuggler.md
+          - 'Simulator Output Data Logs': Tutorials/Simulation/SimulatorOutputLogs.md
+          - 'Control Simulator with pbcmd': Tutorials/Simulation/SimulatorInteractionPbcmd.md
+          - 'Adjust Simulator parameters': Tutorials/Simulation/SimulatorParameters.md
+      - 'Adding Control Code':
+          - 'ROS 2 Messages and Services': Tutorials/ROS2/MessagesAndServices.md
+          - 'Controller GitHub Template (Python)': Tutorials/ROS2/PythonTemplate.md
+          - 'Controller GitHub Template (C++)': Tutorials/ROS2/CppTemplate.md
+          - 'Linear Damper Example (Python)': Tutorials/ROS2/PythonLinearDamperExample.md
+          - 'Linear Damper Example (C++)': Tutorials/ROS2/CppLinearDamperExample.md
+          - 'Open-Loop Force Command Example (C++)': Tutorials/ROS2/CppOpenLoopControl.md
+          - 'Open-Loop Force Command Example (Python)': Tutorials/ROS2/PythonOpenLoopControl.md
   - Theory: theory.md
   - Resources: resources.md
   - License: license.md
@@ -15,14 +34,22 @@ nav:
   - Project Roadmap: roadmap.md
 
 extra_javascript:
-    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - js/extra.js
 
 markdown_extensions:
   - mdx_math
   - pymdownx.highlight:
-      anchor_linenums: false
+      anchor_linenums: False
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+  - toc:
+      permalink: True
 
-theme: readthedocs
+theme:
+  name: "material"
+  features:
+    - content.code.copy
+    - navigation.indexes
+    - navigation.tracking

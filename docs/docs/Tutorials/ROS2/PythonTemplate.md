@@ -11,10 +11,10 @@ There are two GitHub
 [template repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
 set up (C++/Python) for a quick start on writing a
 custom controller utilizing
-[buoy_api_cpp](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp) and
-[buoy_api_py](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_py). Please see
-[C++ examples](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp/examples) and
-[Python examples](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_py/buoy_api/examples) for example
+[buoy_api_cpp](https://github.com/osrf/mbari_wec_utils/tree/main/buoy_api_cpp) and
+[buoy_api_py](https://github.com/osrf/mbari_wec_utils/tree/main/buoy_api_py). Please see
+[C++ examples](https://github.com/osrf/mbari_wec_utils/tree/main/buoy_api_cpp/examples) and
+[Python examples](https://github.com/osrf/mbari_wec_utils/tree/main/buoy_api_py/buoy_api/examples) for example
 controller implementations.
 
 * [mbari_wec_template_cpp](https://github.com/mbari-org/mbari_wec_template_cpp)
@@ -83,7 +83,7 @@ Replace `mbari_wec_template_py` with your package name and modify other fields a
 
 - package.xml (lines 4-8)
 
-``` xml linenums="1" hl_lines="4-8" title="package.xml"
+``` xml linenums="1" hl_lines="4 5 6 7 8" title="package.xml"
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
@@ -133,10 +133,11 @@ script_dir=$base/lib/your_package_name
 install_scripts=$base/lib/your_package_name
 ```
 
-- launch/controller.launch.py (lines 22, 34-35)
+- launch/controller.launch.py (lines 22, 35-36)
 
-``` py linenums="22" hl_lines="1 13 14" title="launch/controller.launch.py"
+``` py linenums="22" hl_lines="1 14 15" title="launch/controller.launch.py"
 package_name = 'your_package_name'   # Update package name
+
 
 def generate_launch_description():
     ld = LaunchDescription()
@@ -214,14 +215,14 @@ class ControlPolicy(object):
         self.update_params()
 
     def update_params(self):
-        '''Update dependent variables after reading in params'''
+        """Update dependent variables after reading in params."""
         self.bar = 10.0 * self.foo
 
         pass  # remove if there's anything to set above
 
     # Modify function inputs as desired
     def target(self, *args, **kwargs):
-        '''Calculate target value from feedback inputs'''
+        """Calculate target value from feedback inputs."""
 
         # secret sauce
 
@@ -242,17 +243,17 @@ class ControlPolicy(object):
 
 ``` py linenums="29"
     def update_params(self):
-        '''Update dependent variables after reading in params'''
+        """Update dependent variables after reading in params."""
         self.bar = 10.0 * self.foo
 
         pass  # remove if there's anything to set above
 ```
 
-- Declare/get/update params in the `set_params` function of the `Controller` class on line 111
+- Declare/get/update params in the `set_params` function of the `Controller` class on line 118
 
-``` py linenums="111"
+``` py linenums="118"
     def set_params(self):
-        '''Use ROS 2 declare_parameter and get_parameter to set policy params'''
+        """Use ROS2 declare_parameter and get_parameter to set policy params."""
         self.declare_parameter('foo', self.policy.foo)
         self.policy.foo = \
             self.get_parameter('foo').get_parameter_value().double_value
@@ -264,10 +265,10 @@ class ControlPolicy(object):
 - Then, your control logic will go in the `target` function on line 36.
     Modify the input args as well as the return value as necessary
 
-``` py linenums="36"
+``` py linenums="35"
     # Modify function inputs as desired
-    def target(self, *args, **kwargs):
-        '''Calculate target value from feedback inputs'''
+    def target(self, *args, **kwargs):  # noqa: D202
+        """Calculate target value from feedback inputs."""
 
         # secret sauce
 
@@ -294,7 +295,7 @@ control (for example):
 
 Or, set up a loop in `main()` and run open-loop:
 
-``` py linenums="121"
+``` py linenums="128"
 def main():
     rclpy.init()
     controller = Controller()
@@ -336,7 +337,7 @@ In the `Controller` constructor, you may also uncomment lines 55 or 56 to set th
 the Spring or Power Controllers on the buoy. These controllers default to publishing at 10Hz. You
 can call commands to set the rates anywhere from 10Hz to 50Hz (default argument is 50Hz).
 
-``` py linenums="46"
+``` py linenums="46" hl_lines="10 11"
     def __init__(self):
         super().__init__('controller')
 
@@ -346,8 +347,19 @@ can call commands to set the rates anywhere from 10Hz to 50Hz (default argument 
         # set packet rates from controllers here
         # controller defaults to publishing @ 10Hz
         # call these to set rate to 50Hz or provide argument for specific rate
-        # self.set_pc_pack_rate_param()  # set SC publish rate to 50Hz
-        # self.set_sc_pack_rate_param()  # set PC publish rate to 50Hz
+        # self.set_pc_pack_rate(blocking=False)  # set PC publish rate to 50Hz
+        # self.set_sc_pack_rate(blocking=False)  # set SC publish rate to 50Hz
+```
+
+The `Controller` is also capable of synchronizing its clock from the sim `/clock` by uncommenting
+line 61. Since the `Controller` inherits from `rclpy.Node`, you may use `self.get_clock()` and
+other various time-related functions of `rclpy.Node`.
+
+``` py linenums="58" hl_lines="4"
+        # Use this to set node clock to use sim time from /clock (from gazebo sim time)
+        # Access node clock via self.get_clock() or other various
+        # time-related functions of rclpy.Node
+        # self.use_sim_time()
 ```
 
 ## Build, Test, Run
@@ -429,3 +441,4 @@ And you should see something similar to:
 ## Example
 
 An example using this interface will follow in the next tutorial: [Linear Damper Example (Python)](PythonLinearDamperExample.md)
+

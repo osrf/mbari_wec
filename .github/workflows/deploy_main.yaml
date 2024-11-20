@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: '0 0 * * *'  # run nightly at midnight
+
+  # Allows manual workflow from Actions tab
+  workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -48,4 +53,7 @@ jobs:
         with:
           branch: gh-pages
           folder: ./docs/site
-          clean-exclude: pr-preview/
+          clean: true
+          # clean-exclude: pr-preview/
+          target-folder: main
+          force: false

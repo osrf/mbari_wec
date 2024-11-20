@@ -1,3 +1,4 @@
+# Simulation
 A computer simulation environment has been created that simulates the dynamics of the wave-energy converter and emulates the ROS 2 messages used on the buoy system.  This simulation includes a solver of the multi-body dynamics of the system, a numerical representation of the behavior and losses of the electro-hydraulic PTO, and a numerical simulation of the wave-buoy interaction processes based on linear hydrodynamic theory.
 
 The aim of this simulation is to provide a computer based simulation that replicates the physical systems behavior and also interacts with computer code in the same way the physical buoy system does.  The aim is that code running on a desktop Linux machine can run unchanged on the physical buoy, and that the response of the simulated buoy is indistinguishable from the real system.  The following sections provide some details of this simulator, and additional specifics are in the  [theory](theory.md)  section.

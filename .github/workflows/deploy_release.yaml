@@ -1,0 +1,61 @@
+name: Build versioned documentation on release
+
+on:
+  release:
+    types: [published]
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  pull-requests: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Build job
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+          cache: 'pip'
+
+      - name: Get version set env  # , exit if beta release
+        run: |
+          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+          # if [[ "$RELEASE_VERSION" == *"b"* ]]; then
+          #   echo "Version is a beta release. Cancel workflow."
+          #   exit 0
+          # fi
+
+      - name: Install python dependencies
+        run: pip install -r docs/requirements.txt
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v2
+
+      - name: Build with mkdocs
+        run: |
+          cd docs
+          mkdocs build -c
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ./docs/site
+          clean: true
+          # clean-exclude: pr-preview/
+          target-folder: ${{ env.RELEASE_VERSION }}
+          force: false

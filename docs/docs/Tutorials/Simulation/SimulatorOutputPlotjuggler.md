@@ -1,10 +1,12 @@
+# View ROS 2 Messages with Plotjuggler
+
 "[PlotJuggler](https://www.plotjuggler.io/)" is a plotting program that includes support for ROS 2 messages, and allows real-time plotting of data from ROS 2 messages while the simulator runs, as well as plotting of logged data.  
 
 
 ## Installation and Running
 - To install, see instructions [here](https://index.ros.org/p/plotjuggler/).  If using the supplied docker images, this step is not necessary as the software is already installed.
 
-- To start, issue the following command in a window where the environment has already been sourced using ```$ . ~/buoy_ws/install/setup.sh```:
+- To start, issue the following command in a window where the environment has already been sourced using ```$ . ~/mbari_wec_ws/install/setup.bash```:
 
 ```
 $ ros2 run plotjuggler plotjuggler 
@@ -23,3 +25,4 @@ In the window on the left that shows the available topics, select the /arhs_data
 - After a bit of data selection, the window can look like the example below and show many data items in real-time.  Under the "File" box in the upper left, there are options to save and retrieve this layout to avoid setting up the windows at each invocation of PlotJuggler.  PlotJuggler will continue to run through re-starts of the simulator, so it is often not necessary to re-start PlotJuggler often.
 
 ![](images/PlotJuggler.png)
+
