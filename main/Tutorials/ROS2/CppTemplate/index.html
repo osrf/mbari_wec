@@ -1412,7 +1412,7 @@ $ cd ~/controller_ws
 <span class="normal">34</span>
 <span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">package_name</span> <span class="o">=</span> <span class="s1">&#39;your_package_name&#39;</span>   <span class="c1"># Update package name (same as in CMakeLists.txt)</span>
 </span>
-<span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_launch_description</span><span class="p">():</span>
     <span class="n">ld</span> <span class="o">=</span> <span class="n">LaunchDescription</span><span class="p">()</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
         <span class="n">get_package_share_directory</span><span class="p">(</span><span class="n">package_name</span><span class="p">),</span>
