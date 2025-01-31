@@ -256,3 +256,11 @@ You may have to log in for it to recognize your permissions:
 ```
 docker login
 ```
+
+# Publications
+```
+Dizon, Chris, Ryan Coe, Andrew Hamilton, Dominic Forbush, Michael Anderson, Ted Brekken, and Giorgio
+Bacelli. 2024. "Analysis on Evaluations of Monterey Bay Aquarium Research Institute’s Wave Energy
+Converter’s Field Data Using WEC-Sim and Gazebo: A Simulation Tool Comparison" Applied Sciences 14,
+no. 23: 11169. https://doi.org/10.3390/app142311169
+```
