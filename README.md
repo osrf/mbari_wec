@@ -20,9 +20,9 @@ These are the repositories for the project:
     * [buoy_api_py](https://github.com/osrf/mbari_wec_utils/tree/main/buoy_api_py): Python Interface to
       MBARI Power Buoy including Controller examples to run against a physical or simulated buoy.
 * [mbari_wec_gz](https://github.com/osrf/mbari_wec_gz)
-    * [buoy_description](https://github.com/osrf/buoy_description/tree/main/buoy_description):
+    * [buoy_description](https://github.com/osrf/mbari_wec_gz/tree/main/buoy_description):
       Buoy model description.
-    * [buoy_gazebo](https://github.com/osrf/buoy_description/tree/main/buoy_gazebo):
+    * [buoy_gazebo](https://github.com/osrf/mbari_wec_gz/tree/main/buoy_gazebo):
       Gazebo plugins, worlds and launch files to simulate the buoy.
 
 # Interfaces and Examples
