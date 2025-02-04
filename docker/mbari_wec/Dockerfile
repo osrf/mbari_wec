@@ -98,7 +98,7 @@ WORKDIR /home/$USERNAME
 ENV MBARI_WEC_WS /home/$USERNAME/mbari_wec_ws
 RUN mkdir -p ${MBARI_WEC_WS}/src \
  && cd ${MBARI_WEC_WS}/src/ \
- && wget https://raw.githubusercontent.com/osrf/mbari_wec/release/v1.1.0/mbari_wec_all.yaml \
+ && wget https://raw.githubusercontent.com/osrf/mbari_wec/v1.1.0/mbari_wec_all.yaml \
  && vcs import < mbari_wec_all.yaml
 
 # Install rosdep dependencies
