@@ -1219,17 +1219,20 @@
 
 
 <h1 id="install-using-docker">Install using Docker<a class="headerlink" href="#install-using-docker" title="Permanent link">&para;</a></h1>
-<p>Docker images that include the neccessary software and dependencies have been created for convenience. </p>
+<p>Docker images that include the neccessary software and dependencies have been created for
+convenience. </p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Install Docker using <a href="https://docs.docker.com/engine/install/ubuntu/">installation instructions</a>.</p>
 </li>
 <li>
-<p>Complete the <a href="https://docs.docker.com/engine/install/linux-postinstall/">Linux Postinstall steps</a> to allow you to manage Docker as a non-root user.</p>
+<p>Complete the <a href="https://docs.docker.com/engine/install/linux-postinstall/">Linux Postinstall steps</a>
+   to allow you to manage Docker as a non-root user.</p>
 </li>
 <li>
-<p>If you have an NVIDIA graphics card, it can help speed up rendering. Install <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker">nvidia-docker</a>.</p>
+<p>If you have an NVIDIA graphics card, it can help speed up rendering. Install
+   <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker">nvidia-docker</a>.</p>
 </li>
 </ol>
 <h3 id="use-existing-image-on-dockerhub">Use Existing Image on DockerHub<a class="headerlink" href="#use-existing-image-on-dockerhub" title="Permanent link">&para;</a></h3>
@@ -1237,56 +1240,60 @@
   - <code>mbari/mbari_wec:latest</code>
   - <code>mbari/mbari_wec:previous</code></p>
 <ol>
-<li>Get <code>run.bash</code> script.</li>
-</ol>
-<p><div class="highlight"><pre><span></span><code>git clone -b main https://github.com/osrf/mbari_wec.git
+<li>
+<p>Get <code>run.bash</code> script.
+   <div class="highlight"><pre><span></span><code>git clone -b main https://github.com/osrf/mbari_wec.git
 cd ~/mbari_wec/docker/
 </code></pre></div>
    Or
    <div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/osrf/mbari_wec/main/docker/run.bash
 chmod +x run.bash
 </code></pre></div></p>
-<ol>
-<li>Run the container</li>
-</ol>
-<p>If you have an NVIDIA graphics card
+</li>
+<li>
+<p>Run the container
+   If you have an NVIDIA graphics card
    <div class="highlight"><pre><span></span><code>./run.bash mbari/mbari_wec:latest
 </code></pre></div>
    Otherwise
    <div class="highlight"><pre><span></span><code>./run.bash mbari/mbari_wec:latest --no-nvidia
 </code></pre></div></p>
+</li>
+</ol>
 <h3 id="build-from-dockerfile">Build from Dockerfile<a class="headerlink" href="#build-from-dockerfile" title="Permanent link">&para;</a></h3>
-<p>An alternative to using the images from MBARI's DockerHub would be to build from a Dockerfile. This is convenient if you would like to make any changes.</p>
+<p>An alternative to using the images from MBARI's DockerHub would be to build from a Dockerfile. This
+is convenient if you would like to make any changes.</p>
 <ol>
-<li>Clone the mbari_wec repository to download the latest Dockerfile.</li>
-</ol>
-<div class="highlight"><pre><span></span><code>git clone -b main https://github.com/osrf/mbari_wec.git
+<li>
+<p>Clone the mbari_wec repository to download the latest Dockerfile.
+   <div class="highlight"><pre><span></span><code>git clone -b main https://github.com/osrf/mbari_wec.git
 cd ~/mbari_wec/docker/
-</code></pre></div>
-<ol>
-<li>Build the docker image</li>
-</ol>
-<p>If you have an NVIDIA graphics card
-   <div class="highlight"><pre><span></span><code>./build.bash nvidia_opengl_ubuntu22
-./build.bash mbari_wec
+</code></pre></div></p>
+</li>
+<li>
+<p>Build the docker image
+   If you have an NVIDIA graphics card
+   <div class="highlight"><pre><span></span><code>./build.bash mbari_wec
 </code></pre></div>
    Otherwise
    <div class="highlight"><pre><span></span><code>./build.bash mbari_wec --no-nvidia
 </code></pre></div></p>
-<ol>
-<li>Run the container</li>
-</ol>
-<p>If you have an NVIDIA graphics card
-   <div class="highlight"><pre><span></span><code>./run.bash mbari_wec
+</li>
+<li>
+<p>Run the container
+   If you have an NVIDIA graphics card
+   <div class="highlight"><pre><span></span><code>./run.bash mbari_wec_nvidia
 </code></pre></div>
    Otherwise
-   <div class="highlight"><pre><span></span><code>./run.bash mbari_wec --no-nvidia
+   <div class="highlight"><pre><span></span><code>./run.bash mbari_wec_no_nvidia --no-nvidia
 </code></pre></div></p>
-<ol>
-<li>To have another window running the same docker container, run this command in a new terminal:</li>
+</li>
+<li>
+<p>To have another window running the same docker container, run this command in a new terminal:
+   <div class="highlight"><pre><span></span><code>./join.bash mbari_wec
+</code></pre></div></p>
+</li>
 </ol>
-<div class="highlight"><pre><span></span><code>./join.bash mbari_wec
-</code></pre></div>
 <h3 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h3>
 <p>Quick start scripts are provided in the home directory:</p>
 <p>This sources the compiled workspace:
@@ -1295,20 +1302,25 @@ cd ~/mbari_wec/docker/
 <p>This sources the compiled workspace and launches the simulation:
 <div class="highlight"><pre><span></span><code>./run_simulation.bash
 </code></pre></div></p>
+<p>Logs from the run will be saved to <code>/logs</code> in the container which is mapped
+to <code>~/mbari_wec/docker/logs</code> on the host. These logs will be in the same CSV format as generated by
+the physical buoy. You may also collect rosbags in the <code>/logs</code> folder in the container. The rosbags
+collected in the sim will also be the same ROS 2 messages collected on the physical buoy.</p>
 <h2 id="run-an-example-to-test">Run an example to test<a class="headerlink" href="#run-an-example-to-test" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>In a new terminal (whether on host machine or in Docker container), source the workspace
-        <div class="highlight"><pre><span></span><code>. ~/mbari_wec_ws/install/setup.bash
+   <div class="highlight"><pre><span></span><code>. ~/mbari_wec_ws/install/setup.bash
 </code></pre></div></p>
 </li>
 <li>
 <p>Launch the simulation
-        <div class="highlight"><pre><span></span><code>ros2 launch buoy_gazebo mbari_wec.launch.py
+   <div class="highlight"><pre><span></span><code>ros2 launch buoy_gazebo mbari_wec.launch.py
 </code></pre></div></p>
 </li>
 </ol>
-<p>The simulation software should now be available.  To run and test, proceed to the <a href="../../../tutorials/#running-the-simulator">Run the Simulator</a> tutorial series. </p>
+<p>The simulation software should now be available.  To run and test, proceed to the
+<a href="../../../tutorials/#running-the-simulator">Run the Simulator</a> tutorial series.</p>
 
 
 
