@@ -19,7 +19,6 @@ MBARI maintains Docker images for the two most recent releases on their DockerHu
   - `mbari/mbari_wec:previous`
 
 1. Get `run.bash` script.
-
    ```
    git clone -b main https://github.com/osrf/mbari_wec.git
    cd ~/mbari_wec/docker/
@@ -31,7 +30,6 @@ MBARI maintains Docker images for the two most recent releases on their DockerHu
    ```
 
 2. Run the container
-
    If you have an NVIDIA graphics card
    ```
    ./run.bash mbari/mbari_wec:latest
@@ -46,14 +44,12 @@ An alternative to using the images from MBARI's DockerHub would be to build from
 is convenient if you would like to make any changes.
 
 1. Clone the mbari_wec repository to download the latest Dockerfile.
-
    ```
    git clone -b main https://github.com/osrf/mbari_wec.git
    cd ~/mbari_wec/docker/
    ```
 
 2. Build the docker image
-
    If you have an NVIDIA graphics card
    ```
    ./build.bash mbari_wec
@@ -64,7 +60,6 @@ is convenient if you would like to make any changes.
    ```
 
 3. Run the container
-
    If you have an NVIDIA graphics card
    ```
    ./run.bash mbari_wec_nvidia
@@ -75,7 +70,6 @@ is convenient if you would like to make any changes.
    ```
 
 4. To have another window running the same docker container, run this command in a new terminal:
-
    ```
    ./join.bash mbari_wec
    ```
@@ -102,14 +96,14 @@ collected in the sim will also be the same ROS 2 messages collected on the physi
 ## Run an example to test
 
 1. In a new terminal (whether on host machine or in Docker container), source the workspace
-        ```
-        . ~/mbari_wec_ws/install/setup.bash
-        ```
+   ```
+   . ~/mbari_wec_ws/install/setup.bash
+   ```
 
 2. Launch the simulation
-        ```
-        ros2 launch buoy_gazebo mbari_wec.launch.py
-        ```
+   ```
+   ros2 launch buoy_gazebo mbari_wec.launch.py
+   ```
 
 The simulation software should now be available.  To run and test, proceed to the
 [Run the Simulator](../../../tutorials/#running-the-simulator) tutorial series.
