@@ -32,7 +32,8 @@ then
 fi
 
 # Default to NVIDIA
-DOCKER_OPTS="--runtime=nvidia"
+#DOCKER_OPTS="--runtime=nvidia"
+DOCKER_OPTS="--gpus all --env NVIDIA_DRIVER_CAPABILITIES=all"
 
 # Parse and remove args
 PARAMS=""
@@ -102,19 +103,22 @@ do
   fi
 done
 
+mkdir -p $PWD/logs  # for pbloghome
+
 # Mount extra volumes if needed.
 # E.g.:
 # -v "/opt/sublime_text:/opt/sublime_text" \
 
 # --ipc=host and --network=host are needed for no-NVIDIA Dockerfile to work
 docker run -it \
-  -e DISPLAY \
+  -e DISPLAY=$DISPLAY \
   -e QT_X11_NO_MITSHM=1 \
   -e XAUTHORITY=$XAUTH \
   -v "$XAUTH:$XAUTH" \
   -v "/tmp/.X11-unix:/tmp/.X11-unix" \
   -v "/etc/localtime:/etc/localtime:ro" \
-  -v "/dev/input:/dev/input" \
+  -v "/dev:/dev" \
+  -v "$PWD/logs:/logs" \
   --privileged \
   --rm \
   --security-opt seccomp=unconfined \
