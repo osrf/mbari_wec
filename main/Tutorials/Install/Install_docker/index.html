@@ -1232,7 +1232,12 @@ convenience. </p>
 </li>
 <li>
 <p>If you have an NVIDIA graphics card, it can help speed up rendering. Install
-   <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker">nvidia-docker</a>.</p>
+   <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker">nvidia-container-toolkit</a>.</p>
+<ol>
+<li>Follow <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#with-apt-ubuntu-debian">Installation</a> steps for Ubuntu (currently 3 steps)</li>
+<li>Skip down to <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#configuring-docker">Configuration</a> and run <code>nvidia-ctk</code> to set up the nvidia container
+      runtime</li>
+</ol>
 </li>
 </ol>
 <h3 id="use-existing-image-on-dockerhub">Use Existing Image on DockerHub<a class="headerlink" href="#use-existing-image-on-dockerhub" title="Permanent link">&para;</a></h3>
@@ -1257,6 +1262,11 @@ chmod +x run.bash
 </code></pre></div>
    Otherwise
    <div class="highlight"><pre><span></span><code>./run.bash mbari/mbari_wec:latest --no-nvidia
+</code></pre></div></p>
+</li>
+<li>
+<p>To have another window running the same docker container, run this command in a new terminal:
+   <div class="highlight"><pre><span></span><code>./join.bash mbari/mbari_wec:latest
 </code></pre></div></p>
 </li>
 </ol>
@@ -1290,8 +1300,9 @@ cd ~/mbari_wec/docker/
 </li>
 <li>
 <p>To have another window running the same docker container, run this command in a new terminal:
-   <div class="highlight"><pre><span></span><code>./join.bash mbari_wec
-</code></pre></div></p>
+   <div class="highlight"><pre><span></span><code>./join.bash &lt;name of image&gt;
+</code></pre></div>
+   where the name of the image is one of <code>mbari_wec_nvidia</code> or <code>mbari_wec_no_nvidia</code></p>
 </li>
 </ol>
 <h3 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h3>
