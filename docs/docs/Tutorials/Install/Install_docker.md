@@ -11,7 +11,11 @@ convenience.
    to allow you to manage Docker as a non-root user.
 
 3. If you have an NVIDIA graphics card, it can help speed up rendering. Install
-   [nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker).
+   [nvidia-container-toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker).  
+   Summary of steps (prone to change):
+   1. Follow [Installation](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#with-apt-ubuntu-debian) steps for Ubuntu (currently 3 steps)
+   2. Skip down to [Configuration](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#configuring-docker) and run `nvidia-ctk` to set up the nvidia container
+          runtime
 
 ### Use Existing Image on DockerHub
 MBARI maintains Docker images for the two most recent releases on their DockerHub:
@@ -37,6 +41,11 @@ MBARI maintains Docker images for the two most recent releases on their DockerHu
    Otherwise
    ```
    ./run.bash mbari/mbari_wec:latest --no-nvidia
+   ```
+
+3. To have another window running the same docker container, run this command in a new terminal:
+   ```
+   ./join.bash mbari/mbari_wec:latest
    ```
 
 ### Build from Dockerfile
@@ -71,8 +80,9 @@ is convenient if you would like to make any changes.
 
 4. To have another window running the same docker container, run this command in a new terminal:
    ```
-   ./join.bash mbari_wec
+   ./join.bash <name of image>
    ```
+   where the name of the image is one of `mbari_wec_nvidia` or `mbari_wec_no_nvidia`
 
 ### Quick start
 
