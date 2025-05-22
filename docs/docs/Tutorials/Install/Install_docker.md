@@ -11,8 +11,7 @@ convenience.
    to allow you to manage Docker as a non-root user.
 
 3. If you have an NVIDIA graphics card, it can help speed up rendering. Install
-   [nvidia-container-toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker).  
-   Summary of steps (prone to change):
+   [nvidia-container-toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker).
    1. Follow [Installation](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#with-apt-ubuntu-debian) steps for Ubuntu (currently 3 steps)
    2. Skip down to [Configuration](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#configuring-docker) and run `nvidia-ctk` to set up the nvidia container
           runtime
