@@ -99,7 +99,7 @@ do
     DOCKER_OPTS="$DOCKER_OPTS -v $WS_DIR:/home/developer/other/$WS_DIRNAME"
   else
     echo "Workspace! $WS_DIR"
-    DOCKER_OPTS="$DOCKER_OPTS -v $WS_DIR:/home/developer/workspaces/$WS_DIRNAME"
+    DOCKER_OPTS="$DOCKER_OPTS -v $WS_DIR/src:/home/developer/workspaces/src"
   fi
 done
 
