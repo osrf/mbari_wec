@@ -12,7 +12,7 @@ class Interface(Node)
 
 ROS2 Interface node for commanding and subscribing to buoy controllers and sensors.
 
-Provides service clients and functions to send commands to and recieve telemetry from the
+Provides service clients and functions to send commands to and receive telemetry from the
 MBARI WEC controllers:
 
 - AHRS
