@@ -49,6 +49,18 @@
          <lastmod>2025-05-30</lastmod>
     </url>
     <url>
+         <loc>https://example.com/ROS2/cpp_api/</loc>
+         <lastmod>2025-05-30</lastmod>
+    </url>
+    <url>
+         <loc>https://example.com/ROS2/messages/</loc>
+         <lastmod>2025-05-30</lastmod>
+    </url>
+    <url>
+         <loc>https://example.com/ROS2/python_api/</loc>
+         <lastmod>2025-05-30</lastmod>
+    </url>
+    <url>
          <loc>https://example.com/Tutorials/Install/Install_docker/</loc>
          <lastmod>2025-05-30</lastmod>
     </url>
