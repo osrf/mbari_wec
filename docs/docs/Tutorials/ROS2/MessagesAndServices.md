@@ -12,3 +12,11 @@ Python API class documentation can be found in
 
 C++ API class documentation can be found in
 [ROS 2 Interface->API (C++)](../../ROS2/cpp_api.md).
+
+## Getting Started (Tutorial Series)
+
+The following tutorials will help with getting started writing control code
+for the buoy:
+
+- [Controller GitHub Template (Python)](PythonTemplate.md)
+- [Controller GitHub Template (C++)](CppTemplate.md)
