@@ -1,0 +1,1484 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://example.com/Tutorials/Simulation/SimulatorParameters/">
+      
+      
+        <link rel="prev" href="../SimulatorInteractionPbcmd/">
+      
+      
+        <link rel="next" href="../../ROS2/MessagesAndServices/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Adjust Simulator parameters - MBARI-WEC</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#parameters-and-batch-runs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MBARI-WEC" class="md-header__button md-logo" aria-label="MBARI-WEC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MBARI-WEC
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Adjust Simulator parameters
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MBARI-WEC" class="md-nav__button md-logo" aria-label="MBARI-WEC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MBARI-WEC
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ControlAndTelemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Buoy Control and Telemetry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../atseaoperation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    At Sea Operation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 Interface
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            ROS 2 Interface
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ROS2/messages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Interfaces (ROS 2 Messages)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ROS2/python_api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API (Python)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ROS2/cpp_api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API (C++)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Install/Install_source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install from source
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Install/Install_docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install using Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Running the Simulator
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Running the Simulator
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RunSimulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Run the Simulator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulatorOutputROS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    View ROS 2 Messages
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulatorOutputPlotjuggler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    View ROS 2 Messages with Plotjuggler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulatorOutputLogs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulator Output Data Logs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulatorInteractionPbcmd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control Simulator with pbcmd
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Adjust Simulator parameters
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Adjust Simulator parameters
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-batch-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Batch File
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-an-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running an example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-the-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding the output
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Adding Control Code
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            Adding Control Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/MessagesAndServices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 Messages and Services
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/PythonTemplate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Controller GitHub Template (Python)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/CppTemplate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Controller GitHub Template (C++)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/PythonLinearDamperExample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear Damper Example (Python)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/CppLinearDamperExample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear Damper Example (C++)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/CppOpenLoopControl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Open-Loop Force Command Example (C++)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/PythonOpenLoopControl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Open-Loop Force Command Example (Python)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../citation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    How to Cite
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-batch-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Batch File
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-an-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running an example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-the-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding the output
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="parameters-and-batch-runs">Parameters and Batch Runs<a class="headerlink" href="#parameters-and-batch-runs" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>When running a simple instance of the simulator as described in the <a href="../RunSimulator/">Run the Simulator</a> Tutorial. i.e. using:</p>
+<div class="highlight"><pre><span></span><code>$ ros2 launch buoy_gazebo mbari_wec.launch.py
+</code></pre></div>
+<p>the simulation uses a number of defaults for a range of parameters. In most cases, one may want to run the simulator with different values for these parameters, and/or run a number of simulations that iterate across a range of values for particular parameters. For instance, one may want to run the simulator in a batch mode that runs the same buoy and controller set-up in a range of sea-states.</p>
+<p>To facilitate this, a batch tool is provided that allows one to specify ranges for a number of parameters, and then run a number of simulations for all combinations of parameters, saving the results separately.</p>
+<p>This tutorial describes these capabilities, demonstrates with some examples, and discusses how this tool can be used.</p>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
+<p>There are a number of parameters that impact the behavior of the simulator, and must be specified at start-up:</p>
+<ul>
+<li><strong>Simulation duration</strong>:  How long the simulation will run for (simulation time) in seconds.</li>
+<li><strong>Time-step size</strong>:  The simulation proceeds at a fixed time-step size, and this can be specified for each run.</li>
+<li><strong>Heave cone door-state</strong>:  Simulations can be done with the heave-cone doors either opened or closed, the door position can not be changed during a simulation, so this is a parameter that must be specified at start-up.</li>
+<li><strong>Sea-State</strong>:  Incoming waves can be specified as a monochromatic wave with a specified amplitude and period, a Bretschneider spectrum of waves described by significant wave-height and the peak period, or by a custom wave-spectrum defined by a curve of wave-energy versus frequency.  </li>
+<li><strong>Wave phase random seed</strong>:  The phases of each wave-component are randomly assigned, if a seed is specified, the phases will be the same for each run of a simulation.  This is useful for comparing simulations for which one wants the same wave-excitation.  If the seed value is set to zero, or omitted, a different random phase assignment will be made for each simulation run.</li>
+<li><strong>Physics Real-Time Factor (RTF)</strong>:  This parameter sets the maximum speed the simulation will be allowed to run, in terms of a multiple of real-time.  i.e. a Real-Time factor of 2.0 will limit the simulation to only running twice as fast as real-time.  As described below, for single runs for which one may want to monitor the motion as it occurs, a Real-Time Factor of 1.0 is appropriate.  For batches of runs one wants to complete as fast as possible, a large RTF (i.e. 100) will let the simulation run as fast as the processing resources allow.</li>
+<li><strong>Battery State-of-Charge</strong>:  The starting battery state of charge can be specified between 0 (empty) and 1 (full).  A full battery can't absorb energy so more of the generated power will be diverted to the load-dump in the simulation.  An empty battery will allow most or all of the generated energy to flow to the battery. This does not effect the physical behavior of the simulated buoy, but does effect the battery voltages and currents as the simulation progresses.</li>
+<li><strong>Battery EMF</strong>:  As an alternative to specifying the battery state of charge as a percentage, the zero-load battery voltage can be specified, between 270V (empty battery), and 320V (full battery).</li>
+<li><strong>Scale Factor</strong>:  The buoy (and simulator) implements a default control algorithm in which the current in the motor windings is set as a function of motor RPM, with the resulting torque opposing the motors motion.  This approximately implements a linear damping behavior and the specified Scale Factor is multiplied by the default Winding-Current/RPM relationship before being applied.  Allowable values are from 0.5 to 1.4, and the result is a simple way to change the damping the power-takeoff device is applying to the system.  As discussed in a later tutorial, this relationship can be over-ridden with external code, so this Scale Factor only applies to the default behavior of the system.</li>
+<li>** GUI Output**:  The graphical output of the simulator can be turned on or off as needed, for large batches of runs that are meant to run un-attended this is probably not appropriate, but for single runs or debugging the graphical output can be useful.</li>
+</ul>
+<h2 id="example-batch-file">Example Batch File<a class="headerlink" href="#example-batch-file" title="Permanent link">&para;</a></h2>
+<p>The above parameters are specified in a .yaml file that the batch-run tool reads in before execution begins.  A commented example is below and illustrates the use of the above parameters.  Lines that begin with # are comments and have no impact.</p>
+<div class="highlight"><pre><span></span><code>#
+# Batch-Specific Scalar Parameters
+#
+duration: 300
+seed: 42
+physics_rtf: 11
+#
+# Run-Specific Parameters (Test Matrix)
+#
+physics_step: [0.001, 0.01, 0.1]
+door_state: [&#39;closed&#39;, &#39;open&#39;]
+scale_factor: [0.5, 0.75, 1.0, 1.3, 1.4]
+enable_gui: False
+# May specify vector/scalar battery_soc (0.0 to 1.0) or battery_emf (270V to 320V)
+battery_soc: [0.25, 0.5, 0.75, 1.0]
+# battery_emf: [282.5, 295.0, 307.5, 320.0]
+IncidentWaveSpectrumType:
+ - MonoChromatic:
+     # A &amp; T may be vector/scalar in pairs (A &amp; T same length)
+     A: [1.0, 2.0, 3.0]
+     T: [12.0, 14.0, 15.0]
+ - Bretschneider:
+     # Hs &amp; Tp may be vector/scalar in pairs (Hs &amp; Tp same length)
+     Hs: 3.0
+     Tp: 14.0
+ # Multiple Custom Spectra must be listed individually (f &amp; Szz are already vectors of same size)
+ - Custom:
+     f: [0.0, 0.2, 0.4, 0.6, 2.0]
+     Szz: [0.0, 0.4, 1.0, 1.0, 0.0]
+</code></pre></div>
+<p>As seen in this example, some parameters are enforced to be scalar values and apply to the entire batch of specified runs.  These are the specification of simulation duration (300), random seed (42), and the physics real-time factor (11). </p>
+<p>The remaining run-specific parameters can be specified as arrays, and the batch-run tool then executes simulations for all possible combinations of these values.  Note that some values are specified in pairs.  For instance, three mono-chromatic waves are specified by this file with a specification of (A=1.0m, T=12s), (A=2.0m, T=14s), and (A=3.0m, T=15s), not nine runs that include all possible combinations of the specified amplitude and periods.</p>
+<p>Obviously it would be very easy to write a batch file specification that includes thousands of runs, more practical usage will most likely iterate over a small number of parameters at at a time. </p>
+<h2 id="running-an-example">Running an example<a class="headerlink" href="#running-an-example" title="Permanent link">&para;</a></h2>
+<p>For a simpler example, a batch file that iterates across a range of sea-states is used.  As a concise example, the following file illustrates this, comments have been removed for brevity.</p>
+<div class="highlight"><pre><span></span><code>duration: 3
+seed: 42
+physics_rtf: 11
+enable_gui: False
+physics_step: 0.01
+door_state: [&#39;closed&#39;]
+scale_factor: [0.6, 1.0]
+battery_soc:  0.5
+IncidentWaveSpectrumType:
+ - Bretschneider:
+     Hs: [2.0, 4.0]
+     Tp: [14.0, 16.0]
+</code></pre></div>
+<p>To run this example, create the above file in a new directory and name it "IrregularWaves.yaml", source the simulator installation directory, and start the simulation using the batch tool. (Note that the run duration is very short for this example to allow it to complete quickly)</p>
+<div class="highlight"><pre><span></span><code>$ mkdir FOO
+$ cd FOO
+$ Create file using editor of your choice, name it IrregularWaves.yaml
+$ . ~/mbari_wec_ws/install/setup.bash
+$ ros2 launch buoy_gazebo mbari_wec_batch.launch.py sim_params_yaml:=IrregularWaves.yaml
+</code></pre></div>
+<p>Running these commands will run the simulation, all output is stored in a directory named similar to `batch_results_20230228210735', the trailing numbers indicate a timestamp.  Inside this directory the yaml file is repeated, along with a log file 'batch_results.log' that lists all of the simulation runs that were performed.  Alongside that are specific directories that hold output from each run.  For convenience, a symbolic link is formed that points at the most recent batch output directory.</p>
+<p>Within the output directory, there is a file named 'batch_runs.log' that shows each individual run that was performed, and the associated parameter.  In this case it has the following contents:</p>
+<div class="highlight"><pre><span></span><code># Generated 4 simulation runs
+RunIndex, SimReturnCode, StartTime, rosbag2FileName, PhysicsStep, PhysicsRTF, Seed, Duration, DoorState, ScaleFactor, BatteryState, IncWaveSpectrumType;In
+cWaveSpectrumParams
+0, 0, 20230228212457, rosbag2_batch_sim_0_20230228212457, 0.01, 11.0, 42, 3.0, closed, 0.6, 0.5, Bretschneider;Hs:2.0;Tp:14.0
+1, 0, 20230228212502, rosbag2_batch_sim_1_20230228212502, 0.01, 11.0, 42, 3.0, closed, 0.6, 0.5, Bretschneider;Hs:4.0;Tp:16.0
+2, 0, 20230228212506, rosbag2_batch_sim_2_20230228212506, 0.01, 11.0, 42, 3.0, closed, 1.0, 0.5, Bretschneider;Hs:2.0;Tp:14.0
+3, 0, 20230228212510, rosbag2_batch_sim_3_20230228212510, 0.01, 11.0, 42, 3.0, closed, 1.0, 0.5, Bretschneider;Hs:4.0;Tp:16.0
+</code></pre></div>
+<p>For simulations that take longer to run, it can be convenient to tail this log file from the terminal to keep track of progress. i.e.  From the directory the batch was started from:</p>
+<div class="highlight"><pre><span></span><code>$ tail -f latest_batch_results/batch_runs.log
+</code></pre></div>
+<h2 id="finding-the-output">Finding the output<a class="headerlink" href="#finding-the-output" title="Permanent link">&para;</a></h2>
+<p>Within the batch process output directory, (e.g. `batch_results_20230228210735'), the output of each simulation run is stored within a single sub-directory.  The resulting directory tree from the above example is as follows:</p>
+<div class="highlight"><pre><span></span><code>$ tree batch_results_20230301200627/
+batch_results_20230301200627/
+├── batch_runs.log
+├── IrregularWaves_20230301200627.yaml
+├── results_run_0_20230301200627
+│   └── rosbag2
+│       ├── metadata.yaml
+│       └── rosbag2_0.db3
+├── results_run_1_20230301200632
+│   └── rosbag2
+│       ├── metadata.yaml
+│       └── rosbag2_0.db3
+├── results_run_2_20230301200636
+│   └── rosbag2
+│       ├── metadata.yaml
+│       └── rosbag2_0.db3
+└── results_run_3_20230301200640
+    └── rosbag2
+        ├── metadata.yaml
+        └── rosbag2_0.db3
+</code></pre></div>
+<p>This output includes rosbag files and .csv files that are in the same format as the files generated on the physical buoy.  In general the information in these two files are the same, the .csv files are in clear text and are easy to inspect, and can be processed by the same tools used for the actual buoy data.  The rosbag files are binary files that encode all of the ROS2 messages on the computer during the simulation.  These files can be processed by a number of tools for post-processing and inspection of results.  It is also possible to load the rosbag files into plotjuggler for plotting and inspection, as described in the <a href="../SimulatorOutputPlotjuggler/">View Messages with Plotjuggler</a> Tutorial.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "navigation.indexes", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+    
+  </body>
+</html>
