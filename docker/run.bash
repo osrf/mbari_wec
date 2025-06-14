@@ -32,7 +32,8 @@ then
 fi
 
 # Default to NVIDIA
-DOCKER_OPTS="--runtime=nvidia"
+#DOCKER_OPTS="--runtime=nvidia"
+DOCKER_OPTS="--gpus all --env NVIDIA_DRIVER_CAPABILITIES=all"
 
 # Parse and remove args
 PARAMS=""
@@ -98,9 +99,11 @@ do
     DOCKER_OPTS="$DOCKER_OPTS -v $WS_DIR:/home/developer/other/$WS_DIRNAME"
   else
     echo "Workspace! $WS_DIR"
-    DOCKER_OPTS="$DOCKER_OPTS -v $WS_DIR:/home/developer/workspaces/$WS_DIRNAME"
+    DOCKER_OPTS="$DOCKER_OPTS -v $WS_DIR/src:/home/developer/workspaces/src"
   fi
 done
+
+mkdir -p $PWD/logs  # for pbloghome
 
 # Mount extra volumes if needed.
 # E.g.:
@@ -108,13 +111,14 @@ done
 
 # --ipc=host and --network=host are needed for no-NVIDIA Dockerfile to work
 docker run -it \
-  -e DISPLAY \
+  -e DISPLAY=$DISPLAY \
   -e QT_X11_NO_MITSHM=1 \
   -e XAUTHORITY=$XAUTH \
   -v "$XAUTH:$XAUTH" \
   -v "/tmp/.X11-unix:/tmp/.X11-unix" \
   -v "/etc/localtime:/etc/localtime:ro" \
-  -v "/dev/input:/dev/input" \
+  -v "/dev:/dev" \
+  -v "$PWD/logs:/logs" \
   --privileged \
   --rm \
   --security-opt seccomp=unconfined \

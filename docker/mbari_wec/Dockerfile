@@ -125,7 +125,7 @@ ENV RUN_SH /home/$USERNAME/run_simulation.bash
 RUN touch ${RUN_SH} \
  && chmod 755 ${RUN_SH} \
  && echo ". ${SETUP_SH}" >> ${RUN_SH} \
- && echo "ros2 launch buoy_gazebo mbari_wec.launch.py" >> ${RUN_SH}
+ && echo "ros2 launch buoy_gazebo mbari_wec.launch.py pbloghome:=/logs" >> ${RUN_SH}
 
 # Start the container at a bash prompt
 ENTRYPOINT ["/bin/bash" , "-c", "source ${SETUP_SH} && /bin/bash"]

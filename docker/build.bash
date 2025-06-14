@@ -35,7 +35,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # nvidia/opengl:1.0-glvnd-devel-ubuntu22.04, doesn't exist for Ubuntu 22.04
 # at time of writing. Use homebrewed version in ./nvidia_opengl_ubuntu22/.
 # https://hub.docker.com/r/nvidia/opengl
-base="nvidia_opengl_ubuntu22:latest"
+#base="nvidia_opengl_ubuntu22:latest"
+base="nvidia/opengl:1.2-glvnd-devel-ubuntu22.04"
 image_suffix="_nvidia"
 
 # Parse and remove args
