@@ -41,6 +41,7 @@ extra_javascript:
   - js/extra.js
 
 markdown_extensions:
+  - admonition
   - mdx_math
   - pymdownx.highlight:
       anchor_linenums: False
