@@ -4,7 +4,7 @@
 
 ### Ubuntu 24.04, ROS 2 Jazzy, Gazebo Harmonic
 !!! info "NOTE:"
-    This is the current recommended requirements. Ubuntu 22.04, ROS 2 Humble, Gazebo Garden
+    These is the current recommended requirements. Ubuntu 22.04, ROS 2 Humble, Gazebo Garden
     instructions are no longer maintained for `mbari_wec` as Gazebo Garden is EOL.
 
 Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/harmonic/ros_installation/).
