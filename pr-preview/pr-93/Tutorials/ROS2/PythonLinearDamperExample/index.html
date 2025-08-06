@@ -1,0 +1,1731 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://example.com/Tutorials/ROS2/PythonLinearDamperExample/">
+      
+      
+        <link rel="prev" href="../CppTemplate/">
+      
+      
+        <link rel="next" href="../CppLinearDamperExample/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Linear Damper Example (Python) - MBARI-WEC</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quick-start-simple-linear-damper-controller-python" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MBARI-WEC" class="md-header__button md-logo" aria-label="MBARI-WEC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MBARI-WEC
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Linear Damper Example (Python)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MBARI-WEC" class="md-nav__button md-logo" aria-label="MBARI-WEC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MBARI-WEC
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ControlAndTelemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Buoy Control and Telemetry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../atseaoperation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    At Sea Operation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 Interface
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            ROS 2 Interface
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ROS2/messages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Interfaces (ROS 2 Messages)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ROS2/python_api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API (Python)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ROS2/cpp_api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API (C++)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Install/Install_source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install from source
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Install/Install_docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install using Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Running the Simulator
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Running the Simulator
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Simulation/RunSimulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Run the Simulator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Simulation/SimulatorOutputROS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    View ROS 2 Messages
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Simulation/SimulatorOutputPlotjuggler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    View ROS 2 Messages with Plotjuggler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Simulation/SimulatorOutputLogs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulator Output Data Logs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Simulation/SimulatorInteractionPbcmd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control Simulator with pbcmd
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Simulation/SimulatorParameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Adjust Simulator parameters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Adding Control Code
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            Adding Control Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MessagesAndServices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 Messages and Services
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PythonTemplate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Controller GitHub Template (Python)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CppTemplate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Controller GitHub Template (C++)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Linear Damper Example (Python)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear Damper Example (Python)
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisite
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linear-damper-controlpolicy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linear Damper ControlPolicy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linear Damper ControlPolicy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-policy-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      Control Policy Target
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controller
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#try-it-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try It Out
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CppLinearDamperExample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear Damper Example (C++)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CppOpenLoopControl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Open-Loop Force Command Example (C++)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PythonOpenLoopControl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Open-Loop Force Command Example (Python)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../citation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    How to Cite
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisite
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linear-damper-controlpolicy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linear Damper ControlPolicy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linear Damper ControlPolicy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-policy-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      Control Policy Target
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controller
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#try-it-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try It Out
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="quick-start-simple-linear-damper-controller-python">Quick Start -- Simple Linear Damper Controller (Python)<a class="headerlink" href="#quick-start-simple-linear-damper-controller-python" title="Permanent link">&para;</a></h1>
+<hr />
+<p>In this tutorial you will implement a simple linear damper controller for the piston in the WEC
+Power-Take-Off (PTO). Given motor RPM, it outputs desired motor winding current (interpolated from
+RPM-&gt;Torque lookup table) to generate a torque to resist piston velocity with a damping force.
+Configurable gains (scale/retract factor) are applied before output. In the end, you will have a
+working linear damper controller that is very close to the controller running on both the physical
+and simulated buoy.</p>
+<hr />
+<h2 id="prerequisite">Prerequisite<a class="headerlink" href="#prerequisite" title="Permanent link">&para;</a></h2>
+<p>This tutorial assumes you are familiar the steps from the previous <a href="../PythonTemplate/">tutorial</a>
+and have built your own custom Python ROS 2 controller package from the
+<a href="https://github.com/mbari-org/mbari_wec_template_py">mbari_wec_template_py</a> template
+repository which we will use to implement a simple linear damper controller.</p>
+<p>To begin, you should have a Python ROS 2 controller package that looks similar to:</p>
+<div class="highlight"><pre><span></span><code>mbari_wec_linear_damper_py
+├── config
+│   └── controller.yaml
+├── CONTRIBUTING.md
+├── launch
+│   └── controller.launch.py
+├── LICENSE
+├── mbari_wec_linear_damper_py
+│   ├── controller.py
+│   ├── __init__.py
+├── package.xml
+├── README.md
+├── resource
+│   └── mbari_wec_linear_damper_py
+├── setup.cfg
+├── setup.py
+└── test
+    ├── test_copyright.py
+    ├── test_flake8.py
+    └── test_pep257.py
+</code></pre></div>
+<p>with the files modified from the previous tutorial. If you haven't already, follow the steps in
+the above mentioned link to create a package for this tutorial named <code>mbari_wec_linear_damper_py</code>.</p>
+<hr />
+<h2 id="linear-damper-controlpolicy">Linear Damper ControlPolicy<a class="headerlink" href="#linear-damper-controlpolicy" title="Permanent link">&para;</a></h2>
+<p>A complete example starting from the template may be found
+<a href="https://github.com/mbari-org/mbari_wec_template_py/tree/linear_damper_example">here</a>. Line numbers
+in this tutorial correspond to the lines in relevant files in the full example.</p>
+<h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
+<p>Parameters for the controller are:</p>
+<ul>
+<li><code>torque_constant</code>: Motor Torque Constant (N-m/Amp)<br />
+  Constant to convert desired torque to applied motor winding current
+<br/>
+<br/></li>
+<li><code>n_spec</code>: Input Motor Speed (RPM) Breakpoints<br />
+<script type="math/tex">N</script> (RPM) is the input to the controller and <code>n_spec</code> are the x-components of the breakpoints
+  <script type="math/tex">\left(n\_spec, \frac{torque\_spec}{torque_constant}\right)</script> for the interpolant,<br />
+<br/>
+  <script type="math/tex">\hat{f}_{I}(n\_spec) = \frac{torque\_spec}{torque\_constant} \approx f_{I}(N) = I</script>
+<br/>
+<br/></li>
+<li><code>torque_spec</code>: Desired Output Motor Torque (N-m) Breakpoints<br />
+  Torque (N-m) is the eventual desired output of the controller given an input <code>N</code> (motor RPM) and
+  <code>torque_spec</code> / <code>torque_constant</code> (Amps) are the y-components of the breakpoints for the
+  interpolant. The controller actually outputs motor winding current (Amps) to generate a torque
+  in the opposite direction of piston velocity to generate a damping force.</li>
+</ul>
+<p>These can be configured using the <code>config/controller.yaml</code> file.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">config/controller.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">/linear_damper</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">torque_constant</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.438</span>
+<span class="w">    </span><span class="nt">n_spec</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">300.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">600.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1000.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1700.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">4400.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">6790.0</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">torque_spec</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.9</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">5.6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">9.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">16.6</span><span class="p p-Indicator">]</span>
+</code></pre></div></td></tr></table></div>
+<p>As you can see, as motor speed increases, so does the damping torque. For low RPM (up to 300),
+there is no damping.</p>
+<p>Initialize these variables in <code>ControlPolicy</code> in <code>mbari_wec_linear_damper_py/controller.py</code>. This
+example makes use of <code>numpy.array</code> as well as <code>scipy.interpolate.interp1d</code>, so don't forget to
+include those.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">mbari_wec_linear_damper_py/controller.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">interpolate</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ControlPolicy</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simple Linear Damper Control Policy.</span>
+<span class="sd">    Implements a simple linear damper controller for the piston in the WEC</span>
+<span class="sd">    Power-Take-Off (PTO). Given motor RPM, outputs desired motor winding current (interpolated</span>
+<span class="sd">    from RPM-&gt;Torque lookup table) to resist piston velocity. Configurable gains</span>
+<span class="sd">    (scale/retract factor) are applied before output.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Define any parameter variables here</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Torque_constant</span> <span class="o">=</span> <span class="mf">0.438</span>  <span class="c1"># N-m/Amps</span>
+        <span class="c1"># Desired damping Torque vs RPM relationship</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N_Spec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">,</span> <span class="mf">600.0</span><span class="p">,</span> <span class="mf">1000.0</span><span class="p">,</span> <span class="mf">1700.0</span><span class="p">,</span> <span class="mf">4400.0</span><span class="p">,</span> <span class="mf">6790.0</span><span class="p">])</span>  <span class="c1"># RPM</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Torque_Spec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">,</span> <span class="mf">9.8</span><span class="p">,</span> <span class="mf">16.6</span><span class="p">])</span>  <span class="c1"># N-m</span>
+</code></pre></div></td></tr></table></div>
+<p>Update the dependent variable, <code>I_Spec</code>, and create the interpolator, <code>windcurr_interp1d</code>, which
+uses <code>interp1d</code> from <code>scipy.interpolate</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">mbari_wec_linear_damper_py/controller.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">def</span><span class="w"> </span><span class="nf">update_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update dependent variables after reading in params.&quot;&quot;&quot;</span>
+        <span class="c1"># Convert to Motor Winding Current vs RPM and generate interpolator for f(RPM) = I</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">I_Spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Torque_Spec</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">Torque_constant</span>  <span class="c1"># Amps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">windcurr_interp1d</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N_Spec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">I_Spec</span><span class="p">,</span>
+                                                      <span class="n">fill_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">I_Spec</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                                      <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Finally, in the <code>Controller</code> class, declare/get/set/update these parameters from ROS 2 (as set in
+<code>config/controller.yaml</code>).</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">mbari_wec_linear_damper_py/controller.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">def</span><span class="w"> </span><span class="nf">set_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Use ROS2 declare_parameter and get_parameter to set policy params.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declare_parameter</span><span class="p">(</span><span class="s1">&#39;torque_constant&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">Torque_constant</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">Torque_constant</span> <span class="o">=</span> \
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="s1">&#39;torque_constant&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_parameter_value</span><span class="p">()</span><span class="o">.</span><span class="n">double_value</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">declare_parameter</span><span class="p">(</span><span class="s1">&#39;n_spec&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">N_Spec</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">N_Spec</span> <span class="o">=</span> \
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="s1">&#39;n_spec&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_parameter_value</span><span class="p">()</span><span class="o">.</span><span class="n">double_array_value</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">declare_parameter</span><span class="p">(</span><span class="s1">&#39;torque_spec&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">Torque_Spec</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">Torque_Spec</span> <span class="o">=</span> \
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="s1">&#39;torque_spec&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_parameter_value</span><span class="p">()</span><span class="o">.</span><span class="n">double_array_value</span><span class="p">)</span>
+
+        <span class="c1"># recompute any dependent variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">update_params</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<p>Add a helper function, <code>__str__</code>, in the <code>ControlPolicy</code> class for this example to report the
+parameters used.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">mbari_wec_linear_damper_py/controller.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;&quot;ControlPolicy:</span>
+<span class="se">\t</span><span class="s2">Torque_constant: </span><span class="si">{tc}</span>
+<span class="se">\t</span><span class="s2">N_Spec: </span><span class="si">{nspec}</span>
+<span class="se">\t</span><span class="s2">Torque_Spec: </span><span class="si">{tspec}</span>
+<span class="se">\t</span><span class="s2">I_Spec: </span><span class="si">{ispec}</span><span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tc</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Torque_constant</span><span class="p">,</span>
+                            <span class="n">nspec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">N_Spec</span><span class="p">,</span>
+                            <span class="n">tspec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Torque_Spec</span><span class="p">,</span>
+                            <span class="n">ispec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">I_Spec</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="control-policy-target">Control Policy Target<a class="headerlink" href="#control-policy-target" title="Permanent link">&para;</a></h3>
+<p>To implement the torque control control policy, we use the <code>target</code> function in <code>ControlPolicy</code>.
+This is where we accept feedback data and return a command value. In this case, we need the motor
+<code>rpm</code>, and the gains applied to the winding current damping, <code>scale_factor</code> and <code>retract_factor</code>.
+Typical values for these gains are</p>
+<ul>
+<li>scale_factor = 1</li>
+<li>retract_factor = 0.6</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">mbari_wec_linear_damper_py/controller.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">def</span><span class="w"> </span><span class="nf">target</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rpm</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">,</span> <span class="n">retract_factor</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate target value from feedback inputs.&quot;&quot;&quot;</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">rpm</span><span class="p">)</span>
+        <span class="n">I</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">windcurr_interp1d</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+        <span class="c1"># Apply damping gain</span>
+        <span class="n">I</span> <span class="o">*=</span> <span class="n">scale_factor</span>
+
+        <span class="c1"># Hysteresis due to gravity / wave assist</span>
+        <span class="k">if</span> <span class="n">rpm</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="n">I</span> <span class="o">*=</span> <span class="o">-</span><span class="n">retract_factor</span>
+
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>So, as you can see we apply a positive damping torque when RPM is negative (piston extending), and
+a positive damping torque when RPM is positive (piston retracting). The damping torque required is
+reduced when retracting.</p>
+<h3 id="controller">Controller<a class="headerlink" href="#controller" title="Permanent link">&para;</a></h3>
+<p>All that is left is to connect the necessary feedback data to the <code>ControlPolicy</code>. In this case,
+<code>rpm</code>, <code>scale</code>, and <code>retract</code> are present in <code>buoy_interfaces.msg.PCRecord</code> on the <code>/power_data</code>
+topic published by the Power Controller running on the buoy.</p>
+<p>To access the data, all that is required is to define the callback <code>def power_callback(self, data)</code>
+in the <code>Controller</code> class, and pass the data to <code>self.policy.target</code> to get the desired winding
+current command. Various commands are available, and this time we will be using<br />
+<code>self.send_pc_wind_curr_command(wind_curr, blocking=False)</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">mbari_wec_linear_damper_py/controller.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">def</span><span class="w"> </span><span class="nf">power_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Provide feedback of &#39;/power_data&#39; topic from Power Controller.&quot;&quot;&quot;</span>
+        <span class="c1"># Update class variables, get control policy target, send commands, etc.</span>
+        <span class="n">wind_curr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">target</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">rpm</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">retract</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;WindingCurrent:&#39;</span> <span class="o">+</span>
+                               <span class="sa">f</span><span class="s1">&#39; f(</span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">rpm</span><span class="si">:</span><span class="s1">.02f</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">scale</span><span class="si">:</span><span class="s1">.02f</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">retract</span><span class="si">:</span><span class="s1">.02f</span><span class="si">}</span><span class="s1">)&#39;</span> <span class="o">+</span>
+                               <span class="sa">f</span><span class="s1">&#39; = </span><span class="si">{</span><span class="n">wind_curr</span><span class="si">:</span><span class="s1">.02f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">send_pc_wind_curr_command</span><span class="p">(</span><span class="n">wind_curr</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>Finally, let's set the Power Controller's publish rate to the maximum of 50Hz. Uncomment the line
+to set the PC Pack Rate in <code>Controller.__init__</code>:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">mbari_wec_linear_damper_py/controller.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;linear_damper&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">policy</span> <span class="o">=</span> <span class="n">ControlPolicy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_params</span><span class="p">()</span>
+
+        <span class="c1"># set packet rates from controllers here</span>
+        <span class="c1"># controller defaults to publishing feedback @ 10Hz</span>
+        <span class="c1"># call these to set rate to 50Hz or provide argument for specific rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_pc_pack_rate</span><span class="p">(</span><span class="n">blocking</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># set PC feedback publish rate to 50Hz</span>
+</code></pre></div></td></tr></table></div>
+<p>In this tutorial, we've named this controller <code>linear_damper</code>. Don't forget to update controller
+names along with other changes according to the previous tutorial.</p>
+<h2 id="try-it-out">Try It Out<a class="headerlink" href="#try-it-out" title="Permanent link">&para;</a></h2>
+<p>Make sure to build and source your workspace. This tutorial assumes you cloned your package to
+<code>~/controller_ws/src</code> and you have sourced <code>mbari_wec_gz</code> and <code>mbari_wec_utils</code>
+<div class="highlight"><pre><span></span><code>$ cd ~/controller_ws
+$ colcon build
+$ source install/local_setup.bash
+</code></pre></div></p>
+<p>We will be using <code>ros2 launch</code> and <code>launch/controller.launch.py</code> to run our new controller.</p>
+<p>To run the controller along with the simulation, launch your
+controller:<br />
+<code>$ ros2 launch mbari_wec_linear_damper_cpp controller.launch.py</code></p>
+<p>Then, in another terminal (with <code>mbari_wec_gz</code> sourced), launch the sim:<br />
+<code>$ ros2 launch buoy_gazebo mbari_wec.launch.py</code><br />
+and click the play button.</p>
+<p>You should see output similar to:</p>
+<div class="highlight"><pre><span></span><code>[linear_damper-1] [INFO] [1677864397.617058507] [linear_damper]: Found all required services.
+[linear_damper-1] [INFO] [1677864397.618426488] [linear_damper]: ControlPolicy:
+[linear_damper-1]       Torque_constant: 0.438
+[linear_damper-1]       N_Spec: [   0.  300.  600. 1000. 1700. 4400. 6790.]
+[linear_damper-1]       Torque_Spec: [ 0.   0.   0.8  2.9  5.6  9.8 16.6]
+[linear_damper-1]       I_Spec: [ 0.          0.          1.82648402  6.62100457 12.78538813 22.37442922
+[linear_damper-1]  37.89954338]
+[linear_damper-1] [INFO] [1677864197.432679525] [linear_damper]: WindingCurrent: f(4962.91, 1.00, 0.60) = -15.62
+[linear_damper-1] [INFO] [1677864197.532727531] [linear_damper]: WindingCurrent: f(7764.73, 1.00, 0.60) = -22.74
+[linear_damper-1] [INFO] [1677864197.632748699] [linear_damper]: WindingCurrent: f(10504.88, 1.00, 0.60) = -22.74
+[linear_damper-1] [INFO] [1677864197.732851121] [linear_damper]: WindingCurrent: f(11491.33, 1.00, 0.60) = -22.74
+[linear_damper-1] [INFO] [1677864197.833078440] [linear_damper]: WindingCurrent: f(11075.84, 1.00, 0.60) = -22.74
+[linear_damper-1] [INFO] [1677864197.933050356] [linear_damper]: WindingCurrent: f(9546.51, 1.00, 0.60) = -22.74
+[linear_damper-1] [INFO] [1677864198.033185882] [linear_damper]: WindingCurrent: f(7499.68, 1.00, 0.60) = -22.74
+[linear_damper-1] [INFO] [1677864198.133197926] [linear_damper]: WindingCurrent: f(5190.35, 1.00, 0.60) = -16.51
+[linear_damper-1] [INFO] [1677864198.233322713] [linear_damper]: WindingCurrent: f(2353.02, 1.00, 0.60) = -9.06
+[linear_damper-1] [INFO] [1677864198.333507127] [linear_damper]: WindingCurrent: f(-257.59, 1.00, 0.60) = 0.00
+[linear_damper-1] [INFO] [1677864198.433489830] [linear_damper]: WindingCurrent: f(-2185.58, 1.00, 0.60) = 14.51
+[linear_damper-1] [INFO] [1677864198.533538450] [linear_damper]: WindingCurrent: f(-2987.98, 1.00, 0.60) = 17.36
+[linear_damper-1] [INFO] [1677864198.633671249] [linear_damper]: WindingCurrent: f(-3513.15, 1.00, 0.60) = 19.22
+[linear_damper-1] [INFO] [1677864198.733703803] [linear_damper]: WindingCurrent: f(-3738.12, 1.00, 0.60) = 20.02
+[linear_damper-1] [INFO] [1677864198.833889518] [linear_damper]: WindingCurrent: f(-3751.64, 1.00, 0.60) = 20.07
+[linear_damper-1] [INFO] [1677864198.933993414] [linear_damper]: WindingCurrent: f(-3595.71, 1.00, 0.60) = 19.52
+[linear_damper-1] [INFO] [1677864199.034078009] [linear_damper]: WindingCurrent: f(-3306.87, 1.00, 0.60) = 18.49
+[linear_damper-1] [INFO] [1677864199.134273438] [linear_damper]: WindingCurrent: f(-3012.52, 1.00, 0.60) = 17.45
+[linear_damper-1] [INFO] [1677864199.234371669] [linear_damper]: WindingCurrent: f(-2617.97, 1.00, 0.60) = 16.05
+[linear_damper-1] [INFO] [1677864199.334275962] [linear_damper]: WindingCurrent: f(-2269.58, 1.00, 0.60) = 14.81
+[linear_damper-1] [INFO] [1677864199.434369620] [linear_damper]: WindingCurrent: f(-1893.56, 1.00, 0.60) = 13.47
+[linear_damper-1] [INFO] [1677864199.534461914] [linear_damper]: WindingCurrent: f(-1513.34, 1.00, 0.60) = 11.14
+[linear_damper-1] [INFO] [1677864199.634556815] [linear_damper]: WindingCurrent: f(-1128.46, 1.00, 0.60) = 7.75
+[linear_damper-1] [INFO] [1677864199.734798736] [linear_damper]: WindingCurrent: f(-825.91, 1.00, 0.60) = 4.53
+[linear_damper-1] [INFO] [1677864199.834753871] [linear_damper]: WindingCurrent: f(-586.78, 1.00, 0.60) = 1.75
+[linear_damper-1] [INFO] [1677864199.934809041] [linear_damper]: WindingCurrent: f(-393.25, 1.00, 0.60) = 0.57
+[linear_damper-1] [INFO] [1677864200.035109715] [linear_damper]: WindingCurrent: f(-132.04, 1.00, 0.60) = 0.00
+[linear_damper-1] [INFO] [1677864200.134981992] [linear_damper]: WindingCurrent: f(92.19, 1.00, 0.60) = -0.00
+[linear_damper-1] [INFO] [1677864200.235094219] [linear_damper]: WindingCurrent: f(338.10, 1.00, 0.60) = -0.14
+[linear_damper-1] [INFO] [1677864200.335164181] [linear_damper]: WindingCurrent: f(636.96, 1.00, 0.60) = -1.36
+[linear_damper-1] [INFO] [1677864200.435227880] [linear_damper]: WindingCurrent: f(863.33, 1.00, 0.60) = -2.99
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "navigation.indexes", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+    
+  </body>
+</html>
