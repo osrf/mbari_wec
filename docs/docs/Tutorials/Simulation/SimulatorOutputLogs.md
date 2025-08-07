@@ -172,3 +172,20 @@ PC RPM, PC Bus Voltage (V), PC Winding Curr (A), PC Battery Curr (A), PC Status,
 - **PC Charge Curr**:  Battery Current limit (Battery Charge Direction) Amps.
 
 - **PC Draw Curr**:  Battery Draw Limit (Battery Draw Direction).  Amps.
+
+
+#### GPS/AHRS Data (Source ID = 3)
+```
+XB Roll Angle (deg), XB Pitch Angle (deg), XB Yaw Angle (deg), XB X Rate, XB Y Rate, XB Z Rate, XB X Accel, XB Y Accel, XB Z Accel, XB North Vel, XB East Vel, XB Down Vel, XB Lat, XB Long, XB Alt, XB Temp
+```
+- **XB Roll Angle**: Roll Angle reported from Crossbow Nav440 on the buoy (degrees).
+
+- **XB Pitch Angle**: Pitch Angle reported from Crossbow Nav440 on the buoy (degrees).
+
+- **XB Yaw Angle**: Pitch Angle reported from Crossbow Nav440 on the buoy (degrees).
+
+
+#### Heave Cone Controller Data (Source ID = 4)
+```
+TF Power-Loss Timeouts, TF Tether Volt, TF Batt Volt, TF Pressure psi, TF Qtn 1, TF Qtn 2, TF Qtn 3, TF Qtn 4, TF Mag 1 gauss, TF Mag 2, TF Mag 3, TF Status, TF Ang Rate 1 rad/sec, TF Ang Rate 2,  TF Ang Rate 3, TF VPE status, TF Accel 1 m/sec^2, TF Accel 2, TF Accel 3, TF Comms-Loss Timeouts, TF Maxon status, TF Motor curren mA, TF Encoder counts
+ ```

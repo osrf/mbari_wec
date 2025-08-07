@@ -115,4 +115,4 @@ collected in the sim will also be the same ROS 2 messages collected on the physi
    ```
 
 The simulation software should now be available.  To run and test, proceed to the
-[Run the Simulator](../../../tutorials/#running-the-simulator) tutorial series.
+[Run the Simulator](../../tutorials.md#running-the-simulator) tutorial series.
