@@ -1330,23 +1330,26 @@ instructions are no longer maintained for <code>mbari_wec</code> as Gazebo Garde
 <ol>
 <li>
 <p><a href="https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html">Install</a> ROS 2 Jazzy</p>
-<p>MBARI WEC is tested against the cyclonedds rmw implementation, so set that up as follows:</p>
-<div class="highlight"><pre><span></span><code>sudo apt install -y ros-jazzy-rmw-cyclonedds-cpp
+<p>MBARI WEC works best with the cyclonedds rmw implementation, so set that up as follows:</p>
+<div class="highlight"><pre><span></span><code>sudo apt install ros-jazzy-rmw-cyclonedds-cpp
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 </code></pre></div>
-<p>Running the sim with rosbag2 logging uses mcap storage so set that up as well:</p>
-<div class="highlight"><pre><span></span><code>sudo apt install ros-jazzy-rosbag2-storage-mcap
+<p>Running the sim with rosbag2 logging uses mcap storage. We also need sdformat-urdf.
+So, install those as well:</p>
+<div class="highlight"><pre><span></span><code>sudo apt install ros-jazzy-rosbag2-storage-mcap ros-jazzy-sdformat-urdf
 </code></pre></div>
-<p>To use plotjuggler to view ros2 data live plots (recommended in these tutorials) install like so:</p>
+<p>To use plotjuggler to view ros2 data live plots (recommended in these tutorials), install like so:</p>
 <div class="highlight"><pre><span></span><code>sudo apt install ros-jazzy-plotjuggler ros-jazzy-plotjuggler-msgs ros-jazzy-plotjuggler-ros
 </code></pre></div>
 </li>
 <li>
-<p>Install Gazebo Harmonic by installing <code>ros_gz</code> from the <code>ros-jazzy-*</code> apt repos. See <a href="https://gazebosim.org/docs/harmonic/ros_installation/">here</a> for more info.</p>
-<p>When using Gazebo Harmonic and ROS 2 Jazzy together, <code>gz-*</code> packages come from <code>ros-jazzy-gz-*</code> apt repos. We also need to use the <code>sdformat-urdf</code> package.</p>
+<p>Install Gazebo Harmonic by installing <code>ros_gz</code> from the <code>ros-jazzy-*</code> apt repos.</p>
 <div class="highlight"><pre><span></span><code>sudo apt update
-sudo apt install ros-jazzy-ros-gz ros-jazzy-sdformat-urdf
+sudo apt install ros-jazzy-ros-gz
 </code></pre></div>
+<p>When using Gazebo Harmonic and ROS 2 Jazzy together, Gazebo packages (<code>gz-*</code>) now come from
+ROS 2 Jazzy apt repos (<code>ros-jazzy-gz-*</code>). We also need to use the <code>sdformat-urdf</code> package.
+See <a href="https://gazebosim.org/docs/harmonic/ros_installation/">here</a> for more info.</p>
 </li>
 <li>
 <p>Set the Gazebo version to Harmonic. (place this in ~/.bashrc for convenience if rebuilding often):</p>
