@@ -11,33 +11,36 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
 
 1. [Install](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html) ROS 2 Jazzy
 
-    MBARI WEC is tested against the cyclonedds rmw implementation, so set that up as follows:
+    MBARI WEC works best with the cyclonedds rmw implementation, so set that up as follows:
    
     ```
-    sudo apt install -y ros-jazzy-rmw-cyclonedds-cpp
+    sudo apt install ros-jazzy-rmw-cyclonedds-cpp
     export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
     ```
 
-    Running the sim with rosbag2 logging uses mcap storage so set that up as well:
+    Running the sim with rosbag2 logging uses mcap storage. We also need sdformat-urdf.
+    So, install those as well:
 
     ```
-    sudo apt install ros-jazzy-rosbag2-storage-mcap
+    sudo apt install ros-jazzy-rosbag2-storage-mcap ros-jazzy-sdformat-urdf
     ```
 
-    To use plotjuggler to view ros2 data live plots (recommended in these tutorials) install like so:
+    To use plotjuggler to view ros2 data live plots (recommended in these tutorials), install like so:
 
     ```
     sudo apt install ros-jazzy-plotjuggler ros-jazzy-plotjuggler-msgs ros-jazzy-plotjuggler-ros
     ```
 
-3. Install Gazebo Harmonic by installing `ros_gz` from the `ros-jazzy-*` apt repos. See [here](https://gazebosim.org/docs/harmonic/ros_installation/) for more info.
-
-    When using Gazebo Harmonic and ROS 2 Jazzy together, `gz-*` packages come from `ros-jazzy-gz-*` apt repos. We also need to use the `sdformat-urdf` package.
-
+2. Install Gazebo Harmonic by installing `ros_gz` from the `ros-jazzy-*` apt repos.
+   
     ```
     sudo apt update
-    sudo apt install ros-jazzy-ros-gz ros-jazzy-sdformat-urdf
+    sudo apt install ros-jazzy-ros-gz
     ```
+
+    When using Gazebo Harmonic and ROS 2 Jazzy together, Gazebo packages (`gz-*`) now come from
+    ROS 2 Jazzy apt repos (`ros-jazzy-gz-*`). We also need to use the `sdformat-urdf` package.
+    See [here](https://gazebosim.org/docs/harmonic/ros_installation/) for more info.
 
 3. Set the Gazebo version to Harmonic. (place this in ~/.bashrc for convenience if rebuilding often):
    
@@ -66,13 +69,13 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
         python3 -m pip install -i https://mbari-org.github.io/gz-python-bindings/simple gz-python-bindings --break-system-packages
         ```
 
-6. Install necessary tools
+5. Install necessary tools
    
     ```
     sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
     ```
 
-7. Install necessary libraries
+6. Install necessary libraries
    
     ```
     curl -s --compressed "https://hamilton8415.github.io/ppa/KEY.gpg" | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg >/dev/null
@@ -144,7 +147,7 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
 ## Post-Build Environment Setup
 
 Place these lines in your ~/.bashrc for convenience to simplify running the sim in the future:
-
+   
     ```
     source /opt/ros/jazzy/setup.bash
     source /path/to/mbari_wec_ws/install/setup.bash
