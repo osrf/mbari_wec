@@ -4,28 +4,43 @@
 
 ### Ubuntu 24.04, ROS 2 Jazzy, Gazebo Harmonic
 !!! info "NOTE:"
-    These is the current recommended requirements. Ubuntu 22.04, ROS 2 Humble, Gazebo Garden
+    These are the current recommended requirements. Ubuntu 22.04, ROS 2 Humble, Gazebo Garden
     instructions are no longer maintained for `mbari_wec` as Gazebo Garden is EOL.
 
 Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/harmonic/ros_installation/).
 
 1. [Install](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html) ROS 2 Jazzy
 
-    MBARI WEC is tested against the cyclonedds rmw implementation, so set that up as follows:
+    MBARI WEC works best with the cyclonedds rmw implementation, so set that up as follows:
    
     ```
-    sudo apt install -y ros-humble-rmw-cyclonedds-cpp
+    sudo apt install ros-jazzy-rmw-cyclonedds-cpp
     export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
     ```
 
-3. Install Gazebo Harmonic by installing `ros_gz` from the `ros-jazzy-*` apt repos. See [here](https://gazebosim.org/docs/harmonic/ros_installation/) for more info.
+    Running the sim with rosbag2 logging uses mcap storage. We also need sdformat-urdf.
+    So, install those as well:
 
-    When using Gazebo Harmonic and ROS 2 Jazzy together, `gz-*` packages come from `ros-jazzy-gz-*` apt repos. We also need to use the `sdformat-urdf` package.
+    ```
+    sudo apt install ros-jazzy-rosbag2-storage-mcap ros-jazzy-sdformat-urdf
+    ```
 
+    To use plotjuggler to view ros2 data live plots (recommended in these tutorials), install like so:
+
+    ```
+    sudo apt install ros-jazzy-plotjuggler ros-jazzy-plotjuggler-msgs ros-jazzy-plotjuggler-ros
+    ```
+
+2. Install Gazebo Harmonic by installing `ros_gz` from the `ros-jazzy-*` apt repos.
+   
     ```
     sudo apt update
-    sudo apt install ros-jazzy-ros-gz ros-jazzy-sdformat-urdf
+    sudo apt install ros-jazzy-ros-gz
     ```
+
+    When using Gazebo Harmonic and ROS 2 Jazzy together, Gazebo packages (`gz-*`) now come from
+    ROS 2 Jazzy apt repos (`ros-jazzy-gz-*`). We also need to use the `sdformat-urdf` package.
+    See [here](https://gazebosim.org/docs/harmonic/ros_installation/) for more info.
 
 3. Set the Gazebo version to Harmonic. (place this in ~/.bashrc for convenience if rebuilding often):
    
@@ -54,13 +69,13 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
         python3 -m pip install -i https://mbari-org.github.io/gz-python-bindings/simple gz-python-bindings --break-system-packages
         ```
 
-6. Install necessary tools
+5. Install necessary tools
    
     ```
     sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
     ```
 
-7. Install necessary libraries
+6. Install necessary libraries
    
     ```
     curl -s --compressed "https://hamilton8415.github.io/ppa/KEY.gpg" | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg >/dev/null
@@ -69,43 +84,6 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
     sudo apt install libfshydrodynamics=1.4.0
     ```
 
-### Ubuntu 22.04, ROS 2 Humble, Gazebo Garden
-!!! danger "NOTE:"
-    Gazebo Garden is EOL and these instructions may no longer be valid.
-    Please use Ubuntu 24.04 with Jazzy/Harmonic.
-
-1. Install [ROS 2 Humble](https://docs.ros.org/en/humble/index.html)
-
-    MBARI WEC is tested against the cyclonedds rmw implementation, so set that up as follows:
-   
-    ```
-    sudo apt install -y ros-humble-rmw-cyclonedds-cpp
-    export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-    ```
-
-2. Install [Gazebo Garden](https://gazebosim.org/docs/garden)
-
-3. Install necessary tools
-   
-    ```
-    sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
-    ```
-
-4. Install necessary libraries
-   
-    ```
-    curl -s --compressed "https://hamilton8415.github.io/ppa/KEY.gpg" | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg >/dev/null
-    sudo curl -s --compressed -o /etc/apt/sources.list.d/my_list_file.list "https://hamilton8415.github.io/ppa/my_list_file.list"
-    sudo apt update
-    sudo apt install libfshydrodynamics=1.3.1
-    ```
-
-5. Set the Gazebo version to Garden. This is needed because we're not using an
-   official ROS + Gazebo combination (place this in ~/.bashrc for convenience if rebuilding often):
-   
-    ```
-    export GZ_VERSION=garden
-    ```
 
 ## Buoy Simulation Software Build
 
@@ -119,7 +97,7 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
 2. Clone all source repos with the help of `vcstool`:
    
     ```
-    wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml
+    wget https://raw.githubusercontent.com/osrf/mbari_wec/andermi/jazzy_harmonic/mbari_wec_all.yaml
     vcs import < mbari_wec_all.yaml
     cd ~/mbari_wec_ws
     ```
@@ -136,7 +114,7 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
 4. Build and install
     
     ```
-    source /opt/ros/humble/setup.bash
+    source /opt/ros/jazzy/setup.bash
     cd ~/mbari_wec_ws
     colcon build
     ```
@@ -166,3 +144,15 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
     ros2 launch buoy_gazebo mbari_wec.launch.py
     ```
 
+## Post-Build Environment Setup
+
+Place these lines in your ~/.bashrc for convenience to simplify running the sim in the future:
+   
+    ```
+    source /opt/ros/jazzy/setup.bash
+    source /path/to/mbari_wec_ws/install/setup.bash
+    export GZ_VERSION=harmonic
+    export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+    export SDF_PATH=$GZ_SIM_RESOURCE_PATH
+    ```
+(NOTE: Remember to replace `/path/to/mbari_wec_ws/install/setup.bash` with your path to your mbari wec workspace)
