@@ -726,6 +726,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Topics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#logging-during-simulation" class="md-nav__link">
     <span class="md-ellipsis">
       Logging During Simulation
@@ -1219,6 +1237,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Topics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#logging-during-simulation" class="md-nav__link">
     <span class="md-ellipsis">
       Logging During Simulation
@@ -1253,6 +1289,7 @@
 
 
 <h1 id="view-ros-2-messages">View ROS 2 Messages<a class="headerlink" href="#view-ros-2-messages" title="Permanent link">&para;</a></h1>
+<h2 id="topics">Topics<a class="headerlink" href="#topics" title="Permanent link">&para;</a></h2>
 <p>While running, the simulator generates exactly the same ROS 2 messages that the buoy hardware does
 during operation.  These are grouped into ROS 2 topics that corresponds to data being produced by
 each micro-controller or instrument on the buoy.  To see all ROS 2 topics being published to on the
@@ -1291,12 +1328,14 @@ following topics will be present on the real buoy:</p>
 <li>/power_data</li>
 <li>/trefoil_data</li>
 </ul>
-<p>corresponding to:
-- buoy-based instrumentation (AHRS)
-- battery controller
-- spring controller
-- power-converter controller
-- heave-cone controller</p>
+<p>corresponding to:</p>
+<ul>
+<li>buoy-based instrumentation (AHRS)</li>
+<li>battery controller</li>
+<li>spring controller</li>
+<li>power-converter controller</li>
+<li>heave-cone controller</li>
+</ul>
 <p>To see the data being published in these topics, issue the following command and the data will
 scroll by, for example:</p>
 <div class="highlight"><pre><span></span><code>$ ros2 topic echo power_data
@@ -1325,6 +1364,7 @@ charge_curr_limit: 0.0
 status: 0
 ---
 </code></pre></div>
+<h2 id="services">Services<a class="headerlink" href="#services" title="Permanent link">&para;</a></h2>
 <p>Several ROS 2 services are used by the command-line interface <code>pbcmd</code>
 (<a href="../SimulatorInteractionPbcmd/">Tutorial: Control Simulator Output with pbcmd</a>) to issue commands to the
 controllers on the buoy.  To see a list issue the following command (result below only shows
