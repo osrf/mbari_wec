@@ -1,5 +1,7 @@
 # View ROS 2 Messages
 
+## Topics
+
 While running, the simulator generates exactly the same ROS 2 messages that the buoy hardware does
 during operation.  These are grouped into ROS 2 topics that corresponds to data being produced by
 each micro-controller or instrument on the buoy.  To see all ROS 2 topics being published to on the
@@ -42,6 +44,7 @@ following topics will be present on the real buoy:
 - /trefoil_data
 
 corresponding to:
+
 - buoy-based instrumentation (AHRS)
 - battery controller
 - spring controller
@@ -80,6 +83,7 @@ status: 0
 ---
 ```
 
+## Services
 
 Several ROS 2 services are used by the command-line interface `pbcmd`
 ([Tutorial: Control Simulator Output with pbcmd](SimulatorInteractionPbcmd.md)) to issue commands to the
