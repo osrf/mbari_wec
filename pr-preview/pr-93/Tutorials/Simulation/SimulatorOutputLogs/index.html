@@ -854,17 +854,41 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-with-rosbag2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging with rosbag2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging with rosbag2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normal-mode-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normal Mode Simulation
+    </span>
+  </a>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#batch-mode-simulation" class="md-nav__link">
     <span class="md-ellipsis">
       Batch Mode Simulation
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1394,17 +1418,41 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-with-rosbag2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging with rosbag2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging with rosbag2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normal-mode-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normal Mode Simulation
+    </span>
+  </a>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#batch-mode-simulation" class="md-nav__link">
     <span class="md-ellipsis">
       Batch Mode Simulation
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1658,10 +1706,12 @@ first column:</p>
 </li>
 </ul>
 <h4 id="gpsahrs-data-source-id-3">GPS/AHRS Data (Source ID = 3)<a class="headerlink" href="#gpsahrs-data-source-id-3" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><pre><span></span><code>XB Roll Angle (deg), XB Pitch Angle (deg), XB Yaw Angle (deg), XB X Rate, XB Y Rate, XB Z Rate, XB X Accel, XB Y Accel, XB Z Accel, XB North Vel, XB East Vel, XB Down Vel, XB Lat, XB Long, XB Alt, XB Temp
+<div class="highlight"><pre><span></span><code>XB Roll Angle (deg), XB Pitch Angle (deg), XB Yaw Angle (deg), XB X Rate, XB Y Rate, XB Z Rate, XB X Accel, XB Y Accel, XB Z Accel, XB North Vel, XB East Vel, XB Down Vel, XB Lat, XB Long, XB Alt, XB Temp
 </code></pre></div>
-- <strong>XB Roll Angle</strong>: Roll Angle reported from Crossbow Nav440 on the buoy (degrees).</p>
 <ul>
+<li>
+<p><strong>XB Roll Angle</strong>: Roll Angle reported from Crossbow Nav440 on the buoy (degrees).</p>
+</li>
 <li>
 <p><strong>XB Pitch Angle</strong>: Pitch Angle reported from Crossbow Nav440 on the buoy (degrees).</p>
 </li>
@@ -1670,25 +1720,20 @@ first column:</p>
 </li>
 </ul>
 <h4 id="heave-cone-controller-data-source-id-4">Heave Cone Controller Data (Source ID = 4)<a class="headerlink" href="#heave-cone-controller-data-source-id-4" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><pre><span></span><code>TF Power-Loss Timeouts, TF Tether Volt, TF Batt Volt, TF Pressure psi, TF Qtn 1, TF Qtn 2, TF Qtn 3, TF Qtn 4, TF Mag 1 gauss, TF Mag 2, TF Mag 3, TF Status, TF Ang Rate 1 rad/sec, TF Ang Rate 2,  TF Ang Rate 3, TF VPE status, TF Accel 1 m/sec^2, TF Accel 2, TF Accel 3, TF Comms-Loss Timeouts, TF Maxon status, TF Motor curren mA, TF Encoder counts
- ```
-
-## Logging with rosbag2
-
-The previous tutorials, [View ROS 2 Messages](SimulatorOutputROS.md), showed how to view and plot
+<div class="highlight"><pre><span></span><code>TF Power-Loss Timeouts, TF Tether Volt, TF Batt Volt, TF Pressure psi, TF Qtn 1, TF Qtn 2, TF Qtn 3, TF Qtn 4, TF Mag 1 gauss, TF Mag 2, TF Mag 3, TF Status, TF Ang Rate 1 rad/sec, TF Ang Rate 2,  TF Ang Rate 3, TF VPE status, TF Accel 1 m/sec^2, TF Accel 2, TF Accel 3, TF Comms-Loss Timeouts, TF Maxon status, TF Motor curren mA, TF Encoder counts
+</code></pre></div>
+<h2 id="logging-with-rosbag2">Logging with rosbag2<a class="headerlink" href="#logging-with-rosbag2" title="Permanent link">&para;</a></h2>
+<p>The previous tutorials, <a href="../SimulatorOutputROS/">View ROS 2 Messages</a>, showed how to view and plot
 ROS 2 messages that are output from the sim or physical buoy. The following sections will show how
 to enable rosbag2 logging in the normal mode of the sim (batch mode always logs rosbags) and where
-rosbags are stored in normal and batch modes.
-
-#### Normal Mode Simulation
-
-By default, only the .csv files are logged by the simulator in normal operation. To enable rosbag2
-logging, add the `rosbag2:=true` argument to the standard launch file like so:
+rosbags are stored in normal and batch modes.</p>
+<h4 id="normal-mode-simulation">Normal Mode Simulation<a class="headerlink" href="#normal-mode-simulation" title="Permanent link">&para;</a></h4>
+<p>By default, only the .csv files are logged by the simulator in normal operation. To enable rosbag2
+logging, add the <code>rosbag2:=true</code> argument to the standard launch file like so:</p>
+<div class="highlight"><pre><span></span><code>$ ros2 launch buoy_gazebo mbari_wec.launch.py rosbag2:=true
 </code></pre></div>
-$ ros2 launch buoy_gazebo mbari_wec.launch.py rosbag2:=true
-<div class="highlight"><pre><span></span><code>The rosbags will be stored in the `~/.pblogs/rosbag2` directory with the following structure:
-</code></pre></div>
-.pblog
+<p>The rosbags will be stored in the <code>~/.pblogs/rosbag2</code> directory with the following structure:</p>
+<div class="highlight"><pre><span></span><code>.pblog
 ├── latest_rosbag -&gt; rosbag2/rosbag2_20250811115646
 └── rosbag2
     ├── rosbag2_20250806172159
@@ -1703,7 +1748,7 @@ $ ros2 launch buoy_gazebo mbari_wec.launch.py rosbag2:=true
     └── rosbag2_20250811115646
         ├── metadata.yaml
         └── rosbag2_20250811115646_0.mcap
-```</p>
+</code></pre></div>
 <p>where <code>latest_rosbag</code> is a symlink to the rosbag saved for the latest run of the simulator. The
 rosbags will use the <a href="https://mcap.dev/guides/getting-started/ros-2">mcap</a> storage format. For more
 information on working with rosbag2, please see the official ROS 2
