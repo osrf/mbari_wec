@@ -1,5 +1,9 @@
 # View ROS 2 Messages
 
+The data in each of the topics and services below correspond to the message descriptions which
+can be seen in [ROS 2 Interface->Interfaces (ROS 2 Messages)](../../ROS2/messages.md) along with a
+description of each field.
+
 ## Topics
 
 While running, the simulator generates exactly the same ROS 2 messages that the buoy hardware does
@@ -121,12 +125,6 @@ $ ros2 service list
 /tf_watchdog_command
 /valve_command
 ```
-
-A detailed list of ROS 2 messages and services on these topics can be found in
-
-The data in each topic and service correspond to the message descriptions which can be seen in
-[ROS 2 Interface->Interfaces (ROS 2 Messages)](../../ROS2/messages.md) along with a description of
-each field.
 
 ## Logging During Simulation
 
