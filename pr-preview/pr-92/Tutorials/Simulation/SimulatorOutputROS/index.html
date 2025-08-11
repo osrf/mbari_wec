@@ -685,6 +685,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    View ROS 2 Messages
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -696,6 +709,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#logging-during-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging During Simulation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plotting-live-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plotting Live Data
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1162,6 +1212,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#logging-during-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging During Simulation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plotting-live-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plotting Live Data
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1177,21 +1253,52 @@
 
 
 <h1 id="view-ros-2-messages">View ROS 2 Messages<a class="headerlink" href="#view-ros-2-messages" title="Permanent link">&para;</a></h1>
-<p>While running, the simulator generates exactly the same ROS 2 messages that the buoy hardware does during operation.  These are grouped into ROS 2 topics that corresponds to data being produced by each micro-controller or instrument on the buoy.  To see all ROS 2 topics being published to on the system, issue the following command (after sourcing the workspace if needed in a new terminal <code>$ . ~/mbari_wec_ws/install/setup.bash</code></p>
+<p>While running, the simulator generates exactly the same ROS 2 messages that the buoy hardware does
+during operation.  These are grouped into ROS 2 topics that corresponds to data being produced by
+each micro-controller or instrument on the buoy.  To see all ROS 2 topics being published to on the
+system, issue the following command (after sourcing the workspace if needed in a new terminal
+<code>$ . ~/mbari_wec_ws/install/setup.bash</code>):</p>
 <div class="highlight"><pre><span></span><code>$ ros2 topic list 
 /ahrs_data
+/battery_data
+/bc_record
 /clock
+/events/write_split
 /joint_states
+/latent_data
 /parameter_events
+/pc_record
 /power_data
 /rosout
+/sc_record
 /spring_data
 /tf
+/tf_record
 /tf_static
+/trefoil_data
+/trefoil_imu
+/trefoil_mag
+/xb_gps
 /xb_imu
+/xb_record
 </code></pre></div>
-<p>The topics /ahrs_data, /battery_data, /spring_data, /power_data, and /heavecone_data corresponds to the buoy-based instrumentation (AHRS), battery controller, spring controller, power-converter controller, and heave-cone controller.  Several of these topics are only available in simulation, and only /ahrs_data, /battery_data, /spring_data, /power_data, and /heavecone_data will be present on the real buoy.</p>
-<p>To see the data being published in these topics, issue the following command and the data will scroll by, for example:</p>
+<p>Several of the topics listed with <code>ros2 topic list</code> are only available in simulation. Only the
+following topics will be present on the real buoy:</p>
+<ul>
+<li>/ahrs_data</li>
+<li>/battery_data</li>
+<li>/spring_data</li>
+<li>/power_data</li>
+<li>/trefoil_data</li>
+</ul>
+<p>corresponding to:
+- buoy-based instrumentation (AHRS)
+- battery controller
+- spring controller
+- power-converter controller
+- heave-cone controller</p>
+<p>To see the data being published in these topics, issue the following command and the data will
+scroll by, for example:</p>
 <div class="highlight"><pre><span></span><code>$ ros2 topic echo power_data
 ---
 header:
@@ -1218,8 +1325,54 @@ charge_curr_limit: 0.0
 status: 0
 ---
 </code></pre></div>
-<p>The data in each topic corresponds to the message descriptions which can be seen here along with a description of each field.</p>
-<p>The next tutorial "<a href="../SimulatorOutputPlotjuggler/">View Messages with Plotjuggler</a>" shows how to conveniently plot these data items while the simulator is running.</p>
+<p>Several ROS 2 services are used by the command-line interface <code>pbcmd</code>
+(<a href="../SimulatorInteractionPbcmd/">Tutorial: Control Simulator Output with pbcmd</a>) to issue commands to the
+controllers on the buoy.  To see a list issue the following command (result below only shows
+important services):</p>
+<div class="highlight"><pre><span></span><code>$ ros2 service list
+/bc_reset_command
+/bender_command
+/bus_command
+/gain_command
+/inc_wave_height
+/pc_batt_switch_command
+/pc_bias_curr_command
+/pc_charge_curr_lim_command
+/pc_draw_curr_lim_command
+/pc_pack_rate_command
+/pc_retract_command
+/pc_scale_command
+/pc_std_dev_targ_command
+/pc_v_targ_max_command
+/pc_wind_curr_command
+/pump_command
+/sc_pack_rate_command
+/sc_reset_command
+/tether_command
+/tf_reset_command
+/tf_set_actual_pos_command
+/tf_set_charge_mode_command
+/tf_set_curr_lim_command
+/tf_set_mode_command
+/tf_set_pos_command
+/tf_set_state_machine_command
+/tf_watchdog_command
+/valve_command
+</code></pre></div>
+<p>A detailed list of ROS 2 messages and services on these topics can be found in</p>
+<p>The data in each topic and service correspond to the message descriptions which can be seen in
+<a href="../../../ROS2/messages/">ROS 2 Interface-&gt;Interfaces (ROS 2 Messages)</a> along with a description of
+each field.</p>
+<h2 id="logging-during-simulation">Logging During Simulation<a class="headerlink" href="#logging-during-simulation" title="Permanent link">&para;</a></h2>
+<p>By default, data is logged to .csv files matching the format and file layout of the log files on
+the physical buoy system. When running the simulator in single or batch modes,
+<a href="https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html">rosbag2</a>
+logging to file may also be enabled (using <a href="https://mcap.dev/guides/getting-started/ros-2">mcap</a> storage mode).
+A detailed tutorial of logging with .csv and rosbag2 can be found in:
+<a href="../SimulatorOutputLogs/">Tutorial: Simulator Output Data Logs</a></p>
+<h2 id="plotting-live-data">Plotting Live Data<a class="headerlink" href="#plotting-live-data" title="Permanent link">&para;</a></h2>
+<p>The next tutorial, <a href="../SimulatorOutputPlotjuggler/">Tutorial: View Messages with Plotjuggler</a>, shows how to
+conveniently plot these ROS 2 data items while the simulator is running.</p>
 
 
 
