@@ -854,6 +854,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#batch-mode-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Mode Simulation
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -861,6 +870,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control-simulator-with-pbcmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Control Simulator with pbcmd
+    </span>
+  </a>
   
 </li>
       
@@ -1376,6 +1394,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#batch-mode-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Mode Simulation
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1383,6 +1410,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control-simulator-with-pbcmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Control Simulator with pbcmd
+    </span>
+  </a>
   
 </li>
       
@@ -1403,11 +1439,20 @@
 
 
 <h1 id="simulator-output-data-logs">Simulator Output Data Logs<a class="headerlink" href="#simulator-output-data-logs" title="Permanent link">&para;</a></h1>
-<p>When running, the simulator logs data in two formats, a .csv file that matches the format of the log files the buoy system produces while in operation, and rosbag files that logs the ros message traffic in a format that can be examined using ROS 2 tools.  This tutorial describes the locations and contents of these files.</p>
+<p>When running, the simulator logs data in two formats, a .csv file that matches the format of the log
+files the buoy system produces while in operation, and rosbag files that logs the ros message
+traffic in a format that can be examined using ROS 2 tools.  This tutorial describes the locations
+and contents of these files.</p>
 <h2 id="csv-data-files">.csv data files<a class="headerlink" href="#csv-data-files" title="Permanent link">&para;</a></h2>
-<p>While running, both the simulator and the buoy itself log telemetry data in text comma separated value files that can be examined while the simulator is running or processed subsequently. These data files contain all of the telemetry data available on the buoy while operational.  Because not all parameters are simulated, the .csv files from the simulator have all the fields present and match teh format of the at-sea buoy, but some values that don't make sense to simulate simply report unchanging default values.</p>
+<p>While running, both the simulator and the buoy itself log telemetry data in text comma separated
+value files that can be examined while the simulator is running or processed subsequently. These
+data files contain all of the telemetry data available on the buoy while operational.  Because not
+all parameters are simulated, the .csv files from the simulator have all the fields present and
+match the format of the at-sea buoy, but some values that don't make sense to simulate simply
+report unchanging default values.</p>
 <h3 id="csv-file-locations">.csv file locations<a class="headerlink" href="#csv-file-locations" title="Permanent link">&para;</a></h3>
-<p>To match the behavior of the buoy system, the simulator stores these files in a directory called ".pblogs" in the users home directory. The directory format of .pblogs is as follows:</p>
+<p>To match the behavior of the buoy system, the simulator stores these files in a directory called
+<code>.pblogs</code> in the users home directory (<code>/home/&lt;username\&gt;/</code> or <code>~/</code>). The directory format of <code>.pblogs</code> is as follows:</p>
 <div class="highlight"><pre><span></span><code>.pblogs
 ├── 2025-06-21.000
 │   ├── 2025.06.21T12.52.43.csv
@@ -1421,11 +1466,26 @@
 │   └── latest -&gt; 2025.08.06T10.08.00.csv
 └── latest_csv_dir -&gt; 2025-08-06.001
 </code></pre></div>
-<p>As seen in this example, every time the simulator is run a new folder is created with the current date and an index of how many times the simulator has been started on that day, i.e. 2025-08-06.000 is the first time the simulator ran on August 6th, and 2025-08-06.001 is the second time the simulator ran on August 6th.  This scheme matches how the buoy maintains it's file structure as well, with the index referring to re-starts of the logging executable instead of simulator runs.  For convenience, a symbolic link is maintained that points to the most recent simulation run (latest_csv_dir).</p>
-<p>Within each directory, .csv files are created that represent up to an hour of data.  At the end of each hour those files are zipped up and a new file is created for the next hour of data. Therefore, the timestamp shown in the directory listing for each .csv file is the time of the first data in the file.  In cases where the simulator is running faster than real time, the filenames represent the amount of simulated time that has passed since the beginning of the simulation.</p>
-<p>Note:  The simulation environment creates this directory structure at ~/.pblogs when the simulator is run from the command line.  If simulations are run in a batch mode using the facility provided to support many simulation runs, then these files are located in a different location.  See this tutorial for details: <a href="../SimulatorParameters/">Parameters and Batch Runs</a></p>
+<p>As seen in this example, every time the simulator is run a new folder is created with the current
+date and an index of how many times the simulator has been started on that day, i.e. 2025-08-06.000
+is the first time the simulator ran on August 6th, and 2025-08-06.001 is the second time the
+simulator ran on August 6th.  This scheme matches how the buoy maintains it's file structure as
+well, with the index referring to re-starts of the logging executable instead of simulator runs.
+For convenience, a symbolic link is maintained that points to the most recent simulation run
+(<code>latest_csv_dir</code>).</p>
+<p>Within each directory, .csv files are created that represent up to an hour of data.  At the end of
+each hour those files are zipped up and a new file is created for the next hour of data. Therefore,
+the timestamp shown in the directory listing for each .csv file is the time of the first data in the
+file.  In cases where the simulator is running faster than real time, the filenames represent the
+amount of simulated time that has passed since the beginning of the simulation.</p>
+<p>Note:  The simulation environment creates this directory structure at ~/.pblogs when the simulator
+is run from the command line.  If simulations are run in a batch mode using the facility provided to
+support many simulation runs, then these files are located in a different location.
+See this tutorial for details: <a href="../SimulatorParameters/">Parameters and Batch Runs</a></p>
 <h3 id="csv-data-format">.csv data format<a class="headerlink" href="#csv-data-format" title="Permanent link">&para;</a></h3>
-<p>The data in the .csv data files are organized by data source within the system. During operation on the buoy, each subsystem is generating telemetry asynchronously to one other, and the logging facility place the data from each on a new line of the .csv files.  </p>
+<p>The data in the .csv data files are organized by data source within the system. During operation on
+the buoy, each subsystem is generating telemetry asynchronously to one other, and the logging
+facility place the data from each on a new line of the .csv files.  </p>
 <p>A sample of the first few lines of a typical .csv data files is as follows:</p>
 <div class="highlight"><pre><span></span><code>Source ID, Timestamp (epoch seconds), PC RPM, PC Bus Voltage (V), PC Winding Curr (A), PC Battery Curr (A), PC
  Status, PC Load Dump Current (A), PC Target Voltage (V), PC Target Curr (A), PC Diff PSI, PC RPM Std Dev, PC 
@@ -1450,7 +1510,9 @@ olt, TF Batt Volt, TF Pressure psi, TF Qtn 1, TF Qtn 2, TF Qtn 3, TF Qtn 4, TF M
 1, 1754492880.315, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,-48.78, 25.46, 77.90, 186.95, 8192, 0, 0.000000, 0.0
 00, ,,,,,,,,,,,,,,,,,,,,,,,
 </code></pre></div>
-<p>The first line of each file provides a short text description of each field, and after that the data from each subsystem is logged as it becomes available.  To differentiate between data sources, the first data item in each file is an identifier, as follows:</p>
+<p>The first line of each file provides a short text description of each field, and after that the data
+from each subsystem is logged as it becomes available.  To differentiate between data sources, the
+first data item in each file is an identifier, as follows:</p>
 <ul>
 <li>
 <p>0 = Battery System</p>
@@ -1468,8 +1530,13 @@ olt, TF Batt Volt, TF Pressure psi, TF Qtn 1, TF Qtn 2, TF Qtn 3, TF Qtn 4, TF M
 <p>4 = Heave Cone Controller </p>
 </li>
 </ul>
-<p>After the "Source ID" identifier comes Unix timestamp that records when the data on that line was captured.
-As can be seen, to facilitate data ingestion from these files into other tools, the appropriate number of commas are included on each line so that the data presented lines up with the data-label on the first line.  Because the first character is a single digit identifier, unix tools can be used to look at this data controller by controller.  For example, the following command uses grep to pick out just the data from the power converter by selecting lines that have a 2 in the first column:</p>
+<p>After the "Source ID" identifier comes Unix timestamp that records when the data on that line was
+captured. As can be seen, to facilitate data ingestion from these files into other tools, the
+appropriate number of commas are included on each line so that the data presented lines up with the
+data-label on the first line.  Because the first character is a single digit identifier, unix tools
+can be used to look at this data controller by controller.  For example, the following command uses
+grep to pick out just the data from the power converter by selecting lines that have a 2 in the
+first column:</p>
 <div class="highlight"><pre><span></span><code>$ cat ~/.pblogs/2025-08-06.001/2025.08.06T10.08.00.csv | grep ^2
 
 2, 1754492904.515, 1656.4, 311.3, -7.44, 1.62, 0, -0.00, 0.0, -7.44, 2.910, 0.0, 1.00, 0.60, 0.00, 0.00, 0.00, 0.00, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -1603,7 +1670,50 @@ As can be seen, to facilitate data ingestion from these files into other tools, 
 </li>
 </ul>
 <h4 id="heave-cone-controller-data-source-id-4">Heave Cone Controller Data (Source ID = 4)<a class="headerlink" href="#heave-cone-controller-data-source-id-4" title="Permanent link">&para;</a></h4>
-<p><code>TF Power-Loss Timeouts, TF Tether Volt, TF Batt Volt, TF Pressure psi, TF Qtn 1, TF Qtn 2, TF Qtn 3, TF Qtn 4, TF Mag 1 gauss, TF Mag 2, TF Mag 3, TF Status, TF Ang Rate 1 rad/sec, TF Ang Rate 2,  TF Ang Rate 3, TF VPE status, TF Accel 1 m/sec^2, TF Accel 2, TF Accel 3, TF Comms-Loss Timeouts, TF Maxon status, TF Motor curren mA, TF Encoder counts</code></p>
+<p><div class="highlight"><pre><span></span><code>TF Power-Loss Timeouts, TF Tether Volt, TF Batt Volt, TF Pressure psi, TF Qtn 1, TF Qtn 2, TF Qtn 3, TF Qtn 4, TF Mag 1 gauss, TF Mag 2, TF Mag 3, TF Status, TF Ang Rate 1 rad/sec, TF Ang Rate 2,  TF Ang Rate 3, TF VPE status, TF Accel 1 m/sec^2, TF Accel 2, TF Accel 3, TF Comms-Loss Timeouts, TF Maxon status, TF Motor curren mA, TF Encoder counts
+ ```
+
+## Logging with rosbag2
+
+The previous tutorials, [View ROS 2 Messages](SimulatorOutputROS.md), showed how to view and plot
+ROS 2 messages that are output from the sim or physical buoy. The following sections will show how
+to enable rosbag2 logging in the normal mode of the sim (batch mode always logs rosbags) and where
+rosbags are stored in normal and batch modes.
+
+#### Normal Mode Simulation
+
+By default, only the .csv files are logged by the simulator in normal operation. To enable rosbag2
+logging, add the `rosbag2:=true` argument to the standard launch file like so:
+</code></pre></div>
+$ ros2 launch buoy_gazebo mbari_wec.launch.py rosbag2:=true
+<div class="highlight"><pre><span></span><code>The rosbags will be stored in the `~/.pblogs/rosbag2` directory with the following structure:
+</code></pre></div>
+.pblog
+├── latest_rosbag -&gt; rosbag2/rosbag2_20250811115646
+└── rosbag2
+    ├── rosbag2_20250806172159
+    │   ├── metadata.yaml
+    │   └── rosbag2_20250806172159_0.mcap
+    ├── rosbag2_20250806180923
+    │   ├── metadata.yaml
+    │   └── rosbag2_20250806180923_0.mcap
+    ├── rosbag2_20250811115336
+    │   ├── metadata.yaml
+    │   └── rosbag2_20250811115336_0.mcap
+    └── rosbag2_20250811115646
+        ├── metadata.yaml
+        └── rosbag2_20250811115646_0.mcap
+```</p>
+<p>where <code>latest_rosbag</code> is a symlink to the rosbag saved for the latest run of the simulator. The
+rosbags will use the <a href="https://mcap.dev/guides/getting-started/ros-2">mcap</a> storage format. For more
+information on working with rosbag2, please see the official ROS 2
+<a href="https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html">rosbag2 documentation</a>.</p>
+<h4 id="batch-mode-simulation">Batch Mode Simulation<a class="headerlink" href="#batch-mode-simulation" title="Permanent link">&para;</a></h4>
+<p>Running the simulation and file structure of logging in batch mode is described in this tutorial:
+<a href="../SimulatorParameters/">Tutorial: Adjust Simulator parameters</a></p>
+<h2 id="control-simulator-with-pbcmd">Control Simulator with pbcmd<a class="headerlink" href="#control-simulator-with-pbcmd" title="Permanent link">&para;</a></h2>
+<p>The next tutorial, <a href="../SimulatorInteractionPbcmd/">Tutorial: Control Simulator with pbcmd</a>, will show
+how to send certain commands to the simulated (or physical) buoy using our command-line utility.</p>
 
 
 
