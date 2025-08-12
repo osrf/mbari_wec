@@ -2,122 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://example.com/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/ControlAndTelemetry/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/architecture/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/atseaoperation/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/citation/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/license/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/resources/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/roadmap/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/ros2/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/simulation/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/theory/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/tutorials/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/ROS2/cpp_api/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/ROS2/messages/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/ROS2/python_api/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/Tutorials/Install/Install_docker/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/Tutorials/Install/Install_source/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/Tutorials/ROS2/CppLinearDamperExample/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/Tutorials/ROS2/CppOpenLoopControl/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/Tutorials/ROS2/CppTemplate/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/Tutorials/ROS2/MessagesAndServices/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/Tutorials/ROS2/PythonLinearDamperExample/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/Tutorials/ROS2/PythonOpenLoopControl/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/Tutorials/ROS2/PythonTemplate/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/Tutorials/Simulation/RunSimulator/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/Tutorials/Simulation/SimulatorInteractionPbcmd/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/Tutorials/Simulation/SimulatorOutputLogs/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/Tutorials/Simulation/SimulatorOutputPlotjuggler/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/Tutorials/Simulation/SimulatorOutputROS/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
     <url>
          <loc>https://example.com/Tutorials/Simulation/SimulatorParameters/</loc>
-         <lastmod>2025-08-11</lastmod>
+         <lastmod>2025-08-12</lastmod>
     </url>
 </urlset>
