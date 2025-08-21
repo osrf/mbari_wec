@@ -1,7 +1,7 @@
 # Buoy Interfaces (ROS 2 Messages)
 
 Several ROS 2 messages/services have been defined in the
-[buoy_interfaces](https://github.com/osrf/mbari_wec_utils/tree/main/buoy_interfaces) package to
+[buoy_interfaces](https://github.com/osrf/mbari_wec_utils/tree/release/v2.0.0-rc1/buoy_interfaces) package to
 access telemetry and send commands.
 
 For more information about ROS 2 interfaces, see
