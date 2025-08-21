@@ -28,6 +28,24 @@ $ source install/setup.bash
 ```
 
 Then, run `pbcmd` or any of the commands listed in its output:
+!!! info "NOTE:"
+    If you receive a message: `pbcmd: command not found` when trying to run, please run the following
+    command first:
+    ```
+    $ export PATH=$PATH:~/.local/bin
+    ```
+    
+    If you like, add the following to your `~/.profile` for next time:
+    ```
+    # add ~/.local/bin to PATH if it exists and is not already in PATH
+    if [ -d "$HOME/.local/bin" ]; then
+      case ":$PATH:" in
+        *":$HOME/.local/bin:"*) ;;                 # already in PATH
+        *) PATH="$HOME/.local/bin:$PATH" ;;        # prepend it
+      esac
+    fi
+    export PATH
+    ```
 
 ```
 $ pbcmd
@@ -132,13 +150,9 @@ controls the rate of the ROS 2 messages from the power converter on the buoy, an
 ## Example Usage
 As an example, issue the following commands in a terminal *where the workspace has been sourced*:
 
-1. Launch the simulation without incident waves by issuing the following commands, the first
-command over-rides the default sea-state and results in no incident wave-forcing on the buoy when
-the "regenerate_models" flag is set to false:
+1. Launch the simulation without incident waves by issuing the following command (overriding the default waves):
 ```
-$ empy -D 'inc_wave_spectrum_type="None"' -o ~/mbari_wec_ws/install/buoy_description/share/buoy_description/models/mbari_wec/model.sdf ~/mbari_wec_ws/install/buoy_description/share/buoy_description/models/mbari_wec/model.sdf.em
-
-$ ros2 launch buoy_gazebo mbari_wec.launch.py regenerate_models:=false
+$ ros2 launch buoy_gazebo mbari_wec.launch.py inc_wave_spectrum:='inc_wave_spectrum_type:None'
 ```
 
 2. Start the simulation in the GUI by pressing the play button.
