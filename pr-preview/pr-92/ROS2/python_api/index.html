@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.17">
     
     
       
@@ -523,6 +523,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#get_inc_wave_height" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_inc_wave_height
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#set_params" class="md-nav__link">
     <span class="md-ellipsis">
       set_params
@@ -580,6 +589,15 @@
   <a href="#powerbuoy_callback" class="md-nav__link">
     <span class="md-ellipsis">
       powerbuoy_callback
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latent_callback" class="md-nav__link">
+    <span class="md-ellipsis">
+      latent_callback
     </span>
   </a>
   
@@ -1503,6 +1521,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#get_inc_wave_height" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_inc_wave_height
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#set_params" class="md-nav__link">
     <span class="md-ellipsis">
       set_params
@@ -1565,6 +1592,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#latent_callback" class="md-nav__link">
+    <span class="md-ellipsis">
+      latent_callback
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1612,6 +1648,7 @@ one, a subscriber for that topic will not be set up:</p>
 <li>self.power_callback</li>
 <li>self.trefoil_callback</li>
 <li>self.powerbuoy_callback</li>
+<li>self.latent_callback (sim only)</li>
 </ul>
 <p><a id="buoy_api.interface.Interface.__init__"></a></p>
 <h4 id="__init__">__init__<a class="headerlink" href="#__init__" title="Permanent link">&para;</a></h4>
@@ -1738,6 +1775,22 @@ one, a subscriber for that topic will not be set up:</p>
 <li><code>retract</code> (<code>float</code>): additional damping gain for retraction</li>
 <li><code>blocking</code> (<code>bool</code>): if True, wait for the service call to complete</li>
 </ul>
+<p><a id="buoy_api.interface.Interface.get_inc_wave_height"></a></p>
+<h4 id="get_inc_wave_height">get_inc_wave_height<a class="headerlink" href="#get_inc_wave_height" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_inc_wave_height</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">use_buoy_origin</span><span class="p">,</span> <span class="n">use_relative_time</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+</code></pre></div>
+<p>Request incident wave height at specific location(s) and time(s).</p>
+<p><strong>Arguments</strong>:
+- <code>x</code> (<code>float</code> or <code>list</code>): x position(s) of desired wave height(s)
+- <code>y</code> (<code>float</code> or <code>list</code>): y position(s) of desired wave height(s)
+- <code>t</code> (<code>float</code> or <code>list</code>): t time(s) in seconds of sim time of desired wave height(s)
+- <code>use_buoy_origin</code> (<code>bool</code>): if True, x and y are relative to buoy origin
+- <code>use_relative_time</code> (<code>bool</code>): if True, desired time(s) are relative to current sim time
+                                else, time(s) will be absolute sim time
+- <code>timeout</code> (<code>float</code>): if not None, wait for timeout sec for the service call to complete
+                       else, wait forever</p>
+<p><strong>Returns</strong>:
+- <code>list</code> of <code>IncWaveHeight</code> data</p>
 <p><a id="buoy_api.interface.Interface.set_params"></a></p>
 <h4 id="set_params">set_params<a class="headerlink" href="#set_params" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_params</span><span class="p">()</span>
@@ -1798,6 +1851,15 @@ one, a subscriber for that topic will not be set up:</p>
 <ul>
 <li><code>data</code>: incoming PBRecord</li>
 </ul>
+<p><a id="buoy_api.interface.Interface.latent_callback"></a></p>
+<h4 id="latent_callback">latent_callback<a class="headerlink" href="#latent_callback" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">latent_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</code></pre></div>
+<p>Override this function to subscribe to /latent_data to receive sim-only LatentData.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li><code>data</code>: incoming LatentData</li>
+</ul>
 
 
 
@@ -1846,10 +1908,10 @@ one, a subscriber for that topic will not be set up:</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.indexes", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.indexes", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       
