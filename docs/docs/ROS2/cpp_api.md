@@ -31,6 +31,7 @@
  - power_callback
  - trefoil_callback
  - powerbuoy_callback
+ - latent_callback (SIM ONLY)
 
 Template argument: **ControllerImplCRTP** The concrete controller class that inherits from this
 interface. It must implement any callbacks or parameter-setting routines it needs.
@@ -118,6 +119,19 @@ public void Interface<ControllerImplCRTP>(const std::string & node_name, const b
 **node_name** Name of the ROS2 node.  
 **wait_for_services** If true and check_for_services, block until services are available.  
 **check_for_services** If true, attempt to verify service availability before use.  
+
+
+### spin
+
+```cpp
+public void spin()
+```
+
+**brief** Sets up a `MultiThreadedExecutor` and spins the node (blocking).
+
+ If you need non-blocking control over program flow, you may skip calling this function, but a
+ `MultiThreadedExecutor` is required for this node. You may call non-blocking spin functions of a
+ `MultiThreadedExecutor` in your own loop.
 
 
 ### use_sim_time
@@ -276,6 +290,54 @@ public shared_future send_pc_retract_command(const float & retract)
 **return** A future containing the service response.
 
 
+### get_inc_wave_height
+
+```cpp
+public buoy_interfaces::srv::IncWaveHeight::Response::SharedPtr get_inc_wave_height(
+  const float x,
+  const float y,
+  const float t,
+  const bool use_buoy_origin = false,
+  const bool use_relative_time = false
+)
+```
+
+*Defined at buoy_api_cpp/include/buoy_api/interface.hpp#1164*
+
+**brief** Get incident wave height at a single location and time
+
+**x** float meters, x component of wave height location  
+**y** float meters, y component of wave height location  
+**t** float seconds, sim time to evaluate wave height  
+**use_buoy_origin** boolean, (x,y) are relative to buoy location  
+**use_relative_time** boolean, t is relative to current sim time
+
+**return** vector of IncWaveHeight data (with a single index)
+
+```cpp
+public buoy_interfaces::srv::IncWaveHeight::Response::SharedPtr get_inc_wave_height(
+  const std::vector<float> x,
+  const std::vector<float> y,
+  const std::vector<float> t,
+  const bool use_buoy_origin = false,
+  const bool use_relative_time = false,
+  const float timeout = 2.0,
+  const bool use_callback = false
+)
+```
+
+**brief** Get incident wave height at multiple locations and times
+
+**x** std::vector<float> meters, x component of wave height location  
+**y** std::vector<float> meters, y component of wave height location  
+**t** std::vector<float> seconds, sim time to evaluate wave height  
+**use_buoy_origin** boolean, all (x,y) are relative to buoy location  
+**use_relative_time** boolean, all t are relative to current sim time
+
+**return** vector of IncWaveHeight data
+   */
+
+
 ### set_params
 
 ```cpp
@@ -363,3 +425,14 @@ protected void powerbuoy_callback(const buoy_interfaces::msg::PBRecord & )
 **brief** Override this function to subscribe to /powerbuoy_data to receive PBRecord telemetry.
 
 **data** Incoming PBRecord containing a slice of all microcontroller telemetry data.
+
+
+### latent_callback
+
+```cpp
+protected void latent_callback(const buoy_interfaces::msg::LatentData & )
+```
+**brief** Override this function to subscribe to /latent_data to receive LatentData sim-only data.
+
+**data** Incoming LatentData containing sim-only values e.g. losses, waves, etc.
+
