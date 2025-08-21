@@ -18,7 +18,7 @@
 # builds an equivalent, to run X server in an Ubuntu 20.04 Docker image.
 # https://hub.docker.com/r/nvidia/opengl
 
-FROM ubuntu:jammy
+FROM ubuntu:noble
 
 #####
 # Following lines are copied from

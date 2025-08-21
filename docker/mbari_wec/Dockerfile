@@ -48,36 +48,39 @@ RUN locale-gen en_US en_US.UTF-8 && \
   export LANG=en_US.UTF-8
 
 # Add ROS 2 apt repository
-# Set up keys
-RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
-# Set up sources.list
-RUN /bin/sh -c 'echo "deb [arch=amd64,arm64] http://packages.ros.org/ros2/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list' \
- && /bin/sh -c 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null'
+RUN ROS_APT_SOURCE_VERSION=$(curl -s https://api.github.com/repos/ros-infrastructure/ros-apt-source/releases/latest | grep -F "tag_name" | awk -F\" '{print $4}') \
+ && curl -L -o /tmp/ros2-apt-source.deb "https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.$(. /etc/os-release && echo $VERSION_CODENAME)_all.deb" # If using Ubuntu derivates use $UBUNTU_CODENAME
+RUN dpkg -i /tmp/ros2-apt-source.deb
 
 # ppa for libfshydrodynamics free surface hydrodynamics dependency until
 # alternative in this PR: https://github.com/osrf/mbari_wec_gz/pull/138
 RUN curl -s --compressed "https://hamilton8415.github.io/ppa/KEY.gpg" | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg >/dev/null \
  && sudo curl -s --compressed -o /etc/apt/sources.list.d/my_list_file.list "https://hamilton8415.github.io/ppa/my_list_file.list"
 
-# Set up Gazebo keys and install
-RUN /bin/sh -c 'wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg' \
- && /bin/sh -c 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null' \
- && apt update \
+# Install ROS 2 Jazzy and Gazebo Harmonic (from ros-gz)
+RUN apt update \
  && apt install -y \
         python3-rosdep \
         python3-vcstool \
         python3-colcon-common-extensions \
-        ros-humble-desktop \
-        ros-humble-rmw-cyclonedds-cpp \
-        gz-garden \
-        libfshydrodynamics=1.3.1 \
+        ros-jazzy-desktop \
+        ros-jazzy-rmw-cyclonedds-cpp \
+        ros-jazzy-rosbag2-storage-mcap \
+        ros-jazzy-sdformat-urdf \
+        ros-jazzy-plotjuggler \
+        ros-jazzy-plotjuggler-msgs \
+        ros-jazzy-plotjuggler-ros \
+        ros-jazzy-ros-gz \
+        ros-jazzy-gz-sim-vendor \
+        ros-jazzy-gz-math-vendor \
+        libfshydrodynamics=1.4.0 \
  && apt clean
 
 # For timing in tests, need to use cyclonedds for ROS 2 rather than default
 # rmw provider
 ENV RMW_IMPLEMENTATION rmw_cyclonedds_cpp
 # Using non-official Gazebo + ROS combination, set it explicitly
-ENV GZ_VERSION garden
+ENV GZ_VERSION harmonic
 
 # Add a user with the same user_id as the user outside the container
 # Requires a docker build argument `user_id`
@@ -94,24 +97,31 @@ USER $USERNAME
 # When running a container start in the developer's home folder
 WORKDIR /home/$USERNAME
 
+RUN ls
 # Create project directory and import packages
 ENV MBARI_WEC_WS /home/$USERNAME/mbari_wec_ws
 RUN mkdir -p ${MBARI_WEC_WS}/src \
  && cd ${MBARI_WEC_WS}/src/ \
  && wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml \
+ && cat mbari_wec_all.yaml
+
+RUN cd ${MBARI_WEC_WS}/src \
  && vcs import < mbari_wec_all.yaml
+
+# Workaround for gz sim and math python bindings
+RUN python3 -m pip install -i https://mbari-org.github.io/gz-python-bindings/simple gz-python-bindings --break-system-packages
 
 # Install rosdep dependencies
 RUN sudo apt update \
  && cd ${MBARI_WEC_WS} \
  && sudo rosdep init \
  && rosdep update \
- && rosdep install --from-paths src --ignore-src -r -y -i --rosdistro humble \
+ && rosdep install --from-paths src --ignore-src -r -y -i --rosdistro jazzy \
  && sudo rm -rf /var/lib/apt/lists/* \
  && sudo apt clean
 
 # Build the project
-RUN /bin/bash -c 'source /opt/ros/humble/setup.bash \
+RUN /bin/bash -c 'source /opt/ros/jazzy/setup.bash \
   && cd ${MBARI_WEC_WS} \
   && colcon build'
 
@@ -125,7 +135,7 @@ ENV RUN_SH /home/$USERNAME/run_simulation.bash
 RUN touch ${RUN_SH} \
  && chmod 755 ${RUN_SH} \
  && echo ". ${SETUP_SH}" >> ${RUN_SH} \
- && echo "ros2 launch buoy_gazebo mbari_wec.launch.py pbloghome:=/logs" >> ${RUN_SH}
+ && echo "ros2 launch buoy_gazebo mbari_wec.launch.py pbloghome:=/logs rosbag2:=true" >> ${RUN_SH}
 
 # Start the container at a bash prompt
 ENTRYPOINT ["/bin/bash" , "-c", "source ${SETUP_SH} && /bin/bash"]

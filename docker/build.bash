@@ -29,14 +29,14 @@ fi
 # Get path to current directory
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Default base image, defined in nvidia_opengl_ubuntu22/Dockerfile
+# Default base image, defined in nvidia_opengl_ubuntu24/Dockerfile
 
 # Ubuntu with nvidia-docker2 beta opengl support, i.e.
-# nvidia/opengl:1.0-glvnd-devel-ubuntu22.04, doesn't exist for Ubuntu 22.04
-# at time of writing. Use homebrewed version in ./nvidia_opengl_ubuntu22/.
+# nvidia/opengl:1.2-glvnd-devel-ubuntu24.04, doesn't exist for Ubuntu 24.04
+# at time of writing. Use homebrewed version in ./nvidia_opengl_ubuntu24/.
 # https://hub.docker.com/r/nvidia/opengl
-#base="nvidia_opengl_ubuntu22:latest"
-base="nvidia/opengl:1.2-glvnd-devel-ubuntu22.04"
+base="nvidia_opengl_ubuntu24:latest"
+#base="nvidia/opengl:1.2-glvnd-devel-ubuntu22.04"
 image_suffix="_nvidia"
 
 # Parse and remove args
@@ -44,7 +44,7 @@ PARAMS=""
 while (( "$#" )); do
   case "$1" in
     --no-nvidia)
-      base="ubuntu:jammy"
+      base="ubuntu:noble"
       image_suffix="_no_nvidia"
       shift
       ;;
@@ -77,7 +77,7 @@ docker build --rm -t $image_plus_tag --build-arg base=$base --build-arg user_id=
 echo "Built $image_plus_tag"
 
 # Don't add extra tag if just building the NVIDIA image
-if [[ "$image_name" != nvidia_opengl_ubuntu22 ]]; then
+if [[ "$image_name" != nvidia_opengl_ubuntu24 ]]; then
   # Extra tag in case you have both the NVIDIA and no-NVIDIA images
   docker tag $image_plus_tag $image_name$image_suffix:latest
   echo "Tagged as $image_name$image_suffix:latest"

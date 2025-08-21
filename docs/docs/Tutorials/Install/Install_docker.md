@@ -60,6 +60,7 @@ is convenient if you would like to make any changes.
 2. Build the docker image
    If you have an NVIDIA graphics card
    ```
+   ./build.bash nvidia_opengl_ubuntu24
    ./build.bash mbari_wec
    ```
    Otherwise
