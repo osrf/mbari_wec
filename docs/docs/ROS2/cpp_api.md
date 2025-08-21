@@ -121,6 +121,19 @@ public void Interface<ControllerImplCRTP>(const std::string & node_name, const b
 **check_for_services** If true, attempt to verify service availability before use.  
 
 
+### spin
+
+```cpp
+public void spin()
+```
+
+**brief** Sets up a `MultiThreadedExecutor` and spins the node (blocking).
+
+ If you need non-blocking control over program flow, you may skip calling this function, but a
+ `MultiThreadedExecutor` is required for this node. You may call non-blocking spin functions of a
+ `MultiThreadedExecutor` in your own loop.
+
+
 ### use_sim_time
 
 ```cpp
@@ -293,10 +306,10 @@ public buoy_interfaces::srv::IncWaveHeight::Response::SharedPtr get_inc_wave_hei
 
 **brief** Get incident wave height at a single location and time
 
-**x** float meters, x component of wave height location
-**y** float meters, y component of wave height location
-**t** float seconds, sim time to evaluate wave height
-**use_buoy_origin** boolean, (x,y) are relative to buoy location
+**x** float meters, x component of wave height location  
+**y** float meters, y component of wave height location  
+**t** float seconds, sim time to evaluate wave height  
+**use_buoy_origin** boolean, (x,y) are relative to buoy location  
 **use_relative_time** boolean, t is relative to current sim time
 
 **return** vector of IncWaveHeight data (with a single index)
@@ -315,10 +328,10 @@ public buoy_interfaces::srv::IncWaveHeight::Response::SharedPtr get_inc_wave_hei
 
 **brief** Get incident wave height at multiple locations and times
 
-**x** std::vector<float> meters, x component of wave height location
-**y** std::vector<float> meters, y component of wave height location
-**t** std::vector<float> seconds, sim time to evaluate wave height
-**use_buoy_origin** boolean, all (x,y) are relative to buoy location
+**x** std::vector<float> meters, x component of wave height location  
+**y** std::vector<float> meters, y component of wave height location  
+**t** std::vector<float> seconds, sim time to evaluate wave height  
+**use_buoy_origin** boolean, all (x,y) are relative to buoy location  
 **use_relative_time** boolean, all t are relative to current sim time
 
 **return** vector of IncWaveHeight data

@@ -53,6 +53,20 @@ Initialize the Interface node.
 - `wait_for_services` (`bool`): if True and if check_for_services, block until all services are available
 - `kwargs`: additional keyword arguments forwarded to ROS 2 Node
 
+<a id="buoy_api.interface.Interface.spin"></a>
+
+#### spin
+
+```python
+def spin()
+```
+
+Sets up a `MultiThreadedExecutor` and spins the node (blocking).
+
+If you need non-blocking control over program flow, you may skip calling this function, but a
+`MultiThreadedExecutor` is required for this node. You may call non-blocking spin functions of a
+`MultiThreadedExecutor` in your own loop.
+
 <a id="buoy_api.interface.Interface.use_sim_time"></a>
 
 #### use\_sim\_time
