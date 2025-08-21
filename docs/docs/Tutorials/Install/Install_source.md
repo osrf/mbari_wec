@@ -120,7 +120,7 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
     ```
 
    The simulation software should build without errors.  To run and test, proceed to the
-   [Run the Simulator](../../../tutorials/#running-the-simulator) tutorial series.  Or run a quick
+   [Run the Simulator](../../tutorials.md#running-the-simulator) tutorial series.  Or run a quick
    test as described below to confirm all has worked as expected.
 
 ## Run an example to test
