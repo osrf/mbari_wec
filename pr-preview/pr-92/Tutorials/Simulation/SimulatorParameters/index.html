@@ -862,6 +862,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#passing-params-directly-to-mbari_weclaunchpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Passing params directly to mbari_wec.launch.py
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1290,6 +1299,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#passing-params-directly-to-mbari_weclaunchpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Passing params directly to mbari_wec.launch.py
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1472,6 +1490,80 @@ computer during the simulation.  These files can be processed by a number of too
 processing and inspection of results.  It is also possible to load the rosbag files into plotjuggler
 for plotting and inspection, as described in the
 <a href="../SimulatorOutputPlotjuggler/">View Messages with Plotjuggler</a> Tutorial.</p>
+<h2 id="passing-params-directly-to-mbari_weclaunchpy">Passing params directly to mbari_wec.launch.py<a class="headerlink" href="#passing-params-directly-to-mbari_weclaunchpy" title="Permanent link">&para;</a></h2>
+<p>Many of these parameters may be passed directly as arguments to <code>mbari_wec.launch.py</code>. To see a list,
+enter the following command:
+<div class="highlight"><pre><span></span><code>$ ros2 launch buoy_gazebo mbari_wec.launch.py -s
+Arguments (pass arguments as &#39;&lt;name&gt;:=&lt;value&gt;&#39;):
+
+    &#39;door_state&#39;:
+        open or closed
+        (default: &#39;None&#39;)
+
+    &#39;physics_step&#39;:
+        step size in seconds
+        (default: &#39;None&#39;)
+
+    &#39;physics_rtf&#39;:
+        sim real-time factor
+        (default: &#39;None&#39;)
+
+    &#39;scale_factor&#39;:
+        target winding current scale factor
+        (default: &#39;None&#39;)
+
+    &#39;inc_wave_seed&#39;:
+        random seed for incident wave computation
+        (default: &#39;None&#39;)
+
+    &#39;battery_soc&#39;:
+        initial battery state of charge as pct (0-1)
+        (default: &#39;None&#39;)
+
+    &#39;battery_emf&#39;:
+        initial battery emf in Volts
+        (default: &#39;None&#39;)
+
+    &#39;x_mean_pos&#39;:
+        desired mean piston position in meters
+        (default: &#39;None&#39;)
+
+    &#39;inc_wave_spectrum&#39;:
+        incident wave spectrum defined as inc_wave_spectrum_type:type;p1:v1:v2;p2:v1:v2
+        (default: &#39;None&#39;)
+
+    &#39;world_file&#39;:
+        Gazebo world filename.sdf
+        (default: &#39;mbari_wec.sdf&#39;)
+
+    &#39;world_name&#39;:
+        Gazebo &lt;world name&gt;
+        (default: &#39;mbari_wec_world&#39;)
+
+    &#39;pbloghome&#39;:
+        root pblog directory
+        (default: &#39;/home/anderson/.pblogs&#39;)
+
+    &#39;pblogdir&#39;:
+        specific pblog directory in pbloghome
+        (default: &#39;&#39;)
+
+    &#39;rosbag2&#39;:
+        save rosbags to &lt;pblogdir&gt;/rosbag2/rosbag2_&lt;datetime&gt;
+        (default: &#39;false&#39;)
+
+    &#39;debugger&#39;:
+        run gazebo in gdb
+        (default: &#39;false&#39;)
+
+    &#39;extra_gz_args&#39;:
+        extra_gz_args
+        (default: &#39;&#39;)
+
+    &#39;regenerate_models&#39;:
+        regenerate template models using defaults
+        (default: &#39;true&#39;)
+</code></pre></div></p>
 
 
 
