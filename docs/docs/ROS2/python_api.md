@@ -31,6 +31,7 @@ one, a subscriber for that topic will not be set up:
 - self.power_callback
 - self.trefoil_callback
 - self.powerbuoy_callback
+- self.latent_callback (sim only)
 
 <a id="buoy_api.interface.Interface.__init__"></a>
 
@@ -218,6 +219,30 @@ Set additional damping gain in the piston retract direction.
 - `retract` (`float`): additional damping gain for retraction
 - `blocking` (`bool`): if True, wait for the service call to complete
 
+<a id="buoy_api.interface.Interface.get_inc_wave_height"></a>
+
+#### get\_inc\_wave\_height
+
+```python
+def get_inc_wave_height(self, x, y, t, use_buoy_origin, use_relative_time, timeout=2.0)
+```
+
+Request incident wave height at specific location(s) and time(s).
+
+**Arguments**:
+- `x` (`float` or `list`): x position(s) of desired wave height(s)
+- `y` (`float` or `list`): y position(s) of desired wave height(s)
+- `t` (`float` or `list`): t time(s) in seconds of sim time of desired wave height(s)
+- `use_buoy_origin` (`bool`): if True, x and y are relative to buoy origin
+- `use_relative_time` (`bool`): if True, desired time(s) are relative to current sim time
+                                else, time(s) will be absolute sim time
+- `timeout` (`float`): if not None, wait for timeout sec for the service call to complete
+                       else, wait forever
+
+**Returns**:
+- `list` of `IncWaveHeight` data
+
+
 <a id="buoy_api.interface.Interface.set_params"></a>
 
 #### set\_params
@@ -313,4 +338,18 @@ PBRecord contains a slice of all microcontroller's telemetry data
 **Arguments**:
 
 - `data`: incoming PBRecord
+
+<a id="buoy_api.interface.Interface.latent_callback"></a>
+
+#### latent\_callback
+
+```python
+def latent_callback(self, data)
+```
+
+Override this function to subscribe to /latent_data to receive sim-only LatentData.
+
+**Arguments**:
+
+- `data`: incoming LatentData
 
