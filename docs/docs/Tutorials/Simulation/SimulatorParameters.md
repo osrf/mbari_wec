@@ -195,3 +195,80 @@ processing and inspection of results.  It is also possible to load the rosbag fi
 for plotting and inspection, as described in the
 [View Messages with Plotjuggler](SimulatorOutputPlotjuggler.md) Tutorial.
 
+## Passing params directly to mbari_wec.launch.py
+
+Many of these parameters may be passed directly as arguments to `mbari_wec.launch.py`. To see a list,
+enter the following command:
+```
+$ ros2 launch buoy_gazebo mbari_wec.launch.py -s
+Arguments (pass arguments as '<name>:=<value>'):
+
+    'door_state':
+        open or closed
+        (default: 'None')
+
+    'physics_step':
+        step size in seconds
+        (default: 'None')
+
+    'physics_rtf':
+        sim real-time factor
+        (default: 'None')
+
+    'scale_factor':
+        target winding current scale factor
+        (default: 'None')
+
+    'inc_wave_seed':
+        random seed for incident wave computation
+        (default: 'None')
+
+    'battery_soc':
+        initial battery state of charge as pct (0-1)
+        (default: 'None')
+
+    'battery_emf':
+        initial battery emf in Volts
+        (default: 'None')
+
+    'x_mean_pos':
+        desired mean piston position in meters
+        (default: 'None')
+
+    'inc_wave_spectrum':
+        incident wave spectrum defined as inc_wave_spectrum_type:type;p1:v1:v2;p2:v1:v2
+        (default: 'None')
+
+    'world_file':
+        Gazebo world filename.sdf
+        (default: 'mbari_wec.sdf')
+
+    'world_name':
+        Gazebo <world name>
+        (default: 'mbari_wec_world')
+
+    'pbloghome':
+        root pblog directory
+        (default: '/home/anderson/.pblogs')
+
+    'pblogdir':
+        specific pblog directory in pbloghome
+        (default: '')
+
+    'rosbag2':
+        save rosbags to <pblogdir>/rosbag2/rosbag2_<datetime>
+        (default: 'false')
+
+    'debugger':
+        run gazebo in gdb
+        (default: 'false')
+
+    'extra_gz_args':
+        extra_gz_args
+        (default: '')
+
+    'regenerate_models':
+        regenerate template models using defaults
+        (default: 'true')
+```
+
