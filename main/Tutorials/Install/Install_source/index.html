@@ -603,6 +603,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu-2404-ros-2-jazzy-gazebo-harmonic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ubuntu 24.04, ROS 2 Jazzy, Gazebo Harmonic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -618,6 +633,15 @@
   <a href="#run-an-example-to-test" class="md-nav__link">
     <span class="md-ellipsis">
       Run an example to test
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-build-environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Post-Build Environment Setup
     </span>
   </a>
   
@@ -1234,6 +1258,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu-2404-ros-2-jazzy-gazebo-harmonic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ubuntu 24.04, ROS 2 Jazzy, Gazebo Harmonic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1249,6 +1288,15 @@
   <a href="#run-an-example-to-test" class="md-nav__link">
     <span class="md-ellipsis">
       Run an example to test
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-build-environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Post-Build Environment Setup
     </span>
   </a>
   
@@ -1272,67 +1320,105 @@
 
 <h1 id="install-from-source">Install from source<a class="headerlink" href="#install-from-source" title="Permanent link">&para;</a></h1>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
-<p>Use Ubuntu 22.04.</p>
+<h3 id="ubuntu-2404-ros-2-jazzy-gazebo-harmonic">Ubuntu 24.04, ROS 2 Jazzy, Gazebo Harmonic<a class="headerlink" href="#ubuntu-2404-ros-2-jazzy-gazebo-harmonic" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">NOTE:</p>
+<p>These are the current recommended requirements. Ubuntu 22.04, ROS 2 Humble, Gazebo Garden
+instructions are no longer maintained for <code>mbari_wec</code> as Gazebo Garden is EOL.</p>
+</div>
+<p>Follow instructions for <a href="https://gazebosim.org/docs/harmonic/ros_installation/">Installing Gazebo with ROS</a>.</p>
 <ol>
 <li>
-<p>Install <a href="https://docs.ros.org/en/humble/index.html">ROS 2 Humble</a>
-    MBARI WEC is tested against the cyclonedds rmw implementation, so set that up as follows:
-        <div class="highlight"><pre><span></span><code>sudo apt install -y ros-humble-rmw-cyclonedds-cpp
+<p><a href="https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html">Install</a> ROS 2 Jazzy</p>
+<p>MBARI WEC works best with the cyclonedds rmw implementation, so set that up as follows:</p>
+<div class="highlight"><pre><span></span><code>sudo apt install ros-jazzy-rmw-cyclonedds-cpp
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-</code></pre></div></p>
+</code></pre></div>
+<p>Running the sim with rosbag2 logging uses mcap storage. We also need sdformat-urdf.
+So, install those as well:</p>
+<div class="highlight"><pre><span></span><code>sudo apt install ros-jazzy-rosbag2-storage-mcap ros-jazzy-sdformat-urdf
+</code></pre></div>
+<p>To use plotjuggler to view ros2 data live plots (recommended in these tutorials), install like so:</p>
+<div class="highlight"><pre><span></span><code>sudo apt install ros-jazzy-plotjuggler ros-jazzy-plotjuggler-msgs ros-jazzy-plotjuggler-ros
+</code></pre></div>
 </li>
 <li>
-<p>Install <a href="https://gazebosim.org/docs/garden">Gazebo Garden</a></p>
+<p>Install Gazebo Harmonic by installing <code>ros_gz</code> from the <code>ros-jazzy-*</code> apt repos.</p>
+<div class="highlight"><pre><span></span><code>sudo apt update
+sudo apt install ros-jazzy-ros-gz
+</code></pre></div>
+<p>When using Gazebo Harmonic and ROS 2 Jazzy together, Gazebo packages (<code>gz-*</code>) now come from
+ROS 2 Jazzy apt repos (<code>ros-jazzy-gz-*</code>). We also need to use the <code>sdformat-urdf</code> package.
+See <a href="https://gazebosim.org/docs/harmonic/ros_installation/">here</a> for more info.</p>
 </li>
 <li>
-<p>Install necessary tools
-        <div class="highlight"><pre><span></span><code>sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
-</code></pre></div></p>
+<p>Set the Gazebo version to Harmonic. (place this in ~/.bashrc for convenience if rebuilding often):</p>
+<div class="highlight"><pre><span></span><code>export GZ_VERSION=harmonic
+</code></pre></div>
 </li>
 <li>
-<p>Install necessary libraries
-        <div class="highlight"><pre><span></span><code>curl -s --compressed &quot;https://hamilton8415.github.io/ppa/KEY.gpg&quot; | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg &gt;/dev/null
+<p>gz-python-bindings</p>
+<p>Python bindings for <code>gz.math</code> and <code>gz.sim</code> are used in <code>mbari_wec</code> but are not distributed via apt or pip.
+This repository, <a href="https://github.com/mbari-org/gz-python-bindings">gz-python-bindings</a> builds the python
+bindings and packages them up in a simple <code>PyPI</code> index url for an easy pip install.</p>
+<ol>
+<li>Ensure these packages are also installed</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo apt update
+sudo apt install ros-jazzy-gz-sim-vendor ros-jazzy-gz-math-vendor
+</code></pre></div>
+<ol>
+<li>
+<p>pip install</p>
+<p>NOTE: <code>--break-system-packages</code> might sound scary, but don't be alarmed -- nothing bad will happen in this case</p>
+<div class="highlight"><pre><span></span><code>python3 -m pip install -i https://mbari-org.github.io/gz-python-bindings/simple gz-python-bindings --break-system-packages
+</code></pre></div>
+</li>
+</ol>
+</li>
+<li>
+<p>Install necessary tools</p>
+<div class="highlight"><pre><span></span><code>sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
+</code></pre></div>
+</li>
+<li>
+<p>Install necessary libraries</p>
+<div class="highlight"><pre><span></span><code>curl -s --compressed &quot;https://hamilton8415.github.io/ppa/KEY.gpg&quot; | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg &gt;/dev/null
 sudo curl -s --compressed -o /etc/apt/sources.list.d/my_list_file.list &quot;https://hamilton8415.github.io/ppa/my_list_file.list&quot;
 sudo apt update
-sudo apt install libfshydrodynamics=1.3.1
-</code></pre></div></p>
+sudo apt install libfshydrodynamics=1.4.0
+</code></pre></div>
 </li>
 </ol>
 <h2 id="buoy-simulation-software-build">Buoy Simulation Software Build<a class="headerlink" href="#buoy-simulation-software-build" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Create a workspace, for example:
-        <div class="highlight"><pre><span></span><code>mkdir -p ~/mbari_wec_ws/src
+<p>Create a workspace, for example:</p>
+<div class="highlight"><pre><span></span><code>mkdir -p ~/mbari_wec_ws/src
 cd ~/mbari_wec_ws/src
-</code></pre></div></p>
+</code></pre></div>
 </li>
 <li>
-<p>Clone all source repos with the help of <code>vcstool</code>:
-        <div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml
+<p>Clone all source repos with the help of <code>vcstool</code>:</p>
+<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml
 vcs import &lt; mbari_wec_all.yaml
 cd ~/mbari_wec_ws
-</code></pre></div></p>
+</code></pre></div>
 </li>
 <li>
-<p>Set the Gazebo version to Garden. This is needed because we're not using an
-   official ROS + Gazebo combination (place this in ~/.bashrc for convenience if rebuilding often):
-        <div class="highlight"><pre><span></span><code>export GZ_VERSION=garden
-</code></pre></div></p>
-</li>
-<li>
-<p>Install ROS dependencies
-        <div class="highlight"><pre><span></span><code>sudo pip3 install -U rosdep
+<p>Install ROS dependencies</p>
+<div class="highlight"><pre><span></span><code>sudo pip3 install -U rosdep
 sudo rosdep init
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y -i
-</code></pre></div></p>
+</code></pre></div>
 </li>
 <li>
-<p>Build and install
-        <div class="highlight"><pre><span></span><code>source /opt/ros/humble/setup.bash
+<p>Build and install</p>
+<div class="highlight"><pre><span></span><code>source /opt/ros/jazzy/setup.bash
 cd ~/mbari_wec_ws
 colcon build
-</code></pre></div></p>
+</code></pre></div>
 </li>
 </ol>
 <p>The simulation software should build without errors.  To run and test, proceed to the
@@ -1341,22 +1427,35 @@ colcon build
 <h2 id="run-an-example-to-test">Run an example to test<a class="headerlink" href="#run-an-example-to-test" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>In a new terminal, source the workspace
-        <div class="highlight"><pre><span></span><code>. ~/mbari_wec_ws/install/setup.bash
-</code></pre></div></p>
+<p>In a new terminal, source the workspace</p>
+<div class="highlight"><pre><span></span><code>. ~/mbari_wec_ws/install/setup.bash
+</code></pre></div>
 </li>
 <li>
 <p>Set <code>SDF_PATH</code> to allow <code>robot_state_publisher</code> parse the robot description
-   from the sdformat model (place this in ~/.bashrc for convenience if rebuilding often):
-       <div class="highlight"><pre><span></span><code>export SDF_PATH=$GZ_SIM_RESOURCE_PATH
-</code></pre></div></p>
-</li>
-<li>
-<p>Launch the simulation
-        <div class="highlight"><pre><span></span><code>ros2 launch buoy_gazebo mbari_wec.launch.py
-</code></pre></div></p>
+   from the sdformat model (place this in ~/.bashrc for convenience if rebuilding often):</p>
 </li>
 </ol>
+<div class="highlight"><pre><span></span><code>export SDF_PATH=$GZ_SIM_RESOURCE_PATH
+</code></pre></div>
+<ol>
+<li>
+<p>Launch the simulation</p>
+<div class="highlight"><pre><span></span><code>ros2 launch buoy_gazebo mbari_wec.launch.py
+</code></pre></div>
+</li>
+</ol>
+<h2 id="post-build-environment-setup">Post-Build Environment Setup<a class="headerlink" href="#post-build-environment-setup" title="Permanent link">&para;</a></h2>
+<p>Place these lines in your ~/.bashrc for convenience to simplify running the sim in the future:</p>
+<div class="highlight"><pre><span></span><code>```
+source /opt/ros/jazzy/setup.bash
+source /path/to/mbari_wec_ws/install/setup.bash
+export GZ_VERSION=harmonic
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+export SDF_PATH=$GZ_SIM_RESOURCE_PATH
+```
+</code></pre></div>
+<p>(NOTE: Remember to replace <code>/path/to/mbari_wec_ws/install/setup.bash</code> with your path to your mbari wec workspace)</p>
 
 
 

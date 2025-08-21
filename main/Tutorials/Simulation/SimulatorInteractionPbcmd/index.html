@@ -1330,6 +1330,19 @@ an effect.  </p>
 $ source install/setup.bash
 </code></pre></div></p>
 <p>Then, run <code>pbcmd</code> or any of the commands listed in its output:</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE:</p>
+<p>If you receive a message: <code>pbcmd: command not found</code> when trying to run, please run the following
+command first:
+<div class="highlight"><pre><span></span><code>$ export PATH=$PATH:~/.local/bin
+</code></pre></div></p>
+<p>Ensure the following is in your <code>~/.profile</code> for next time:
+<div class="highlight"><pre><span></span><code># set PATH so it includes user&#39;s private bin if it exists
+if [ -d &quot;$HOME/.local/bin&quot; ] ; then
+    PATH=&quot;$HOME/.local/bin:$PATH&quot;
+fi
+</code></pre></div></p>
+</div>
 <div class="highlight"><pre><span></span><code>$ pbcmd
 
 pbcmd: Multi-call command Power Buoy dispatcher
@@ -1438,12 +1451,8 @@ controls the rate of the ROS 2 messages from the power converter on the buoy, an
 <p>As an example, issue the following commands in a terminal <em>where the workspace has been sourced</em>:</p>
 <ol>
 <li>
-<p>Launch the simulation without incident waves by issuing the following commands, the first
-command over-rides the default sea-state and results in no incident wave-forcing on the buoy when
-the "regenerate_models" flag is set to false:
-<div class="highlight"><pre><span></span><code>$ empy -D &#39;inc_wave_spectrum_type=&quot;None&quot;&#39; -o ~/mbari_wec_ws/install/buoy_description/share/buoy_description/models/mbari_wec/model.sdf ~/mbari_wec_ws/install/buoy_description/share/buoy_description/models/mbari_wec/model.sdf.em
-
-$ ros2 launch buoy_gazebo mbari_wec.launch.py regenerate_models:=false
+<p>Launch the simulation without incident waves by issuing the following command (overriding the default waves):
+<div class="highlight"><pre><span></span><code>$ ros2 launch buoy_gazebo mbari_wec.launch.py inc_wave_spectrum:=&#39;inc_wave_spectrum_type:None&#39;
 </code></pre></div></p>
 </li>
 <li>
@@ -1460,12 +1469,10 @@ the /spring_data topic, and then create plots to display these messages in separ
 </li>
 <li>
 <p>Issue the following command to introduce a 10A winding current offset in the motor-current/RPM
-relationship.</p>
-</li>
-</ol>
+relationship.
 <div class="highlight"><pre><span></span><code>$ pc_BiasCurr 10
-</code></pre></div>
-<ul>
+</code></pre></div></p>
+</li>
 <li>
 <p>After 20 seconds of simulation time or so, the plotjuggler window should look approximately as
 below.  One can see that the command resulted in an additional 10 Amps of motor winding current
@@ -1487,7 +1494,7 @@ to the heating effects of the pneumatic spring, heat has been created in the gas
 slowly dissipates to the environment and the lower spring pressure drops slowly and lowers the
 piston gradually.</p>
 </li>
-</ul>
+</ol>
 <p><img alt="" src="../images/BiasCurrScreenshot.png" /></p>
 <h2 id="exercises">Exercises<a class="headerlink" href="#exercises" title="Permanent link">&para;</a></h2>
 <p>To extend the previous example, some interesting exercises to try are the following:</p>
