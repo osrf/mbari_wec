@@ -1336,15 +1336,11 @@ $ source install/setup.bash
 command first:
 <div class="highlight"><pre><span></span><code>$ export PATH=$PATH:~/.local/bin
 </code></pre></div></p>
-<p>If you like, add the following to your <code>~/.profile</code> for next time:
-<div class="highlight"><pre><span></span><code># add ~/.local/bin to PATH if it exists and is not already in PATH
-if [ -d &quot;$HOME/.local/bin&quot; ]; then
-  case &quot;:$PATH:&quot; in
-    *&quot;:$HOME/.local/bin:&quot;*) ;;                 # already in PATH
-    *) PATH=&quot;$HOME/.local/bin:$PATH&quot; ;;        # prepend it
-  esac
+<p>Ensure the following is in your <code>~/.profile</code> for next time:
+<div class="highlight"><pre><span></span><code># set PATH so it includes user&#39;s private bin if it exists
+if [ -d &quot;$HOME/.local/bin&quot; ] ; then
+    PATH=&quot;$HOME/.local/bin:$PATH&quot;
 fi
-export PATH
 </code></pre></div></p>
 </div>
 <div class="highlight"><pre><span></span><code>$ pbcmd
