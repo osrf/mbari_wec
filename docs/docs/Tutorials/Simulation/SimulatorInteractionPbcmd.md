@@ -163,7 +163,6 @@ the /spring_data topic, and then create plots to display these messages in separ
 
 5. Issue the following command to introduce a 10A winding current offset in the motor-current/RPM
 relationship.
-
 ```
 $ pc_BiasCurr 10
 ```
