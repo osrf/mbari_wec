@@ -35,16 +35,12 @@ Then, run `pbcmd` or any of the commands listed in its output:
     $ export PATH=$PATH:~/.local/bin
     ```
     
-    If you like, add the following to your `~/.profile` for next time:
+    Ensure the following is in your `~/.profile` for next time:
     ```
-    # add ~/.local/bin to PATH if it exists and is not already in PATH
-    if [ -d "$HOME/.local/bin" ]; then
-      case ":$PATH:" in
-        *":$HOME/.local/bin:"*) ;;                 # already in PATH
-        *) PATH="$HOME/.local/bin:$PATH" ;;        # prepend it
-      esac
+    # set PATH so it includes user's private bin if it exists
+    if [ -d "$HOME/.local/bin" ] ; then
+        PATH="$HOME/.local/bin:$PATH"
     fi
-    export PATH
     ```
 
 ```
