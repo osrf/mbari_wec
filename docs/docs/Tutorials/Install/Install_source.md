@@ -97,7 +97,7 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
 2. Clone all source repos with the help of `vcstool`:
    
     ```
-    wget https://raw.githubusercontent.com/osrf/mbari_wec/andermi/jazzy_harmonic/mbari_wec_all.yaml
+    wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml
     vcs import < mbari_wec_all.yaml
     cd ~/mbari_wec_ws
     ```
