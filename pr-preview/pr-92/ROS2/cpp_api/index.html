@@ -456,6 +456,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#spin" class="md-nav__link">
+    <span class="md-ellipsis">
+      spin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#use_sim_time" class="md-nav__link">
     <span class="md-ellipsis">
       use_sim_time
@@ -1440,6 +1449,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#spin" class="md-nav__link">
+    <span class="md-ellipsis">
+      spin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#use_sim_time" class="md-nav__link">
     <span class="md-ellipsis">
       use_sim_time
@@ -1741,6 +1759,13 @@ interface. It must implement any callbacks or parameter-setting routines it need
 <p><strong>node_name</strong> Name of the ROS2 node.<br />
 <strong>wait_for_services</strong> If true and check_for_services, block until services are available.<br />
 <strong>check_for_services</strong> If true, attempt to verify service availability before use.  </p>
+<h3 id="spin">spin<a class="headerlink" href="#spin" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">spin</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>brief</strong> Sets up a <code>MultiThreadedExecutor</code> and spins the node (blocking).</p>
+<p>If you need non-blocking control over program flow, you may skip calling this function, but a
+ <code>MultiThreadedExecutor</code> is required for this node. You may call non-blocking spin functions of a
+ <code>MultiThreadedExecutor</code> in your own loop.</p>
 <h3 id="use_sim_time">use_sim_time<a class="headerlink" href="#use_sim_time" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">use_sim_time</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">enable</span><span class="p">)</span>
 </code></pre></div>
@@ -1825,10 +1850,10 @@ A high bias in either direction will move the piston back and forth.</p>
 </code></pre></div>
 <p><em>Defined at buoy_api_cpp/include/buoy_api/interface.hpp#1164</em></p>
 <p><strong>brief</strong> Get incident wave height at a single location and time</p>
-<p><strong>x</strong> float meters, x component of wave height location
-<strong>y</strong> float meters, y component of wave height location
-<strong>t</strong> float seconds, sim time to evaluate wave height
-<strong>use_buoy_origin</strong> boolean, (x,y) are relative to buoy location
+<p><strong>x</strong> float meters, x component of wave height location<br />
+<strong>y</strong> float meters, y component of wave height location<br />
+<strong>t</strong> float seconds, sim time to evaluate wave height<br />
+<strong>use_buoy_origin</strong> boolean, (x,y) are relative to buoy location<br />
 <strong>use_relative_time</strong> boolean, t is relative to current sim time</p>
 <p><strong>return</strong> vector of IncWaveHeight data (with a single index)</p>
 <div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="n">buoy_interfaces</span><span class="o">::</span><span class="n">srv</span><span class="o">::</span><span class="n">IncWaveHeight</span><span class="o">::</span><span class="n">Response</span><span class="o">::</span><span class="n">SharedPtr</span><span class="w"> </span><span class="n">get_inc_wave_height</span><span class="p">(</span>
@@ -1842,10 +1867,10 @@ A high bias in either direction will move the piston back and forth.</p>
 <span class="p">)</span>
 </code></pre></div>
 <p><strong>brief</strong> Get incident wave height at multiple locations and times</p>
-<p><strong>x</strong> std::vector<float> meters, x component of wave height location
-<strong>y</strong> std::vector<float> meters, y component of wave height location
-<strong>t</strong> std::vector<float> seconds, sim time to evaluate wave height
-<strong>use_buoy_origin</strong> boolean, all (x,y) are relative to buoy location
+<p><strong>x</strong> std::vector<float> meters, x component of wave height location<br />
+<strong>y</strong> std::vector<float> meters, y component of wave height location<br />
+<strong>t</strong> std::vector<float> seconds, sim time to evaluate wave height<br />
+<strong>use_buoy_origin</strong> boolean, all (x,y) are relative to buoy location<br />
 <strong>use_relative_time</strong> boolean, all t are relative to current sim time</p>
 <p><strong>return</strong> vector of IncWaveHeight data
    */</p>

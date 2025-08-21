@@ -424,6 +424,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#spin" class="md-nav__link">
+    <span class="md-ellipsis">
+      spin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#use_sim_time" class="md-nav__link">
     <span class="md-ellipsis">
       use_sim_time
@@ -1422,6 +1431,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#spin" class="md-nav__link">
+    <span class="md-ellipsis">
+      spin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#use_sim_time" class="md-nav__link">
     <span class="md-ellipsis">
       use_sim_time
@@ -1665,6 +1683,14 @@ one, a subscriber for that topic will not be set up:</p>
 <li><code>wait_for_services</code> (<code>bool</code>): if True and if check_for_services, block until all services are available</li>
 <li><code>kwargs</code>: additional keyword arguments forwarded to ROS 2 Node</li>
 </ul>
+<p><a id="buoy_api.interface.Interface.spin"></a></p>
+<h4 id="spin">spin<a class="headerlink" href="#spin" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">spin</span><span class="p">()</span>
+</code></pre></div>
+<p>Sets up a <code>MultiThreadedExecutor</code> and spins the node (blocking).</p>
+<p>If you need non-blocking control over program flow, you may skip calling this function, but a
+<code>MultiThreadedExecutor</code> is required for this node. You may call non-blocking spin functions of a
+<code>MultiThreadedExecutor</code> in your own loop.</p>
 <p><a id="buoy_api.interface.Interface.use_sim_time"></a></p>
 <h4 id="use_sim_time">use_sim_time<a class="headerlink" href="#use_sim_time" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">use_sim_time</span><span class="p">(</span><span class="n">enable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
