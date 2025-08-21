@@ -33,7 +33,11 @@ fi
 
 # Default to NVIDIA
 #DOCKER_OPTS="--runtime=nvidia"
-DOCKER_OPTS="--gpus all --env NVIDIA_DRIVER_CAPABILITIES=all"
+DOCKER_OPTS="--gpus all -e NVIDIA_DRIVER_CAPABILITIES=all"
+# workarounds for MESA/ZINK Vulkan issue
+DOCKER_OPTS="$DOCKER_OPTS -v /usr/share/glvnd/egl_vendor.d/10_nvidia.json:/usr/share/glvnd/egl_vendor.d/10_nvidia.json"
+DOCKER_OPTS="$DOCKER_OPTS -e LIBGL_KOPPER_DISABLE=true -e __GLX_VENDOR_LIBRARY_NAME=nvidia"
+DOCKER_OPTS="$DOCKER_OPTS -e __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/10_nvidia.json:/usr/share/glvnd/egl_vendor.d/50_mesa.json"
 
 # Parse and remove args
 PARAMS=""

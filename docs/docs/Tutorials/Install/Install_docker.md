@@ -60,6 +60,7 @@ is convenient if you would like to make any changes.
 2. Build the docker image
    If you have an NVIDIA graphics card
    ```
+   ./build.bash nvidia_opengl_ubuntu24
    ./build.bash mbari_wec
    ```
    Otherwise
@@ -115,4 +116,4 @@ collected in the sim will also be the same ROS 2 messages collected on the physi
    ```
 
 The simulation software should now be available.  To run and test, proceed to the
-[Run the Simulator](../../../tutorials/#running-the-simulator) tutorial series.
+[Run the Simulator](../../tutorials.md#running-the-simulator) tutorial series.

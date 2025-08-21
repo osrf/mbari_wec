@@ -28,6 +28,20 @@ $ source install/setup.bash
 ```
 
 Then, run `pbcmd` or any of the commands listed in its output:
+!!! info "NOTE:"
+    If you receive a message: `pbcmd: command not found` when trying to run, please run the following
+    command first:
+    ```
+    $ export PATH=$PATH:~/.local/bin
+    ```
+    
+    Ensure the following is in your `~/.profile` for next time:
+    ```
+    # set PATH so it includes user's private bin if it exists
+    if [ -d "$HOME/.local/bin" ] ; then
+        PATH="$HOME/.local/bin:$PATH"
+    fi
+    ```
 
 ```
 $ pbcmd
@@ -132,13 +146,9 @@ controls the rate of the ROS 2 messages from the power converter on the buoy, an
 ## Example Usage
 As an example, issue the following commands in a terminal *where the workspace has been sourced*:
 
-1. Launch the simulation without incident waves by issuing the following commands, the first
-command over-rides the default sea-state and results in no incident wave-forcing on the buoy when
-the "regenerate_models" flag is set to false:
+1. Launch the simulation without incident waves by issuing the following command (overriding the default waves):
 ```
-$ empy -D 'inc_wave_spectrum_type="None"' -o ~/mbari_wec_ws/install/buoy_description/share/buoy_description/models/mbari_wec/model.sdf ~/mbari_wec_ws/install/buoy_description/share/buoy_description/models/mbari_wec/model.sdf.em
-
-$ ros2 launch buoy_gazebo mbari_wec.launch.py regenerate_models:=false
+$ ros2 launch buoy_gazebo mbari_wec.launch.py inc_wave_spectrum:='inc_wave_spectrum_type:None'
 ```
 
 2. Start the simulation in the GUI by pressing the play button.
@@ -153,7 +163,6 @@ the /spring_data topic, and then create plots to display these messages in separ
 
 5. Issue the following command to introduce a 10A winding current offset in the motor-current/RPM
 relationship.
-
 ```
 $ pc_BiasCurr 10
 ```

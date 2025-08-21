@@ -173,6 +173,7 @@ An alternative to using the images from MBARI's DockerHub would be to build from
 
    If you have an NVIDIA graphics card
    ```
+   ./build.bash nvidia_opengl_ubuntu24
    ./build.bash mbari_wec
    ```
    Otherwise
