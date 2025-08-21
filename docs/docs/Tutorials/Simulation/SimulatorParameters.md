@@ -195,7 +195,7 @@ processing and inspection of results.  It is also possible to load the rosbag fi
 for plotting and inspection, as described in the
 [View Messages with Plotjuggler](SimulatorOutputPlotjuggler.md) Tutorial.
 
-## Passing params directly to mbari_wec.launch.py
+## Passing params directly to launch file
 
 Many of these parameters may be passed directly as arguments to `mbari_wec.launch.py`. To see a list,
 enter the following command:
