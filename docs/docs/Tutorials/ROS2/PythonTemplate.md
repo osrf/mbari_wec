@@ -11,10 +11,10 @@ There are two GitHub
 [template repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
 set up (C++/Python) for a quick start on writing a
 custom controller utilizing
-[buoy_api_cpp](https://github.com/osrf/mbari_wec_utils/tree/release/v2.0.0-rc1/buoy_api_cpp) and
-[buoy_api_py](https://github.com/osrf/mbari_wec_utils/tree/release/v2.0.0-rc1/buoy_api_py). Please see
-[C++ examples](https://github.com/osrf/mbari_wec_utils/tree/release/v2.0.0-rc1/buoy_api_cpp/examples) and
-[Python examples](https://github.com/osrf/mbari_wec_utils/tree/release/v2.0.0-rc1/buoy_api_py/buoy_api/examples) for example
+[buoy_api_cpp](https://github.com/osrf/mbari_wec_utils/tree/v2.0.0-rc1/buoy_api_cpp) and
+[buoy_api_py](https://github.com/osrf/mbari_wec_utils/tree/v2.0.0-rc1/buoy_api_py). Please see
+[C++ examples](https://github.com/osrf/mbari_wec_utils/tree/v2.0.0-rc1/buoy_api_cpp/examples) and
+[Python examples](https://github.com/osrf/mbari_wec_utils/tree/v2.0.0-rc1/buoy_api_py/buoy_api/examples) for example
 controller implementations.
 
 * [mbari_wec_template_cpp](https://github.com/mbari-org/mbari_wec_template_cpp)
