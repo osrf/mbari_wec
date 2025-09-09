@@ -44,11 +44,11 @@ controller implementations.
 
 At the moment, MBARI WEC is supported by source and Docker installation only.
 
-## Source Install On Host System
+### Source Install On Host System
 
 [Tutorial: Install from source](https://osrf.github.io/mbari_wec/main/Tutorials/Install/Install_source/#install-from-source)
 
-## Using Docker
+### Using Docker
 
 [Tutorial: Install using Docker](https://osrf.github.io/mbari_wec/main/Tutorials/Install/Install_docker/#install-using-docker)
 
