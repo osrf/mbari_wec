@@ -3,12 +3,12 @@ repositories:
   mbari_wec:
     type: git
     url: https://github.com/osrf/mbari_wec
-    version: main
+    version: release/v2.0.0
   mbari_wec_utils:
     type: git
     url: https://github.com/osrf/mbari_wec_utils
-    version: main
+    version: release/v2.0.0
   mbari_wec_gz:
     type: git
     url: https://github.com/osrf/mbari_wec_gz
-    version: main
+    version: release/v2.0.0

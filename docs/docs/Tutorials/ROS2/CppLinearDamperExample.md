@@ -241,7 +241,7 @@ reduced when retracting.
 ### Controller
 
 All that is left is to connect the necessary feedback data to the `ControlPolicy`. In this case,
-`rpm`, `scale`, and `retract` are present in [`buoy_interfaces.msg.PCRecord`](https://github.com/osrf/mbari_wec_utils/blob/main/buoy_interfaces/msg/PCRecord.msg) on the `/power_data`
+`rpm`, `scale`, and `retract` are present in [`buoy_interfaces.msg.PCRecord`](https://github.com/osrf/mbari_wec_utils/blob/release/v2.0.0/buoy_interfaces/msg/PCRecord.msg) on the `/power_data`
 topic published by the Power Controller running on the buoy.
 
 To access the data, all that is required is to define the callback
