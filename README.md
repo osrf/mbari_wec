@@ -11,7 +11,7 @@ And MBARI-WEC in action using Gazebo simulator here:
 
 These are the repositories for the project:
 
-* [mbari_wec_utils](https://github.com/osrf/mbari_wec_utils): ROS 2 messages, interface API, and examples for
+* [mbari_wec_utils](https://github.com/osrf/mbari_wec_utils/tree/v2.0.0-rc2): ROS 2 messages, interface API, and examples for
   receiving and sending data to a physical or simulated buoy.
     * [buoy_interfaces](https://github.com/osrf/mbari_wec_utils/tree/v2.0.0-rc2/buoy_api_cpp): ROS 2 messages
       to recieve and send data to a physical or simulated buoy
@@ -19,7 +19,7 @@ These are the repositories for the project:
       MBARI Power Buoy including Controller examples to run against a physical or simulated buoy.
     * [buoy_api_py](https://github.com/osrf/mbari_wec_utils/tree/v2.0.0-rc2/buoy_api_py): Python Interface to
       MBARI Power Buoy including Controller examples to run against a physical or simulated buoy.
-* [mbari_wec_gz](https://github.com/osrf/mbari_wec_gz)
+* [mbari_wec_gz](https://github.com/osrf/mbari_wec_gz/tree/v2.0.0-rc2)
     * [buoy_description](https://github.com/osrf/mbari_wec_gz/tree/v2.0.0-rc2/buoy_description):
       Buoy model description.
     * [buoy_gazebo](https://github.com/osrf/mbari_wec_gz/tree/v2.0.0-rc2/buoy_gazebo):
