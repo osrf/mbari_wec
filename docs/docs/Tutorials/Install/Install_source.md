@@ -137,7 +137,7 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
 
 2. Set `SDF_PATH` to allow `robot_state_publisher` parse the robot description
    from the sdformat model (place this in ~/.bashrc for convenience if rebuilding often):
-
+  
    ```
    export SDF_PATH=$GZ_SIM_RESOURCE_PATH
    ```
