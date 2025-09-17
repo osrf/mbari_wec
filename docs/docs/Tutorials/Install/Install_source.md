@@ -9,8 +9,10 @@
 
 Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/harmonic/ros_installation/).
 
-1. [Install](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html) ROS 2 Jazzy
+1. Go to the following to [Install](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html) ROS 2 Jazzy, if you do not already have it installed on your machine.
 
+    Following your ROS installation do the following:
+   
     MBARI WEC works best with the cyclonedds rmw implementation, so set that up as follows:
    
     ```
@@ -18,11 +20,11 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
     export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
     ```
 
-    Running the sim with rosbag2 logging uses mcap storage. We also need sdformat-urdf.
+    Running the sim with rosbag2 logging uses mcap storage. We also need sdformat-urdf and tf_transformations.
     So, install those as well:
 
     ```
-    sudo apt install ros-jazzy-rosbag2-storage-mcap ros-jazzy-sdformat-urdf
+    sudo apt install ros-jazzy-rosbag2-storage-mcap ros-jazzy-sdformat-urdf ros-jazzy-tf-transformations
     ```
 
     To use plotjuggler to view ros2 data live plots (recommended in these tutorials), install like so:
@@ -48,7 +50,13 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
     export GZ_VERSION=harmonic
     ```
 
-4. gz-python-bindings
+4. Install necessary tools
+   
+    ```
+    sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
+    ```
+
+5. gz-python-bindings
 
     Python bindings for `gz.math` and `gz.sim` are used in `mbari_wec` but are not distributed via apt or pip.
     This repository, [gz-python-bindings](https://github.com/mbari-org/gz-python-bindings) builds the python
@@ -68,12 +76,6 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
         ```
         python3 -m pip install -i https://mbari-org.github.io/gz-python-bindings/simple gz-python-bindings --break-system-packages
         ```
-
-5. Install necessary tools
-   
-    ```
-    sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
-    ```
 
 6. Install necessary libraries
    
@@ -103,6 +105,8 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
     ```
 
 3. Install ROS dependencies
+
+    NOTE: do not be alarmed if you recieve "error: externally managed environment" following the first line here
    
     ```
     sudo pip3 install -U rosdep
@@ -133,10 +137,10 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
 
 2. Set `SDF_PATH` to allow `robot_state_publisher` parse the robot description
    from the sdformat model (place this in ~/.bashrc for convenience if rebuilding often):
-
-   ```
-   export SDF_PATH=$GZ_SIM_RESOURCE_PATH
-   ```
+   
+    ```
+    export SDF_PATH=$GZ_SIM_RESOURCE_PATH
+    ```
 
 3. Launch the simulation
    
@@ -145,8 +149,7 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
     ```
 
 ## Post-Build Environment Setup
-
-Place these lines in your ~/.bashrc for convenience to simplify running the sim in the future:
+1. Place these lines in your ~/.bashrc for convenience to simplify running the sim in the future:
    
     ```
     source /opt/ros/jazzy/setup.bash
