@@ -1,0 +1,1821 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://example.com/Tutorials/Simulation/SimulatorOutputLogs/">
+      
+      
+        <link rel="prev" href="../SimulatorOutputPlotjuggler/">
+      
+      
+        <link rel="next" href="../SimulatorInteractionPbcmd/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Simulator Output Data Logs - MBARI-WEC</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#simulator-output-data-logs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MBARI-WEC" class="md-header__button md-logo" aria-label="MBARI-WEC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MBARI-WEC
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Simulator Output Data Logs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MBARI-WEC" class="md-nav__button md-logo" aria-label="MBARI-WEC" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MBARI-WEC
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ControlAndTelemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Buoy Control and Telemetry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../atseaoperation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    At Sea Operation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 Interface
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            ROS 2 Interface
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ROS2/messages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Interfaces (ROS 2 Messages)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ROS2/python_api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API (Python)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ROS2/cpp_api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API (C++)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Install/Install_source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install from source
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Install/Install_docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Install using Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Running the Simulator
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Running the Simulator
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RunSimulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Run the Simulator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulatorOutputROS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    View ROS 2 Messages
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulatorOutputPlotjuggler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    View ROS 2 Messages with Plotjuggler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Simulator Output Data Logs
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulator Output Data Logs
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#csv-data-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      .csv data files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=".csv data files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csv-file-locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      .csv file locations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-data-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      .csv data format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-data-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      .csv data contents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=".csv data contents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#battery-controller-data-source-id-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      Battery Controller Data (Source ID = 0)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-controller-data-source-id-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spring Controller Data (Source ID = 1)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-converter-data-source-id-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Converter Data (Source ID = 2)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpsahrs-data-source-id-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPS/AHRS Data (Source ID = 3)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heave-cone-controller-data-source-id-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Heave Cone Controller Data (Source ID = 4)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-with-rosbag2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging with rosbag2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging with rosbag2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normal-mode-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normal Mode Simulation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-mode-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Mode Simulation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control-simulator-with-pbcmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Control Simulator with pbcmd
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulatorInteractionPbcmd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control Simulator with pbcmd
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulatorParameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Adjust Simulator parameters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Adding Control Code
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            Adding Control Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/MessagesAndServices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 Messages and Services
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/PythonTemplate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Controller GitHub Template (Python)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/CppTemplate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Controller GitHub Template (C++)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/PythonLinearDamperExample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear Damper Example (Python)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/CppLinearDamperExample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear Damper Example (C++)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/CppOpenLoopControl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Open-Loop Force Command Example (C++)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROS2/PythonOpenLoopControl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Open-Loop Force Command Example (Python)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../citation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    How to Cite
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#csv-data-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      .csv data files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=".csv data files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csv-file-locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      .csv file locations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-data-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      .csv data format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-data-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      .csv data contents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=".csv data contents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#battery-controller-data-source-id-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      Battery Controller Data (Source ID = 0)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-controller-data-source-id-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spring Controller Data (Source ID = 1)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-converter-data-source-id-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Converter Data (Source ID = 2)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpsahrs-data-source-id-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPS/AHRS Data (Source ID = 3)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heave-cone-controller-data-source-id-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Heave Cone Controller Data (Source ID = 4)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-with-rosbag2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging with rosbag2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging with rosbag2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normal-mode-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normal Mode Simulation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-mode-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Mode Simulation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control-simulator-with-pbcmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Control Simulator with pbcmd
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="simulator-output-data-logs">Simulator Output Data Logs<a class="headerlink" href="#simulator-output-data-logs" title="Permanent link">&para;</a></h1>
+<p>When running, the simulator logs data in two formats, a .csv file that matches the format of the log
+files the buoy system produces while in operation, and rosbag files that logs the ros message
+traffic in a format that can be examined using ROS 2 tools.  This tutorial describes the locations
+and contents of these files.</p>
+<h2 id="csv-data-files">.csv data files<a class="headerlink" href="#csv-data-files" title="Permanent link">&para;</a></h2>
+<p>While running, both the simulator and the buoy itself log telemetry data in text comma separated
+value files that can be examined while the simulator is running or processed subsequently. These
+data files contain all of the telemetry data available on the buoy while operational.  Because not
+all parameters are simulated, the .csv files from the simulator have all the fields present and
+match the format of the at-sea buoy, but some values that don't make sense to simulate simply
+report unchanging default values.</p>
+<h3 id="csv-file-locations">.csv file locations<a class="headerlink" href="#csv-file-locations" title="Permanent link">&para;</a></h3>
+<p>To match the behavior of the buoy system, the simulator stores these files in a directory called
+<code>.pblogs</code> in the users home directory (<code>/home/&lt;username\&gt;/</code> or <code>~/</code>). The directory format of <code>.pblogs</code> is as follows:</p>
+<div class="highlight"><pre><span></span><code>.pblogs
+├── 2025-06-21.000
+│   ├── 2025.06.21T12.52.43.csv
+│   └── latest -&gt; 2025.06.21T12.52.43.csv
+├── 2025-08-06.000
+│   ├── 2025.08.06T08.03.20.csv
+│   └── latest -&gt; 2025.08.06T08.03.20.csv
+├── 2025-08-06.001
+│   ├── 2025.08.06T09.08.00.csv.gz
+│   ├── 2025.08.06T10.08.00.csv
+│   └── latest -&gt; 2025.08.06T10.08.00.csv
+└── latest_csv_dir -&gt; 2025-08-06.001
+</code></pre></div>
+<p>As seen in this example, every time the simulator is run a new folder is created with the current
+date and an index of how many times the simulator has been started on that day, i.e. 2025-08-06.000
+is the first time the simulator ran on August 6th, and 2025-08-06.001 is the second time the
+simulator ran on August 6th.  This scheme matches how the buoy maintains it's file structure as
+well, with the index referring to re-starts of the logging executable instead of simulator runs.
+For convenience, a symbolic link is maintained that points to the most recent simulation run
+(<code>latest_csv_dir</code>).</p>
+<p>Within each directory, .csv files are created that represent up to an hour of data.  At the end of
+each hour those files are zipped up and a new file is created for the next hour of data. Therefore,
+the timestamp shown in the directory listing for each .csv file is the time of the first data in the
+file.  In cases where the simulator is running faster than real time, the filenames represent the
+amount of simulated time that has passed since the beginning of the simulation.</p>
+<p>Note:  The simulation environment creates this directory structure at ~/.pblogs when the simulator
+is run from the command line.  If simulations are run in a batch mode using the facility provided to
+support many simulation runs, then these files are located in a different location.
+See this tutorial for details: <a href="../SimulatorParameters/">Parameters and Batch Runs</a></p>
+<h3 id="csv-data-format">.csv data format<a class="headerlink" href="#csv-data-format" title="Permanent link">&para;</a></h3>
+<p>The data in the .csv data files are organized by data source within the system. During operation on
+the buoy, each subsystem is generating telemetry asynchronously to one other, and the logging
+facility place the data from each on a new line of the .csv files.  </p>
+<p>A sample of the first few lines of a typical .csv data files is as follows:</p>
+<div class="highlight"><pre><span></span><code>Source ID, Timestamp (epoch seconds), PC RPM, PC Bus Voltage (V), PC Winding Curr (A), PC Battery Curr (A), PC
+ Status, PC Load Dump Current (A), PC Target Voltage (V), PC Target Curr (A), PC Diff PSI, PC RPM Std Dev, PC 
+Scale, PC Retract, PC Aux Torque (mV), PC Bias Curr (A), PC Charge Curr (A), PC Draw Curr (A),  BC Voltage, BC
+ Ips, BC V Balance, BC V Stopcharge, BC Ground Fault, BC_Hydrogen, BC Status,  XB Roll XB Angle (deg), XB Pitc
+h Angle (deg), XB Yaw Angle (deg), XB X Rate, XB Y Rate, XB Z Rate, XB X Accel, XB Y Accel, XB Z Accel, XB Nor
+th Vel, XB East Vel, XB Down Vel, XB Lat, XB Long, XB Alt, XB Temp,  SC Load Cell (lbs), SC Range Finder (in),
+ SC Upper PSI, SC Lower PSI, SC Status, CTD Time, CTD Salinity, CTD Temp,  TF Power-Loss Timeouts, TF Tether V
+olt, TF Batt Volt, TF Pressure psi, TF Qtn 1, TF Qtn 2, TF Qtn 3, TF Qtn 4, TF Mag 1 gauss, TF Mag 2, TF Mag 3
+, TF Status, TF Ang Rate 1 rad/sec, TF Ang Rate 2,  TF Ang Rate 3, TF VPE status, TF Accel 1 m/sec^2, TF Accel
+ 2, TF Accel 3, TF Comms-Loss Timeouts, TF Maxon status, TF Motor curren mA, TF Encoder counts, 
+4, 1754492880.215, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,60, 48.000, 48.000, -44.221, -0.000, 0.707, 
+0.000, 0.707, 0.226, 0.054, 0.421, 0, -0.000, 0.000, 0.000, 0, -8.956, -0.000, -0.009, 60, 0, 0, 0, 
+3, 1754492880.215, ,,,,,,,,,,,,,,,,,,,,,,,0.000, 0.001, 0.000, 0.000, 0.000, 0.000, 0.076, -0.000, 6.935, 0.36
+0, 0.009, 0.360, 36.74385, -121.87623, -2.821, 0.000, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+0, 1754492880.215, ,,,,,,,,,,,,,,,,325.0, 0.00, 2.76, 2.79, 0.06, 3.26, 11264, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+1, 1754492880.215, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,446.92, 26.92, 76.22, 188.73, 8192, 0, 0.000000, 0.0
+00, ,,,,,,,,,,,,,,,,,,,,,,,
+2, 1754492880.215, 3093.0, 325.0, -10.64, 3.57, 0, 0.83, 0.0, -10.64, 2.910, 0.0, 1.00, 0.60, 0.00, 0.00, 0.00
+, 0.00, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+1, 1754492880.315, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,-48.78, 25.46, 77.90, 186.95, 8192, 0, 0.000000, 0.0
+00, ,,,,,,,,,,,,,,,,,,,,,,,
+</code></pre></div>
+<p>The first line of each file provides a short text description of each field, and after that the data
+from each subsystem is logged as it becomes available.  To differentiate between data sources, the
+first data item in each file is an identifier, as follows:</p>
+<ul>
+<li>
+<p>0 = Battery System</p>
+</li>
+<li>
+<p>1 = Spring Controller</p>
+</li>
+<li>
+<p>2 = Power Converter</p>
+</li>
+<li>
+<p>3 = Buoy AHRS/GPS</p>
+</li>
+<li>
+<p>4 = Heave Cone Controller </p>
+</li>
+</ul>
+<p>After the "Source ID" identifier comes Unix timestamp that records when the data on that line was
+captured. As can be seen, to facilitate data ingestion from these files into other tools, the
+appropriate number of commas are included on each line so that the data presented lines up with the
+data-label on the first line.  Because the first character is a single digit identifier, unix tools
+can be used to look at this data controller by controller.  For example, the following command uses
+grep to pick out just the data from the power converter by selecting lines that have a 2 in the
+first column:</p>
+<div class="highlight"><pre><span></span><code>$ cat ~/.pblogs/2025-08-06.001/2025.08.06T10.08.00.csv | grep ^2
+
+2, 1754492904.515, 1656.4, 311.3, -7.44, 1.62, 0, -0.00, 0.0, -7.44, 2.910, 0.0, 1.00, 0.60, 0.00, 0.00, 0.00, 0.00, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+2, 1754492904.615, 1655.1, 311.3, -7.43, 1.61, 0, -0.00, 0.0, -7.43, 2.910, 0.0, 1.00, 0.60, 0.00, 0.00, 0.00, 0.00, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+2, 1754492904.715, 1633.7, 311.0, -7.32, 1.57, 0, -0.00, 0.0, -7.32, 2.910, 0.0, 1.00, 0.60, 0.00, 0.00, 0.00, 0.00, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+2, 1754492904.815, 1593.0, 310.3, -7.11, 1.48, 0, -0.00, 0.0, -7.11, 2.910, 0.0, 1.00, 0.60, 0.00, 0.00, 0.00, 0.00, ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+</code></pre></div>
+<h3 id="csv-data-contents">.csv data contents<a class="headerlink" href="#csv-data-contents" title="Permanent link">&para;</a></h3>
+<p>For each data source, particular data is logged as described below.  </p>
+<h4 id="battery-controller-data-source-id-0">Battery Controller Data (Source ID = 0)<a class="headerlink" href="#battery-controller-data-source-id-0" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>BC Voltage, BC Ips, BC V Balance, BC V Stopcharge, BC Ground Fault, BC_Hydrogen, BC Status
+</code></pre></div>
+<ul>
+<li>
+<p><strong>BC_Voltage</strong>:  Measured instantaneous Battery Voltage in Volts.</p>
+</li>
+<li>
+<p><strong>BC_Ips</strong>: Measured Current Draw for the 24V supply that powers on-board instrumentation (Not Simulated) </p>
+</li>
+<li>
+<p><strong>BC V Balance</strong>:  Number of batteries currently balancing, Encoded value.  (Not Simulated)</p>
+</li>
+<li>
+<p><strong>BC V_StopCharge</strong>: Number of batteries that are above their peak voltage, Encoded Value (Not Simulated)</p>
+</li>
+<li>
+<p><strong>BC Ground Fault</strong>:  Encoded representation of 300V Bus Isolation Monitor result. (Not Simulated)</p>
+</li>
+<li>
+<p><strong>BC_Hydrogen</strong>:  Measure of the hydrogen in the lead-acid battery pack.  %LEL. (Not Simulated)</p>
+</li>
+<li>
+<p><strong>BC Status</strong>: 16 bit status word of Battery system.</p>
+</li>
+</ul>
+<h4 id="spring-controller-data-source-id-1">Spring Controller Data (Source ID = 1)<a class="headerlink" href="#spring-controller-data-source-id-1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>SC Load Cell (lbs), SC Range Finder (in), SC Upper PSI, SC Lower PSI, SC Status, CTD Time, CTD Salinity, CTD Temp
+</code></pre></div>
+<ul>
+<li>
+<p><strong>SC Load Cell</strong>:  Measured tension between the buoy and the power take-off device (lbs).</p>
+</li>
+<li>
+<p><strong>SC Range Finder (in)</strong>:  Measured piston position in inches.  0.0 = fully retracted, 80.0 = fully extended</p>
+</li>
+<li>
+<p><strong>SC Upper PSI</strong>: Measured upper spring chamber pressure (psia) </p>
+</li>
+<li>
+<p><strong>SC Lower PSI</strong>: Measured lower spring chamber pressure (psia) </p>
+</li>
+<li>
+<p><strong>SC Status</strong>: 16 bit status word of Spring Controller system.</p>
+</li>
+<li>
+<p><strong>CTD Time</strong>:  Deprecated</p>
+</li>
+<li>
+<p><strong>CTD Salinity</strong>:  Deprecated</p>
+</li>
+<li>
+<p><strong>CTD Temp</strong>:  Deprecated</p>
+</li>
+</ul>
+<h4 id="power-converter-data-source-id-2">Power Converter Data (Source ID = 2)<a class="headerlink" href="#power-converter-data-source-id-2" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>PC RPM, PC Bus Voltage (V), PC Winding Curr (A), PC Battery Curr (A), PC Status, PC Load Dump Current (A), PC Target Voltage (V), PC Target Curr (A), PC Diff PSI, PC RPM Std Dev, PC Scale, PC Retract, PC Aux Torque (mV), PC Bias Curr (A), PC Charge Curr (A), PC Draw Curr (A)
+</code></pre></div>
+<ul>
+<li>
+<p><strong>PC RPM</strong>: Instantaneous measured generator rotational velocity (RPM).</p>
+</li>
+<li>
+<p><strong>PC Bus Voltage</strong>:  Measured bus voltage of power converter (Volts).</p>
+</li>
+<li>
+<p><strong>PC Winding Curr</strong>:  Instantaneous measured motor quadrature current (Amps). Is proportional to torque.</p>
+</li>
+<li>
+<p><strong>PC Battery Curr</strong>:  Instantaneous measured current flowing to Battery System (Amps).</p>
+</li>
+<li>
+<p><strong>PC Status</strong>:  16 bit status word of Power Converter system.</p>
+</li>
+<li>
+<p><strong>PC Load Dump Current</strong>:  Instantaneous measured current flowing to the load dump (Amps).</p>
+</li>
+<li>
+<p><strong>PC Target Voltage</strong>:  Voltage limit setting, actual voltage may be less if the system is current limiting.</p>
+</li>
+<li>
+<p><strong>PC Target Current</strong>: Instantaneous measured winding quadrature current (Amps).</p>
+</li>
+<li>
+<p><strong>PC Diff PSI</strong>:  Measured pressure of hydraulic system compensator (psi).  Not Simulated.</p>
+</li>
+<li>
+<p><strong>PC RPM Std Dev</strong>:  Standard deviation of RPM over the past 30 minutes (RPM).</p>
+</li>
+<li>
+<p><strong>PC Scale</strong>:  Current damping scale factor setting.</p>
+</li>
+<li>
+<p><strong>PC Retract</strong>: Current retract factor setting.</p>
+</li>
+<li>
+<p><strong>PC Aux Torque</strong>:  Torque sensor input.  Not used at sea.  Not Simulated.</p>
+</li>
+<li>
+<p><strong>PC Bias Curr</strong>:  Bias Current applied to motor current versus RPM relationship (Amps).</p>
+</li>
+<li>
+<p><strong>PC Charge Curr</strong>:  Battery Current limit (Battery Charge Direction) Amps.</p>
+</li>
+<li>
+<p><strong>PC Draw Curr</strong>:  Battery Draw Limit (Battery Draw Direction).  Amps.</p>
+</li>
+</ul>
+<h4 id="gpsahrs-data-source-id-3">GPS/AHRS Data (Source ID = 3)<a class="headerlink" href="#gpsahrs-data-source-id-3" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>XB Roll Angle (deg), XB Pitch Angle (deg), XB Yaw Angle (deg), XB X Rate, XB Y Rate, XB Z Rate, XB X Accel, XB Y Accel, XB Z Accel, XB North Vel, XB East Vel, XB Down Vel, XB Lat, XB Long, XB Alt, XB Temp
+</code></pre></div>
+<ul>
+<li>
+<p><strong>XB Roll Angle</strong>: Roll Angle reported from Crossbow Nav440 on the buoy (degrees).</p>
+</li>
+<li>
+<p><strong>XB Pitch Angle</strong>: Pitch Angle reported from Crossbow Nav440 on the buoy (degrees).</p>
+</li>
+<li>
+<p><strong>XB Yaw Angle</strong>: Pitch Angle reported from Crossbow Nav440 on the buoy (degrees).</p>
+</li>
+</ul>
+<h4 id="heave-cone-controller-data-source-id-4">Heave Cone Controller Data (Source ID = 4)<a class="headerlink" href="#heave-cone-controller-data-source-id-4" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>TF Power-Loss Timeouts, TF Tether Volt, TF Batt Volt, TF Pressure psi, TF Qtn 1, TF Qtn 2, TF Qtn 3, TF Qtn 4, TF Mag 1 gauss, TF Mag 2, TF Mag 3, TF Status, TF Ang Rate 1 rad/sec, TF Ang Rate 2,  TF Ang Rate 3, TF VPE status, TF Accel 1 m/sec^2, TF Accel 2, TF Accel 3, TF Comms-Loss Timeouts, TF Maxon status, TF Motor curren mA, TF Encoder counts
+</code></pre></div>
+<h2 id="logging-with-rosbag2">Logging with rosbag2<a class="headerlink" href="#logging-with-rosbag2" title="Permanent link">&para;</a></h2>
+<p>The previous tutorials, <a href="../SimulatorOutputROS/">View ROS 2 Messages</a>, showed how to view and plot
+ROS 2 messages that are output from the sim or physical buoy. The following sections will show how
+to enable rosbag2 logging in the normal mode of the sim (batch mode always logs rosbags) and where
+rosbags are stored in normal and batch modes.</p>
+<h4 id="normal-mode-simulation">Normal Mode Simulation<a class="headerlink" href="#normal-mode-simulation" title="Permanent link">&para;</a></h4>
+<p>By default, only the .csv files are logged by the simulator in normal operation. To enable rosbag2
+logging, add the <code>rosbag2:=true</code> argument to the standard launch file like so:</p>
+<div class="highlight"><pre><span></span><code>$ ros2 launch buoy_gazebo mbari_wec.launch.py rosbag2:=true
+</code></pre></div>
+<p>The rosbags will be stored in the <code>~/.pblogs/rosbag2</code> directory with the following structure:</p>
+<div class="highlight"><pre><span></span><code>.pblog
+├── latest_rosbag -&gt; rosbag2/rosbag2_20250811115646
+└── rosbag2
+    ├── rosbag2_20250806172159
+    │   ├── metadata.yaml
+    │   └── rosbag2_20250806172159_0.mcap
+    ├── rosbag2_20250806180923
+    │   ├── metadata.yaml
+    │   └── rosbag2_20250806180923_0.mcap
+    ├── rosbag2_20250811115336
+    │   ├── metadata.yaml
+    │   └── rosbag2_20250811115336_0.mcap
+    └── rosbag2_20250811115646
+        ├── metadata.yaml
+        └── rosbag2_20250811115646_0.mcap
+</code></pre></div>
+<p>where <code>latest_rosbag</code> is a symlink to the rosbag saved for the latest run of the simulator. The
+rosbags will use the <a href="https://mcap.dev/guides/getting-started/ros-2">mcap</a> storage format. For more
+information on working with rosbag2, please see the official ROS 2
+<a href="https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html">rosbag2 documentation</a>.</p>
+<h4 id="batch-mode-simulation">Batch Mode Simulation<a class="headerlink" href="#batch-mode-simulation" title="Permanent link">&para;</a></h4>
+<p>Running the simulation and file structure of logging in batch mode is described in this tutorial:
+<a href="../SimulatorParameters/">Tutorial: Adjust Simulator parameters</a></p>
+<h2 id="control-simulator-with-pbcmd">Control Simulator with pbcmd<a class="headerlink" href="#control-simulator-with-pbcmd" title="Permanent link">&para;</a></h2>
+<p>The next tutorial, <a href="../SimulatorInteractionPbcmd/">Tutorial: Control Simulator with pbcmd</a>, will show
+how to send certain commands to the simulated (or physical) buoy using our command-line utility.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "navigation.indexes", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+    
+  </body>
+</html>
