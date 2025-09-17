@@ -20,11 +20,11 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
     export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
     ```
 
-    Running the sim with rosbag2 logging uses mcap storage. We also need sdformat-urdf.
+    Running the sim with rosbag2 logging uses mcap storage. We also need sdformat-urdf and tf_transformations.
     So, install those as well:
 
     ```
-    sudo apt install ros-jazzy-rosbag2-storage-mcap ros-jazzy-sdformat-urdf
+    sudo apt install ros-jazzy-rosbag2-storage-mcap ros-jazzy-sdformat-urdf ros-jazzy-tf-transformations
     ```
 
     To use plotjuggler to view ros2 data live plots (recommended in these tutorials), install like so:
@@ -33,7 +33,7 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
     sudo apt install ros-jazzy-plotjuggler ros-jazzy-plotjuggler-msgs ros-jazzy-plotjuggler-ros
     ```
 
-3. Install Gazebo Harmonic by installing `ros_gz` from the `ros-jazzy-*` apt repos.
+2. Install Gazebo Harmonic by installing `ros_gz` from the `ros-jazzy-*` apt repos.
    
     ```
     sudo apt update
@@ -44,10 +44,16 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
     ROS 2 Jazzy apt repos (`ros-jazzy-gz-*`). We also need to use the `sdformat-urdf` package.
     See [here](https://gazebosim.org/docs/harmonic/ros_installation/) for more info.
 
-4. Set the Gazebo version to Harmonic. (place this in ~/.bashrc for convenience if rebuilding often):
+3. Set the Gazebo version to Harmonic. (place this in ~/.bashrc for convenience if rebuilding often):
    
     ```
     export GZ_VERSION=harmonic
+    ```
+
+4. Install necessary tools
+   
+    ```
+    sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
     ```
 
 5. gz-python-bindings
@@ -70,22 +76,8 @@ Follow instructions for [Installing Gazebo with ROS](https://gazebosim.org/docs/
         ```
         python3 -m pip install -i https://mbari-org.github.io/gz-python-bindings/simple gz-python-bindings --break-system-packages
         ```
-        
-        If you get a "No module named pip" error, run the following - and then re-run the previous command
 
-        ```
-       sudo apt-get install python3-pip
-        ```
-       
-        
-
-6. Install necessary tools
-   
-    ```
-    sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
-    ```
-
-7. Install necessary libraries
+6. Install necessary libraries
    
     ```
     curl -s --compressed "https://hamilton8415.github.io/ppa/KEY.gpg" | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg >/dev/null
