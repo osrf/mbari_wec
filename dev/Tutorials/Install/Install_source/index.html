@@ -1547,14 +1547,15 @@ instructions are no longer maintained for <code>mbari_wec</code> as Gazebo Garde
 <p>Follow instructions for <a href="https://gazebosim.org/docs/harmonic/ros_installation/">Installing Gazebo with ROS</a>.</p>
 <ol>
 <li>
-<p><a href="https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html">Install</a> ROS 2 Jazzy</p>
+<p>Go to the following to <a href="https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html">Install</a> ROS 2 Jazzy, if you do not already have it installed on your machine.</p>
+<p>Following your ROS installation do the following:</p>
 <p>MBARI WEC works best with the cyclonedds rmw implementation, so set that up as follows:</p>
 <div class="highlight"><pre><span></span><code>sudo apt install ros-jazzy-rmw-cyclonedds-cpp
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 </code></pre></div>
-<p>Running the sim with rosbag2 logging uses mcap storage. We also need sdformat-urdf.
+<p>Running the sim with rosbag2 logging uses mcap storage. We also need sdformat-urdf and tf_transformations.
 So, install those as well:</p>
-<div class="highlight"><pre><span></span><code>sudo apt install ros-jazzy-rosbag2-storage-mcap ros-jazzy-sdformat-urdf
+<div class="highlight"><pre><span></span><code>sudo apt install ros-jazzy-rosbag2-storage-mcap ros-jazzy-sdformat-urdf ros-jazzy-tf-transformations
 </code></pre></div>
 <p>To use plotjuggler to view ros2 data live plots (recommended in these tutorials), install like so:</p>
 <div class="highlight"><pre><span></span><code>sudo apt install ros-jazzy-plotjuggler ros-jazzy-plotjuggler-msgs ros-jazzy-plotjuggler-ros
@@ -1572,6 +1573,11 @@ See <a href="https://gazebosim.org/docs/harmonic/ros_installation/">here</a> for
 <li>
 <p>Set the Gazebo version to Harmonic. (place this in ~/.bashrc for convenience if rebuilding often):</p>
 <div class="highlight"><pre><span></span><code>export GZ_VERSION=harmonic
+</code></pre></div>
+</li>
+<li>
+<p>Install necessary tools</p>
+<div class="highlight"><pre><span></span><code>sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
 </code></pre></div>
 </li>
 <li>
@@ -1593,11 +1599,6 @@ sudo apt install ros-jazzy-gz-sim-vendor ros-jazzy-gz-math-vendor
 </code></pre></div>
 </li>
 </ol>
-</li>
-<li>
-<p>Install necessary tools</p>
-<div class="highlight"><pre><span></span><code>sudo apt install python3-vcstool python3-colcon-common-extensions python3-pip git wget
-</code></pre></div>
 </li>
 <li>
 <p>Install necessary libraries</p>
@@ -1625,6 +1626,7 @@ cd ~/mbari_wec_ws
 </li>
 <li>
 <p>Install ROS dependencies</p>
+<p>NOTE: do not be alarmed if you recieve "error: externally managed environment" following the first line here</p>
 <div class="highlight"><pre><span></span><code>sudo pip3 install -U rosdep
 sudo rosdep init
 rosdep update
@@ -1652,11 +1654,9 @@ colcon build
 <li>
 <p>Set <code>SDF_PATH</code> to allow <code>robot_state_publisher</code> parse the robot description
    from the sdformat model (place this in ~/.bashrc for convenience if rebuilding often):</p>
-</li>
-</ol>
 <div class="highlight"><pre><span></span><code>export SDF_PATH=$GZ_SIM_RESOURCE_PATH
 </code></pre></div>
-<ol>
+</li>
 <li>
 <p>Launch the simulation</p>
 <div class="highlight"><pre><span></span><code>ros2 launch buoy_gazebo mbari_wec.launch.py
@@ -1664,16 +1664,18 @@ colcon build
 </li>
 </ol>
 <h2 id="post-build-environment-setup">Post-Build Environment Setup<a class="headerlink" href="#post-build-environment-setup" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
 <p>Place these lines in your ~/.bashrc for convenience to simplify running the sim in the future:</p>
-<div class="highlight"><pre><span></span><code>```
-source /opt/ros/jazzy/setup.bash
+<p><div class="highlight"><pre><span></span><code>source /opt/ros/jazzy/setup.bash
 source /path/to/mbari_wec_ws/install/setup.bash
 export GZ_VERSION=harmonic
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 export SDF_PATH=$GZ_SIM_RESOURCE_PATH
-```
 </code></pre></div>
-<p>(NOTE: Remember to replace <code>/path/to/mbari_wec_ws/install/setup.bash</code> with your path to your mbari wec workspace)</p>
+(NOTE: Remember to replace <code>/path/to/mbari_wec_ws/install/setup.bash</code> with your path to your mbari wec workspace)</p>
+</li>
+</ol>
 
 
 
