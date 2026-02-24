@@ -16,7 +16,7 @@ $ ros2 run plotjuggler plotjuggler
 
 
 ## Plotting Wave Energy Converter Data
-In the window on the left that shows the available topics, select the /arhs_data, /power_data, /spring_data, battery_data, heavecone_data and /xb_data topics and click "OK".  Note that for these topics to be available, the simulation needs to be running.
+In the window on the left that shows the available topics, select the /arhs_data, /power_data, /spring_data, /battery_data, /trefoil_data and /latent_data topics and click "OK".  Note that for these topics to be available, the simulation needs to be running.
 
 - The selected topics will appear in the "Timeseries List" window, and selecting the carrot to the left of each topic will expand them and show the data that can be plotted.  Note that these topics and data are the same as are visible using the ```$ ros2 topic list``` and ```$ ros2 topic echo``` commands from the command-line.
 

@@ -102,7 +102,7 @@ RUN ls
 ENV MBARI_WEC_WS /home/$USERNAME/mbari_wec_ws
 RUN mkdir -p ${MBARI_WEC_WS}/src \
  && cd ${MBARI_WEC_WS}/src/ \
- && wget https://raw.githubusercontent.com/osrf/mbari_wec/main/mbari_wec_all.yaml \
+ && wget https://raw.githubusercontent.com/osrf/mbari_wec/dev/mbari_wec_all.yaml \
  && cat mbari_wec_all.yaml
 
 RUN cd ${MBARI_WEC_WS}/src \
