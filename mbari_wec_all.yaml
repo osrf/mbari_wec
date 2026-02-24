@@ -3,12 +3,12 @@ repositories:
   mbari_wec:
     type: git
     url: https://github.com/osrf/mbari_wec
-    version: dev
+    version: andermi/add_latentdata_surfacevelocities
   mbari_wec_utils:
     type: git
     url: https://github.com/osrf/mbari_wec_utils
-    version: dev
+    version: andermi/add_latentdata_surfacevelocities
   mbari_wec_gz:
     type: git
     url: https://github.com/osrf/mbari_wec_gz
-    version: dev
+    version: andermi/add_latentdata_surfacevelocities
