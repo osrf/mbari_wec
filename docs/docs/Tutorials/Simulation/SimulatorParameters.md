@@ -34,7 +34,9 @@ start-up:
 - **Battery State-of-Charge**:  The starting battery state of charge can be specified between 0 (empty) and 1 (full).  A full battery can't absorb energy so more of the generated power will be diverted to the load-dump in the simulation.  An empty battery will allow most or all of the generated energy to flow to the battery. This does not effect the physical behavior of the simulated buoy, but does effect the battery voltages and currents as the simulation progresses.
 - **Battery EMF**:  As an alternative to specifying the battery state of charge as a percentage, the zero-load battery voltage can be specified, between 270V (empty battery), and 320V (full battery).
 - **Scale Factor**:  The buoy (and simulator) implements a default control algorithm in which the current in the motor windings is set as a function of motor RPM, with the resulting torque opposing the motors motion.  This approximately implements a linear damping behavior and the specified Scale Factor is multiplied by the default Winding-Current/RPM relationship before being applied.  Allowable values are from 0.5 to 1.4, and the result is a simple way to change the damping the power-takeoff device is applying to the system.  As discussed in a later tutorial, this relationship can be over-ridden with external code, so this Scale Factor only applies to the default behavior of the system.
-- ** GUI Output**:  The graphical output of the simulator can be turned on or off as needed, for large batches of runs that are meant to run un-attended this is probably not appropriate, but for single runs or debugging the graphical output can be useful.
+- **GUI Output**:  The graphical output of the simulator can be turned on or off as needed, for large batches of runs that are meant to run un-attended this is probably not appropriate, but for single runs or debugging the graphical output can be useful.
+- **Spring Params**:  The buoy implements an air spring component with two N2-filled chambers (upper and lower). These are modeled in the simulation by a combination of polytropic curves and heat transfer. Hysteresis is modeled by two different polytropic indices per chamber.
+- **External Controllers**: The buoy behavior may be controlled by an external controller as described here: [Tutorial: Writing External C++ Controller](../ROS2/CppTemplate.md), or here: [Tutorial: Writing External Python Controller](../ROS2/PythonTemplate.md). These controllers may be run alongside the simulation by providing the controller ROS 2 package name and specific launch file.
 
 ## Example Batch File
 The above parameters are specified in a .yaml file that the batch-run tool reads in before execution
@@ -45,19 +47,35 @@ begin with # are comments and have no impact.
 #
 # Batch-Specific Scalar Parameters
 #
+enable_gui: False
 duration: 300
 seed: 42
 physics_rtf: 11
+# Air spring consists of upper/lower N2-filled chambers
+upper_spring_params: [1.4309,  # upper polytropic index for increasing volume
+                      1.4367,  # upper polytropic index for decreasing volume
+                      422156,  # Pressure (Pa) setpoint from upper PV
+                      0.0397,  # Volume (m^3) setpoint from upper chamber polytropic PV curves
+                      283.15]  # Temperature (K) setpoint for upper heat transfer
+lower_spring_params: [1.3771,  # lower polytropic index for increasing volume
+                      1.3755,  # lower polytropic index for decreasing volume
+                      1212098,  # Pressure (Pa) setpoint from lower PV
+                      0.0661,  # Volume (m^3) setpoint from lower chamber polytropic PV curves
+                      283.15]  # Temperature (K) setpoint for lower heat transfer
 #
 # Run-Specific Parameters (Test Matrix)
 #
 physics_step: [0.001, 0.01, 0.1]
 door_state: ['closed', 'open']
 scale_factor: [0.5, 0.75, 1.0, 1.3, 1.4]
-enable_gui: False
 # May specify vector/scalar battery_soc (0.0 to 1.0) or battery_emf (270V to 320V)
 battery_soc: [0.25, 0.5, 0.75, 1.0]
 # battery_emf: [282.5, 295.0, 307.5, 320.0]
+controller:
+ - package: 'buoy_api_cpp'
+   launch_file: 'torque_controller.launch.py'
+ - package: 'buoy_api_py'
+   launch_file: 'bias_damping.launch.py'
 IncidentWaveSpectrumType:
  - MonoChromatic:
      # A & T may be vector/scalar in pairs (A & T same length)
@@ -129,12 +147,11 @@ that was performed, and the associated parameter.  In this case it has the follo
 
 ```
 # Generated 4 simulation runs
-RunIndex, SimReturnCode, StartTime, rosbag2FileName, PhysicsStep, PhysicsRTF, Seed, Duration, DoorState, ScaleFactor, BatteryState, IncWaveSpectrumType;In
-cWaveSpectrumParams
-0, 0, 20230228212457, rosbag2_batch_sim_0_20230228212457, 0.01, 11.0, 42, 3.0, closed, 0.6, 0.5, Bretschneider;Hs:2.0;Tp:14.0
-1, 0, 20230228212502, rosbag2_batch_sim_1_20230228212502, 0.01, 11.0, 42, 3.0, closed, 0.6, 0.5, Bretschneider;Hs:4.0;Tp:16.0
-2, 0, 20230228212506, rosbag2_batch_sim_2_20230228212506, 0.01, 11.0, 42, 3.0, closed, 1.0, 0.5, Bretschneider;Hs:2.0;Tp:14.0
-3, 0, 20230228212510, rosbag2_batch_sim_3_20230228212510, 0.01, 11.0, 42, 3.0, closed, 1.0, 0.5, Bretschneider;Hs:4.0;Tp:16.0
+RunIndex, SimReturnCode, StartTime, rosbag2FileName, PhysicsStep, PhysicsRTF, Seed, Duration, DoorState, ScaleFactor, BatteryState, MeanPistonPosition, UpperSpringParams, LowerSpringParams, Controller, IncWaveSpectrumType;IncWaveSpectrumParams
+0, 0, 20230228212457, rosbag2_batch_sim_0_20230228212457, 0.01, 11.0, 42, 3.0, closed, 0.6, 0.5, default, upper;defaults, lower;defaults, default, Bretschneider;Hs:2.0;Tp:14.0
+1, 0, 20230228212502, rosbag2_batch_sim_1_20230228212502, 0.01, 11.0, 42, 3.0, closed, 0.6, 0.5, default, upper;defaults, lower;defaults, default, Bretschneider;Hs:4.0;Tp:16.0
+2, 0, 20230228212506, rosbag2_batch_sim_2_20230228212506, 0.01, 11.0, 42, 3.0, closed, 1.0, 0.5, default, upper;defaults, lower;defaults, default, Bretschneider;Hs:2.0;Tp:14.0
+3, 0, 20230228212510, rosbag2_batch_sim_3_20230228212510, 0.01, 11.0, 42, 3.0, closed, 1.0, 0.5, default, upper;defaults, lower;defaults, default, Bretschneider;Hs:4.0;Tp:16.0
 ```
 
 For simulations that take longer to run, it can be convenient to tail this log file from the
@@ -197,8 +214,8 @@ for plotting and inspection, as described in the
 
 ## Passing params directly to launch file
 
-Many of these parameters may be passed directly as arguments to `mbari_wec.launch.py`. To see a list,
-enter the following command:
+Many of these parameters may be passed directly as arguments to `mbari_wec.launch.py` instead of
+running in batch mode. To see a list, enter the following command:
 ```
 $ ros2 launch buoy_gazebo mbari_wec.launch.py -s
 Arguments (pass arguments as '<name>:=<value>'):
@@ -272,3 +289,9 @@ Arguments (pass arguments as '<name>:=<value>'):
         (default: 'true')
 ```
 
+Here are some examples of passing in incident wave spectra:
+
+```
+$ ros2 launch buoy_gazebo mbari_wec.launch.py inc_wave_spectrum:="inc_wave_spectrum_type:Bretschneider;Hs:1.0;Tp:6.0"
+$ ros2 launch buoy_gazebo mbari_wec.launch.py inc_wave_spectrum:="inc_wave_spectrum_type:Custom;f:0.0:0.2:0.4:0.6:2.0;Szz:0.0:0.4:1.0:1.0:0.0"
+```
