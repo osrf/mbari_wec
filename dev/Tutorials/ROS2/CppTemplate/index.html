@@ -1891,7 +1891,7 @@ $ cd ~/controller_ws
 </span><span class="hll"><span class="cp">#define YOUR_PACKAGE_NAME__CONTROL_POLICY_HPP_</span>
 </span></code></pre></div></td></tr></table></div>
 <code>...</code>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">&#8203</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#endif  </span><span class="c1">// YOUR_PACKAGE_NAME__CONTROL_POLICY_HPP_</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">&amp;#8203</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#endif  </span><span class="c1">// YOUR_PACKAGE_NAME__CONTROL_POLICY_HPP_</span>
 </span></code></pre></div></td></tr></table></div></p>
 </li>
 <li>
@@ -1901,7 +1901,7 @@ $ cd ~/controller_ws
 </span><span class="hll"><span class="cp">#define YOUR_PACKAGE_NAME__CONTROLLER_HPP_</span>
 </span></code></pre></div></td></tr></table></div>
 <code>...</code>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">&#8203</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#endif  </span><span class="c1">// YOUR_PACKAGE_NAME__CONTROLLER_HPP_</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">&amp;#8203</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#endif  </span><span class="c1">// YOUR_PACKAGE_NAME__CONTROLLER_HPP_</span>
 </span></code></pre></div></td></tr></table></div></p>
 </li>
 </ul>
@@ -2066,7 +2066,7 @@ ROS 2 documentation.</p>
 <code>this-&gt;policy</code>. The <code>this-&gt;policy-&gt;target</code> function may be called anywhere within the
 <code>Controller</code> class. You may call it inside any of the data callbacks to enable feedback
 control (for example):</p>
-<div class="highlight"><span class="filename"><span style="margin-left:25%;"><b>(EXAMPLE) include/your_package_name/controller.hpp</b></span></span><pre><span></span><code><span class="w">  </span><span class="c1">// To subscribe to any topic, simply declare &amp; define the specific callback, e.g. power_callback</span>
+<div class="highlight"><span class="filename">&lt;span style=&quot;margin-left:25%;&quot;&gt;&lt;b&gt;(EXAMPLE) include/your_package_name/controller.hpp&lt;/b&gt;&lt;/span&gt;</span><pre><span></span><code><span class="w">  </span><span class="c1">// To subscribe to any topic, simply declare &amp; define the specific callback, e.g. power_callback</span>
 
 <span class="w">  </span><span class="c1">// Callback for &#39;/power_data&#39; topic from Power Controller</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">power_callback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">buoy_interfaces</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PCRecord</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
@@ -2078,7 +2078,7 @@ control (for example):</p>
 <span class="w">  </span><span class="p">}</span>
 </code></pre></div>
 <p>Or, set up a loop in <code>main</code> and run open-loop:</p>
-<div class="highlight"><span class="filename"><span style="margin-left:35%;"><b>(EXAMPLE) src/controller.cpp</b></span></span><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span>
+<div class="highlight"><span class="filename">&lt;span style=&quot;margin-left:35%;&quot;&gt;&lt;b&gt;(EXAMPLE) src/controller.cpp&lt;/b&gt;&lt;/span&gt;</span><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
 
