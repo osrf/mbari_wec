@@ -1555,9 +1555,9 @@ command first:
 <div class="highlight"><pre><span></span><code>$ export PATH=$PATH:~/.local/bin
 </code></pre></div></p>
 <p>Ensure the following is in your <code>~/.profile</code> for next time:
-<div class="highlight"><pre><span></span><code># set PATH so it includes user&#39;s private bin if it exists
-if [ -d &quot;$HOME/.local/bin&quot; ] ; then
-    PATH=&quot;$HOME/.local/bin:$PATH&quot;
+<div class="highlight"><pre><span></span><code># set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
 fi
 </code></pre></div></p>
 </div>
@@ -1598,7 +1598,7 @@ Commands currently not supported in Simulation:
 *           tf_Reset  - Reset Controller (caution - no args)
 
 
-For help on a command use the command name, i.e. &quot;bender&quot;;
+For help on a command use the command name, i.e. "bender";
 
 Except the reset commands which take no arguments.
 
@@ -1670,7 +1670,7 @@ controls the rate of the ROS 2 messages from the power converter on the buoy, an
 <ol>
 <li>
 <p>Launch the simulation without incident waves by issuing the following command (overriding the default waves):
-<div class="highlight"><pre><span></span><code>$ ros2 launch buoy_gazebo mbari_wec.launch.py inc_wave_spectrum:=&#39;inc_wave_spectrum_type:None&#39;
+<div class="highlight"><pre><span></span><code>$ ros2 launch buoy_gazebo mbari_wec.launch.py inc_wave_spectrum:='inc_wave_spectrum_type:None'
 </code></pre></div></p>
 </li>
 <li>
