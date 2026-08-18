@@ -1750,13 +1750,13 @@ $ cd ~/controller_ws
 <span class="normal">5</span>
 <span class="normal">6</span>
 <span class="normal">7</span>
-<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-<span class="cp">&lt;?xml-model href=&quot;http://download.ros.org/schema/package_format3.xsd&quot; schematypens=&quot;http://www.w3.org/2001/XMLSchema&quot;?&gt;</span>
-<span class="nt">&lt;package</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">&lt;?xml version="1.0"?&gt;</span>
+<span class="cp">&lt;?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?&gt;</span>
+<span class="nt">&lt;package</span><span class="w"> </span><span class="na">format=</span><span class="s">"3"</span><span class="nt">&gt;</span>
 <span class="hll"><span class="w">  </span><span class="nt">&lt;name&gt;</span>repo_name<span class="nt">&lt;/name&gt;</span><span class="w">  </span><span class="cm">&lt;!-- Update package name --&gt;</span>
 </span><span class="hll"><span class="w">  </span><span class="nt">&lt;version&gt;</span>3.14<span class="nt">&lt;/version&gt;</span><span class="w">  </span><span class="cm">&lt;!-- Update version --&gt;</span>
 </span><span class="hll"><span class="w">  </span><span class="nt">&lt;description&gt;</span>Your<span class="w"> </span>Controller<span class="w"> </span>Description<span class="nt">&lt;/description&gt;</span><span class="w">  </span><span class="cm">&lt;!-- Update description --&gt;</span>
-</span><span class="hll"><span class="w">  </span><span class="nt">&lt;maintainer</span><span class="w"> </span><span class="na">email=</span><span class="s">&quot;your@email&quot;</span><span class="nt">&gt;</span>Your<span class="w"> </span>Name<span class="nt">&lt;/maintainer&gt;</span><span class="w">  </span><span class="cm">&lt;!-- Update email and name --&gt;</span>
+</span><span class="hll"><span class="w">  </span><span class="nt">&lt;maintainer</span><span class="w"> </span><span class="na">email=</span><span class="s">"your@email"</span><span class="nt">&gt;</span>Your<span class="w"> </span>Name<span class="nt">&lt;/maintainer&gt;</span><span class="w">  </span><span class="cm">&lt;!-- Update email and name --&gt;</span>
 </span><span class="hll"><span class="w">  </span><span class="nt">&lt;license&gt;</span>Your<span class="w"> </span>License<span class="nt">&lt;/license&gt;</span><span class="w">  </span><span class="cm">&lt;!-- Update license --&gt;</span>
 </span></code></pre></div></td></tr></table></div>
 <ul>
@@ -1784,29 +1784,29 @@ $ cd ~/controller_ws
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
-<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">package_name</span> <span class="o">=</span> <span class="s1">&#39;your_package_name&#39;</span>  <span class="c1"># Update package name</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">package_name</span> <span class="o">=</span> <span class="s1">'your_package_name'</span>  <span class="c1"># Update package name</span>
 </span>
 <span class="n">setup</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span>
-<span class="hll">    <span class="n">version</span><span class="o">=</span><span class="s1">&#39;3.14&#39;</span><span class="p">,</span>  <span class="c1"># Update version</span>
-</span>    <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">package_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">],</span>
+<span class="hll">    <span class="n">version</span><span class="o">=</span><span class="s1">'3.14'</span><span class="p">,</span>  <span class="c1"># Update version</span>
+</span>    <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">package_name</span><span class="si">}</span><span class="s1">'</span><span class="p">],</span>
     <span class="n">data_files</span><span class="o">=</span><span class="p">[</span>
-        <span class="p">(</span><span class="s1">&#39;share/ament_index/resource_index/packages&#39;</span><span class="p">,</span>
-            <span class="p">[</span><span class="s1">&#39;resource/&#39;</span> <span class="o">+</span> <span class="n">package_name</span><span class="p">]),</span>
-        <span class="p">(</span><span class="s1">&#39;share/&#39;</span> <span class="o">+</span> <span class="n">package_name</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;package.xml&#39;</span><span class="p">]),</span>
-        <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;share&#39;</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="s1">&#39;launch&#39;</span><span class="p">),</span> <span class="n">glob</span><span class="p">(</span><span class="s1">&#39;launch/*.launch.py&#39;</span><span class="p">)),</span>
-        <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;share&#39;</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="s1">&#39;config&#39;</span><span class="p">),</span> <span class="n">glob</span><span class="p">(</span><span class="s1">&#39;config/*.yaml&#39;</span><span class="p">))</span>
+        <span class="p">(</span><span class="s1">'share/ament_index/resource_index/packages'</span><span class="p">,</span>
+            <span class="p">[</span><span class="s1">'resource/'</span> <span class="o">+</span> <span class="n">package_name</span><span class="p">]),</span>
+        <span class="p">(</span><span class="s1">'share/'</span> <span class="o">+</span> <span class="n">package_name</span><span class="p">,</span> <span class="p">[</span><span class="s1">'package.xml'</span><span class="p">]),</span>
+        <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'share'</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="s1">'launch'</span><span class="p">),</span> <span class="n">glob</span><span class="p">(</span><span class="s1">'launch/*.launch.py'</span><span class="p">)),</span>
+        <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'share'</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="s1">'config'</span><span class="p">),</span> <span class="n">glob</span><span class="p">(</span><span class="s1">'config/*.yaml'</span><span class="p">))</span>
     <span class="p">],</span>
-    <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;setuptools&#39;</span><span class="p">],</span>
+    <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span><span class="s1">'setuptools'</span><span class="p">],</span>
     <span class="n">zip_safe</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="hll">    <span class="n">maintainer</span><span class="o">=</span><span class="s1">&#39;Your Name&#39;</span><span class="p">,</span>  <span class="c1"># Update name</span>
-</span><span class="hll">    <span class="n">maintainer_email</span><span class="o">=</span><span class="s1">&#39;your@email&#39;</span><span class="p">,</span>  <span class="c1"># Update email</span>
-</span><span class="hll">    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Your package description&#39;</span><span class="p">,</span>  <span class="c1"># Update package description</span>
-</span><span class="hll">    <span class="n">license</span><span class="o">=</span><span class="s1">&#39;Your License&#39;</span><span class="p">,</span>  <span class="c1"># Update license</span>
-</span>    <span class="n">tests_require</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pytest&#39;</span><span class="p">],</span>
+<span class="hll">    <span class="n">maintainer</span><span class="o">=</span><span class="s1">'Your Name'</span><span class="p">,</span>  <span class="c1"># Update name</span>
+</span><span class="hll">    <span class="n">maintainer_email</span><span class="o">=</span><span class="s1">'your@email'</span><span class="p">,</span>  <span class="c1"># Update email</span>
+</span><span class="hll">    <span class="n">description</span><span class="o">=</span><span class="s1">'Your package description'</span><span class="p">,</span>  <span class="c1"># Update package description</span>
+</span><span class="hll">    <span class="n">license</span><span class="o">=</span><span class="s1">'Your License'</span><span class="p">,</span>  <span class="c1"># Update license</span>
+</span>    <span class="n">tests_require</span><span class="o">=</span><span class="p">[</span><span class="s1">'pytest'</span><span class="p">],</span>
     <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
-        <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
-<span class="hll">            <span class="sa">f</span><span class="s1">&#39;your_controller_name = </span><span class="si">{</span><span class="n">package_name</span><span class="si">}</span><span class="s1">.controller:main&#39;</span><span class="p">,</span>  <span class="c1"># Update controller executable name</span>
+        <span class="s1">'console_scripts'</span><span class="p">:</span> <span class="p">[</span>
+<span class="hll">            <span class="sa">f</span><span class="s1">'your_controller_name = </span><span class="si">{</span><span class="n">package_name</span><span class="si">}</span><span class="s1">.controller:main'</span><span class="p">,</span>  <span class="c1"># Update controller executable name</span>
 </span></code></pre></div></td></tr></table></div>
 <ul>
 <li>setup.cfg (lines 2, 4)<br />
@@ -1837,21 +1837,21 @@ $ cd ~/controller_ws
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
-<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">package_name</span> <span class="o">=</span> <span class="s1">&#39;your_package_name&#39;</span>   <span class="c1"># Update package name</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="n">package_name</span> <span class="o">=</span> <span class="s1">'your_package_name'</span>   <span class="c1"># Update package name</span>
 </span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">generate_launch_description</span><span class="p">():</span>
     <span class="n">ld</span> <span class="o">=</span> <span class="n">LaunchDescription</span><span class="p">()</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
         <span class="n">get_package_share_directory</span><span class="p">(</span><span class="n">package_name</span><span class="p">),</span>
-        <span class="s1">&#39;config&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;controller.yaml&#39;</span>
+        <span class="s1">'config'</span><span class="p">,</span>
+        <span class="s1">'controller.yaml'</span>
         <span class="p">)</span>
 
     <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
         <span class="n">package</span><span class="o">=</span><span class="n">package_name</span><span class="p">,</span>
-<span class="hll">        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;your_controller_name&#39;</span><span class="p">,</span>  <span class="c1"># Update controller name (same as name in config.yaml)</span>
-</span><span class="hll">        <span class="n">executable</span><span class="o">=</span><span class="s1">&#39;your_controller_name&#39;</span><span class="p">,</span>  <span class="c1"># Update controller executable name from setup.py</span>
+<span class="hll">        <span class="n">name</span><span class="o">=</span><span class="s1">'your_controller_name'</span><span class="p">,</span>  <span class="c1"># Update controller name (same as name in config.yaml)</span>
+</span><span class="hll">        <span class="n">executable</span><span class="o">=</span><span class="s1">'your_controller_name'</span><span class="p">,</span>  <span class="c1"># Update controller executable name from setup.py</span>
 </span></code></pre></div></td></tr></table></div>
 <ul>
 <li>config/controller.yaml (line 1)<br />
@@ -1927,14 +1927,14 @@ You may also use <code>config/controller.yaml</code> for any policy parameters.<
         <span class="bp">self</span><span class="o">.</span><span class="n">update_params</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">update_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update dependent variables after reading in params.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Update dependent variables after reading in params."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bar</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">foo</span>
 
-        <span class="k">pass</span>  <span class="c1"># remove if there&#39;s anything to set above</span>
+        <span class="k">pass</span>  <span class="c1"># remove if there's anything to set above</span>
 
     <span class="c1"># Modify function inputs as desired</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">target</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate target value from feedback inputs.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Calculate target value from feedback inputs."""</span>
 
         <span class="c1"># secret sauce</span>
 
@@ -1961,10 +1961,10 @@ You may also use <code>config/controller.yaml</code> for any policy parameters.<
 <span class="normal">31</span>
 <span class="normal">32</span>
 <span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">def</span><span class="w"> </span><span class="nf">update_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update dependent variables after reading in params.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Update dependent variables after reading in params."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bar</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">foo</span>
 
-        <span class="k">pass</span>  <span class="c1"># remove if there&#39;s anything to set above</span>
+        <span class="k">pass</span>  <span class="c1"># remove if there's anything to set above</span>
 </code></pre></div></td></tr></table></div>
 <ul>
 <li>Declare/get/update params in the <code>set_params</code> function of the <code>Controller</code> class on line 118</li>
@@ -1977,10 +1977,10 @@ You may also use <code>config/controller.yaml</code> for any policy parameters.<
 <span class="normal">123</span>
 <span class="normal">124</span>
 <span class="normal">125</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">def</span><span class="w"> </span><span class="nf">set_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Use ROS2 declare_parameter and get_parameter to set policy params.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">declare_parameter</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">foo</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">"""Use ROS2 declare_parameter and get_parameter to set policy params."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">declare_parameter</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">foo</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">foo</span> <span class="o">=</span> \
-            <span class="bp">self</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_parameter_value</span><span class="p">()</span><span class="o">.</span><span class="n">double_value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">)</span><span class="o">.</span><span class="n">get_parameter_value</span><span class="p">()</span><span class="o">.</span><span class="n">double_value</span>
 
         <span class="c1"># recompute any dependent variables</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">update_params</span><span class="p">()</span>
@@ -1997,7 +1997,7 @@ You may also use <code>config/controller.yaml</code> for any policy parameters.<
 <span class="normal">40</span>
 <span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="c1"># Modify function inputs as desired</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">target</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># noqa: D202</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate target value from feedback inputs.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Calculate target value from feedback inputs."""</span>
 
         <span class="c1"># secret sauce</span>
 
@@ -2010,7 +2010,7 @@ You may also use <code>config/controller.yaml</code> for any policy parameters.<
 control (for example):</p>
 <div class="highlight"><pre><span></span><code>    <span class="c1"># To subscribe to any topic, simply define the specific callback, e.g. power_callback</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">power_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;Callback for &#39;/power_data&#39; topic from Power Controller&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">'''Callback for '/power_data' topic from Power Controller'''</span>
         <span class="c1"># get target value from control policy</span>
         <span class="n">target_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">target</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">rpm</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">retract</span><span class="p">)</span>
 
@@ -2072,7 +2072,7 @@ can call commands to set the rates anywhere from 10Hz to 50Hz (default argument 
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;controller&#39;</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">'controller'</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">policy</span> <span class="o">=</span> <span class="n">ControlPolicy</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_params</span><span class="p">()</span>
@@ -2141,17 +2141,17 @@ Or, you may test only your new controller package using:<br />
 <p>And you should see something similar to:
 <div class="highlight"><pre><span></span><code>[INFO] [launch]: Default logging verbosity is set to INFO
 [INFO] [controller-1]: process started with pid [1409887]
-[controller-1] [INFO] [1678130539.867493131] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._xb_record.XBRecord&#39;&gt; on &#39;/ahrs_data&#39;
-[controller-1] [INFO] [1678130540.031500810] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._bc_record.BCRecord&#39;&gt; on &#39;/battery_data&#39;
-[controller-1] [INFO] [1678130540.031972332] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._sc_record.SCRecord&#39;&gt; on &#39;/spring_data&#39;
-[controller-1] [INFO] [1678130540.032390456] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._pc_record.PCRecord&#39;&gt; on &#39;/power_data&#39;
-[controller-1] [INFO] [1678130540.032810815] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._tf_record.TFRecord&#39;&gt; on &#39;/trefoil_data&#39;
-[controller-1] [INFO] [1678130540.033268687] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._xb_record.XBRecord&#39;&gt; on &#39;/xb_record&#39;
-[controller-1] [INFO] [1678130540.033703510] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._bc_record.BCRecord&#39;&gt; on &#39;/bc_record&#39;
-[controller-1] [INFO] [1678130540.034091374] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._sc_record.SCRecord&#39;&gt; on &#39;/sc_record&#39;
-[controller-1] [INFO] [1678130540.034467140] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._pc_record.PCRecord&#39;&gt; on &#39;/pc_record&#39;
-[controller-1] [INFO] [1678130540.034868686] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._tf_record.TFRecord&#39;&gt; on &#39;/tf_record&#39;
-[controller-1] [INFO] [1678130540.035298496] [controller]: Subscribing to &lt;class &#39;buoy_interfaces.msg._pb_record.PBRecord&#39;&gt; on &#39;/powerbuoy_data&#39;
+[controller-1] [INFO] [1678130539.867493131] [controller]: Subscribing to &lt;class 'buoy_interfaces.msg._xb_record.XBRecord'&gt; on '/ahrs_data'
+[controller-1] [INFO] [1678130540.031500810] [controller]: Subscribing to &lt;class 'buoy_interfaces.msg._bc_record.BCRecord'&gt; on '/battery_data'
+[controller-1] [INFO] [1678130540.031972332] [controller]: Subscribing to &lt;class 'buoy_interfaces.msg._sc_record.SCRecord'&gt; on '/spring_data'
+[controller-1] [INFO] [1678130540.032390456] [controller]: Subscribing to &lt;class 'buoy_interfaces.msg._pc_record.PCRecord'&gt; on '/power_data'
+[controller-1] [INFO] [1678130540.032810815] [controller]: Subscribing to &lt;class 'buoy_interfaces.msg._tf_record.TFRecord'&gt; on '/trefoil_data'
+[controller-1] [INFO] [1678130540.033268687] [controller]: Subscribing to &lt;class 'buoy_interfaces.msg._xb_record.XBRecord'&gt; on '/xb_record'
+[controller-1] [INFO] [1678130540.033703510] [controller]: Subscribing to &lt;class 'buoy_interfaces.msg._bc_record.BCRecord'&gt; on '/bc_record'
+[controller-1] [INFO] [1678130540.034091374] [controller]: Subscribing to &lt;class 'buoy_interfaces.msg._sc_record.SCRecord'&gt; on '/sc_record'
+[controller-1] [INFO] [1678130540.034467140] [controller]: Subscribing to &lt;class 'buoy_interfaces.msg._pc_record.PCRecord'&gt; on '/pc_record'
+[controller-1] [INFO] [1678130540.034868686] [controller]: Subscribing to &lt;class 'buoy_interfaces.msg._tf_record.TFRecord'&gt; on '/tf_record'
+[controller-1] [INFO] [1678130540.035298496] [controller]: Subscribing to &lt;class 'buoy_interfaces.msg._pb_record.PBRecord'&gt; on '/powerbuoy_data'
 [controller-1] [INFO] [1678130540.286577653] [controller]: /pc_pack_rate_command not available
 [controller-1] [INFO] [1678130540.537643441] [controller]: /sc_pack_rate_command not available
 [controller-1] [INFO] [1678130540.538230613] [controller]: Found all required services.
